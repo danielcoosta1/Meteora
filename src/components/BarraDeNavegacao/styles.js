@@ -51,6 +51,7 @@ const CampoCart = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   span {
     position: absolute;
@@ -71,6 +72,19 @@ const ListaEstilizada = styled.ul`
 
   a {
     color: #ffffff;
+    text-decoration: none;
+    position: relative;
+
+    &.ativo::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: #daff01;
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+    }
   }
 `;
 
