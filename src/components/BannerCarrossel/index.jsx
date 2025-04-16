@@ -29,6 +29,7 @@ const BannerCarrossel = () => {
   useEffect(() => {
     const interval = setInterval(avancar, 10000);
     return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
