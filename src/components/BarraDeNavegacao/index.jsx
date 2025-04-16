@@ -23,11 +23,11 @@ const BarraDeNavegacao = () => {
   return (
     <NavEstilizada>
       <ConteinerEsquerdaEstilizado>
-        <a href="#">
+        <NavLink to="/">
           <h1>
             <ImgEstilizada src={logoMeteora} alt="Logo do Meteora" />
           </h1>
-        </a>
+        </NavLink>
         <ListaEstilizada>
           {links.map((link, index) => (
             <li key={index}>
