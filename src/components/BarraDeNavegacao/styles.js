@@ -48,11 +48,20 @@ const InputEstilizado = styled.input`
 `;
 
 const CampoCart = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
 
-  p {
-    color: #daff01;
+  span {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #daff01;
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 999px;
   }
 `;
 
@@ -60,8 +69,8 @@ const ListaEstilizada = styled.ul`
   display: flex;
   gap: 1rem;
 
-  a{
-    color: #FFFFFF;
+  a {
+    color: #ffffff;
   }
 `;
 

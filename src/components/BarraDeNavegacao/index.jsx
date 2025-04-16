@@ -48,7 +48,7 @@ const BarraDeNavegacao = () => {
             src={iconeCarrinho}
             alt="Abrir carrinho de compras"
           />
-          <p>4</p>
+          <span>4</span>
         </CampoCart>
       </ConteinerDireitoEstilizado>
     </NavEstilizada>
