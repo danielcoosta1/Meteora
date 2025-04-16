@@ -1,15 +1,15 @@
 import BarraDeNavegacao from "../../components/BarraDeNavegacao";
 
-const Lojas = () => {
+const Novidades = () => {
   return (
     <>
       <BarraDeNavegacao />
       <main style={{ padding: "2rem", textAlign: "center" }}>
-        <h2>Página de Lojas</h2>
+        <h2>Página de Novidades</h2>
         <p>Conteúdo em construção...</p>
       </main>
     </>
   );
 };
 
-export default Lojas;
+export default Novidades;
