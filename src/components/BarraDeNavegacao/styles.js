@@ -33,6 +33,13 @@ const Button = styled.button`
   background-color: transparent;
   color: #ffffff;
   border: 1px solid #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #ffffff;
+    color: #000000;
+  }
 `;
 
 const InputEstilizado = styled.input`
@@ -52,7 +59,9 @@ const CampoCart = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-
+  &:hover {
+    transform: scale(1.05);
+  }
   span {
     position: absolute;
     top: -8px;
@@ -73,17 +82,16 @@ const ListaEstilizada = styled.ul`
   a {
     color: #ffffff;
     text-decoration: none;
-    position: relative;
+    transition: all 0.2s ease;
 
-    &.ativo::after {
-      content: "";
-      display: block;
-      width: 100%;
-      height: 2px;
-      background-color: #daff01;
-      position: absolute;
-      bottom: -4px;
-      left: 0;
+    &:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+
+    &.active {
+      font-weight: bold;
+      text-decoration: underline;
     }
   }
 `;
