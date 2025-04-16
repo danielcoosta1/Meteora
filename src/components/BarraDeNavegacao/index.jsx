@@ -1,6 +1,7 @@
 import {
+  Button,
   CampoCart,
-  CampoSearch,
+  CampoFormSearch,
   ConteinerDireitoEstilizado,
   ConteinerEsquerdaEstilizado,
   ImgEstilizada,
@@ -10,35 +11,42 @@ import {
 } from "./styles";
 import logoMeteora from "/assets/images/logo-meteora.png";
 import iconeCarrinho from "/assets/cart.svg";
+import { Link } from "react-router-dom";
 
 const BarraDeNavegacao = () => {
+  const links = [
+    { name: "Nossas Lojas", path: "/lojas" },
+    { name: "Novidades", path: "/novidades" },
+    { name: "Promoções", path: "/promocoes" },
+  ];
+
   return (
     <NavEstilizada>
       <ConteinerEsquerdaEstilizado>
-        <h1>
-          <ImgEstilizada src={logoMeteora} alt="Logo do Meteora" />
-        </h1>
+        <a href="#">
+          <h1>
+            <ImgEstilizada src={logoMeteora} alt="Logo do Meteora" />
+          </h1>
+        </a>
         <ListaEstilizada>
-          <li>
-            <a href="#">Nossas lojas</a>
-          </li>
-          <li>
-            <a href="#">Novidades</a>
-          </li>
-          <li>
-            <a href="#">Promoções</a>
-          </li>
+          {links.map((link, index) => (
+            <li key={index}>
+              <Link to={link.path}>
+                {link.name}
+              </Link>
+            </li>
+          ))}
         </ListaEstilizada>
       </ConteinerEsquerdaEstilizado>
       <ConteinerDireitoEstilizado>
-        <CampoSearch>
-          <InputEstilizado typeof="search" placeholder="Digite o produto" />
-          <button>Buscar</button>
-        </CampoSearch>
+        <CampoFormSearch role="search">
+          <InputEstilizado type="search" placeholder="Digite o produto" />
+          <Button type="submit">Buscar</Button>
+        </CampoFormSearch>
         <CampoCart>
           <ImgEstilizada
             src={iconeCarrinho}
-            alt="Ícone do carrinho de compras"
+            alt="Abrir carrinho de compras"
           />
           <p>4</p>
         </CampoCart>
