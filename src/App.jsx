@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Checkout from "./pages/Checkout";
-import Error from "./pages/Error";
+import Error from "./pages/Error404";
 function App() {
   return (
     <Router>
