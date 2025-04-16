@@ -5,7 +5,7 @@ import {
   GridCategorias,
   CardCategoria,
   ImagemCategoria,
-  Descricao
+  Descricao,
 } from "./styles";
 
 const Categorias = () => {
@@ -16,6 +16,7 @@ const Categorias = () => {
         {categorias.map((item) => (
           <CardCategoria key={item.id}>
             <ImagemCategoria src={item.src} alt={item.alt} />
+
             <Descricao>{item.descricao}</Descricao>
           </CardCategoria>
         ))}

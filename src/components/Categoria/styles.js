@@ -19,6 +19,7 @@ export const GridCategorias = styled.div`
 `;
 
 export const CardCategoria = styled.div`
+  position: relative;
   text-align: center;
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -35,6 +36,15 @@ export const ImagemCategoria = styled.img`
 `;
 
 export const Descricao = styled.p`
-  margin-top: 0.5rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  padding: 0.5rem 0;
   font-weight: bold;
+  font-size: 0.9rem;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 `;
