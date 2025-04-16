@@ -40,7 +40,7 @@ export const Descricao = styled.p`
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.7);
   color: #fff;
   padding: 0.5rem 0;
   font-weight: bold;
