@@ -1,12 +1,12 @@
 // src/pages/Home.jsx
 import React from "react";
+import BarraDeNavegacao from "../components/BarraDeNavegacao";
 
 const Home = () => {
   return (
-    <div>
-      <h1>Página Inicial</h1>
-      <p>Bem-vindo à página de compras!</p>
-    </div>
+    <>
+      <BarraDeNavegacao/>
+    </>
   );
 };
 
