@@ -13,7 +13,7 @@ import logoMeteora from "/assets/images/logo-meteora.png";
 import iconeCarrinho from "/assets/cart.svg";
 import { NavLink } from "react-router-dom";
 
-const BarraDeNavegacao = () => {
+const BarraDeNavegacao = ({carrinho, abrirMenu}) => {
   const links = [
     { name: "Nossas Lojas", path: "/lojas" },
     { name: "Novidades", path: "/novidades" },
@@ -46,9 +46,9 @@ const BarraDeNavegacao = () => {
           <InputEstilizado type="search" placeholder="Digite o produto" />
           <Button type="submit">Buscar</Button>
         </CampoFormSearch>
-        <CampoCart onClick={() => console.log("Abrir o carrinho de compras")}>
+        <CampoCart onClick={abrirMenu}>
           <ImgEstilizada src={iconeCarrinho} alt="Abrir carrinho de compras" />
-          <span>4</span>
+          <span>{carrinho.reduce((acc,item)=> acc + item.quantidade,0)}</span>
         </CampoCart>
       </ConteinerDireitoEstilizado>
     </NavEstilizada>

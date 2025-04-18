@@ -8,6 +8,7 @@ import Produtos from "../../components/Produtos";
 
 const Home = () => {
   const [carrinho, setCarrinho] = useState([]);
+  const [menuAberto, setMenuAberto] = useState(false);
 
   // Função para adicionar um produto ao carrinho
   const adicionarAoCarrinho = (produto) => {
@@ -31,10 +32,19 @@ const Home = () => {
   };
   return (
     <>
-      <BarraDeNavegacao carrinho={carrinho} />
+      <BarraDeNavegacao
+        carrinho={carrinho}
+        abrirMenu={() => setMenuAberto(true)}
+      />
       <BannerCarrossel />
       <Categorias />
       <Produtos adicionarAoCarrinho={adicionarAoCarrinho} />
+      {menuAberto && (
+        <MenuLateralCarrinho
+          carrinho={carrinho}
+          fecharMenu={() => setMenuAberto(false)}
+        />
+      )}
     </>
   );
 };
