@@ -47,14 +47,17 @@ const MenuLateralCarrinho = ({ carrinho, fecharMenu }) => {
             <ConteinerDescricaoProduto>
               <NomeProduto>{item.titulo}</NomeProduto>
               <ConteinerQuantidade>
-                <QuantidadeProduto>{item.quantidade}x</QuantidadeProduto>
+                <h1>Quantidade:</h1>
+                <div>
+                  <QuantidadeProduto>{item.quantidade}x</QuantidadeProduto>
+                </div>
               </ConteinerQuantidade>
               <PrecoProduto>
                 R$ {(item.preco * item.quantidade).toFixed(2)}
               </PrecoProduto>
             </ConteinerDescricaoProduto>
             <IconeLixeira>
-                <FaTrash />
+              <FaTrash />
             </IconeLixeira>
           </ItemCarrinho>
         ))}

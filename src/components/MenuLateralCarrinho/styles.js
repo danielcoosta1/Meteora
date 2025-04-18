@@ -12,7 +12,6 @@ export const LateralContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
-
 export const HeaderLateral = styled.div`
   display: flex;
   flex-direction: row;
@@ -48,8 +47,9 @@ export const BotaoFechar = styled.button`
 export const ListaItens = styled.ul`
   list-style: none;
   padding: 0;
-  flex: 1;
   margin: 1rem 0;
+  flex: 1;
+  overflow-y: auto;
 `;
 
 export const ItemCarrinho = styled.li`
@@ -58,28 +58,33 @@ export const ItemCarrinho = styled.li`
   padding: 2rem 3rem;
 `;
 export const ImgProduto = styled.img`
-    width: 109px;
-
+  width: 109px;
 `;
 
 export const ConteinerDescricaoProduto = styled.div`
-display: flex;
-flex-direction: column;
-padding: 1rem 2rem;
-gap: 1em;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 2rem;
+  gap: 1em;
 `;
 
-
 export const IconeLixeira = styled.button`
-color: #ffffff;
-background-color: transparent;
-border: none;
-margin-left: auto;
+  color: #ffffff;
+  background-color: transparent;
+  border: none;
+  margin-left: auto;
 `;
 
 export const NomeProduto = styled.span``;
 
-export const ConteinerQuantidade = styled.div``;
+export const ConteinerQuantidade = styled.div`
+  display: flex;
+  h1 {
+    font-size: 1rem;
+  }
+
+  gap: 1em;
+`;
 
 export const QuantidadeProduto = styled.span``;
 
