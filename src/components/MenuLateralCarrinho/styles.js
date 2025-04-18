@@ -83,8 +83,14 @@ export const ConteinerQuantidade = styled.div`
     font-size: 1rem;
   }
 
+  div{
+    display: flex;
+  }
+
   gap: 1em;
 `;
+
+export const BotaoQuantidade = styled.button``
 
 export const QuantidadeProduto = styled.span``;
 

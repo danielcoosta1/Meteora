@@ -15,11 +15,12 @@ import {
   ConteinerDescricaoProduto,
   ConteinerQuantidade,
   IconeLixeira,
+  BotaoQuantidade,
 } from "./styles";
 
 import { FaTrash } from "react-icons/fa";
 
-const MenuLateralCarrinho = ({ carrinho, fecharMenu }) => {
+const MenuLateralCarrinho = ({ carrinho, fecharMenu, setCarrinho}) => {
   const navigate = useNavigate();
 
   // Calcula o total do carrinho
@@ -32,6 +33,32 @@ const MenuLateralCarrinho = ({ carrinho, fecharMenu }) => {
   const irParaCheckout = () => {
     fecharMenu(); // Fecha o menu
     navigate("/checkout"); // Navega para a página de checkout
+  };
+
+  const aumentarQuantidade = (id) => {
+    const atualizado = carrinho.map((item) =>
+      item.id === id ? { ...item, quantidade: item.quantidade + 1 } : item
+    );
+    setCarrinho(atualizado);
+  };
+
+  const diminuirQuantidade = (id) => {
+    const atualizado = carrinho
+      .map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              quantidade: item.quantidade > 1 ? item.quantidade - 1 : 1,
+            }
+          : item
+      )
+      .filter((item) => item.quantidade > 0);
+    setCarrinho(atualizado);
+  };
+
+  const removerItem = (id) => {
+    const atualizado = carrinho.filter((item) => item.id !== id);
+    setCarrinho(atualizado);
   };
 
   return (
@@ -49,14 +76,20 @@ const MenuLateralCarrinho = ({ carrinho, fecharMenu }) => {
               <ConteinerQuantidade>
                 <h1>Quantidade:</h1>
                 <div>
-                  <QuantidadeProduto>{item.quantidade}x</QuantidadeProduto>
+                  <BotaoQuantidade onClick={() => diminuirQuantidade(item.id)}>
+                    -
+                  </BotaoQuantidade>
+                  <QuantidadeProduto>{item.quantidade}</QuantidadeProduto>
+                  <BotaoQuantidade onClick={() => aumentarQuantidade(item.id)}>
+                    +
+                  </BotaoQuantidade>
                 </div>
               </ConteinerQuantidade>
               <PrecoProduto>
                 R$ {(item.preco * item.quantidade).toFixed(2)}
               </PrecoProduto>
             </ConteinerDescricaoProduto>
-            <IconeLixeira>
+            <IconeLixeira onClick={() => removerItem(item.id)}>
               <FaTrash />
             </IconeLixeira>
           </ItemCarrinho>

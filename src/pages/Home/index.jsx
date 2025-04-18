@@ -44,6 +44,7 @@ const Home = () => {
         <MenuLateralCarrinho
           carrinho={carrinho}
           fecharMenu={() => setMenuAberto(false)}
+          setCarrinho={setCarrinho}
         />
       )}
     </>
