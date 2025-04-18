@@ -70,7 +70,12 @@ gap: 1em;
 `;
 
 
-export const IconeLixeira = styled.button``;
+export const IconeLixeira = styled.button`
+color: #ffffff;
+background-color: transparent;
+border: none;
+margin-left: auto;
+`;
 
 export const NomeProduto = styled.span``;
 
