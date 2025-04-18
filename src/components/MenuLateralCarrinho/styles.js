@@ -41,7 +41,6 @@ export const BotaoFechar = styled.button`
   box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   &:hover {
-    
     transform: scale(1.3);
   }
 `;
@@ -55,12 +54,27 @@ export const ListaItens = styled.ul`
 
 export const ItemCarrinho = styled.li`
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
+  color: #ffffff;
+  padding: 2rem 3rem;
+`;
+export const ImgProduto = styled.img`
+    width: 109px;
+
 `;
 
+export const ConteinerDescricaoProduto = styled.div`
+display: flex;
+flex-direction: column;
+padding: 1rem 2rem;
+gap: 1em;
+`;
+
+
+export const IconeLixeira = styled.button``;
+
 export const NomeProduto = styled.span``;
+
+export const ConteinerQuantidade = styled.div``;
 
 export const QuantidadeProduto = styled.span``;
 
