@@ -5,6 +5,7 @@ import BarraDeNavegacao from "../../components/BarraDeNavegacao";
 import BannerCarrossel from "../../components/BannerCarrossel";
 import Categorias from "../../components/Categoria";
 import Produtos from "../../components/Produtos";
+import MenuLateralCarrinho from "../../components/MenuLateralCarrinho";
 
 const Home = () => {
   const [carrinho, setCarrinho] = useState([]);
