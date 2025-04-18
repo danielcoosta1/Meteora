@@ -20,7 +20,7 @@ import {
 
 import { FaTrash } from "react-icons/fa";
 
-const MenuLateralCarrinho = ({ carrinho, fecharMenu, setCarrinho}) => {
+const MenuLateralCarrinho = ({ carrinho, fecharMenu, setCarrinho }) => {
   const navigate = useNavigate();
 
   // Calcula o total do carrinho
@@ -96,7 +96,10 @@ const MenuLateralCarrinho = ({ carrinho, fecharMenu, setCarrinho}) => {
         ))}
       </ListaItens>
       <RodapeLateral>
-        <p>Total: R$ {total.toFixed(2)}</p>
+        <div>
+          <h1>Total: </h1>
+          <p>R$ {total.toFixed(2)}</p>
+        </div>
         <BotaoCheckout onClick={irParaCheckout}>Finalizar Compra</BotaoCheckout>
       </RodapeLateral>
     </LateralContainer>
