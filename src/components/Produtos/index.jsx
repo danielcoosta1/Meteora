@@ -10,18 +10,18 @@ import {
   TituloProduto,
 } from "./styles";
 import produtos from "../../mocks/produtos.json";
-const Produtos = () => {
+const Produtos = ({adicionarAoCarrinho}) => {
   return (
     <SecaoProdutos>
       <Titulo>Produtos que estão bombando!</Titulo>
       <GridProdutos>
         {produtos.map((produto) => (
-          <CardProduto>
+          <CardProduto key={produto.id}>
             <ImagemProduto src={produto.src} alt={produto.alt} />
             <TituloProduto>{produto.titulo}</TituloProduto>
             <DescricaoProduto>{produto.descricao}</DescricaoProduto>
             <PrecoProduto>R$ {produto.preco}</PrecoProduto>
-            <BotaoCarrinho >Adicionar ao carrinho</BotaoCarrinho>
+            <BotaoCarrinho onClick={()=>adicionarAoCarrinho(produto)}>Adicionar ao carrinho</BotaoCarrinho>
           </CardProduto>
         ))}
       </GridProdutos>
