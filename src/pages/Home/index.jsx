@@ -3,6 +3,7 @@ import React from "react";
 import BarraDeNavegacao from "../../components/BarraDeNavegacao";
 import BannerCarrossel from "../../components/BannerCarrossel";
 import Categorias from "../../components/Categoria";
+import Produtos from "../../components/Produtos";
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       <BarraDeNavegacao/>
       <BannerCarrossel/>
       <Categorias/>
+      <Produtos/>
     </>
   );
 };

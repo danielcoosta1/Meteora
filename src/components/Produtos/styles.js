@@ -1,0 +1,72 @@
+import styled from "styled-components";
+
+const SecaoProdutos = styled.section`
+  padding: 4rem 0;
+  text-align: start;
+`;
+
+const Titulo = styled.h2`
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+`;
+const GridProdutos = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  padding: 0 1rem;
+`;
+
+const CardProduto = styled.div`
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 1rem;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+`;
+
+const ImagemProduto = styled.img`
+  width: 100%;
+  border-radius: 4px;
+`;
+
+const TituloProduto = styled.h3`
+  margin: 1rem 0 0.5rem;
+  font-size: 1.2rem;
+`;
+const DescricaoProduto = styled.p`
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+`;
+
+const PrecoProduto = styled.p`
+  font-weight: bold;
+  margin: 0.5rem 0;
+`;
+const BotaoCarrinho = styled.button`
+  background-color: #9353FF;
+  color: #FFFFFF;
+  padding: 0.5rem 1rem;
+  border: none;
+  
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.9;
+  }
+`;
+
+export {
+  SecaoProdutos,
+  Titulo,
+  GridProdutos,
+  CardProduto,
+  TituloProduto,
+  ImagemProduto,
+  DescricaoProduto,
+  PrecoProduto,
+  BotaoCarrinho,
+};
