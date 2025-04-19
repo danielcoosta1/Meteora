@@ -32,7 +32,7 @@ const MenuLateralCarrinho = ({ carrinho, fecharMenu, setCarrinho }) => {
   // Função para finalizar a compra
   const irParaCheckout = () => {
     fecharMenu(); // Fecha o menu
-    navigate("/checkout"); // Navega para a página de checkout
+    navigate("/checkout", { state: { carrinho } });
   };
 
   const aumentarQuantidade = (id) => {

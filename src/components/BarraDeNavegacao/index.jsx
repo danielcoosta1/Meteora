@@ -46,7 +46,7 @@ const BarraDeNavegacao = ({carrinho, abrirMenu}) => {
           <InputEstilizado type="search" placeholder="Digite o produto" />
           <Button type="submit">Buscar</Button>
         </CampoFormSearch>
-        <CampoCart onClick={abrirMenu}>
+        <CampoCart onClick={abrirMenu} >
           <ImgEstilizada src={iconeCarrinho} alt="Abrir carrinho de compras" />
           <span>{carrinho.reduce((acc,item)=> acc + item.quantidade,0)}</span>
         </CampoCart>
