@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom"
 import { ButtonEstilizado } from "./styles";
 
-const VoltarHome = () => {
+const VoltarHome = ({children}) => {
     const navigate = useNavigate();
     return(
         <ButtonEstilizado onClick={()=>navigate("/")}>
-            Voltar
+            {children}
         </ButtonEstilizado>
     )
 }

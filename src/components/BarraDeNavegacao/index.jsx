@@ -25,7 +25,7 @@ const BarraDeNavegacao = ({ carrinho, abrirMenu }) => {
 
   //Verificação para renderizar o ícone do carrinho - Não aparece no checkout, apenas no home;
   const location = useLocation();
-  const estaNoCheckOut = location.pathname === "/checkout";
+  const estaNoHome = location.pathname === "/";
 
   return (
     <NavEstilizada>
@@ -53,7 +53,7 @@ const BarraDeNavegacao = ({ carrinho, abrirMenu }) => {
           <InputEstilizado type="search" placeholder="Digite o produto" />
           <Button type="submit">Buscar</Button>
         </CampoFormSearch>
-        {!estaNoCheckOut && (
+        {estaNoHome && (
           <CampoCart onClick={abrirMenu}>
             <ImgEstilizada
               src={iconeCarrinho}
