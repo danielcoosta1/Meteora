@@ -9,9 +9,7 @@ export const BannerCheckout = styled.div`
   }
 `;
 
-
-
-export const ConteinerPrincipal = styled.main`
+export const ConteinerPrincipalVazio = styled.main`
   padding: 2rem;
   min-height: 60vh;
   display: flex;
@@ -23,7 +21,6 @@ export const ConteinerPrincipal = styled.main`
   margin: 5rem 0;
   color: #ffffff;
   font-size: 2rem;
-
 `;
 
 export const ConteinerVazio = styled.div`
@@ -42,7 +39,102 @@ button{
 
 `;
 
+export const TituloCheckout = styled.h1`
+  text-align: center;
+  padding: 2rem 0;
+  font-weight: 400;
+`;
+
+export const ConteinerPrincipalCompras = styled.main`
+  max-width: 90rem;
+  display: flex;
+  margin: 2rem auto;
+  justify-content: space-between;
+`;
+
+export const DetalhesCompras = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  padding: 1rem 2rem;
+  background-color: #000;
+  color: #ffffff;
+
+  h1 {
+    font-weight: 400;
+  }
+`;
+
+export const ListaItens = styled.ul`
+  padding: 3rem 0;
+`;
+
+export const ItemLista = styled.li`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  padding: 1rem 2rem;
+`;
+
+export const ImgProduto = styled.img`
+  width: 180px;
+`;
+
+export const ConteinerDescricaoProduto = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  margin-left: -5rem;
+`;
+
+export const PrecoProduto = styled.span`
+  font-weight: bold;
+  color: #daff01;
+`;
+
+export const NomeProduto = styled.span`
+font-weight: 700;
+margin-bottom: 1em;
+
+`;
+
+export const ConteinerQuantidade = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    font-size: 1rem;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+  }
+`;
+
+export const BotaoQuantidade = styled.button`
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  background-color: transparent;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+`;
+
+export const QuantidadeProduto = styled.span`
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  padding: 0.5em 1.5em;
+`;
+
+export const IconeLixeira = styled.button`
+  color: #ffffff;
+  background-color: transparent;
+  border: none;
+`;
+
+export const DetalhesPagamento = styled.div``;
+
 export const DescricaoSemProduto = styled.p``;
-
-
-
