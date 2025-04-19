@@ -7,8 +7,7 @@ import Categorias from "../../components/Categoria";
 import Produtos from "../../components/Produtos";
 import MenuLateralCarrinho from "../../components/MenuLateralCarrinho";
 
-const Home = () => {
-  const [carrinho, setCarrinho] = useState([]);
+const Home = ({ carrinho, setCarrinho }) => {
   const [menuAberto, setMenuAberto] = useState(false);
 
   // Função para adicionar um produto ao carrinho
