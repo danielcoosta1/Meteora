@@ -9,16 +9,23 @@ import {
   ListaEstilizada,
   NavEstilizada,
 } from "./styles";
+
 import logoMeteora from "/assets/images/logo-meteora.png";
+
 import iconeCarrinho from "/assets/cart.svg";
 import { NavLink } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-const BarraDeNavegacao = ({carrinho, abrirMenu}) => {
+const BarraDeNavegacao = ({ carrinho, abrirMenu }) => {
   const links = [
     { name: "Nossas Lojas", path: "/lojas" },
     { name: "Novidades", path: "/novidades" },
     { name: "Promoções", path: "/promocoes" },
   ];
+
+  //Verificação para renderizar o ícone do carrinho - Não aparece no checkout, apenas no home;
+  const location = useLocation();
+  const estaNoCheckOut = location.pathname === "/checkout";
 
   return (
     <NavEstilizada>
@@ -46,10 +53,17 @@ const BarraDeNavegacao = ({carrinho, abrirMenu}) => {
           <InputEstilizado type="search" placeholder="Digite o produto" />
           <Button type="submit">Buscar</Button>
         </CampoFormSearch>
-        <CampoCart onClick={abrirMenu} >
-          <ImgEstilizada src={iconeCarrinho} alt="Abrir carrinho de compras" />
-          <span>{carrinho.reduce((acc,item)=> acc + item.quantidade,0)}</span>
-        </CampoCart>
+        {!estaNoCheckOut && (
+          <CampoCart onClick={abrirMenu}>
+            <ImgEstilizada
+              src={iconeCarrinho}
+              alt="Abrir carrinho de compras"
+            />
+            <span>
+              {carrinho.reduce((acc, item) => acc + item.quantidade, 0)}
+            </span>
+          </CampoCart>
+        )}
       </ConteinerDireitoEstilizado>
     </NavEstilizada>
   );
