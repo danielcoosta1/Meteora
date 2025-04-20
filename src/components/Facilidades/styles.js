@@ -37,6 +37,7 @@ export const ConteinerDescricao = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1em;
+  margin-bottom: 1rem;
   h2{
     color: #DAFF01;
   }
