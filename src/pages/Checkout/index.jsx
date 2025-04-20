@@ -67,6 +67,13 @@ const Checkout = ({ carrinho, setCarrinho }) => {
     setCarrinho(atualizado);
   };
 
+
+  const finalizarCompra = () => {
+    alert("Compra finalizada com sucesso! 🎉");
+    setCarrinho([]); // limpa o carrinho
+  };
+  
+
   return (
     <>
       <BarraDeNavegacao />
@@ -135,7 +142,7 @@ const Checkout = ({ carrinho, setCarrinho }) => {
               </TotalPreco>
               <Botoes>
                 <VoltarHome $width="12rem" > Continuar Comprando</VoltarHome>
-                <BotaoFinalizarCompra>Finalizar Compra</BotaoFinalizarCompra>
+                <BotaoFinalizarCompra onClick={finalizarCompra}>Finalizar Compra</BotaoFinalizarCompra>
               </Botoes>
             </DetalhesPagamento>
           </ConteinerPrincipalCompras>
