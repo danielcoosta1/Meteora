@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const SecaoProdutos = styled.section`
-  padding: 4rem 0;
+  
   text-align: start;
 `;
 
@@ -13,7 +13,7 @@ const GridProdutos = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 2rem;
-  padding: 0 1rem;
+  
 `;
 
 const CardProduto = styled.div`
