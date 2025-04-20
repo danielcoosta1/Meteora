@@ -5,7 +5,9 @@ import BarraDeNavegacao from "../../components/BarraDeNavegacao";
 import imgBannerCarrinho from "/assets/images/banner-carrinho.png";
 import {
   BannerCheckout,
+  BotaoFinalizarCompra,
   BotaoQuantidade,
+  Botoes,
   ConteinerDescricaoProduto,
   ConteinerPrincipalCompras,
   ConteinerPrincipalVazio,
@@ -35,7 +37,8 @@ const Checkout = ({ carrinho, setCarrinho }) => {
   );
 
   const totalQuantidade = carrinho.reduce(
-    (acc,item) => acc + item.quantidade, 0
+    (acc, item) => acc + item.quantidade,
+    0
   );
 
   const incrementarQtde = (id) => {
@@ -130,6 +133,10 @@ const Checkout = ({ carrinho, setCarrinho }) => {
                 <p>Total:</p>
                 <span>R$ {totalPreco.toFixed(2)}</span>
               </TotalPreco>
+              <Botoes>
+                <VoltarHome $width="12rem" > Continuar Comprando</VoltarHome>
+                <BotaoFinalizarCompra>Finalizar Compra</BotaoFinalizarCompra>
+              </Botoes>
             </DetalhesPagamento>
           </ConteinerPrincipalCompras>
         </>

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const ButtonEstilizado = styled.button`
-  padding: ${(props) => props.$padding || "0.75rem 1.5rem"};
+  padding: ${(props) => props.$padding || "0.75rem 1rem"};
   font-size: ${(props) => props.$fontSize || "1rem"};
-  width: ${(props) => props.$width || "auto"};
+  min-width: ${(props) => props.$width || "auto"};
   background-color: #9353ff;
   color: #ffffff;
   border: none;
@@ -11,6 +11,8 @@ export const ButtonEstilizado = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: #7e3ce3;
+    background-color:transparent;
+    color:  #9353ff;
+    border: 1px solid  #9353ff;
   }
 `;

@@ -24,19 +24,17 @@ export const ConteinerPrincipalVazio = styled.main`
 `;
 
 export const ConteinerVazio = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-button{
+  button {
     width: 60%;
     align-items: center;
-    background-color: #9353FF;
+    background-color: #9353ff;
     color: #ffffff;
-
-}
-
+  }
 `;
 
 export const TituloCheckout = styled.h1`
@@ -95,9 +93,8 @@ export const PrecoProduto = styled.span`
 `;
 
 export const NomeProduto = styled.span`
-font-weight: 700;
-margin-bottom: 1em;
-
+  font-weight: 700;
+  margin-bottom: 1em;
 `;
 
 export const ConteinerQuantidade = styled.div`
@@ -137,50 +134,60 @@ export const IconeLixeira = styled.button`
 `;
 
 export const DetalhesPagamento = styled.div`
-display: flex;
-flex-direction: column;
-background-color:#000;
-color: #ffffff;
-max-height: 400px;
-min-width: 348px;
-padding: 1rem 2rem;
-gap: 3rem;
-h1{
+  display: flex;
+  flex-direction: column;
+  background-color: #000;
+  color: #ffffff;
+  max-height: 400px;
+  min-width: 348px;
+  padding: 1rem 2rem;
+  gap: 3rem;
+  h1 {
     font-weight: 400;
-}
-
-
+  }
 `;
-
-
 
 export const DescricaoSemProduto = styled.p``;
 
-
 export const ProdutoPreco = styled.div`
-
-display: flex;
-justify-content: space-between;
-
+  display: flex;
+  justify-content: space-between;
 `;
-
 
 export const TotalPreco = styled.div`
+  padding: 2rem 0;
+  border-top: 1px solid #daff01;
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  align-items: center;
 
-padding: 2rem 0;
-border-top: 1px solid #DAFF01;
-display: flex;
-justify-content: space-between; 
-margin-top: auto;
-align-items: center;
-
-span{
-
-  color: #daff01;
-  font-weight: 700;
-  font-size: 1.25rem;
-
-}
-
+  span {
+    color: #daff01;
+    font-weight: 700;
+    font-size: 1.25rem;
+  }
 `;
 
+export const Botoes = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 8rem;
+`;
+
+export const BotaoFinalizarCompra = styled.button`
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  background-color: transparent;
+  color: #9353ff;
+  border: 1px solid  #9353ff;
+  min-width: 12rem;
+
+  &:hover {
+    background-color: #9353ff;
+    color: #ffffff;
+  }
+`;
