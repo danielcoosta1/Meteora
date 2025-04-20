@@ -6,6 +6,7 @@ import BannerCarrossel from "../../components/BannerCarrossel";
 import Categorias from "../../components/Categoria";
 import Produtos from "../../components/Produtos";
 import MenuLateralCarrinho from "../../components/MenuLateralCarrinho";
+import ContainerHome from "../../components/ContainerHome";
 
 const Home = ({ carrinho, setCarrinho }) => {
   const [menuAberto, setMenuAberto] = useState(false);
@@ -37,15 +38,17 @@ const Home = ({ carrinho, setCarrinho }) => {
         abrirMenu={() => setMenuAberto(true)}
       />
       <BannerCarrossel />
-      <Categorias />
-      <Produtos adicionarAoCarrinho={adicionarAoCarrinho} />
-      {menuAberto && (
-        <MenuLateralCarrinho
-          carrinho={carrinho}
-          fecharMenu={() => setMenuAberto(false)}
-          setCarrinho={setCarrinho}
-        />
-      )}
+      <ContainerHome>
+        <Categorias />
+        <Produtos adicionarAoCarrinho={adicionarAoCarrinho} />
+        {menuAberto && (
+          <MenuLateralCarrinho
+            carrinho={carrinho}
+            fecharMenu={() => setMenuAberto(false)}
+            setCarrinho={setCarrinho}
+          />
+        )}
+      </ContainerHome>
     </>
   );
 };
