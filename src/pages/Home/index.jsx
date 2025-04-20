@@ -9,6 +9,7 @@ import MenuLateralCarrinho from "../../components/MenuLateralCarrinho";
 import ContainerHome from "../../components/ContainerHome";
 import Facilidades from "../../components/Facilidades";
 import Novidades from "../../components/Novidades";
+import Footer from "../../components/Footer";
 
 const Home = ({ carrinho, setCarrinho }) => {
   const [menuAberto, setMenuAberto] = useState(false);
@@ -53,6 +54,7 @@ const Home = ({ carrinho, setCarrinho }) => {
       </ContainerHome>
       <Facilidades/>
       <Novidades/>
+      <Footer/>
     </>
   );
 };
