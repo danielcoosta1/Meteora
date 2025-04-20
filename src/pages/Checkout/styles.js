@@ -31,7 +31,7 @@ align-items: center;
 
 button{
     width: 60%;
-    align-item;
+    align-items: center;
     background-color: #9353FF;
     color: #ffffff;
 
@@ -49,7 +49,7 @@ export const ConteinerPrincipalCompras = styled.main`
   max-width: 90rem;
   display: flex;
   margin: 2rem auto;
-  justify-content: space-between;
+  gap: 8rem;
 `;
 
 export const DetalhesCompras = styled.div`
@@ -79,6 +79,7 @@ export const ItemLista = styled.li`
 
 export const ImgProduto = styled.img`
   width: 180px;
+  margin-right: 2rem;
 `;
 
 export const ConteinerDescricaoProduto = styled.div`
@@ -135,6 +136,51 @@ export const IconeLixeira = styled.button`
   border: none;
 `;
 
-export const DetalhesPagamento = styled.div``;
+export const DetalhesPagamento = styled.div`
+display: flex;
+flex-direction: column;
+background-color:#000;
+color: #ffffff;
+max-height: 400px;
+min-width: 348px;
+padding: 1rem 2rem;
+gap: 3rem;
+h1{
+    font-weight: 400;
+}
+
+
+`;
+
+
 
 export const DescricaoSemProduto = styled.p``;
+
+
+export const ProdutoPreco = styled.div`
+
+display: flex;
+justify-content: space-between;
+
+`;
+
+
+export const TotalPreco = styled.div`
+
+padding: 2rem 0;
+border-top: 1px solid #DAFF01;
+display: flex;
+justify-content: space-between; 
+margin-top: auto;
+align-items: center;
+
+span{
+
+  color: #daff01;
+  font-weight: 700;
+  font-size: 1.25rem;
+
+}
+
+`;
+

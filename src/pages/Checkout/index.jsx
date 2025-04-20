@@ -20,16 +20,22 @@ import {
   ListaItens,
   NomeProduto,
   PrecoProduto,
+  ProdutoPreco,
   QuantidadeProduto,
   TituloCheckout,
+  TotalPreco,
 } from "./styles";
 import VoltarHome from "../../components/VoltarHome";
 
 const Checkout = ({ carrinho, setCarrinho }) => {
   const carrinhoVazio = carrinho.length === 0;
-  const total = carrinho.reduce(
+  const totalPreco = carrinho.reduce(
     (acumulador, item) => acumulador + item.preco * item.quantidade,
     0
+  );
+
+  const totalQuantidade = carrinho.reduce(
+    (acc,item) => acc + item.quantidade, 0
   );
 
   const incrementarQtde = (id) => {
@@ -115,7 +121,15 @@ const Checkout = ({ carrinho, setCarrinho }) => {
               </ListaItens>
             </DetalhesCompras>
             <DetalhesPagamento>
-              <p>Total: {total.toFixed(2)} </p>
+              <h1>Sumário</h1>
+              <ProdutoPreco>
+                <p>0{totalQuantidade} Produtos</p>
+                <p>R$ {totalPreco.toFixed(2)}</p>
+              </ProdutoPreco>
+              <TotalPreco>
+                <p>Total:</p>
+                <span>R$ {totalPreco.toFixed(2)}</span>
+              </TotalPreco>
             </DetalhesPagamento>
           </ConteinerPrincipalCompras>
         </>
