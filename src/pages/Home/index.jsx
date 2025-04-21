@@ -11,8 +11,11 @@ import Facilidades from "../../components/Facilidades";
 import Novidades from "../../components/Novidades";
 import Footer from "../../components/Footer";
 
+import todosProdutos from "../../mocks/todosProdutos.json";
+
 const Home = ({ carrinho, setCarrinho }) => {
   const [menuAberto, setMenuAberto] = useState(false);
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState("");
 
   // Função para adicionar um produto ao carrinho
   const adicionarAoCarrinho = (produto) => {
@@ -42,8 +45,12 @@ const Home = ({ carrinho, setCarrinho }) => {
       />
       <BannerCarrossel />
       <ContainerHome>
-        <Categorias />
-        <Produtos adicionarAoCarrinho={adicionarAoCarrinho} />
+        <Categorias setCategoriaSelecionada={setCategoriaSelecionada} />
+        <Produtos
+          adicionarAoCarrinho={adicionarAoCarrinho}
+          todosProdutos={todosProdutos}
+          categoriaSelecionada={categoriaSelecionada}
+        />
         {menuAberto && (
           <MenuLateralCarrinho
             carrinho={carrinho}
@@ -52,9 +59,9 @@ const Home = ({ carrinho, setCarrinho }) => {
           />
         )}
       </ContainerHome>
-      <Facilidades/>
-      <Novidades/>
-      <Footer/>
+      <Facilidades />
+      <Novidades />
+      <Footer />
     </>
   );
 };

@@ -9,19 +9,38 @@ import {
   Titulo,
   TituloProduto,
 } from "./styles";
-import produtos from "../../mocks/produtos.json";
-const Produtos = ({adicionarAoCarrinho}) => {
+import produtosBombando from "../../mocks/produtosBombando.json";
+const Produtos = ({
+  adicionarAoCarrinho,
+  todosProdutos,
+  categoriaSelecionada,
+}) => {
+  const produtosFiltrados = categoriaSelecionada
+    ? todosProdutos.filter(
+        (produto) =>
+          produto.categoria.toLowerCase() === categoriaSelecionada.toLowerCase()
+      )
+    : produtosBombando;
+
+  const mostrarProdutosFiltrados =
+    categoriaSelecionada && produtosFiltrados.length > 0;
   return (
     <SecaoProdutos>
-      <Titulo>Produtos que estão bombando!</Titulo>
+      <Titulo>
+        {mostrarProdutosFiltrados
+          ? `Exibindo: ${categoriaSelecionada}`
+          : "Produtos que estão bombando!"}
+      </Titulo>
       <GridProdutos>
-        {produtos.map((produto) => (
+        {produtosFiltrados.map((produto) => (
           <CardProduto key={produto.id}>
             <ImagemProduto src={produto.src} alt={produto.alt} />
             <TituloProduto>{produto.titulo}</TituloProduto>
             <DescricaoProduto>{produto.descricao}</DescricaoProduto>
             <PrecoProduto>R$ {produto.preco}</PrecoProduto>
-            <BotaoCarrinho onClick={()=>adicionarAoCarrinho(produto)}>Adicionar ao carrinho</BotaoCarrinho>
+            <BotaoCarrinho onClick={() => adicionarAoCarrinho(produto)}>
+              Adicionar ao carrinho
+            </BotaoCarrinho>
           </CardProduto>
         ))}
       </GridProdutos>

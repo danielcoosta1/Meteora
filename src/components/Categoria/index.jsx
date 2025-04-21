@@ -8,13 +8,13 @@ import {
   Descricao,
 } from "./styles";
 
-const Categorias = () => {
+const Categorias = ({setCategoriaSelecionada}) => {
   return (
     <SecaoCategorias>
       <Titulo>Busque por categoria:</Titulo>
       <GridCategorias>
         {categorias.map((item) => (
-          <CardCategoria key={item.id}>
+          <CardCategoria key={item.id} onClick={() => setCategoriaSelecionada(item.descricao.toLowerCase())}>
             <ImagemCategoria src={item.src} alt={item.alt} />
 
             <Descricao>{item.descricao}</Descricao>
