@@ -60,6 +60,14 @@ const BotaoCarrinho = styled.button`
   }
 `;
 
+const ConteinerTitulo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const IconeFiltrar = styled.button``;
+
 export {
   SecaoProdutos,
   Titulo,
@@ -70,4 +78,6 @@ export {
   DescricaoProduto,
   PrecoProduto,
   BotaoCarrinho,
+  ConteinerTitulo,
+  IconeFiltrar
 };

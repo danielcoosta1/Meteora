@@ -1,19 +1,26 @@
 import {
   BotaoCarrinho,
   CardProduto,
+  ConteinerTitulo,
   DescricaoProduto,
   GridProdutos,
+  IconeFiltrar,
   ImagemProduto,
   PrecoProduto,
   SecaoProdutos,
   Titulo,
   TituloProduto,
 } from "./styles";
+
+import { BiEraser } from "react-icons/bi";
 import produtosBombando from "../../mocks/produtosBombando.json";
+
+
 const Produtos = ({
   adicionarAoCarrinho,
   todosProdutos,
   categoriaSelecionada,
+  setCategoriaSelecionada
 }) => {
   const produtosFiltrados = categoriaSelecionada
     ? todosProdutos.filter(
@@ -26,11 +33,21 @@ const Produtos = ({
     categoriaSelecionada && produtosFiltrados.length > 0;
   return (
     <SecaoProdutos>
-      <Titulo>
-        {mostrarProdutosFiltrados
-          ? `Exibindo: ${categoriaSelecionada}`
-          : "Produtos que estão bombando!"}
-      </Titulo>
+      <ConteinerTitulo>
+        <Titulo>
+          {mostrarProdutosFiltrados
+            ? `Exibindo: ${categoriaSelecionada}`
+            : "Produtos que estão bombando!"}
+        </Titulo>
+        {categoriaSelecionada && (
+          <IconeFiltrar onClick={() => setCategoriaSelecionada(null)}>
+          <BiEraser size={24} color="#9353FF" />
+          Limpar filtro
+        </IconeFiltrar>
+          )}
+ 
+      </ConteinerTitulo>
+
       <GridProdutos>
         {produtosFiltrados.map((produto) => (
           <CardProduto key={produto.id}>

@@ -15,7 +15,7 @@ import todosProdutos from "../../mocks/todosProdutos.json";
 
 const Home = ({ carrinho, setCarrinho }) => {
   const [menuAberto, setMenuAberto] = useState(false);
-  const [categoriaSelecionada, setCategoriaSelecionada] = useState("");
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
 
   // Função para adicionar um produto ao carrinho
   const adicionarAoCarrinho = (produto) => {
@@ -50,6 +50,7 @@ const Home = ({ carrinho, setCarrinho }) => {
           adicionarAoCarrinho={adicionarAoCarrinho}
           todosProdutos={todosProdutos}
           categoriaSelecionada={categoriaSelecionada}
+          setCategoriaSelecionada={setCategoriaSelecionada}
         />
         {menuAberto && (
           <MenuLateralCarrinho
