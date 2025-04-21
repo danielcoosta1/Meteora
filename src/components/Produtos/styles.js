@@ -1,20 +1,17 @@
 import styled from "styled-components";
 
 const SecaoProdutos = styled.section`
-  
   text-align: start;
 `;
 
 const Titulo = styled.h2`
   font-size: 1.8rem;
-  margin-bottom: 2rem;
 `;
 const GridProdutos = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 2rem;
   margin-bottom: 5rem;
-  
 `;
 
 const CardProduto = styled.div`
@@ -48,11 +45,11 @@ const PrecoProduto = styled.p`
   margin: 0.5rem 0;
 `;
 const BotaoCarrinho = styled.button`
-  background-color: #9353FF;
-  color: #FFFFFF;
+  background-color: #9353ff;
+  color: #ffffff;
   padding: 0.5rem 1rem;
   border: none;
-  
+
   cursor: pointer;
 
   &:hover {
@@ -64,9 +61,27 @@ const ConteinerTitulo = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 2rem;
 `;
 
-const IconeFiltrar = styled.button``;
+const IconeFiltrar = styled.button`
+  background-color: transparent;
+  border: none;
+  font-size: 0.9em;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #000;
+  border: 1px solid #9353ff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  
+
+  &:hover {
+    transition: color 0.3s ease;
+    transform: scale(1.05);
+  }
+`;
 
 export {
   SecaoProdutos,
@@ -79,5 +94,5 @@ export {
   PrecoProduto,
   BotaoCarrinho,
   ConteinerTitulo,
-  IconeFiltrar
+  IconeFiltrar,
 };

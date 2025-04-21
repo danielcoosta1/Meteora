@@ -15,12 +15,11 @@ import {
 import { BiEraser } from "react-icons/bi";
 import produtosBombando from "../../mocks/produtosBombando.json";
 
-
 const Produtos = ({
   adicionarAoCarrinho,
   todosProdutos,
   categoriaSelecionada,
-  setCategoriaSelecionada
+  setCategoriaSelecionada,
 }) => {
   const produtosFiltrados = categoriaSelecionada
     ? todosProdutos.filter(
@@ -41,11 +40,10 @@ const Produtos = ({
         </Titulo>
         {categoriaSelecionada && (
           <IconeFiltrar onClick={() => setCategoriaSelecionada(null)}>
-          <BiEraser size={24} color="#9353FF" />
-          Limpar filtro
-        </IconeFiltrar>
-          )}
- 
+            <BiEraser size={20} style={{ marginRight: "8px", color: " #9353ff" }}/>
+            Limpar filtro
+          </IconeFiltrar>
+        )}
       </ConteinerTitulo>
 
       <GridProdutos>
