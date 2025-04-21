@@ -1,0 +1,165 @@
+[
+    {
+      "id": 101,
+      "categoria": "Camisetas",
+      "src": "/assets/images/produtos/camiseta1.jpg",
+      "alt": "Camiseta branca básica em modelo masculino com fundo neutro.",
+      "titulo": "Camiseta Básica",
+      "descricao": "Conforto e estilo para o dia a dia. 100% algodão.",
+      "preco": 49.9
+    },
+    {
+      "id": 102,
+      "categoria": "Camisetas",
+      "src": "/assets/images/produtos/camiseta2.jpg",
+      "alt": "Camiseta preta com estampa minimalista em modelo masculino.",
+      "titulo": "Camiseta Minimalista",
+      "descricao": "Estampa discreta e elegante. Ideal para compor qualquer look.",
+      "preco": 59.9
+    },
+    {
+      "id": 103,
+      "categoria": "Camisetas",
+      "src": "/assets/images/produtos/camiseta3.jpg",
+      "alt": "Camiseta oversized em modelo masculino com fundo branco.",
+      "titulo": "Camiseta Oversized",
+      "descricao": "Modelo mais solto para quem curte estilo urbano.",
+      "preco": 65.0
+    },
+    {
+      "id": 104,
+      "categoria": "Calças",
+      "src": "/assets/images/produtos/calca1.jpg",
+      "alt": "Calça jeans feminina azul escuro.",
+      "titulo": "Calça Skinny Jeans",
+      "descricao": "Modelagem justa e confortável. Perfeita para o dia a dia.",
+      "preco": 120.0
+    },
+    {
+      "id": 105,
+      "categoria": "Calças",
+      "src": "/assets/images/produtos/calca2.jpg",
+      "alt": "Calça de alfaiataria em modelo feminino.",
+      "titulo": "Calça Alfaiataria",
+      "descricao": "Modelo clássico e elegante. Combine com tudo!",
+      "preco": 180.0
+    },
+    {
+      "id": 106,
+      "categoria": "Calças",
+      "src": "/assets/images/produtos/calca3.jpg",
+      "alt": "Calça wide leg em ambiente urbano.",
+      "titulo": "Calça Wide Leg",
+      "descricao": "Conforto e estilo em uma única peça.",
+      "preco": 140.0
+    },
+    {
+      "id": 107,
+      "categoria": "Calçados",
+      "src": "/assets/images/produtos/calcado1.jpg",
+      "alt": "Tênis casual branco com fundo de concreto.",
+      "titulo": "Tênis Branco Casual",
+      "descricao": "Design clean e versátil. Vai com tudo.",
+      "preco": 199.0
+    },
+    {
+      "id": 108,
+      "categoria": "Calçados",
+      "src": "/assets/images/produtos/calcado2.jpg",
+      "alt": "Tênis moderno unissex em fundo escuro.",
+      "titulo": "Tênis Moderno",
+      "descricao": "Conforto e tecnologia para o seu dia a dia.",
+      "preco": 249.9
+    },
+    {
+      "id": 109,
+      "categoria": "Calçados",
+      "src": "/assets/images/produtos/calcado3.jpg",
+      "alt": "Botinha preta estilo urbano.",
+      "titulo": "Botinha Fashion",
+      "descricao": "Ideal para looks casuais e urbanos.",
+      "preco": 220.0
+    },
+    {
+      "id": 110,
+      "categoria": "Casacos",
+      "src": "/assets/images/produtos/casaco1.jpg",
+      "alt": "Casaco longo bege em fundo urbano.",
+      "titulo": "Casaco Longo",
+      "descricao": "Elegante e quentinho para dias frios.",
+      "preco": 299.9
+    },
+    {
+      "id": 111,
+      "categoria": "Casacos",
+      "src": "/assets/images/produtos/casaco2.jpg",
+      "alt": "Jaqueta jeans em modelo masculino.",
+      "titulo": "Jaqueta Jeans",
+      "descricao": "Atemporal e autêntica. Peça curinga do guarda-roupa.",
+      "preco": 189.0
+    },
+    {
+      "id": 112,
+      "categoria": "Casacos",
+      "src": "/assets/images/produtos/casaco3.jpg",
+      "alt": "Casaco oversized preto para frio intenso.",
+      "titulo": "Casaco Oversized",
+      "descricao": "Modelo moderno e ideal para o inverno.",
+      "preco": 270.0
+    },
+    {
+      "id": 113,
+      "categoria": "Bolsas",
+      "src": "/assets/images/produtos/bolsa1.jpg",
+      "alt": "Bolsa tiracolo preta básica.",
+      "titulo": "Bolsa Tiracolo",
+      "descricao": "Compacta e estilosa, ideal para o dia a dia.",
+      "preco": 150.0
+    },
+    {
+      "id": 114,
+      "categoria": "Bolsas",
+      "src": "/assets/images/produtos/bolsa2.jpg",
+      "alt": "Bolsa tote clara de algodão.",
+      "titulo": "Bolsa Tote",
+      "descricao": "Estilo casual com bastante espaço.",
+      "preco": 170.0
+    },
+    {
+      "id": 115,
+      "categoria": "Bolsas",
+      "src": "/assets/images/produtos/bolsa3.jpg",
+      "alt": "Bolsa clássica marrom com textura.",
+      "titulo": "Bolsa Clássica",
+      "descricao": "Design elegante para todas as ocasiões.",
+      "preco": 199.0
+    },
+    {
+      "id": 116,
+      "categoria": "Óculos",
+      "src": "/assets/images/produtos/oculos1.jpg",
+      "alt": "Óculos de sol retrô redondo.",
+      "titulo": "Óculos Retrô",
+      "descricao": "Visual vintage para completar o look.",
+      "preco": 89.9
+    },
+    {
+      "id": 117,
+      "categoria": "Óculos",
+      "src": "/assets/images/produtos/oculos2.jpg",
+      "alt": "Óculos preto arredondado.",
+      "titulo": "Óculos Arredondado",
+      "descricao": "Elegância e leveza para o dia a dia.",
+      "preco": 110.0
+    },
+    {
+      "id": 118,
+      "categoria": "Óculos",
+      "src": "/assets/images/produtos/oculos3.jpg",
+      "alt": "Óculos de grau estiloso com armação preta.",
+      "titulo": "Óculos de Grau",
+      "descricao": "Conforto e estilo em uma só peça.",
+      "preco": 130.0
+    }
+  ]
+  
