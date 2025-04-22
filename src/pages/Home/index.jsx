@@ -16,6 +16,7 @@ import todosProdutos from "../../mocks/todosProdutos.json";
 const Home = ({ carrinho, setCarrinho }) => {
   const [menuAberto, setMenuAberto] = useState(false);
   const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
+  const [termoBusca, setTermoBusca] = useState("");
 
   // Função para adicionar um produto ao carrinho
   const adicionarAoCarrinho = (produto) => {
@@ -42,6 +43,8 @@ const Home = ({ carrinho, setCarrinho }) => {
       <BarraDeNavegacao
         carrinho={carrinho}
         abrirMenu={() => setMenuAberto(true)}
+        setTermoBusca={setTermoBusca}
+        termoBusca={termoBusca}
       />
       <BannerCarrossel />
       <ContainerHome>
@@ -51,6 +54,7 @@ const Home = ({ carrinho, setCarrinho }) => {
           todosProdutos={todosProdutos}
           categoriaSelecionada={categoriaSelecionada}
           setCategoriaSelecionada={setCategoriaSelecionada}
+          termoBusca={termoBusca}
         />
         {menuAberto && (
           <MenuLateralCarrinho
