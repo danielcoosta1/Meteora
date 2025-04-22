@@ -23,6 +23,8 @@ const BarraDeNavegacao = ({
   setTermoBusca,
 }) => {
   const links = [
+    { name: "Home", path: "/" },
+    { name: "Carrinho", path: "/checkout" },
     { name: "Nossas Lojas", path: "/lojas" },
     { name: "Novidades", path: "/novidades" },
     { name: "Promoções", path: "/promocoes" },
