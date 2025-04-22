@@ -15,19 +15,15 @@ import Footer from "../../components/Footer";
 
 import todosProdutos from "../../mocks/todosProdutos.json";
 
-import { useCarrinho } from "../../hooks/useCarrinho";
-
 const Home = () => {
   const [menuAberto, setMenuAberto] = useState(false);
-
-  const { setCategoriaSelecionada } = useCarrinho(); // Hook que retorna tudo
 
   return (
     <>
       <BarraDeNavegacao abrirMenu={() => setMenuAberto(true)} />
       <BannerCarrossel />
       <ContainerHome>
-        <Categorias setCategoriaSelecionada={setCategoriaSelecionada} />
+        <Categorias />
         <Produtos todosProdutos={todosProdutos} />
         {menuAberto && (
           <MenuLateralCarrinho fecharMenu={() => setMenuAberto(false)} />
