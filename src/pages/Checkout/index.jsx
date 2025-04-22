@@ -1,8 +1,11 @@
 // src/pages/Checkout.jsx
 
 import { FaTrash } from "react-icons/fa";
+
 import BarraDeNavegacao from "../../components/BarraDeNavegacao";
+
 import imgBannerCarrinho from "/assets/images/banner-carrinho.png";
+
 import {
   BannerCheckout,
   BotaoFinalizarCompra,
@@ -27,9 +30,20 @@ import {
   TituloCheckout,
   TotalPreco,
 } from "./styles";
+
 import VoltarHome from "../../components/VoltarHome";
 
-const Checkout = ({ carrinho, setCarrinho }) => {
+import { useCarrinho } from "../../hooks/useCarrinho";
+
+const Checkout = () => {
+  const {
+    carrinho,
+    setCarrinho,
+    aumentarQuantidade,
+    diminuirQuantidade,
+    removerItem,
+  } = useCarrinho(); // usa o contexto
+
   const carrinhoVazio = carrinho.length === 0;
   const totalPreco = carrinho.reduce(
     (acumulador, item) => acumulador + item.preco * item.quantidade,
@@ -41,41 +55,10 @@ const Checkout = ({ carrinho, setCarrinho }) => {
     0
   );
 
-  const incrementarQtde = (id) => {
-    const atualizado = carrinho.map((item) =>
-      item.id === id ? { ...item, quantidade: item.quantidade + 1 } : item
-    );
-    setCarrinho(atualizado);
-  };
-
-  const decrementarQtde = (id) => {
-    const item = carrinho.find((item) => item.id === id);
-
-    if (item.quantidade === 1) {
-      const confirmar = window.confirm("Deseja remover este item do carrinho?");
-      if (!confirmar) return;
-    }
-
-    const atualizado = carrinho
-      .map((item) =>
-        item.id === id ? { ...item, quantidade: item.quantidade - 1 } : item
-      )
-      .filter((item) => item.quantidade > 0);
-
-    setCarrinho(atualizado);
-  };
-
-  const apagarItem = (id) => {
-    const atualizado = carrinho.filter((item) => item.id !== id);
-    setCarrinho(atualizado);
-  };
-
-
   const finalizarCompra = () => {
     alert("Compra finalizada com sucesso! 🎉");
     setCarrinho([]); // limpa o carrinho
   };
-  
 
   return (
     <>
@@ -114,19 +97,19 @@ const Checkout = ({ carrinho, setCarrinho }) => {
                       <h1>Quantidade:</h1>
                       <div>
                         <BotaoQuantidade
-                          onClick={() => decrementarQtde(item.id)}
+                          onClick={() => diminuirQuantidade(item.id)}
                         >
                           -
                         </BotaoQuantidade>
                         <QuantidadeProduto>{item.quantidade}</QuantidadeProduto>
                         <BotaoQuantidade
-                          onClick={() => incrementarQtde(item.id)}
+                          onClick={() => aumentarQuantidade(item.id)}
                         >
                           +
                         </BotaoQuantidade>
                       </div>
                     </ConteinerQuantidade>
-                    <IconeLixeira onClick={() => apagarItem(item.id)}>
+                    <IconeLixeira onClick={() => removerItem(item.id)}>
                       <FaTrash />
                     </IconeLixeira>
                   </ItemLista>
@@ -144,8 +127,10 @@ const Checkout = ({ carrinho, setCarrinho }) => {
                 <span>R$ {totalPreco.toFixed(2)}</span>
               </TotalPreco>
               <Botoes>
-                <VoltarHome $width="12rem" > Continuar Comprando</VoltarHome>
-                <BotaoFinalizarCompra onClick={finalizarCompra}>Finalizar Compra</BotaoFinalizarCompra>
+                <VoltarHome $width="12rem"> Continuar Comprando</VoltarHome>
+                <BotaoFinalizarCompra onClick={finalizarCompra}>
+                  Finalizar Compra
+                </BotaoFinalizarCompra>
               </Botoes>
             </DetalhesPagamento>
           </ConteinerPrincipalCompras>

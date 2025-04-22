@@ -12,16 +12,20 @@ import {
   TituloProduto,
 } from "./styles";
 
+import { useCarrinho } from "../../hooks/useCarrinho";
+
 import { BiEraser } from "react-icons/bi";
 import produtosBombando from "../../mocks/produtosBombando.json";
 
-const Produtos = ({
-  adicionarAoCarrinho,
-  todosProdutos,
-  categoriaSelecionada,
-  setCategoriaSelecionada,
-  termoBusca,
-}) => {
+const Produtos = ({ todosProdutos }) => {
+  
+  const {
+    categoriaSelecionada,
+    setCategoriaSelecionada,
+    termoBusca,
+    adicionarAoCarrinho,
+  } = useCarrinho();
+
   const produtosFiltradosPorCategoria = categoriaSelecionada
     ? todosProdutos.filter(
         (produto) =>

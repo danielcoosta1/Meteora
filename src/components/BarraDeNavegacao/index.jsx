@@ -10,18 +10,17 @@ import {
   NavEstilizada,
 } from "./styles";
 
+import { useCarrinho } from "../../hooks/useCarrinho";
+
 import logoMeteora from "/assets/images/logo-meteora.png";
 
 import iconeCarrinho from "/assets/cart.svg";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-const BarraDeNavegacao = ({
-  carrinho,
-  abrirMenu,
-  termoBusca,
-  setTermoBusca,
-}) => {
+const BarraDeNavegacao = ({ abrirMenu }) => {
+  const { carrinho, termoBusca, setTermoBusca } = useCarrinho();
+
   const links = [
     { name: "Home", path: "/" },
     { name: "Carrinho", path: "/checkout" },

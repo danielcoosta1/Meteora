@@ -21,11 +21,21 @@ import {
   ConteinerBotoes,
 } from "./styles";
 
+import { useCarrinho } from "../../hooks/useCarrinho";
+
 import { FaTrash } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa"; // Ícone de carrinho
 import { FaSadTear } from "react-icons/fa"; // Ícone de emoticon
 
-const MenuLateralCarrinho = ({ carrinho, fecharMenu, setCarrinho }) => {
+const MenuLateralCarrinho = ({ fecharMenu }) => {
+  const {
+    carrinho,
+    aumentarQuantidade,
+    diminuirQuantidade,
+    removerItem,
+    limparCarrinho,
+  } = useCarrinho();
+
   const navigate = useNavigate();
 
   // Calcula o total do carrinho
@@ -38,48 +48,6 @@ const MenuLateralCarrinho = ({ carrinho, fecharMenu, setCarrinho }) => {
   const irParaCheckout = () => {
     fecharMenu(); // Fecha o menu
     navigate("/checkout");
-  };
-
-  // Função para limpar o carrinho
-  const LimparCarrinho = () => {
-    if (carrinho.length === 0) {
-      alert("O carrinho já está vazio!");
-      return;
-    }
-    // Pergunta ao usuário se ele realmente deseja limpar o carrinho
-    const confirmar = window.confirm("Deseja limpar o carrinho?");
-    if (confirmar) {
-      setCarrinho([]); // Limpa o carrinho
-    }
-  };
-
-  const aumentarQuantidade = (id) => {
-    const atualizado = carrinho.map((item) =>
-      item.id === id ? { ...item, quantidade: item.quantidade + 1 } : item
-    );
-    setCarrinho(atualizado);
-  };
-
-  const diminuirQuantidade = (id) => {
-    const item = carrinho.find((item) => item.id === id);
-
-    if (item.quantidade === 1) {
-      const confirmar = window.confirm("Deseja remover este item do carrinho?");
-      if (!confirmar) return;
-    }
-
-    const atualizado = carrinho
-      .map((item) =>
-        item.id === id ? { ...item, quantidade: item.quantidade - 1 } : item
-      )
-      .filter((item) => item.quantidade > 0);
-
-    setCarrinho(atualizado);
-  };
-
-  const removerItem = (id) => {
-    const atualizado = carrinho.filter((item) => item.id !== id);
-    setCarrinho(atualizado);
   };
 
   const háItensCarrinho = carrinho.length > 0;
@@ -141,7 +109,7 @@ const MenuLateralCarrinho = ({ carrinho, fecharMenu, setCarrinho }) => {
           <BotaoCheckout onClick={irParaCheckout}>
             Finalizar Compra
           </BotaoCheckout>
-          <BotaoLimparCarrinho onClick={LimparCarrinho}>
+          <BotaoLimparCarrinho onClick={limparCarrinho}>
             Limpar Carrinho
           </BotaoLimparCarrinho>
         </ConteinerBotoes>

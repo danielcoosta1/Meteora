@@ -1,6 +1,8 @@
 // src/pages/Home.jsx
 import React from "react";
+
 import { useState } from "react";
+
 import BarraDeNavegacao from "../../components/BarraDeNavegacao";
 import BannerCarrossel from "../../components/BannerCarrossel";
 import Categorias from "../../components/Categoria";
@@ -13,55 +15,22 @@ import Footer from "../../components/Footer";
 
 import todosProdutos from "../../mocks/todosProdutos.json";
 
-const Home = ({ carrinho, setCarrinho }) => {
-  const [menuAberto, setMenuAberto] = useState(false);
-  const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
-  const [termoBusca, setTermoBusca] = useState("");
+import { useCarrinho } from "../../hooks/useCarrinho";
 
-  // Função para adicionar um produto ao carrinho
-  const adicionarAoCarrinho = (produto) => {
-    setCarrinho((prevCarrinho) => {
-      // Checa se o produto já está no carrinho
-      const produtoExistente = prevCarrinho.find(
-        (item) => item.id === produto.id
-      );
-      if (produtoExistente) {
-        // Se já existir, incrementa a quantidade
-        return prevCarrinho.map((item) =>
-          item.id === produto.id
-            ? { ...item, quantidade: item.quantidade + 1 }
-            : item
-        );
-      } else {
-        // Se não existir, adiciona com quantidade 1
-        return [...prevCarrinho, { ...produto, quantidade: 1 }];
-      }
-    });
-  };
+const Home = () => {
+  const [menuAberto, setMenuAberto] = useState(false);
+
+  const { setCategoriaSelecionada } = useCarrinho(); // Hook que retorna tudo
+
   return (
     <>
-      <BarraDeNavegacao
-        carrinho={carrinho}
-        abrirMenu={() => setMenuAberto(true)}
-        setTermoBusca={setTermoBusca}
-        termoBusca={termoBusca}
-      />
+      <BarraDeNavegacao abrirMenu={() => setMenuAberto(true)} />
       <BannerCarrossel />
       <ContainerHome>
         <Categorias setCategoriaSelecionada={setCategoriaSelecionada} />
-        <Produtos
-          adicionarAoCarrinho={adicionarAoCarrinho}
-          todosProdutos={todosProdutos}
-          categoriaSelecionada={categoriaSelecionada}
-          setCategoriaSelecionada={setCategoriaSelecionada}
-          termoBusca={termoBusca}
-        />
+        <Produtos todosProdutos={todosProdutos} />
         {menuAberto && (
-          <MenuLateralCarrinho
-            carrinho={carrinho}
-            fecharMenu={() => setMenuAberto(false)}
-            setCarrinho={setCarrinho}
-          />
+          <MenuLateralCarrinho fecharMenu={() => setMenuAberto(false)} />
         )}
       </ContainerHome>
       <Facilidades />
