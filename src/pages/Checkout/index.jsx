@@ -49,16 +49,19 @@ const Checkout = ({ carrinho, setCarrinho }) => {
   };
 
   const decrementarQtde = (id) => {
+    const item = carrinho.find((item) => item.id === id);
+
+    if (item.quantidade === 1) {
+      const confirmar = window.confirm("Deseja remover este item do carrinho?");
+      if (!confirmar) return;
+    }
+
     const atualizado = carrinho
       .map((item) =>
-        item.id === id
-          ? {
-              ...item,
-              quantidade: item.quantidade > 1 ? item.quantidade - 1 : 1,
-            }
-          : item
+        item.id === id ? { ...item, quantidade: item.quantidade - 1 } : item
       )
       .filter((item) => item.quantidade > 0);
+
     setCarrinho(atualizado);
   };
 
