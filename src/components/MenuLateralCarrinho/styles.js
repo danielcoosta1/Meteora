@@ -11,7 +11,6 @@ export const LateralContainer = styled.div`
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  
 `;
 export const HeaderLateral = styled.div`
   display: flex;
@@ -47,21 +46,29 @@ export const BotaoFechar = styled.button`
 
 export const ListaItens = styled.ul`
   list-style: none;
-  
+
   margin: 1rem 0;
   flex: 1;
   overflow-y: auto;
   padding: 0 5rem;
-  
-  
+  display: ${(props) =>
+    props.$isEmpty ? "flex" : "block"}; /* Flex para centralizar */
+  justify-content: ${(props) =>
+    props.$isEmpty ? "center" : "flex-start"}; /* Centraliza quando vazio */
+  align-items: ${(props) =>
+    props.$isEmpty
+      ? "center"
+      : "flex-start"}; /* Centraliza verticalmente quando vazio */
+  height: 100%; /* Garante que o conteúdo ocupe toda a altura do container */
+  color: ${(props) => (props.$isEmpty ? "#fff" : "#000")}; /* Cor do texto */
 `;
 
 export const ItemCarrinho = styled.li`
- border-bottom: 1px solid #ccc;
-  
+  border-bottom: 1px solid #ccc;
+
   display: flex;
   color: #ffffff;
-    padding: 2rem 0;
+  padding: 2rem 0;
 `;
 export const ImgProduto = styled.img`
   width: 109px;
@@ -100,19 +107,18 @@ export const ConteinerQuantidade = styled.div`
 `;
 
 export const BotaoQuantidade = styled.button`
-
-border: 1px solid #FFFFFF;
-color: #FFFFFF;
-background-color: transparent;
-width: 24px;
-height: 24px;
-border-radius: 50%;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  background-color: transparent;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
 `;
 
 export const QuantidadeProduto = styled.span`
   border: 1px solid #ffffff;
   border-radius: 4px;
-  padding: .5em 1.5em;
+  padding: 0.5em 1.5em;
 `;
 
 export const PrecoProduto = styled.span`
@@ -123,30 +129,76 @@ export const PrecoProduto = styled.span`
 export const RodapeLateral = styled.div`
   border-top: 1px solid #ccc;
   padding-top: 1rem;
+  display: flex;
+  flex-direction: column;
+`;
 
-  div{
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #DAFF01;
+export const ConteinerValorTotal = styled.div`
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #daff01;
 
-    p{
-        font-size: 1.5rem;
-    }
+  p {
+    font-size: 1.5rem;
   }
 `;
 
+export const ConteinerBotoes = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 1rem 2rem;
+  
+`;
+
+
 export const BotaoCheckout = styled.button`
-  width: 100%;
-  padding: 0.75rem;
-  background: #9353FF;
-  color: #fff;
+  background-color: #9353ff;  /* Cor do botão, combina com o cabeçalho */
+  color: #fff;  /* Texto em branco para contraste */
+  padding: 1rem 2rem;  /* Espaçamento adequado */
   border: none;
-  margin-top: 1rem;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  font-weight: bold;
   cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 
   &:hover {
-    opacity: 0.9;
+    background-color: #7e2dd0;  /* Tom mais escuro no hover */
+    transform: scale(1.05);  /* Efeito de zoom suave */
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #daff01;  /* Efeito de foco */
+  }
+`;
+
+export const BotaoLimparCarrinho = styled.button`
+  background-color:transparent;  /* Cor de destaque para "Limpar" */
+  color: #ffffff;
+  border: 1px solid #daff01;  /* Texto escuro para contraste */
+  padding: 1rem 2rem;
+  
+  border-radius: 4px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    background-color: #b7d600;  /* Tom mais escuro no hover */
+    transform: scale(1.05);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #343a40;  /* Efeito de foco */
   }
 `;
