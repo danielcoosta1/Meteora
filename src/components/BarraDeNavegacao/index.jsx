@@ -16,7 +16,12 @@ import iconeCarrinho from "/assets/cart.svg";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-const BarraDeNavegacao = ({ carrinho, abrirMenu }) => {
+const BarraDeNavegacao = ({
+  carrinho,
+  abrirMenu,
+  termoBusca,
+  setTermoBusca,
+}) => {
   const links = [
     { name: "Nossas Lojas", path: "/lojas" },
     { name: "Novidades", path: "/novidades" },
@@ -50,7 +55,12 @@ const BarraDeNavegacao = ({ carrinho, abrirMenu }) => {
       </ConteinerEsquerdaEstilizado>
       <ConteinerDireitoEstilizado>
         <CampoFormSearch role="search">
-          <InputEstilizado type="search" placeholder="Digite o produto" />
+          <InputEstilizado
+            type="search"
+            placeholder="Digite o produto"
+            value={termoBusca}
+            onChange={(e) => setTermoBusca(e.target.value)}
+          />
           <Button type="submit">Buscar</Button>
         </CampoFormSearch>
         {estaNoHome && (

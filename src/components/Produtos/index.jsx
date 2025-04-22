@@ -20,34 +20,48 @@ const Produtos = ({
   todosProdutos,
   categoriaSelecionada,
   setCategoriaSelecionada,
+  termoBusca,
 }) => {
-  const produtosFiltrados = categoriaSelecionada
+  const produtosFiltradosPorCategoria = categoriaSelecionada
     ? todosProdutos.filter(
         (produto) =>
           produto.categoria.toLowerCase() === categoriaSelecionada.toLowerCase()
       )
-    : produtosBombando;
+    : todosProdutos;
 
-  const mostrarProdutosFiltrados =
-    categoriaSelecionada && produtosFiltrados.length > 0;
+  const produtosFiltradosPorBusca = termoBusca
+    ? produtosFiltradosPorCategoria.filter((produto) =>
+        produto.titulo.toLowerCase().includes(termoBusca.toLowerCase())
+      )
+    : produtosFiltradosPorCategoria;
+
+  const produtosParaExibir =
+    categoriaSelecionada || termoBusca
+      ? produtosFiltradosPorBusca
+      : produtosBombando;
   return (
     <SecaoProdutos>
       <ConteinerTitulo>
         <Titulo>
-          {mostrarProdutosFiltrados
+          {termoBusca
+            ? `Resultados para: "${termoBusca}"`
+            : categoriaSelecionada
             ? `Exibindo: ${categoriaSelecionada}`
             : "Produtos que estão bombando!"}
         </Titulo>
         {categoriaSelecionada && (
           <IconeFiltrar onClick={() => setCategoriaSelecionada(null)}>
-            <BiEraser size={20} style={{ marginRight: "8px", color: " #9353ff" }}/>
+            <BiEraser
+              size={20}
+              style={{ marginRight: "8px", color: " #9353ff" }}
+            />
             Limpar filtro
           </IconeFiltrar>
         )}
       </ConteinerTitulo>
 
       <GridProdutos>
-        {produtosFiltrados.map((produto) => (
+        {produtosParaExibir.map((produto) => (
           <CardProduto key={produto.id}>
             <ImagemProduto src={produto.src} alt={produto.alt} />
             <TituloProduto>{produto.titulo}</TituloProduto>
