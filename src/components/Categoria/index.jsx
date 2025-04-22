@@ -8,7 +8,10 @@ import {
   Descricao,
 } from "./styles";
 
-const Categorias = ({setCategoriaSelecionada}) => {
+import { useCarrinho } from "../../hooks/useCarrinho";
+
+const Categorias = () => {
+  const {setCategoriaSelecionada} = useCarrinho();
   return (
     <SecaoCategorias>
       <Titulo>Busque por categoria:</Titulo>
