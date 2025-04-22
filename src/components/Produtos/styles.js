@@ -27,7 +27,9 @@ const CardProduto = styled.div`
 
 const ImagemProduto = styled.img`
   width: 100%;
-  border-radius: 4px;
+  height: 350px; /* ou o tamanho que achar ideal */
+  object-fit: cover;
+  border-radius: 8px; /* opcional, se quiser deixar com cantos arredondados */
 `;
 
 const TituloProduto = styled.h3`
@@ -75,7 +77,6 @@ const IconeFiltrar = styled.button`
   border: 1px solid #9353ff;
   padding: 0.5rem 1rem;
   border-radius: 4px;
-  
 
   &:hover {
     transition: color 0.3s ease;
