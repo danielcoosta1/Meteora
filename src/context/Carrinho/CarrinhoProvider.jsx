@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { CarrinhoContext } from "./CarrinhoContext";
+import {CarrinhoContext} from "./CarrinhoContext";
 
 // Provedor do contexto
 export const CarrinhoProvider = ({ children }) => {

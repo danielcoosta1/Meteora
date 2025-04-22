@@ -8,7 +8,7 @@ import Lojas from "./pages/Lojas";
 import Novidades from "./pages/Novidades";
 import Promocoes from "./pages/Promocoes";
 
-import { CarrinhoProvider } from "./context/Carrinho/CarrinhoProvider";
+import { CarrinhoProvider } from "./context/carrinho/CarrinhoProvider";
 
 function App() {
   return (
