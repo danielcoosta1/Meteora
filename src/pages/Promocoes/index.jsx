@@ -1,6 +1,7 @@
 import BarraDeNavegacao from "../../components/BarraDeNavegacao";
 import VoltarHome from "../../components/VoltarHome";
-import { ContainerMain } from "../Lojas/styles";
+import { ContainerMain } from "./styles";
+
 
 const Promocoes = () => {
   return (
