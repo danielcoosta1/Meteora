@@ -42,6 +42,11 @@ const MenuLateralCarrinho = ({ carrinho, fecharMenu, setCarrinho }) => {
 
   // Função para limpar o carrinho
   const LimparCarrinho = () => {
+    if (carrinho.length === 0) {
+      alert("O carrinho já está vazio!");
+      return;
+    }
+    // Pergunta ao usuário se ele realmente deseja limpar o carrinho
     const confirmar = window.confirm("Deseja limpar o carrinho?");
     if (confirmar) {
       setCarrinho([]); // Limpa o carrinho
