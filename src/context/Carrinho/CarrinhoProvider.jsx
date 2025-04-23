@@ -6,8 +6,8 @@ import { CarrinhoContext } from "./CarrinhoContext";
 export const CarrinhoProvider = ({ children }) => {
   // Estado para armazenar os produtos no carrinho
   const [carrinho, setCarrinho] = useState(() => {
-    const carrinhoSalvo = localStorage.getItem("carrinho");
-    return carrinhoSalvo ? JSON.parse(carrinhoSalvo) : [];
+    const carrinhoSalvo = localStorage.getItem("carrinho"); 
+    return carrinhoSalvo ? JSON.parse(carrinhoSalvo) : []; // Inicializa o carrinho com os dados do localStorage, se existirem
   });
 
   // Estado para armazenar a categoria selecionada
@@ -17,7 +17,7 @@ export const CarrinhoProvider = ({ children }) => {
 
   // 💾 Salva o carrinho no localStorage sempre que ele mudar
   useEffect(() => {
-    localStorage.setItem("carrinho", JSON.stringify(carrinho));
+    localStorage.setItem("carrinho", JSON.stringify(carrinho)); // Converte o carrinho em string e salva no localStorage
   }, [carrinho]);
 
   // Função para adicionar um produto ao carrinho
