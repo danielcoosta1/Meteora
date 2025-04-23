@@ -6,7 +6,7 @@ import { CarrinhoContext } from "./CarrinhoContext";
 export const CarrinhoProvider = ({ children }) => {
   // Estado para armazenar os produtos no carrinho
   const [carrinho, setCarrinho] = useState(() => {
-    const carrinhoSalvo = localStorage.getItem("carrinho"); 
+    const carrinhoSalvo = localStorage.getItem("carrinho");
     return carrinhoSalvo ? JSON.parse(carrinhoSalvo) : []; // Inicializa o carrinho com os dados do localStorage, se existirem
   });
 
@@ -45,7 +45,6 @@ export const CarrinhoProvider = ({ children }) => {
   const limparCarrinho = () => {
     if (carrinho.length === 0) {
       alert("O carrinho já está vazio!");
-      return;
     }
     // Pergunta ao usuário se ele realmente deseja limpar o carrinho
     const confirmar = window.confirm("Deseja limpar o carrinho?");
