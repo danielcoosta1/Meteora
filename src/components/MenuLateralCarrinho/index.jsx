@@ -46,6 +46,10 @@ const MenuLateralCarrinho = ({ fecharMenu }) => {
 
   // Função para finalizar a compra
   const irParaCheckout = () => {
+    if(!carrinho.length) {
+      alert("Seu carrinho está vazio! Adicione produtos antes de finalizar.");
+      return;
+    }
     fecharMenu(); // Fecha o menu
     navigate("/checkout");
   };
