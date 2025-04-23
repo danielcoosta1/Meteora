@@ -17,7 +17,7 @@ import {
 
 import { useCarrinho } from "../../hooks/useCarrinho";
 
-import { useState } from "react";
+import {useFavoritos} from "../../hooks/useFavoritos";
 
 import { BiEraser } from "react-icons/bi";
 import { FaHeart, FaRegHeart, FaExpand } from "react-icons/fa";
@@ -31,6 +31,8 @@ const Produtos = ({ todosProdutos }) => {
     termoBusca,
     adicionarAoCarrinho,
   } = useCarrinho();
+
+  const { handleFavoritarProduto, isFavoritado } = useFavoritos();
 
   // Filtra os produtos com base na categoria selecionada e no termo de busca
   const produtosFiltradosPorCategoria = categoriaSelecionada
@@ -53,22 +55,6 @@ const Produtos = ({ todosProdutos }) => {
     categoriaSelecionada || termoBusca
       ? produtosFiltradosPorBusca
       : produtosBombando;
-
-  const [favoritos, setFavoritos] = useState([]);
-
-  // Função para adicionar ou remover produtos dos favoritos
-  const handleFavoritarProduto = (produtoId) => {
-    if (favoritos.includes(produtoId)) {
-      setFavoritos(favoritos.filter((id) => id !== produtoId));
-    } else {
-      setFavoritos([...favoritos, produtoId]);
-    }
-  };
-
-  // Verifica se o produto está favoritado
-  const isFavoritado = (produtoId) => {
-    return favoritos.includes(produtoId);
-  };
 
   return (
     <SecaoProdutos>
@@ -107,7 +93,7 @@ const Produtos = ({ todosProdutos }) => {
                   onClick={() => handleFavoritarProduto(produto.id)}
                   $favoritado={isFavoritado(produto.id)}
                 >
-                 {isFavoritado(produto.id) ? <FaHeart /> : <FaRegHeart />}
+                  {isFavoritado(produto.id) ? <FaHeart /> : <FaRegHeart />}
                 </IconesWrapper>
                 <IconesWrapper>
                   <FaExpand />

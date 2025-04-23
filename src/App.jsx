@@ -9,20 +9,23 @@ import Novidades from "./pages/Novidades";
 import Promocoes from "./pages/Promocoes";
 
 import { CarrinhoProvider } from "./context/carrinho/CarrinhoProvider";
+import { FavoritosProvider } from "./context/favoritos/FavoritosProvider";
 
 function App() {
   return (
     <Router>
-      <CarrinhoProvider>
-        <Routes>
-          <Route path="/promocoes" element={<Promocoes />} />
-          <Route path="/novidades" element={<Novidades />} />
-          <Route path="/lojas" element={<Lojas />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="*" element={<Error />} />
-        </Routes>
-      </CarrinhoProvider>
+      <FavoritosProvider>
+        <CarrinhoProvider>
+          <Routes>
+            <Route path="/promocoes" element={<Promocoes />} />
+            <Route path="/novidades" element={<Novidades />} />
+            <Route path="/lojas" element={<Lojas />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="*" element={<Error />} />
+          </Routes>
+        </CarrinhoProvider>
+      </FavoritosProvider>
     </Router>
   );
 }
