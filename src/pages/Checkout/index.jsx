@@ -56,6 +56,11 @@ const Checkout = () => {
   );
 
   const finalizarCompra = () => {
+    if (carrinhoVazio) {
+      alert("Seu carrinho está vazio! Adicione produtos antes de finalizar.");
+      return;
+    }
+    // Aqui você pode adicionar a lógica para finalizar a compra, como enviar os dados para um servidor ou processar o pagamento.
     alert("Compra finalizada com sucesso! 🎉");
     setCarrinho([]); // limpa o carrinho
   };
