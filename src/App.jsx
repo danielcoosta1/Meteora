@@ -10,6 +10,7 @@ import Promocoes from "./pages/Promocoes";
 
 import { CarrinhoProvider } from "./context/carrinho/CarrinhoProvider";
 import { FavoritosProvider } from "./context/favoritos/FavoritosProvider";
+import Favoritos from "./pages/Favoritos";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/lojas" element={<Lojas />} />
             <Route path="/" element={<Home />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/favoritos" element={<Favoritos />} />
             <Route path="*" element={<Error />} />
           </Routes>
         </CarrinhoProvider>
