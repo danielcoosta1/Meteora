@@ -34,16 +34,10 @@ const MenuLateralCarrinho = ({ fecharMenu }) => {
     diminuirQuantidade,
     removerItem,
     limparCarrinho,
+    totalPreco
   } = useCarrinho();
 
   const navigate = useNavigate();
-
-  // Calcula o total do carrinho
-  const total = carrinho.reduce(
-    (acumulador, item) => acumulador + item.preco * item.quantidade,
-    0
-  );
-
   // Função para finalizar a compra
   const irParaCheckout = () => {
     if(!carrinho.length) {
@@ -107,7 +101,7 @@ const MenuLateralCarrinho = ({ fecharMenu }) => {
       <RodapeLateral>
         <ConteinerValorTotal>
           <h1>Total: </h1>
-          <p>R$ {total.toFixed(2)}</p>
+          <p>R$ {totalPreco.toFixed(2)}</p>
         </ConteinerValorTotal>
         <ConteinerBotoes>
           <BotaoCheckout onClick={irParaCheckout}>
