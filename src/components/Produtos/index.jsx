@@ -90,10 +90,10 @@ const Produtos = ({ todosProdutos }) => {
               </BotaoCarrinho>
               <ConteinerIcones>
                 <IconesWrapper
-                  onClick={() => handleFavoritarProduto(produto.id)}
-                  $favoritado={isFavoritado(produto.id)}
+                  onClick={() => handleFavoritarProduto(produto)}
+                  $favoritado={isFavoritado(produto)}
                 >
-                  {isFavoritado(produto.id) ? <FaHeart /> : <FaRegHeart />}
+                  {isFavoritado(produto) ? <FaHeart /> : <FaRegHeart />}
                 </IconesWrapper>
                 <IconesWrapper>
                   <FaExpand />

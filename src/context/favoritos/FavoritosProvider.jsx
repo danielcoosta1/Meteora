@@ -13,21 +13,27 @@ export const FavoritosProvider = ({ children }) => {
   }, [favoritos]);
 
   // Função para adicionar ou remover produtos dos favoritos
-  const handleFavoritarProduto = (produtoId) => {
-    if (favoritos.includes(produtoId)) {
-      setFavoritos(favoritos.filter((id) => id !== produtoId));
+  const handleFavoritarProduto = (produto) => {
+    const produtoExistente = favoritos.find((favorito) => favorito.id === produto.id);
+
+    if (produtoExistente) {
+      // Produto já favoritado, removendo
+      setFavoritos(favoritos.filter((favorito) => favorito.id !== produto.id));
     } else {
-      setFavoritos([...favoritos, produtoId]);
+      // Produto não favoritado, adicionando
+      setFavoritos([...favoritos, produto]);
     }
   };
 
   // Verifica se o produto está favoritado
-  const isFavoritado = (produtoId) => {
-    return favoritos.includes(produtoId);
+const isFavoritado = (produto) => {
+    return favoritos.some((favorito) => favorito.id === produto.id);
   };
 
   return (
-    <FavoritosContext.Provider value={{ handleFavoritarProduto, isFavoritado }}>
+    <FavoritosContext.Provider
+      value={{ handleFavoritarProduto, isFavoritado, favoritos, setFavoritos }}
+    >
       {children}
     </FavoritosContext.Provider>
   );
