@@ -1,10 +1,13 @@
 import {
   BotaoCarrinho,
   CardProduto,
+  ConteinerBotoes,
+  ConteinerIcones,
   ConteinerTitulo,
   DescricaoProduto,
   GridProdutos,
   IconeFiltrar,
+  IconesWrapper,
   ImagemProduto,
   PrecoProduto,
   SecaoProdutos,
@@ -14,7 +17,11 @@ import {
 
 import { useCarrinho } from "../../hooks/useCarrinho";
 
+import { useState } from "react";
+
 import { BiEraser } from "react-icons/bi";
+import { FaHeart, FaRegHeart, FaExpand } from "react-icons/fa";
+
 import produtosBombando from "../../mocks/produtosBombando.json";
 
 const Produtos = ({ todosProdutos }) => {
@@ -47,6 +54,22 @@ const Produtos = ({ todosProdutos }) => {
       ? produtosFiltradosPorBusca
       : produtosBombando;
 
+  const [favoritos, setFavoritos] = useState([]);
+
+  // Função para adicionar ou remover produtos dos favoritos
+  const handleFavoritarProduto = (produtoId) => {
+    if (favoritos.includes(produtoId)) {
+      setFavoritos(favoritos.filter((id) => id !== produtoId));
+    } else {
+      setFavoritos([...favoritos, produtoId]);
+    }
+  };
+
+  // Verifica se o produto está favoritado
+  const isFavoritado = (produtoId) => {
+    return favoritos.includes(produtoId);
+  };
+
   return (
     <SecaoProdutos>
       <ConteinerTitulo>
@@ -75,9 +98,22 @@ const Produtos = ({ todosProdutos }) => {
             <TituloProduto>{produto.titulo}</TituloProduto>
             <DescricaoProduto>{produto.descricao}</DescricaoProduto>
             <PrecoProduto>R$ {produto.preco}</PrecoProduto>
-            <BotaoCarrinho onClick={() => adicionarAoCarrinho(produto)}>
-              Adicionar ao carrinho
-            </BotaoCarrinho>
+            <ConteinerBotoes>
+              <BotaoCarrinho onClick={() => adicionarAoCarrinho(produto)}>
+                Adicionar ao carrinho
+              </BotaoCarrinho>
+              <ConteinerIcones>
+                <IconesWrapper
+                  onClick={() => handleFavoritarProduto(produto.id)}
+                  $favoritado={isFavoritado(produto.id)}
+                >
+                 {isFavoritado(produto.id) ? <FaHeart /> : <FaRegHeart />}
+                </IconesWrapper>
+                <IconesWrapper>
+                  <FaExpand />
+                </IconesWrapper>
+              </ConteinerIcones>
+            </ConteinerBotoes>
           </CardProduto>
         ))}
       </GridProdutos>

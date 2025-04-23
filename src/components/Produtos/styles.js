@@ -84,6 +84,42 @@ const IconeFiltrar = styled.button`
   }
 `;
 
+const ConteinerBotoes = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const ConteinerIcones = styled.div`
+  display: flex;
+`;
+
+const IconesWrapper = styled.button`
+  background: transparent;
+
+  border-radius: 50%;
+  border: none;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${(props) => (props.$favoritado ? "#FF4081" : " #9353ff")};
+  transition: all 0.3s ease;
+
+  &:hover {
+    background: #e0d4ff; // Um roxinho claro no hover
+    color: #5e2ca5; // Roxo mais escuro pro ícone em hover
+    transform: scale(1.1);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+`;
+
 export {
   SecaoProdutos,
   Titulo,
@@ -96,4 +132,7 @@ export {
   BotaoCarrinho,
   ConteinerTitulo,
   IconeFiltrar,
+  ConteinerBotoes,
+  ConteinerIcones,
+  IconesWrapper,
 };
