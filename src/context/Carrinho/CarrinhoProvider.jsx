@@ -1,15 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { CarrinhoContext } from "./CarrinhoContext";
 
 // Provedor do contexto
 export const CarrinhoProvider = ({ children }) => {
-  // Estado do carrinho
-  const [carrinho, setCarrinho] = useState([]);
+  // Estado para armazenar os produtos no carrinho
+  const [carrinho, setCarrinho] = useState(() => {
+    const carrinhoSalvo = localStorage.getItem("carrinho");
+    return carrinhoSalvo ? JSON.parse(carrinhoSalvo) : [];
+  });
+
   // Estado para armazenar a categoria selecionada
   const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
   // Estado para armazenar o termo de busca
   const [termoBusca, setTermoBusca] = useState("");
+
+  // 💾 Salva o carrinho no localStorage sempre que ele mudar
+  useEffect(() => {
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
+  }, [carrinho]);
 
   // Função para adicionar um produto ao carrinho
   const adicionarAoCarrinho = (produto) => {
