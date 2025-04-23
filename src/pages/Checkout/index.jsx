@@ -2,8 +2,6 @@
 
 import { FaTrash } from "react-icons/fa";
 
-import { useMemo } from "react";
-
 import BarraDeNavegacao from "../../components/BarraDeNavegacao";
 
 import imgBannerCarrinho from "/assets/images/banner-carrinho.png";
@@ -44,23 +42,12 @@ const Checkout = () => {
     aumentarQuantidade,
     diminuirQuantidade,
     removerItem,
+    totalPreco,
+    totalQuantidade,
   } = useCarrinho(); // usa o contexto
 
   // Verifica se o carrinho está vazio
   const carrinhoVazio = carrinho.length === 0;
-
-  const { totalPreco, totalQuantidade } = useMemo(() => {
-    const resultado = carrinho.reduce(
-      (acc, item) => {
-        acc.totalQuantidade += item.quantidade;
-        acc.totalPreco += item.preco * item.quantidade;
-        return acc;
-      },
-      { totalQuantidade: 0, totalPreco: 0 }
-    );
-  
-    return resultado;
-  }, [carrinho]);
 
   const finalizarCompra = () => {
     if (carrinhoVazio) {
