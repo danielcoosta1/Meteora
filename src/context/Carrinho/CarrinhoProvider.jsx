@@ -88,6 +88,8 @@ export const CarrinhoProvider = ({ children }) => {
     setCarrinho(atualizado);
   };
 
+  // Calcula o total de preço e quantidade do carrinho
+  // useMemo é usado para otimizar o desempenho, evitando cálculos desnecessários
   const { totalPreco, totalQuantidade } = useMemo(() => {
     const resultado = carrinho.reduce(
       (acc, item) => {
