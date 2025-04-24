@@ -62,7 +62,7 @@ const ContainerIcones = styled.div`
 
 const IconeCarrinho = styled.div`
   position: relative;
-  display: flex;
+  display: ${(props) => (props.$display ? "flex" : "none")};  
   align-items: center;
   cursor: pointer;
   &:hover {
@@ -81,17 +81,23 @@ const IconeCarrinho = styled.div`
   }
 `;
 
-
 const IconeFavoritos = styled.div`
   position: relative;
-  color: #ffffff;
   font-size: 2.5rem;
   display: flex;
   align-items: center;
   cursor: pointer;
+  color: #ffffff;
+  transition: transform 0.2s ease;
+
+  &.ativo {
+    color: #daff01;
+  }
+
   &:hover {
     transform: scale(1.05);
   }
+
   span {
     position: absolute;
     top: -8px;
