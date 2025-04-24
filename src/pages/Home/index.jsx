@@ -4,7 +4,7 @@ import React from "react";
 import BarraDeNavegacao from "../../components/BarraDeNavegacao";
 import BannerCarrossel from "../../components/BannerCarrossel";
 import Categorias from "../../components/Categoria";
-import Produtos from "../../components/Produtos";
+import Produtos from "../../components/ProdutosBombando";
 import MenuLateralCarrinho from "../../components/MenuLateralCarrinho";
 import ContainerHome from "../../components/ContainerHome";
 import Facilidades from "../../components/Facilidades";

@@ -35,7 +35,7 @@ const BarraDeNavegacao = () => {
     { name: "Home", path: "/" },
     { name: "Novidades", path: "/novidades" },
     { name: "Promoções", path: "/promocoes" },
-    { name: "Produtos", path: "/produtos/:id" }
+    { name: "Produtos", path: "/produtos" }
  
   ];
 
