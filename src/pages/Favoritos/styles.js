@@ -61,6 +61,7 @@ export const CardProdutos = styled.div`
   border-radius: 8px;
   padding: 1rem;
   transition: transform 0.3s ease;
+  max-width: 400px; /* ou o tamanho que achar ideal */
 
   &:hover {
     transform: scale(1.03);
