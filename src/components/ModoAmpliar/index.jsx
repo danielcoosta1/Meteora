@@ -25,14 +25,18 @@ const ModoAmpliar = () => {
 
   const favoritado = isFavoritado(produtoAmpliado);
 
-  useEffect(() => {
+  //Sempre que o componente for montado, o evento de keydown será adicionado ao window
+  useEffect(() => { //Adiciona o evento de keydown ao window
+    //Isto permite que o usuário feche o modal pressionando a tecla ESC
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
         fecharModal();
       }
     };
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown); // Limpa o evento ao desmontar o componente
+    //Isto evita que o evento continue ativo mesmo depois que o componente foi desmontado
+    //Evitando vazamentos de memória e comportamentos inesperados
   }, [fecharModal]);
 
   return (
@@ -47,7 +51,7 @@ const ModoAmpliar = () => {
         >
           <ModalContent
             as={motion.div}
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()} //Evitando que um click dentro do modal, o feche
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.8, opacity: 0 }}
