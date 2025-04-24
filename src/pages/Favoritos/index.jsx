@@ -22,10 +22,12 @@ import {
 import imgBannerFavoritos from "/assets/images/banner-carrinho.png";
 
 import VoltarHome from "../../components/VoltarHome";
-
+import MenuLateralCarrinho from "../../components/MenuLateralCarrinho";
 
 const Favoritos = () => {
   const { favoritos, handleFavoritarProduto, isFavoritado } = useFavoritos();
+
+  const { menuAberto } = useCarrinho();
 
   const { adicionarAoCarrinho } = useCarrinho();
 
@@ -74,6 +76,9 @@ const Favoritos = () => {
           )}
         </GridProdutos>
       </SecaoFavoritos>
+      {menuAberto && (
+          <MenuLateralCarrinho />
+        )}
     </>
   );
 };
