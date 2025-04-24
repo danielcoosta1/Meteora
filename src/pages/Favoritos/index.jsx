@@ -21,12 +21,13 @@ import {
 
 import imgBannerFavoritos from "/assets/images/banner-carrinho.png";
 
+import ModoAmpliar from "../../components/ModoAmpliar";
 import VoltarHome from "../../components/VoltarHome";
 import MenuLateralCarrinho from "../../components/MenuLateralCarrinho";
 
 const Favoritos = () => {
   const { favoritos, handleFavoritarProduto, isFavoritado } = useFavoritos();
-
+  const { abrirModal, produtoAmpliado } = useCarrinho();
   const { menuAberto } = useCarrinho();
 
   const { adicionarAoCarrinho } = useCarrinho();
@@ -66,7 +67,7 @@ const Favoritos = () => {
                     >
                       {isFavoritado(produto) ? <FaHeart /> : <FaRegHeart />}
                     </IconesWrapper>
-                    <IconesWrapper>
+                    <IconesWrapper onClick={() => abrirModal(produto)}>
                       <FaExpand />
                     </IconesWrapper>
                   </ConteinerIcones>
@@ -76,9 +77,8 @@ const Favoritos = () => {
           )}
         </GridProdutos>
       </SecaoFavoritos>
-      {menuAberto && (
-          <MenuLateralCarrinho />
-        )}
+      {menuAberto && <MenuLateralCarrinho />}
+      {produtoAmpliado && <ModoAmpliar />}
     </>
   );
 };
