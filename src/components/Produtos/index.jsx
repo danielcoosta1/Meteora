@@ -17,12 +17,13 @@ import {
 
 import { useCarrinho } from "../../hooks/useCarrinho";
 
-import {useFavoritos} from "../../hooks/useFavoritos";
+import { useFavoritos } from "../../hooks/useFavoritos";
 
 import { BiEraser } from "react-icons/bi";
 import { FaHeart, FaRegHeart, FaExpand } from "react-icons/fa";
 
 import produtosBombando from "../../mocks/produtosBombando.json";
+import ModoAmpliar from "../ModoAmpliar";
 
 const Produtos = ({ todosProdutos }) => {
   const {
@@ -30,6 +31,8 @@ const Produtos = ({ todosProdutos }) => {
     setCategoriaSelecionada,
     termoBusca,
     adicionarAoCarrinho,
+    produtoAmpliado,
+    abrirModal,
   } = useCarrinho();
 
   const { handleFavoritarProduto, isFavoritado } = useFavoritos();
@@ -95,7 +98,7 @@ const Produtos = ({ todosProdutos }) => {
                 >
                   {isFavoritado(produto) ? <FaHeart /> : <FaRegHeart />}
                 </IconesWrapper>
-                <IconesWrapper>
+                <IconesWrapper onClick={() => abrirModal(produto)}>
                   <FaExpand />
                 </IconesWrapper>
               </ConteinerIcones>
@@ -103,6 +106,9 @@ const Produtos = ({ todosProdutos }) => {
           </CardProduto>
         ))}
       </GridProdutos>
+      {produtoAmpliado && (
+        <ModoAmpliar/>
+      )}
     </SecaoProdutos>
   );
 };
