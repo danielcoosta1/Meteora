@@ -24,9 +24,9 @@ const BarraDeNavegacao = ({ abrirMenu }) => {
   const links = [
     { name: "Home", path: "/" },
     { name: "Carrinho", path: "/checkout" },
-    { name: "Nossas Lojas", path: "/lojas" },
     { name: "Novidades", path: "/novidades" },
     { name: "Promoções", path: "/promocoes" },
+    { name: "Favoritos", path: "/favoritos" }
   ];
 
   //Verificação para renderizar o ícone do carrinho - Não aparece no checkout, apenas no home;
