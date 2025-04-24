@@ -56,6 +56,7 @@ export const CarrinhoProvider = ({ children }) => {
   const limparCarrinho = () => {
     if (carrinho.length === 0) {
       alert("O carrinho já está vazio!");
+      return
     }
     // Pergunta ao usuário se ele realmente deseja limpar o carrinho
     const confirmar = window.confirm("Deseja limpar o carrinho?");
