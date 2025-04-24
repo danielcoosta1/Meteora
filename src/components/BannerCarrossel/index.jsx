@@ -27,7 +27,7 @@ const BannerCarrossel = () => {
   };
   // Troca automática a cada 5s
   useEffect(() => {
-    const interval = setInterval(avancar, 10000);
+    const interval = setInterval(avancar, 3000);
     return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
