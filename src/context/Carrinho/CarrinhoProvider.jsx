@@ -13,7 +13,18 @@ export const CarrinhoProvider = ({ children }) => {
   // Estado para armazenar a categoria selecionada
   const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
   // Estado para armazenar o termo de busca
-  const [termoBusca, setTermoBusca] = useState("");
+  const [termoBusca, setTermoBusca] = useState("")
+
+
+  // Estado para controlar se o menu lateral do carrinho está aberto ou fechado
+  const [menuAberto, setMenuAberto] = useState(false);
+
+  const abrirMenu = () => {
+    setMenuAberto(true); // Abre o menu lateral do carrinho
+  };
+  const fecharMenu = () => {
+    setMenuAberto(false); // Fecha o menu lateral do carrinho
+  };
 
   // 💾 Salva o carrinho no localStorage sempre que ele mudar
   useEffect(() => {
@@ -103,6 +114,9 @@ export const CarrinhoProvider = ({ children }) => {
     return resultado;
   }, [carrinho]);
 
+
+
+
   return (
     <CarrinhoContext.Provider
       value={{
@@ -119,6 +133,10 @@ export const CarrinhoProvider = ({ children }) => {
         limparCarrinho,
         totalPreco,
         totalQuantidade,
+        menuAberto,
+        setMenuAberto,
+        abrirMenu,
+        fecharMenu
       }}
     >
       {children}

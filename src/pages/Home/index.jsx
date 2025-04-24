@@ -1,8 +1,6 @@
 // src/pages/Home.jsx
 import React from "react";
 
-import { useState } from "react";
-
 import BarraDeNavegacao from "../../components/BarraDeNavegacao";
 import BannerCarrossel from "../../components/BannerCarrossel";
 import Categorias from "../../components/Categoria";
@@ -14,19 +12,20 @@ import Novidades from "../../components/Novidades";
 import Footer from "../../components/Footer";
 
 import todosProdutos from "../../mocks/todosProdutos.json";
+import { useCarrinho } from "../../hooks/useCarrinho";
 
 const Home = () => {
-  const [menuAberto, setMenuAberto] = useState(false);
+  const { menuAberto } = useCarrinho();
 
   return (
     <>
-      <BarraDeNavegacao abrirMenu={() => setMenuAberto(true)} />
+      <BarraDeNavegacao/>
       <BannerCarrossel />
       <ContainerHome>
         <Categorias />
         <Produtos todosProdutos={todosProdutos} />
         {menuAberto && (
-          <MenuLateralCarrinho fecharMenu={() => setMenuAberto(false)} />
+          <MenuLateralCarrinho />
         )}
       </ContainerHome>
       <Facilidades />
