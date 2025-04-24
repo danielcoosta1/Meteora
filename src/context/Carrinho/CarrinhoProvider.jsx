@@ -4,6 +4,8 @@ import { CarrinhoContext } from "./CarrinhoContext";
 
 // Provedor do contexto
 export const CarrinhoProvider = ({ children }) => {
+  //VARIÁVEIS
+
   // Estado para armazenar os produtos no carrinho
   const [carrinho, setCarrinho] = useState(() => {
     const carrinhoSalvo = localStorage.getItem("carrinho");
@@ -13,11 +15,14 @@ export const CarrinhoProvider = ({ children }) => {
   // Estado para armazenar a categoria selecionada
   const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
   // Estado para armazenar o termo de busca
-  const [termoBusca, setTermoBusca] = useState("")
-
+  const [termoBusca, setTermoBusca] = useState("");
 
   // Estado para controlar se o menu lateral do carrinho está aberto ou fechado
   const [menuAberto, setMenuAberto] = useState(false);
+
+  const [produtoAmpliado, setProdutoAmpliado] = useState(null); // Estado para armazenar o produto ampliado
+
+  // FUMÇÕES
 
   const abrirMenu = () => {
     setMenuAberto(true); // Abre o menu lateral do carrinho
@@ -56,7 +61,7 @@ export const CarrinhoProvider = ({ children }) => {
   const limparCarrinho = () => {
     if (carrinho.length === 0) {
       alert("O carrinho já está vazio!");
-      return
+      return;
     }
     // Pergunta ao usuário se ele realmente deseja limpar o carrinho
     const confirmar = window.confirm("Deseja limpar o carrinho?");
@@ -115,6 +120,14 @@ export const CarrinhoProvider = ({ children }) => {
     return resultado;
   }, [carrinho]);
 
+  
+  const fecharModal = () => {
+    setProdutoAmpliado(null); // Fecha o modal de produto ampliado
+  }
+
+  const abrirModal = (produto) => {
+    setProdutoAmpliado(produto); // Abre o modal de produto ampliado
+  }
 
 
 
@@ -137,7 +150,11 @@ export const CarrinhoProvider = ({ children }) => {
         menuAberto,
         setMenuAberto,
         abrirMenu,
-        fecharMenu
+        fecharMenu,
+        produtoAmpliado,
+        setProdutoAmpliado,
+        abrirModal,
+        fecharModal,
       }}
     >
       {children}
