@@ -22,21 +22,25 @@ import iconeCarrinho from "/assets/cart.svg";
 import { FaRegHeart } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const BarraDeNavegacao = ({ abrirMenu }) => {
   const { carrinho, termoBusca, setTermoBusca } = useCarrinho();
   const { favoritos } = useFavoritos();
 
+  const navigate = useNavigate();
+
   const links = [
     { name: "Home", path: "/" },
-    { name: "Carrinho", path: "/checkout" },
     { name: "Novidades", path: "/novidades" },
     { name: "Promoções", path: "/promocoes" },
+    { name: "Carrinho", path: "/checkout" },
     { name: "Favoritos", path: "/favoritos" },
   ];
 
   //Verificação para renderizar o ícone do carrinho - Não aparece no checkout, apenas no home;
   const location = useLocation();
+
   const estaNoHome = location.pathname === "/";
 
   return (
@@ -81,7 +85,7 @@ const BarraDeNavegacao = ({ abrirMenu }) => {
                 {carrinho.reduce((acc, item) => acc + item.quantidade, 0)}
               </span>
             </IconeCarrinho>
-            <IconeFavoritos>
+            <IconeFavoritos onClick={() => navigate("/favoritos")}>
               <FaRegHeart />
               <span>{favoritos.length}</span>
             </IconeFavoritos>
