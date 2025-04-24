@@ -26,10 +26,10 @@ export const ModalOverlay = styled.div`
 
 export const ModalContent = styled.div`
   position: relative;
-  max-width: 80%; // Aumentado de 90% para 95%
-  max-height: 95%; // Aumentado de 90% para 95%
-  min-width: 800px; // Largura mínima aumentada
-  min-height: 600px; // Altura mínima aumentada
+  max-width:60vw; // Aumentado de 90% para 95%
+  max-height: 80vh; // Aumentado de 90% para 95%
+  min-width: 60vw; // Largura mínima aumentada
+   // Altura mínima aumentada
   background:#ffffff;
   padding: 2rem; // Aumentado de 2rem para 3rem
   border-radius: 20px; // Borda mais arredondada
