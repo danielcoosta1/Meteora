@@ -27,20 +27,21 @@ import { FaTrash } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa"; // Ícone de carrinho
 import { FaSadTear } from "react-icons/fa"; // Ícone de emoticon
 
-const MenuLateralCarrinho = ({ fecharMenu }) => {
+const MenuLateralCarrinho = () => {
   const {
     carrinho,
     aumentarQuantidade,
     diminuirQuantidade,
     removerItem,
     limparCarrinho,
-    totalPreco
+    totalPreco,
+    fecharMenu,
   } = useCarrinho();
 
   const navigate = useNavigate();
   // Função para finalizar a compra
   const irParaCheckout = () => {
-    if(!carrinho.length) {
+    if (!carrinho.length) {
       alert("Seu carrinho está vazio! Adicione produtos antes de finalizar.");
       return;
     }
