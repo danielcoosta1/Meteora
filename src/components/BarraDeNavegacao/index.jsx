@@ -24,6 +24,7 @@ import { NavLink } from "react-router-dom";
 
 import { useLocation } from "react-router-dom";
 
+
 const BarraDeNavegacao = () => {
   const { carrinho, termoBusca, setTermoBusca, abrirMenu } = useCarrinho();
   const { favoritos } = useFavoritos();
@@ -34,8 +35,8 @@ const BarraDeNavegacao = () => {
     { name: "Home", path: "/" },
     { name: "Novidades", path: "/novidades" },
     { name: "Promoções", path: "/promocoes" },
-    { name: "Carrinho", path: "/checkout" },
-    { name: "Favoritos", path: "/favoritos" },
+    { name: "Produtos", path: "/produtos/:id" }
+ 
   ];
 
   return (

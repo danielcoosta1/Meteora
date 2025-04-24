@@ -11,6 +11,7 @@ import Promocoes from "./pages/Promocoes";
 import { CarrinhoProvider } from "./context/carrinho/CarrinhoProvider";
 import { FavoritosProvider } from "./context/favoritos/FavoritosProvider";
 import Favoritos from "./pages/Favoritos";
+import Produto from "./pages/Produto";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <FavoritosProvider>
         <CarrinhoProvider>
           <Routes>
+            <Route path="/produto/:id" element={<Produto />} />
             <Route path="/promocoes" element={<Promocoes />} />
             <Route path="/novidades" element={<Novidades />} />
             <Route path="/" element={<Home />} />
