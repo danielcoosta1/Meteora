@@ -24,8 +24,8 @@ import { NavLink } from "react-router-dom";
 
 import { useLocation } from "react-router-dom";
 
-const BarraDeNavegacao = ({ abrirMenu }) => {
-  const { carrinho, termoBusca, setTermoBusca } = useCarrinho();
+const BarraDeNavegacao = () => {
+  const { carrinho, termoBusca, setTermoBusca, abrirMenu } = useCarrinho();
   const { favoritos } = useFavoritos();
   
   const location = useLocation();
@@ -70,7 +70,7 @@ const BarraDeNavegacao = ({ abrirMenu }) => {
           <Button type="submit">Buscar</Button>
         </CampoFormSearch>
         <ContainerIcones>
-          <IconeCarrinho onClick={abrirMenu} $display={location.pathname === "/"}>
+          <IconeCarrinho onClick={abrirMenu} $display={location.pathname === "/" || location.pathname === "/favoritos"}>
             <ImgEstilizada
               src={iconeCarrinho}
               alt="Abrir carrinho de compras"
