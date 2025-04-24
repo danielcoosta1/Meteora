@@ -1,16 +1,40 @@
 import { useCarrinho } from "../../hooks/useCarrinho";
 import { FaTimes, FaHeart, FaRegHeart } from "react-icons/fa";
 import { useFavoritos } from "../../hooks/useFavoritos";
-import { BotaoCarrinho, ConteinerBotoes, DescricaoProduto, IconesWrapper, ModalClose, ModalContent, ModalOverlay, PrecoProduto, TituloProduto } from "./styles";
+import {
+  BotaoCarrinho,
+  ConteinerBotoes,
+  DescricaoProduto,
+  IconesWrapper,
+  ModalClose,
+  ModalContent,
+  ModalOverlay,
+  PrecoProduto,
+  TituloProduto,
+} from "./styles";
+
+import { useEffect } from "react";
 
 const ModoAmpliar = () => {
   const { produtoAmpliado, fecharModal, adicionarAoCarrinho } = useCarrinho();
 
   const { handleFavoritarProduto, isFavoritado } = useFavoritos();
 
+  const favoritado = isFavoritado(produtoAmpliado);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        fecharModal();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   return (
-    <ModalOverlay>
-      <ModalContent>
+    <ModalOverlay onClick={fecharModal}>
+      <ModalContent onClick={(e) => e.stopPropagation()}>
         <ModalClose onClick={fecharModal}>
           <FaTimes />
         </ModalClose>
@@ -25,9 +49,9 @@ const ModoAmpliar = () => {
           <div>
             <IconesWrapper
               onClick={() => handleFavoritarProduto(produtoAmpliado)}
-              $favoritado={isFavoritado(produtoAmpliado)}
+              $favoritado={favoritado}
             >
-              {isFavoritado(produtoAmpliado) ? <FaHeart /> : <FaRegHeart />}
+              {favoritado ? <FaHeart /> : <FaRegHeart />}
             </IconesWrapper>
           </div>
         </ConteinerBotoes>
@@ -35,6 +59,5 @@ const ModoAmpliar = () => {
     </ModalOverlay>
   );
 };
-
 
 export default ModoAmpliar;
