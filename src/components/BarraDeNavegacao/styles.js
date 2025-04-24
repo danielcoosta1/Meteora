@@ -54,8 +54,38 @@ const InputEstilizado = styled.input`
   }
 `;
 
-const CampoCart = styled.div`
+const ContainerIcones = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+`;
+
+const IconeCarrinho = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.05);
+  }
+  span {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #daff01;
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 999px;
+  }
+`;
+
+
+const IconeFavoritos = styled.div`
+  position: relative;
+  color: #ffffff;
+  font-size: 2.5rem;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -105,7 +135,9 @@ export {
   ConteinerEsquerdaEstilizado,
   ListaEstilizada,
   ConteinerDireitoEstilizado,
-  CampoCart,
+  ContainerIcones,
+  IconeCarrinho,
+  IconeFavoritos,
   CampoFormSearch,
   Button,
 };

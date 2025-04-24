@@ -1,32 +1,38 @@
 import {
   Button,
-  CampoCart,
   CampoFormSearch,
+  ContainerIcones,
   ConteinerDireitoEstilizado,
   ConteinerEsquerdaEstilizado,
   ImgEstilizada,
   InputEstilizado,
   ListaEstilizada,
   NavEstilizada,
+  IconeCarrinho,
+  IconeFavoritos,
 } from "./styles";
 
 import { useCarrinho } from "../../hooks/useCarrinho";
 
 import logoMeteora from "/assets/images/logo-meteora.png";
 
+import { useFavoritos } from "../../hooks/useFavoritos";
+
 import iconeCarrinho from "/assets/cart.svg";
+import { FaRegHeart } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 const BarraDeNavegacao = ({ abrirMenu }) => {
   const { carrinho, termoBusca, setTermoBusca } = useCarrinho();
+  const { favoritos } = useFavoritos();
 
   const links = [
     { name: "Home", path: "/" },
     { name: "Carrinho", path: "/checkout" },
     { name: "Novidades", path: "/novidades" },
     { name: "Promoções", path: "/promocoes" },
-    { name: "Favoritos", path: "/favoritos" }
+    { name: "Favoritos", path: "/favoritos" },
   ];
 
   //Verificação para renderizar o ícone do carrinho - Não aparece no checkout, apenas no home;
@@ -65,15 +71,21 @@ const BarraDeNavegacao = ({ abrirMenu }) => {
           <Button type="submit">Buscar</Button>
         </CampoFormSearch>
         {estaNoHome && (
-          <CampoCart onClick={abrirMenu}>
-            <ImgEstilizada
-              src={iconeCarrinho}
-              alt="Abrir carrinho de compras"
-            />
-            <span>
-              {carrinho.reduce((acc, item) => acc + item.quantidade, 0)}
-            </span>
-          </CampoCart>
+          <ContainerIcones>
+            <IconeCarrinho onClick={abrirMenu}>
+              <ImgEstilizada
+                src={iconeCarrinho}
+                alt="Abrir carrinho de compras"
+              />
+              <span>
+                {carrinho.reduce((acc, item) => acc + item.quantidade, 0)}
+              </span>
+            </IconeCarrinho>
+            <IconeFavoritos>
+              <FaRegHeart />
+              <span>{favoritos.length}</span>
+            </IconeFavoritos>
+          </ContainerIcones>
         )}
       </ConteinerDireitoEstilizado>
     </NavEstilizada>
