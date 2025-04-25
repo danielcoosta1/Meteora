@@ -39,13 +39,15 @@ const Checkout = () => {
   const {
     carrinho,
     finalizarCompra,
-    carrinhoVazio,
+
     aumentarQuantidade,
     diminuirQuantidade,
     removerItem,
     totalPreco,
     totalQuantidade,
   } = useCarrinho(); // usa o contexto
+
+  const carrinhoVazio = carrinho.length === 0;
 
   return (
     <>

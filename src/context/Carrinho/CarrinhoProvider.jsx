@@ -113,10 +113,12 @@ export const CarrinhoProvider = ({ children }) => {
     return resultado;
   }, [carrinho]);
 
-  // Verifica se o carrinho está vazio
-  const carrinhoVazio = carrinho.length === 0;
+
+
 
   const finalizarCompra = () => {
+    const carrinhoVazio = carrinho.length === 0; // Verifica se o carrinho está vazio
+    // Se o carrinho estiver vazio, exibe um alerta e não permite finalizar a compra
     if (carrinhoVazio) {
       alert("Seu carrinho está vazio! Adicione produtos antes de finalizar.");
       return;
