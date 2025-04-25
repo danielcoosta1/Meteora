@@ -1,14 +1,36 @@
-import { Card, ContainerProdutos, GridProdutos } from "./styles";
+import {
+  BotaoCarrinho,
+  Card,
+  ContainerProdutos,
+  ConteinerBotoes,
+  ConteinerIcones,
+  DescricaoProduto,
+  GridProdutos,
+  IconesWrapper,
+  ImagemProduto,
+  PrecoProduto,
+  TituloProduto,
+} from "./styles";
 
+import { FaHeart, FaRegHeart, FaExpand } from "react-icons/fa";
 import todosProdutos from "../../mocks/todosProdutos.json";
 import Categorias from "../../components/Categoria";
 import { useCarrinho } from "../../hooks/useCarrinho";
 import BarraDeNavegacao from "../../components/BarraDeNavegacao";
 
 import MenuLateralCarrinho from "../../components/MenuLateralCarrinho";
+import { useFavoritos } from "../../hooks/useFavoritos";
+import ModoAmpliar from "../../components/ModoAmpliar";
 const Produtos = () => {
-
-  const { categoriaSelecionada, termoBusca, menuAberto } = useCarrinho(); // Importa o hook de categorias
+  const { handleFavoritarProduto, isFavoritado } = useFavoritos();
+  const {
+    produtoAmpliado,
+    abrirModal,
+    categoriaSelecionada,
+    termoBusca,
+    menuAberto,
+    adicionarAoCarrinho,
+  } = useCarrinho(); // Importa o hook de categorias
   // Filtra os produtos com base na categoria selecionada e no termo de busca
   const produtosFiltradosPorCategoria = categoriaSelecionada
     ? todosProdutos.filter(
@@ -40,14 +62,31 @@ const Produtos = () => {
         <GridProdutos>
           {produtosParaExibir.map((produto) => (
             <Card key={produto.id}>
-              <img src={produto.src} alt={produto.alt} />
-              <h3>{produto.titulo}</h3>
-              <p>{produto.descricao}</p>
-              <span>R$ {produto.preco.toFixed(2)}</span>
+              <ImagemProduto src={produto.src} alt={produto.alt} />
+              <TituloProduto>{produto.titulo}</TituloProduto>
+              <DescricaoProduto>{produto.descricao}</DescricaoProduto>
+              <PrecoProduto>R$ {produto.preco.toFixed(2)}</PrecoProduto>
+              <ConteinerBotoes>
+                <BotaoCarrinho onClick={() => adicionarAoCarrinho(produto)}>
+                  Adicionar ao carrinho
+                </BotaoCarrinho>
+                <ConteinerIcones>
+                  <IconesWrapper
+                    onClick={() => handleFavoritarProduto(produto)}
+                    $favoritado={isFavoritado(produto)}
+                  >
+                    {isFavoritado(produto) ? <FaHeart /> : <FaRegHeart />}
+                  </IconesWrapper>
+                  <IconesWrapper onClick={() => abrirModal(produto)}>
+                    <FaExpand />
+                  </IconesWrapper>
+                </ConteinerIcones>
+              </ConteinerBotoes>
             </Card>
           ))}
         </GridProdutos>
         {menuAberto && <MenuLateralCarrinho />}
+        {produtoAmpliado && <ModoAmpliar />}
       </ContainerProdutos>
     </>
   );
