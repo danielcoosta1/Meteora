@@ -62,7 +62,7 @@ const ContainerIcones = styled.div`
 
 const IconeCarrinho = styled.div`
   position: relative;
-  display: ${(props) => (props.$display ? "flex" : "none")};
+  display: flex;
   align-items: center;
   cursor: pointer;
   &:hover {

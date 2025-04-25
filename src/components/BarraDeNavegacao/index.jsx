@@ -24,20 +24,24 @@ import { NavLink } from "react-router-dom";
 
 import { useLocation } from "react-router-dom";
 
-
 const BarraDeNavegacao = () => {
   const { carrinho, termoBusca, setTermoBusca, abrirMenu } = useCarrinho();
   const { favoritos } = useFavoritos();
-  
+
   const location = useLocation();
+  const rotaAtual = location.pathname;
 
   const links = [
     { name: "Home", path: "/" },
     { name: "Novidades", path: "/novidades" },
     { name: "Promoções", path: "/promocoes" },
-    { name: "Produtos", path: "/produtos" }
- 
+    { name: "Produtos", path: "/produtos" },
   ];
+
+  // Flags para verificar as rotas específicas
+  const exibirCampoBusca =
+    rotaAtual === "/produtos" || rotaAtual === "/favoritos";
+  const exibirIconeCarrinho = rotaAtual === "/" || rotaAtual === "/favoritos" || rotaAtual === "/produtos";
 
   return (
     <NavEstilizada>
@@ -61,25 +65,31 @@ const BarraDeNavegacao = () => {
         </ListaEstilizada>
       </ConteinerEsquerdaEstilizado>
       <ConteinerDireitoEstilizado>
-        <CampoFormSearch role="search">
-          <InputEstilizado
-            type="search"
-            placeholder="Digite o produto"
-            value={termoBusca}
-            onChange={(e) => setTermoBusca(e.target.value)}
-          />
-          <Button type="submit">Buscar</Button>
-        </CampoFormSearch>
-        <ContainerIcones>
-          <IconeCarrinho onClick={abrirMenu} $display={location.pathname === "/" || location.pathname === "/favoritos"}>
-            <ImgEstilizada
-              src={iconeCarrinho}
-              alt="Abrir carrinho de compras"
+        {exibirCampoBusca && (
+          <CampoFormSearch role="search">
+            <InputEstilizado
+              type="search"
+              placeholder="Digite o produto"
+              value={termoBusca}
+              onChange={(e) => setTermoBusca(e.target.value)}
             />
-            <span>
-              {carrinho.reduce((acc, item) => acc + item.quantidade, 0)}
-            </span>
-          </IconeCarrinho>
+            <Button type="submit">Buscar</Button>
+          </CampoFormSearch>
+        )}
+
+        <ContainerIcones>
+          {exibirIconeCarrinho && (
+            <IconeCarrinho onClick={abrirMenu}>
+              <ImgEstilizada
+                src={iconeCarrinho}
+                alt="Abrir carrinho de compras"
+              />
+              <span>
+                {carrinho.reduce((acc, item) => acc + item.quantidade, 0)}
+              </span>
+            </IconeCarrinho>
+          )}
+
           <NavLink to="/favoritos">
             {({ isActive }) => (
               <IconeFavoritos className={isActive ? "ativo" : ""}>
