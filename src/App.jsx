@@ -12,7 +12,7 @@ import { CarrinhoProvider } from "./context/carrinho/CarrinhoProvider";
 import { FavoritosProvider } from "./context/favoritos/FavoritosProvider";
 import Favoritos from "./pages/Favoritos";
 
-import Produtos from "./pages/Produto";
+import Produtos from "./pages/Produtos";
 
 function App() {
   return (
