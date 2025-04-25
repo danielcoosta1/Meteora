@@ -3,6 +3,7 @@ import BarraDeNavegacao from "../../components/BarraDeNavegacao";
 import { useCarrinho } from "../../hooks/useCarrinho";
 import { useFavoritos } from "../../hooks/useFavoritos";
 import { BiEraser } from "react-icons/bi";
+import { LuHandHeart } from "react-icons/lu";
 import {
   BannerFavoritos,
   BotaoCarrinho,
@@ -26,6 +27,7 @@ import imgBannerFavoritos from "/assets/images/banner-carrinho.png";
 import ModoAmpliar from "../../components/ModoAmpliar";
 import VoltarHome from "../../components/VoltarHome";
 import MenuLateralCarrinho from "../../components/MenuLateralCarrinho";
+import TituloSecao from "../../components/TituloDefaultSecao";
 
 const Favoritos = () => {
   const {
@@ -48,6 +50,7 @@ const Favoritos = () => {
       </BannerFavoritos>
       <SecaoFavoritos>
         <HeaderFavoritos>
+        <TituloSecao texto="Favoritos" Icone={LuHandHeart}/>
           {haItensFavoritados && (
             <LimparFavoritos onClick={limparFavoritos}>
               <BiEraser

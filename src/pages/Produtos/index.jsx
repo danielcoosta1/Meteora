@@ -12,15 +12,20 @@ import {
   TituloProduto,
 } from "./styles";
 
+import { MdCheckroom } from "react-icons/md";
+
 import { FaHeart, FaRegHeart, FaExpand } from "react-icons/fa";
 import todosProdutos from "../../mocks/todosProdutos.json";
 import Categorias from "../../components/Categoria";
 import { useCarrinho } from "../../hooks/useCarrinho";
 import BarraDeNavegacao from "../../components/BarraDeNavegacao";
 
+
+
 import MenuLateralCarrinho from "../../components/MenuLateralCarrinho";
 import { useFavoritos } from "../../hooks/useFavoritos";
 import ModoAmpliar from "../../components/ModoAmpliar";
+import TituloSecao from "../../components/TituloDefaultSecao";
 const Produtos = () => {
   const { handleFavoritarProduto, isFavoritado } = useFavoritos();
   const {
@@ -58,7 +63,7 @@ const Produtos = () => {
       <BarraDeNavegacao />
       <ContainerProdutos>
         <Categorias />
-
+        <TituloSecao texto="Todos os produtos dísponíveis" Icone={MdCheckroom}/>
         <GridProdutos>
           {produtosParaExibir.map((produto) => (
             <Card key={produto.id}>
