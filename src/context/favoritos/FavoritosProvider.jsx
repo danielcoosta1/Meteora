@@ -14,7 +14,9 @@ export const FavoritosProvider = ({ children }) => {
 
   // Função para adicionar ou remover produtos dos favoritos
   const handleFavoritarProduto = (produto) => {
-    const produtoExistente = favoritos.find((favorito) => favorito.id === produto.id);
+    const produtoExistente = favoritos.find(
+      (favorito) => favorito.id === produto.id
+    );
 
     if (produtoExistente) {
       // Produto já favoritado, removendo
@@ -26,13 +28,33 @@ export const FavoritosProvider = ({ children }) => {
   };
 
   // Verifica se o produto está favoritado
-const isFavoritado = (produto) => {
+  const isFavoritado = (produto) => {
     return favoritos.some((favorito) => favorito.id === produto.id);
+  };
+
+  // Verifica se há itens favoritados
+  const haItensFavoritados = favoritos.length > 0;
+
+
+  // Verifica se há itens favoritados
+  const limparFavoritos = () => {
+    if (!haItensFavoritados) {
+      // Se não houver itens favoritados, não faz nada
+      alert("Não há itens favoritados para limpar!");
+      return;
+    }
+
+    // Pergunta ao usuário se ele realmente deseja limpar os favoritos
+    window.confirm("Você tem certeza que deseja limpar todos os favoritos?");
+    // Se o usuário confirmar, limpa os favoritos
+
+    // Limpa os favoritos
+    setFavoritos([]);
   };
 
   return (
     <FavoritosContext.Provider
-      value={{ handleFavoritarProduto, isFavoritado, favoritos, setFavoritos }}
+      value={{ handleFavoritarProduto, isFavoritado, favoritos, setFavoritos, limparFavoritos, haItensFavoritados }}
     >
       {children}
     </FavoritosContext.Provider>
