@@ -17,15 +17,31 @@ export const SecaoFavoritos = styled.section`
   padding: 0 2rem;
 `;
 
+export const HeaderFavoritos = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+`;
+
+export const LimparFavoritos = styled.button`
+  background-color: #9353ff;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+`;
+
 export const Titulo = styled.h2`
   font-size: 1.8rem;
-  margin-bottom: 2rem;
 `;
 
 export const GridProdutos = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 2rem;
+
   margin-bottom: 5rem;
 `;
 
@@ -38,7 +54,12 @@ export const ConteinerVazio = styled.div`
   padding: 1rem;
   border: 1px solid #eee;
   border-radius: 8px;
-  background-color: rgba(240, 240, 240, 0.6); /* fundo cinza claro quase transparente */
+  background-color: rgba(
+    240,
+    240,
+    240,
+    0.6
+  ); /* fundo cinza claro quase transparente */
   transition: transform 0.3s ease;
 
   &:hover {
@@ -54,7 +75,6 @@ export const ConteinerVazio = styled.div`
     margin-top: 2rem;
   }
 `;
-
 
 export const CardProdutos = styled.div`
   border: 1px solid #eee;

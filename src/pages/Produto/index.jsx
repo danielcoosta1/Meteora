@@ -1,13 +1,13 @@
+import { ContainerProdutos } from "./styles";
 
 
 const Produtos = () => {
     return (
-        <>
-            <h1>Produto</h1>
-            <p>Detalhes do produto</p>
-            <p>Adicione ao carrinho</p>
-            <p>Adicione aos favoritos</p>
-        </>
+        <ContainerProdutos>
+            <h1>Todos os produtos disponíveis</h1>
+        </ContainerProdutos>
+    
+        
     )
 
 }

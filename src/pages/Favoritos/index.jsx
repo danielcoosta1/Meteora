@@ -17,6 +17,8 @@ import {
   Titulo,
   TituloProduto,
   ConteinerVazio,
+  HeaderFavoritos,
+  LimparFavoritos,
 } from "./styles";
 
 import imgBannerFavoritos from "/assets/images/banner-carrinho.png";
@@ -25,14 +27,33 @@ import ModoAmpliar from "../../components/ModoAmpliar";
 import VoltarHome from "../../components/VoltarHome";
 import MenuLateralCarrinho from "../../components/MenuLateralCarrinho";
 
+
 const Favoritos = () => {
-  const { favoritos, handleFavoritarProduto, isFavoritado } = useFavoritos();
+  const { favoritos, handleFavoritarProduto, isFavoritado, setFavoritos } =
+    useFavoritos();
   const { abrirModal, produtoAmpliado } = useCarrinho();
   const { menuAberto } = useCarrinho();
 
   const { adicionarAoCarrinho } = useCarrinho();
 
   const haItensFavoritados = favoritos.length > 0;
+
+  const limparFavoritos = () => {
+    if (!haItensFavoritados) {
+      // Se não houver itens favoritados, não faz nada
+      alert("Não há itens favoritados para limpar!");
+      return;
+    }
+
+    // Pergunta ao usuário se ele realmente deseja limpar os favoritos
+    window.confirm(
+      "Você tem certeza que deseja limpar todos os favoritos?"
+    );
+    // Se o usuário confirmar, limpa os favoritos
+    
+    // Limpa os favoritos
+    setFavoritos([]);
+  };
 
   return (
     <>
@@ -41,7 +62,12 @@ const Favoritos = () => {
         <img src={imgBannerFavoritos} />
       </BannerFavoritos>
       <SecaoFavoritos>
-        <Titulo>Seus favoritos</Titulo>
+        <HeaderFavoritos>
+          <Titulo>Seus favoritos</Titulo>
+          <LimparFavoritos onClick={limparFavoritos}>
+            Limpar favoritos
+          </LimparFavoritos>
+        </HeaderFavoritos>
 
         <GridProdutos $isEmpty={!haItensFavoritados}>
           {!haItensFavoritados ? (
