@@ -17,9 +17,12 @@ import {
 } from "./styles";
 
 import { useEffect } from "react";
+import { useProdutos } from "../../hooks/useProdutos";
 
 const ModoAmpliar = () => {
-  const { produtoAmpliado, fecharModal, adicionarAoCarrinho } = useCarrinho();
+  const { adicionarAoCarrinho } = useCarrinho();
+
+  const { produtoAmpliado, fecharModal } = useProdutos(); // Importa o hook de produtos
 
   const { handleFavoritarProduto, isFavoritado } = useFavoritos();
 

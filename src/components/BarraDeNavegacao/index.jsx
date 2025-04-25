@@ -23,9 +23,11 @@ import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 import { useLocation } from "react-router-dom";
+import { useProdutos } from "../../hooks/useProdutos";
 
 const BarraDeNavegacao = () => {
-  const { carrinho, termoBusca, setTermoBusca, abrirMenu } = useCarrinho();
+  const { carrinho, abrirMenu} = useCarrinho();
+  const { termoBusca, setTermoBusca } = useProdutos(); // Importa o hook de carrinho
   const { favoritos } = useFavoritos();
 
   const location = useLocation();

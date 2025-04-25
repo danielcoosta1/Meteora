@@ -13,17 +13,21 @@ import {
 } from "./styles";
 
 import { useCarrinho } from "../../hooks/useCarrinho";
-
+import { useProdutos } from "../../hooks/useProdutos";
 import { useFavoritos } from "../../hooks/useFavoritos";
 
 import { FaHeart, FaRegHeart, FaExpand, FaFire } from "react-icons/fa";
 
 import produtosBombando from "../../mocks/produtosBombando.json";
+
 import ModoAmpliar from "../ModoAmpliar";
 import TituloSecao from "../TituloDefaultSecao";
 
+
 const ProdutosBombando = () => {
-  const { adicionarAoCarrinho, produtoAmpliado, abrirModal } = useCarrinho();
+  const { adicionarAoCarrinho } = useCarrinho();
+
+  const { abrirModal, produtoAmpliado } = useProdutos(); // Importa o hook de carrinho
 
   const { handleFavoritarProduto, isFavoritado } = useFavoritos();
 

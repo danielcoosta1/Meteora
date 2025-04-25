@@ -1,3 +1,4 @@
+import { useProdutos } from "../../hooks/useProdutos";
 import categorias from "../../mocks/categorias.json";
 import {
   SecaoCategorias,
@@ -8,10 +9,10 @@ import {
   Descricao,
 } from "./styles";
 
-import { useCarrinho } from "../../hooks/useCarrinho";
+
 
 const Categorias = () => {
-  const {setCategoriaSelecionada} = useCarrinho();
+  const {setCategoriaSelecionada} = useProdutos();
   return (
     <SecaoCategorias>
       <Titulo>Busque por categoria:</Titulo>
