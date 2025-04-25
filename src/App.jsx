@@ -10,6 +10,8 @@ import Promocoes from "./pages/Promocoes";
 
 import { CarrinhoProvider } from "./context/carrinho/CarrinhoProvider";
 import { FavoritosProvider } from "./context/favoritos/FavoritosProvider";
+import { ProdutoProvider } from "./context/produtos/ProdutosProvider";
+
 import Favoritos from "./pages/Favoritos";
 
 import Produtos from "./pages/Produtos";
@@ -17,19 +19,21 @@ import Produtos from "./pages/Produtos";
 function App() {
   return (
     <Router>
-      <FavoritosProvider>
-        <CarrinhoProvider>
-          <Routes>
-            <Route path="/produtos" element={<Produtos/>} />
-            <Route path="/promocoes" element={<Promocoes />} />
-            <Route path="/novidades" element={<Novidades />} />
-            <Route path="/" element={<Home />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/favoritos" element={<Favoritos />} />
-            <Route path="*" element={<Error />} />
-          </Routes>
-        </CarrinhoProvider>
-      </FavoritosProvider>
+      <ProdutoProvider>
+        <FavoritosProvider>
+          <CarrinhoProvider>
+            <Routes>
+              <Route path="/produtos" element={<Produtos />} />
+              <Route path="/promocoes" element={<Promocoes />} />
+              <Route path="/novidades" element={<Novidades />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/favoritos" element={<Favoritos />} />
+              <Route path="*" element={<Error />} />
+            </Routes>
+          </CarrinhoProvider>
+        </FavoritosProvider>
+      </ProdutoProvider>
     </Router>
   );
 }
