@@ -12,15 +12,8 @@ export const CarrinhoProvider = ({ children }) => {
     return carrinhoSalvo ? JSON.parse(carrinhoSalvo) : []; // Inicializa o carrinho com os dados do localStorage, se existirem
   });
 
-  // Estado para armazenar a categoria selecionada
-  const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
-  // Estado para armazenar o termo de busca
-  const [termoBusca, setTermoBusca] = useState("");
-
   // Estado para controlar se o menu lateral do carrinho está aberto ou fechado
   const [menuAberto, setMenuAberto] = useState(false);
-
-  const [produtoAmpliado, setProdutoAmpliado] = useState(null); // Estado para armazenar o produto ampliado
 
   // FUMÇÕES
 
@@ -120,26 +113,24 @@ export const CarrinhoProvider = ({ children }) => {
     return resultado;
   }, [carrinho]);
 
-  
-  const fecharModal = () => {
-    setProdutoAmpliado(null); // Fecha o modal de produto ampliado
-  }
+  // Verifica se o carrinho está vazio
+  const carrinhoVazio = carrinho.length === 0;
 
-  const abrirModal = (produto) => {
-    setProdutoAmpliado(produto); // Abre o modal de produto ampliado
-  }
-
-
+  const finalizarCompra = () => {
+    if (carrinhoVazio) {
+      alert("Seu carrinho está vazio! Adicione produtos antes de finalizar.");
+      return;
+    }
+    // Aqui você pode adicionar a lógica para finalizar a compra, como enviar os dados para um servidor ou processar o pagamento.
+    alert("Compra finalizada com sucesso! 🎉");
+    setCarrinho([]); // limpa o carrinho
+  };
 
   return (
     <CarrinhoContext.Provider
       value={{
         carrinho,
         setCarrinho,
-        categoriaSelecionada,
-        setCategoriaSelecionada,
-        termoBusca,
-        setTermoBusca,
         adicionarAoCarrinho,
         aumentarQuantidade,
         diminuirQuantidade,
@@ -151,10 +142,7 @@ export const CarrinhoProvider = ({ children }) => {
         setMenuAberto,
         abrirMenu,
         fecharMenu,
-        produtoAmpliado,
-        setProdutoAmpliado,
-        abrirModal,
-        fecharModal,
+        finalizarCompra,
       }}
     >
       {children}
