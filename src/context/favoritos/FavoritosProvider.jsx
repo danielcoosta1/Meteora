@@ -35,26 +35,29 @@ export const FavoritosProvider = ({ children }) => {
   // Verifica se há itens favoritados
   const haItensFavoritados = favoritos.length > 0;
 
-
   // Verifica se há itens favoritados
   const limparFavoritos = () => {
-    if (!haItensFavoritados) {
-      // Se não houver itens favoritados, não faz nada
-      alert("Não há itens favoritados para limpar!");
-      return;
-    }
-
     // Pergunta ao usuário se ele realmente deseja limpar os favoritos
     window.confirm("Você tem certeza que deseja limpar todos os favoritos?");
     // Se o usuário confirmar, limpa os favoritos
-
+    if (window.confirm) {
+      // Limpa os favoritos
+      setFavoritos([]);
+    }
+    return; // Se o usuário cancelar, não faz nada
     // Limpa os favoritos
-    setFavoritos([]);
   };
 
   return (
     <FavoritosContext.Provider
-      value={{ handleFavoritarProduto, isFavoritado, favoritos, setFavoritos, limparFavoritos, haItensFavoritados }}
+      value={{
+        handleFavoritarProduto,
+        isFavoritado,
+        favoritos,
+        setFavoritos,
+        limparFavoritos,
+        haItensFavoritados,
+      }}
     >
       {children}
     </FavoritosContext.Provider>

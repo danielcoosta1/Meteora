@@ -49,9 +49,11 @@ const Favoritos = () => {
       <SecaoFavoritos>
         <HeaderFavoritos>
           <Titulo>Seus favoritos</Titulo>
-          <LimparFavoritos onClick={limparFavoritos}>
-            Limpar favoritos
-          </LimparFavoritos>
+          {haItensFavoritados && (
+            <LimparFavoritos onClick={limparFavoritos}>
+              Limpar favoritos
+            </LimparFavoritos>
+          )}
         </HeaderFavoritos>
 
         <GridProdutos $isEmpty={!haItensFavoritados}>
