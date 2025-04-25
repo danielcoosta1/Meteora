@@ -4,7 +4,7 @@ const TituloSecao = ({ texto = "Título da seção", Icone }) => {
   return (
     <ContainerTitulo>
       <TituloEstilizado>
-        <h2>{texto}</h2>
+        <span>{texto}</span>
         <p>{Icone && <Icone />}</p>
       </TituloEstilizado>
       <LinhaDecorativa />
