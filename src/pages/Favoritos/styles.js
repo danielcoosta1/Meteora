@@ -42,10 +42,6 @@ export const LimparFavoritos = styled.button`
   }
 `;
 
-export const Titulo = styled.h2`
-  font-size: 1.8rem;
-`;
-
 export const GridProdutos = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));

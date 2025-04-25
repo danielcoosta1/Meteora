@@ -10,7 +10,7 @@ import {
   ImagemProduto,
   PrecoProduto,
   SecaoProdutos,
-  Titulo,
+ 
   TituloProduto,
 } from "./styles";
 
@@ -31,7 +31,7 @@ const ProdutosBombando = () => {
   return (
     <SecaoProdutos>
       <ConteinerTitulo>
-        <Titulo>Produtos que estão bombando!</Titulo>
+        
       </ConteinerTitulo>
 
       <GridProdutos>

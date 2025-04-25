@@ -58,7 +58,7 @@ const Produtos = () => {
       <BarraDeNavegacao />
       <ContainerProdutos>
         <Categorias />
-        <h1>Todos os produtos disponíveis</h1>
+
         <GridProdutos>
           {produtosParaExibir.map((produto) => (
             <Card key={produto.id}>

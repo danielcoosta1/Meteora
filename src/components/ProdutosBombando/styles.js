@@ -4,9 +4,6 @@ const SecaoProdutos = styled.section`
   text-align: start;
 `;
 
-const Titulo = styled.h2`
-  font-size: 1.8rem;
-`;
 const GridProdutos = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -122,7 +119,6 @@ const IconesWrapper = styled.button`
 
 export {
   SecaoProdutos,
-  Titulo,
   GridProdutos,
   CardProduto,
   TituloProduto,

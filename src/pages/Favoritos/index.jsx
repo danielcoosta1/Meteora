@@ -15,7 +15,6 @@ import {
   ImagemProduto,
   PrecoProduto,
   SecaoFavoritos,
-  Titulo,
   TituloProduto,
   ConteinerVazio,
   HeaderFavoritos,
@@ -49,7 +48,6 @@ const Favoritos = () => {
       </BannerFavoritos>
       <SecaoFavoritos>
         <HeaderFavoritos>
-          <Titulo>Seus favoritos</Titulo>
           {haItensFavoritados && (
             <LimparFavoritos onClick={limparFavoritos}>
               <BiEraser
