@@ -25,13 +25,21 @@ export const HeaderFavoritos = styled.header`
 `;
 
 export const LimparFavoritos = styled.button`
-  background-color: #9353ff;
-  color: #ffffff;
-  padding: 0.5rem 1rem;
+  background-color: transparent;
   border: none;
-  border-radius: 8px;
+  font-size: 0.9em;
+  display: flex;
+  align-items: center;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  color: #000;
+  border: 1px solid #9353ff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+
+  &:hover {
+    transition: color 0.3s ease;
+    transform: scale(1.05);
+  }
 `;
 
 export const Titulo = styled.h2`

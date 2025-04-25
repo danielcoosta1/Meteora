@@ -2,6 +2,7 @@ import { FaExpand, FaHeart, FaRegHeart } from "react-icons/fa";
 import BarraDeNavegacao from "../../components/BarraDeNavegacao";
 import { useCarrinho } from "../../hooks/useCarrinho";
 import { useFavoritos } from "../../hooks/useFavoritos";
+import { BiEraser } from "react-icons/bi";
 import {
   BannerFavoritos,
   BotaoCarrinho,
@@ -51,6 +52,10 @@ const Favoritos = () => {
           <Titulo>Seus favoritos</Titulo>
           {haItensFavoritados && (
             <LimparFavoritos onClick={limparFavoritos}>
+              <BiEraser
+                size={20}
+                style={{ marginRight: "8px", color: " #9353ff" }}
+              />
               Limpar favoritos
             </LimparFavoritos>
           )}
