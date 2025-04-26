@@ -26,18 +26,16 @@ export const ModalOverlay = styled.div`
 
 export const ModalContent = styled.div`
   position: relative;
-  max-width:60vw; // Aumentado de 90% para 95%
-  max-height: 80vh; // Aumentado de 90% para 95%
-  min-width: 60vw; // Largura mínima aumentada
-   // Altura mínima aumentada
-  background:#ffffff;
+  // Aumentado de 90% para 95%
+  height: 90vh; // Aumentado de 90% para 95%
+  width: 30vw; // Largura mínima aumentada
+  // Altura mínima aumentada
+  background: #ffffff;
   padding: 2rem; // Aumentado de 2rem para 3rem
   border-radius: 20px; // Borda mais arredondada
   display: flex;
   flex-direction: column;
   justify-content: center;
-  
-  
 
   animation: scaleUp 0.3s ease;
 
@@ -51,12 +49,13 @@ export const ModalContent = styled.div`
   }
 
   img {
-    max-width: 100%;
+    width: 100%;
     max-height: 80vh; // Aumentado de 70vh para 80vh
     min-height: 500px; // Altura mínima da imagem
     object-fit: contain;
     border-radius: 15px;
     margin-bottom: 2rem;
+    margin-top: 2rem;
   }
 `;
 
@@ -64,12 +63,12 @@ export const ModalClose = styled.button`
   position: absolute;
   top: 15px;
   right: 15px;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.5);
   border: none;
   color: white;
-  font-size: 2rem;
-  width: 50px;
-  height: 50px;
+  font-size: 1rem;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
@@ -83,19 +82,15 @@ export const ModalClose = styled.button`
   }
 `;
 
-
-
-
-
 export const TituloProduto = styled.h3`
-margin: 1rem 0 0.5rem;
-font-size: 1.2rem;
+  margin: 1rem 0 0.5rem;
+  font-size: 1.2rem;
 `;
 
 export const DescricaoProduto = styled.p`
-font-size: 0.9rem;
-color: #555;
-margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1.5rem;
 `;
 
 export const PrecoProduto = styled.p`
@@ -103,48 +98,47 @@ export const PrecoProduto = styled.p`
   margin: 0.5rem 0;
 `;
 
-
 export const ConteinerBotoes = styled.div`
-display: flex;
-gap: 1rem;
-align-items: center;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 `;
 
 export const BotaoCarrinho = styled.button`
-background-color: #9353ff;
-color: #ffffff;
-padding: 0.5rem 1rem;
-border: none;
+  background-color: #9353ff;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border: none;
 
-cursor: pointer;
+  cursor: pointer;
 
-&:hover {
-  opacity: 0.9;
-}
+  &:hover {
+    opacity: 0.9;
+  }
 `;
 
 export const IconesWrapper = styled.button`
-background: transparent;
+  background: transparent;
 
-border-radius: 50%;
-border: none;
-width: 40px;
-height: 40px;
-cursor: pointer;
-display: flex;
-align-items: center;
-justify-content: center;
-color: ${(props) => (props.$favoritado ? "#FF4081" : " #9353ff")};
-transition: all 0.3s ease;
+  border-radius: 50%;
+  border: none;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: ${(props) => (props.$favoritado ? "#FF4081" : " #9353ff")};
+  transition: all 0.3s ease;
 
-&:hover {
-  background: #e0d4ff; // Um roxinho claro no hover
-  color: #5e2ca5; // Roxo mais escuro pro ícone em hover
-  transform: scale(1.1);
-}
+  &:hover {
+    background: #e0d4ff; // Um roxinho claro no hover
+    color: #5e2ca5; // Roxo mais escuro pro ícone em hover
+    transform: scale(1.1);
+  }
 
-svg {
-  width: 20px;
-  height: 20px;
-}
+  svg {
+    width: 20px;
+    height: 20px;
+  }
 `;
