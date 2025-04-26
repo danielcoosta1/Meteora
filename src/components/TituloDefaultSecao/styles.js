@@ -31,7 +31,7 @@ export const ContainerTitulo = styled.div`
 `;
 
 export const TituloEstilizado = styled.h2`
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 600;
   color: #333;
   text-transform: uppercase;
