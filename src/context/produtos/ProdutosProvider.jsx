@@ -6,36 +6,90 @@ import todosProdutos from "../../mocks/todosProdutos.json";
 export const ProdutoProvider = ({ children }) => {
   const [categoriaSelecionada, setCategoriaSelecionada] = useState(null);
   const [termoBusca, setTermoBusca] = useState("");
+  const [filtroPreco, setFiltroPreco] = useState(null);
   const [produtoAmpliado, setProdutoAmpliado] = useState(null);
 
   const abrirModal = (produto) => setProdutoAmpliado(produto);
   const fecharModal = () => setProdutoAmpliado(null);
 
-  // Filtra os produtos com base na categoria selecionada
-  // e no termo de busca
-  const produtosFiltradosPorCategoria = useMemo(() => { //useMemo é usado para memorizar o resultado da função, evitando cálculos desnecessários
-    return categoriaSelecionada
-      ? todosProdutos.filter(
-          (produto) =>
-            produto.categoria.toLowerCase() ===
-            categoriaSelecionada.toLowerCase()
-        )
-      : todosProdutos;
-  }, [categoriaSelecionada]);
+  // // Filtra os produtos com base na categoria selecionada
+  // // e no termo de busca
+  // const produtosFiltradosPorCategoria = useMemo(() => {
+  //   //useMemo é usado para memorizar o resultado da função, evitando cálculos desnecessários
+  //   return categoriaSelecionada
+  //     ? todosProdutos.filter(
+  //         (produto) =>
+  //           produto.categoria.toLowerCase() ===
+  //           categoriaSelecionada.toLowerCase()
+  //       )
+  //     : todosProdutos;
+  // }, [categoriaSelecionada]);
 
-  const produtosFiltradosPorBusca = useMemo(() => {
-    return termoBusca
-      ? produtosFiltradosPorCategoria.filter((produto) =>
-          produto.titulo.toLowerCase().includes(termoBusca.toLowerCase())
-        )
-      : produtosFiltradosPorCategoria;
-  }, [termoBusca, produtosFiltradosPorCategoria]);
+  // const produtosFiltradosPorBusca = useMemo(() => {
+  //   return termoBusca
+  //     ? produtosFiltradosPorCategoria.filter((produto) =>
+  //         produto.titulo.toLowerCase().includes(termoBusca.toLowerCase())
+  //       )
+  //     : produtosFiltradosPorCategoria;
+  // }, [termoBusca, produtosFiltradosPorCategoria]);
+
+  // const produtosFiltradosPorPreco = useMemo(() => {
+  //   if (!filtroPreco) return produtosFiltradosPorBusca;
+
+  //   return produtosFiltradosPorBusca.filter((produto) => {
+  //     switch (filtroPreco) {
+  //       case "ate100":
+  //         return produto.preco <= 100;
+  //       case "100a200":
+  //         return produto.preco > 100 && produto.preco <= 200;
+  //       case "acima200":
+  //         return produto.preco > 200;
+  //       default:
+  //         return true;
+  //     }
+  //   });
+  // }, [filtroPreco, produtosFiltradosPorBusca]);
+
+  // const produtosParaExibir = useMemo(() => {
+  //   return produtosFiltradosPorPreco;
+  // }, [produtosFiltradosPorPreco]);
 
   const produtosParaExibir = useMemo(() => {
-    return categoriaSelecionada || termoBusca
-      ? produtosFiltradosPorBusca
-      : todosProdutos;
-  }, [categoriaSelecionada, termoBusca, produtosFiltradosPorBusca]);
+    let produtosFiltrados = todosProdutos;
+
+    if (categoriaSelecionada) {
+      produtosFiltrados = produtosFiltrados.filter(
+        (produto) =>
+          produto.categoria.toLowerCase() === categoriaSelecionada.toLowerCase()
+      );
+    }
+
+    if (termoBusca) {
+      produtosFiltrados = produtosFiltrados.filter((produto) =>
+        produto.titulo.toLowerCase().includes(termoBusca.toLowerCase())
+      );
+    }
+
+    if (filtroPreco) {
+      const filtrosValidos = ["ate100", "100a200", "acima200"];
+      if (filtrosValidos.includes(filtroPreco)) {
+        produtosFiltrados = produtosFiltrados.filter((produto) => {
+          switch (filtroPreco) {
+            case "ate100":
+              return produto.preco <= 100;
+            case "100a200":
+              return produto.preco > 100 && produto.preco <= 200;
+            case "acima200":
+              return produto.preco > 200;
+            default:
+              return true;
+          }
+        });
+      }
+    }
+
+    return produtosFiltrados;
+  }, [categoriaSelecionada, termoBusca, filtroPreco]);
 
   return (
     <ProdutosContext.Provider
@@ -48,6 +102,8 @@ export const ProdutoProvider = ({ children }) => {
         setProdutoAmpliado,
         abrirModal,
         fecharModal,
+        filtroPreco,
+        setFiltroPreco,
         produtosParaExibir,
       }}
     >
