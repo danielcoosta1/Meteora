@@ -37,10 +37,12 @@ export const ConteinerVazio = styled.div`
   }
 `;
 
-export const TituloCheckout = styled.h1`
-  text-align: center;
-  padding: 2rem 0;
-  font-weight: 400;
+export const ContainerPrincipal = styled.main`
+  max-width: 90rem;
+  display: flex;
+  flex-direction: column;
+  margin: 2rem auto;
+
 `;
 
 export const ConteinerPrincipalCompras = styled.main`

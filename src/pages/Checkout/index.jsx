@@ -1,5 +1,5 @@
 // src/pages/Checkout.jsx
-
+import { BsFillCartCheckFill } from "react-icons/bs";
 import { FaTrash } from "react-icons/fa";
 
 import BarraDeNavegacao from "../../components/BarraDeNavegacao";
@@ -11,6 +11,7 @@ import {
   BotaoFinalizarCompra,
   BotaoQuantidade,
   Botoes,
+  ContainerPrincipal,
   ConteinerDescricaoProduto,
   ConteinerPrincipalCompras,
   ConteinerPrincipalVazio,
@@ -27,11 +28,11 @@ import {
   PrecoProduto,
   ProdutoPreco,
   QuantidadeProduto,
-  TituloCheckout,
   TotalPreco,
 } from "./styles";
 
 import VoltarHome from "../../components/VoltarHome";
+import TituloSecao from "../../components/TituloDefaultSecao";
 
 import { useCarrinho } from "../../hooks/useCarrinho";
 
@@ -39,7 +40,6 @@ const Checkout = () => {
   const {
     carrinho,
     finalizarCompra,
-
     aumentarQuantidade,
     diminuirQuantidade,
     removerItem,
@@ -66,8 +66,8 @@ const Checkout = () => {
           </ConteinerVazio>
         </ConteinerPrincipalVazio>
       ) : (
-        <>
-          <TituloCheckout>Carrinho de Compras</TituloCheckout>
+        <ContainerPrincipal>
+          <TituloSecao texto="Carrinho de Compras" Icone={BsFillCartCheckFill} />
           <ConteinerPrincipalCompras>
             <DetalhesCompras>
               <h1>Detalhes Compras</h1>
@@ -123,7 +123,7 @@ const Checkout = () => {
               </Botoes>
             </DetalhesPagamento>
           </ConteinerPrincipalCompras>
-        </>
+        </ContainerPrincipal>
       )}
     </>
   );
