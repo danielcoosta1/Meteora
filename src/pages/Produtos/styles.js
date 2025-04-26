@@ -10,6 +10,12 @@ export const ContainerProdutos = styled.main`
   }
 `;
 
+export const ContainerTitulo = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  `;
+
 export const GridProdutos = styled.section`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));

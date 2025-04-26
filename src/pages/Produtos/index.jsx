@@ -2,6 +2,7 @@ import {
   BotaoCarrinho,
   Card,
   ContainerProdutos,
+  ContainerTitulo,
   ConteinerBotoes,
   ConteinerIcones,
   DescricaoProduto,
@@ -11,7 +12,7 @@ import {
   PrecoProduto,
   TituloProduto,
 } from "./styles";
-
+import { BiEraser } from "react-icons/bi";
 import { MdCheckroom } from "react-icons/md";
 
 import { FaHeart, FaRegHeart, FaExpand } from "react-icons/fa";
@@ -26,22 +27,38 @@ import ModoAmpliar from "../../components/ModoAmpliar";
 import TituloSecao from "../../components/TituloDefaultSecao";
 
 import { useProdutos } from "../../hooks/useProdutos";
+import BotaoLimpar from "../../components/BotaoLimpar";
 const Produtos = () => {
-    
   const { handleFavoritarProduto, isFavoritado } = useFavoritos();
   const { adicionarAoCarrinho, menuAberto } = useCarrinho(); // Importa o hook de categorias
-  const { abrirModal, produtoAmpliado, produtosParaExibir } = useProdutos(); // Importa o hook de carrinho
+  const {
+    abrirModal,
+    produtoAmpliado,
+    produtosParaExibir,
+    setCategoriaSelecionada,
+    categoriaSelecionada,
+  } = useProdutos(); // Importa o hook de carrinho
 
   return (
     <>
       <BarraDeNavegacao />
       <ContainerProdutos>
         <Categorias />
+        <ContainerTitulo>
+          <TituloSecao
+            texto="Todos os produtos dísponíveis"
+            Icone={MdCheckroom}
+          />
+          {categoriaSelecionada && (
+            <BotaoLimpar
+              onClick={() => setCategoriaSelecionada(null)}
+              Icone={BiEraser}
+            >
+              Limpar filtro
+            </BotaoLimpar>
+          )}
+        </ContainerTitulo>
 
-        <TituloSecao
-          texto="Todos os produtos dísponíveis"
-          Icone={MdCheckroom}
-        />
         <GridProdutos>
           {produtosParaExibir.map((produto) => (
             <Card key={produto.id}>

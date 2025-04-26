@@ -19,7 +19,6 @@ import {
   TituloProduto,
   ConteinerVazio,
   HeaderFavoritos,
-  LimparFavoritos,
 } from "./styles";
 
 import imgBannerFavoritos from "/assets/images/banner-carrinho.png";
@@ -30,6 +29,8 @@ import MenuLateralCarrinho from "../../components/MenuLateralCarrinho";
 import TituloSecao from "../../components/TituloDefaultSecao";
 import { useProdutos } from "../../hooks/useProdutos";
 
+import BotaoLimpar from "../../components/BotaoLimpar";
+
 const Favoritos = () => {
   const {
     favoritos,
@@ -38,7 +39,7 @@ const Favoritos = () => {
     haItensFavoritados,
     limparFavoritos,
   } = useFavoritos();
-  
+
   const { abrirModal, produtoAmpliado, adicionarAoCarrinho } = useProdutos();
   const { menuAberto } = useCarrinho();
 
@@ -52,13 +53,9 @@ const Favoritos = () => {
         <HeaderFavoritos>
           <TituloSecao texto="Favoritos" Icone={LuHandHeart} />
           {haItensFavoritados && (
-            <LimparFavoritos onClick={limparFavoritos}>
-              <BiEraser
-                size={20}
-                style={{ marginRight: "8px", color: " #9353ff" }}
-              />
+            <BotaoLimpar onClick={limparFavoritos} Icone={BiEraser}>
               Limpar favoritos
-            </LimparFavoritos>
+            </BotaoLimpar>
           )}
         </HeaderFavoritos>
 
