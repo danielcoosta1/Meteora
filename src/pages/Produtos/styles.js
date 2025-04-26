@@ -20,6 +20,7 @@ export const GridProdutos = styled.section`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
   gap: 2rem;
+  padding: 2rem 0;
 `;
 
 export const Card = styled.div`
