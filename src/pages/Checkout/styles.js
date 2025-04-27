@@ -70,6 +70,7 @@ export const ListaItens = styled.ul`
 `;
 
 export const ItemLista = styled.li`
+width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -79,14 +80,14 @@ export const ItemLista = styled.li`
 
 export const ImgProduto = styled.img`
   width: 180px;
-  margin-right: 2rem;
+
 `;
 
 export const ConteinerDescricaoProduto = styled.div`
   display: flex;
   flex-direction: column;
   width: 20%;
-  margin-left: -5rem;
+ 
 `;
 
 export const PrecoProduto = styled.span`
