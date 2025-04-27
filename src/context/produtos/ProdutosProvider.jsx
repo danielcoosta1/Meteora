@@ -22,7 +22,7 @@ export const ProdutoProvider = ({ children }) => {
       );
     }
 
-    if (termoBusca) {
+    if (termoBusca.trim()) {
       produtosFiltrados = produtosFiltrados.filter((produto) =>
         produto.titulo.toLowerCase().includes(termoBusca.toLowerCase())
       );
