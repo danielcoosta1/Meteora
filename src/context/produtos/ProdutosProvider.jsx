@@ -12,48 +12,6 @@ export const ProdutoProvider = ({ children }) => {
   const abrirModal = (produto) => setProdutoAmpliado(produto);
   const fecharModal = () => setProdutoAmpliado(null);
 
-  // // Filtra os produtos com base na categoria selecionada
-  // // e no termo de busca
-  // const produtosFiltradosPorCategoria = useMemo(() => {
-  //   //useMemo é usado para memorizar o resultado da função, evitando cálculos desnecessários
-  //   return categoriaSelecionada
-  //     ? todosProdutos.filter(
-  //         (produto) =>
-  //           produto.categoria.toLowerCase() ===
-  //           categoriaSelecionada.toLowerCase()
-  //       )
-  //     : todosProdutos;
-  // }, [categoriaSelecionada]);
-
-  // const produtosFiltradosPorBusca = useMemo(() => {
-  //   return termoBusca
-  //     ? produtosFiltradosPorCategoria.filter((produto) =>
-  //         produto.titulo.toLowerCase().includes(termoBusca.toLowerCase())
-  //       )
-  //     : produtosFiltradosPorCategoria;
-  // }, [termoBusca, produtosFiltradosPorCategoria]);
-
-  // const produtosFiltradosPorPreco = useMemo(() => {
-  //   if (!filtroPreco) return produtosFiltradosPorBusca;
-
-  //   return produtosFiltradosPorBusca.filter((produto) => {
-  //     switch (filtroPreco) {
-  //       case "ate100":
-  //         return produto.preco <= 100;
-  //       case "100a200":
-  //         return produto.preco > 100 && produto.preco <= 200;
-  //       case "acima200":
-  //         return produto.preco > 200;
-  //       default:
-  //         return true;
-  //     }
-  //   });
-  // }, [filtroPreco, produtosFiltradosPorBusca]);
-
-  // const produtosParaExibir = useMemo(() => {
-  //   return produtosFiltradosPorPreco;
-  // }, [produtosFiltradosPorPreco]);
-
   const produtosParaExibir = useMemo(() => {
     let produtosFiltrados = todosProdutos;
 
