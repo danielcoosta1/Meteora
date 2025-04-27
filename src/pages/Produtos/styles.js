@@ -1,20 +1,24 @@
 import styled from "styled-components";
 
 export const ContainerProdutos = styled.main`
+  /* ou o limite que preferir */
+  display: flex;
+`;
+
+export const ContainerWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   max-width: 1400px; /* ou o limite que preferir */
   margin: 0 auto;
-  
-
-  h1 {
-    margin-bottom: 2rem;
-  }
+  padding: 0 2rem;
 `;
 
 export const ContainerTitulo = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  `;
+`;
 
 export const GridProdutos = styled.section`
   display: grid;
@@ -60,7 +64,6 @@ export const ConteinerBotoes = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
 `;
 export const BotaoCarrinho = styled.button`
   background-color: #9353ff;
