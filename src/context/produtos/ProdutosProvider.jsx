@@ -71,28 +71,25 @@ export const ProdutoProvider = ({ children }) => {
     }
 
     if (filtroPreco) {
-      const filtrosValidos = ["ate100", "100a200", "acima200"];
-      if (filtrosValidos.includes(filtroPreco)) {
-        produtosFiltrados = produtosFiltrados.filter((produto) => {
-          switch (filtroPreco) {
-            case "ate100":
-              return produto.preco <= 100;
-            case "100a200":
-              return produto.preco > 100 && produto.preco <= 200;
-            case "acima200":
-              return produto.preco > 200;
-            default:
-              return true;
-          }
-        });
-      }
+      produtosFiltrados = produtosFiltrados.filter((produto) => {
+        switch (filtroPreco) {
+          case "ate100":
+            return produto.preco <= 100;
+          case "100a200":
+            return produto.preco > 100 && produto.preco <= 200;
+          case "acima200":
+            return produto.preco > 200;
+          default:
+            return true;
+        }
+      });
     }
 
     return produtosFiltrados;
   }, [categoriaSelecionada, termoBusca, filtroPreco]);
 
-  const haProdutosFiltrados = categoriaSelecionada !== null || termoBusca !== "" || filtroPreco !== null;
-
+  const haProdutosFiltrados =
+    categoriaSelecionada !== null || termoBusca !== "" || filtroPreco !== null;
 
   const limparFiltro = () => {
     setCategoriaSelecionada(null);
@@ -115,7 +112,7 @@ export const ProdutoProvider = ({ children }) => {
         setFiltroPreco,
         produtosParaExibir,
         haProdutosFiltrados,
-        limparFiltro
+        limparFiltro,
       }}
     >
       {children}
