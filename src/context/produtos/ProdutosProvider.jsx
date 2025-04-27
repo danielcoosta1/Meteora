@@ -91,6 +91,15 @@ export const ProdutoProvider = ({ children }) => {
     return produtosFiltrados;
   }, [categoriaSelecionada, termoBusca, filtroPreco]);
 
+  const haProdutosFiltrados = categoriaSelecionada !== null || termoBusca !== "" || filtroPreco !== null;
+
+
+  const limparFiltro = () => {
+    setCategoriaSelecionada(null);
+    setTermoBusca("");
+    setFiltroPreco(null);
+  };
+
   return (
     <ProdutosContext.Provider
       value={{
@@ -105,6 +114,8 @@ export const ProdutoProvider = ({ children }) => {
         filtroPreco,
         setFiltroPreco,
         produtosParaExibir,
+        haProdutosFiltrados,
+        limparFiltro
       }}
     >
       {children}

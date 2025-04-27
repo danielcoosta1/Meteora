@@ -37,9 +37,9 @@ const Produtos = () => {
     abrirModal,
     produtoAmpliado,
     produtosParaExibir,
-    setCategoriaSelecionada,
-    categoriaSelecionada,
-  } = useProdutos(); // Importa o hook de carrinho
+    haProdutosFiltrados,
+    limparFiltro,
+  } = useProdutos();
 
   return (
     <>
@@ -53,11 +53,8 @@ const Produtos = () => {
               texto="Todos os produtos dísponíveis"
               Icone={MdCheckroom}
             />
-            {categoriaSelecionada && (
-              <BotaoLimpar
-                onClick={() => setCategoriaSelecionada(null)}
-                Icone={BiEraser}
-              >
+            {haProdutosFiltrados && (
+              <BotaoLimpar onClick={limparFiltro} Icone={BiEraser}>
                 Limpar filtro
               </BotaoLimpar>
             )}
