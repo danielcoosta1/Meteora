@@ -1,107 +1,141 @@
-import { useState, useEffect, useMemo } from "react";
-
+import { useReducer, useEffect, useMemo } from "react";
 import { CarrinhoContext } from "./CarrinhoContext";
 
-// Provedor do contexto
+// Definindo o reducer para gerenciar as ações do carrinho
+const carrinhoReducer = (state, action) => {
+  switch (action.type) {
+    case "ADICIONAR_PRODUTO": {
+      const produtoExistente = state.carrinho.find(
+        (item) => item.id === action.payload.id
+      );
+      if (produtoExistente) {
+        return {
+          ...state,
+          carrinho: state.carrinho.map((item) =>
+            item.id === action.payload.id
+              ? { ...item, quantidade: item.quantidade + 1 }
+              : item
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          carrinho: [...state.carrinho, { ...action.payload, quantidade: 1 }],
+        };
+      }
+    }
+    case "AUMENTAR_QUANTIDADE":
+      return {
+        ...state,
+        carrinho: state.carrinho.map((item) =>
+          item.id === action.payload
+            ? { ...item, quantidade: item.quantidade + 1 }
+            : item
+        ),
+      };
+    case "DIMINUIR_QUANTIDADE": {
+      const itemParaDiminuir = state.carrinho.find(
+        (item) => item.id === action.payload
+      );
+      if (itemParaDiminuir.quantidade === 1) {
+        return {
+          ...state,
+          carrinho: state.carrinho.filter((item) => item.id !== action.payload),
+        };
+      }
+      return {
+        ...state,
+        carrinho: state.carrinho.map((item) =>
+          item.id === action.payload
+            ? { ...item, quantidade: item.quantidade - 1 }
+            : item
+        ),
+      };
+    }
+    case "REMOVER_ITEM":
+      return {
+        ...state,
+        carrinho: state.carrinho.filter((item) => item.id !== action.payload),
+      };
+    case "LIMPAR_CARRINHO":
+      return { ...state, carrinho: [] };
+    case "TOGGLAR_MENU":
+      return { ...state, menuAberto: !state.menuAberto };
+    case "FINALIZAR_COMPRA":
+      return { ...state, carrinho: [] };
+    default:
+      return state;
+  }
+};
+
+// Função para obter o carrinho do localStorage
+const getCarrinhoFromLocalStorage = () => {
+  const carrinhoSalvo = localStorage.getItem("carrinho");
+  return carrinhoSalvo ? JSON.parse(carrinhoSalvo) : []; // Retorna o carrinho salvo ou um array vazio
+};
+
+// Estado inicial do contexto
+const initialState = {
+  carrinho: getCarrinhoFromLocalStorage(), // Carrega o carrinho salvo no localStorage
+  menuAberto: false,
+};
+
 export const CarrinhoProvider = ({ children }) => {
-  //VARIÁVEIS
-
-  // Estado para armazenar os produtos no carrinho
-  const [carrinho, setCarrinho] = useState(() => {
-    const carrinhoSalvo = localStorage.getItem("carrinho");
-    return carrinhoSalvo ? JSON.parse(carrinhoSalvo) : []; // Inicializa o carrinho com os dados do localStorage, se existirem
-  });
-
-  // Estado para controlar se o menu lateral do carrinho está aberto ou fechado
-  const [menuAberto, setMenuAberto] = useState(false);
-
-  // FUMÇÕES
-
-  const abrirMenu = () => {
-    setMenuAberto(true); // Abre o menu lateral do carrinho
-  };
-  const fecharMenu = () => {
-    setMenuAberto(false); // Fecha o menu lateral do carrinho
-  };
+  // Usando useReducer para gerenciar o estado do carrinho
+  const [state, dispatch] = useReducer(carrinhoReducer, initialState);
 
   // 💾 Salva o carrinho no localStorage sempre que ele mudar
   useEffect(() => {
-    localStorage.setItem("carrinho", JSON.stringify(carrinho)); // Converte o carrinho em string e salva no localStorage
-  }, [carrinho]);
+    localStorage.setItem("carrinho", JSON.stringify(state.carrinho));
+  }, [state.carrinho]);
 
-  // Função para adicionar um produto ao carrinho
   const adicionarAoCarrinho = (produto) => {
-    setCarrinho((prevCarrinho) => {
-      // Checa se o produto já está no carrinho
-      const produtoExistente = prevCarrinho.find(
-        (item) => item.id === produto.id
-      );
-      if (produtoExistente) {
-        // Se já existir, incrementa a quantidade
-        return prevCarrinho.map((item) =>
-          item.id === produto.id
-            ? { ...item, quantidade: item.quantidade + 1 }
-            : item
-        );
-      } else {
-        // Se não existir, adiciona com quantidade 1
-        return [...prevCarrinho, { ...produto, quantidade: 1 }];
-      }
-    });
+    dispatch({ type: "ADICIONAR_PRODUTO", payload: produto });
   };
 
-  // Função para limpar o carrinho
+  const aumentarQuantidade = (id) => {
+    dispatch({ type: "AUMENTAR_QUANTIDADE", payload: id });
+  };
+
+  const diminuirQuantidade = (id) => {
+    dispatch({ type: "DIMINUIR_QUANTIDADE", payload: id });
+  };
+
+  const removerItem = (id) => {
+    dispatch({ type: "REMOVER_ITEM", payload: id });
+  };
+
   const limparCarrinho = () => {
-    if (carrinho.length === 0) {
+    if (state.carrinho.length === 0) {
       alert("O carrinho já está vazio!");
       return;
     }
-    // Pergunta ao usuário se ele realmente deseja limpar o carrinho
     const confirmar = window.confirm("Deseja limpar o carrinho?");
     if (confirmar) {
-      setCarrinho([]); // Limpa o carrinho
+      dispatch({ type: "LIMPAR_CARRINHO" });
     }
   };
 
-  //Funções para aumentar, diminuir e remover itens do carrinho
-
-  // Aumenta a quantidade de um item no carrinho
-  const aumentarQuantidade = (id) => {
-    const atualizado = carrinho.map((item) =>
-      item.id === id ? { ...item, quantidade: item.quantidade + 1 } : item
-    );
-    setCarrinho(atualizado);
+  const abrirMenu = () => {
+    dispatch({ type: "TOGGLAR_MENU" });
   };
 
-  // Diminui a quantidade de um item no carrinho
-  const diminuirQuantidade = (id) => {
-    const item = carrinho.find((item) => item.id === id);
+  const fecharMenu = () => {
+    dispatch({ type: "TOGGLAR_MENU" });
+  };
 
-    // Se a quantidade for 1, pergunta se o usuário deseja remover o item
-    if (item.quantidade === 1) {
-      const confirmar = window.confirm("Deseja remover este item do carrinho?");
-      if (!confirmar) return;
+  const finalizarCompra = () => {
+    if (state.carrinho.length === 0) {
+      alert("Seu carrinho está vazio! Adicione produtos antes de finalizar.");
+      return;
     }
-
-    const atualizado = carrinho
-      .map((item) =>
-        item.id === id ? { ...item, quantidade: item.quantidade - 1 } : item
-      )
-      .filter((item) => item.quantidade > 0); // Remove o item se a quantidade for 0
-
-    setCarrinho(atualizado);
-  };
-
-  // Remove um item do carrinho
-  const removerItem = (id) => {
-    const atualizado = carrinho.filter((item) => item.id !== id);
-    setCarrinho(atualizado);
+    alert("Compra finalizada com sucesso! 🎉");
+    dispatch({ type: "FINALIZAR_COMPRA" });
   };
 
   // Calcula o total de preço e quantidade do carrinho
-  // useMemo é usado para otimizar o desempenho, evitando cálculos desnecessários
   const { totalPreco, totalQuantidade } = useMemo(() => {
-    const resultado = carrinho.reduce(
+    const resultado = state.carrinho.reduce(
       (acc, item) => {
         acc.totalQuantidade += item.quantidade;
         acc.totalPreco += item.preco * item.quantidade;
@@ -109,39 +143,21 @@ export const CarrinhoProvider = ({ children }) => {
       },
       { totalQuantidade: 0, totalPreco: 0 }
     );
-
     return resultado;
-  }, [carrinho]);
-
-
-
-
-  const finalizarCompra = () => {
-    const carrinhoVazio = carrinho.length === 0; // Verifica se o carrinho está vazio
-    // Se o carrinho estiver vazio, exibe um alerta e não permite finalizar a compra
-    if (carrinhoVazio) {
-      alert("Seu carrinho está vazio! Adicione produtos antes de finalizar.");
-      return;
-    }
-    // Aqui você pode adicionar a lógica para finalizar a compra, como enviar os dados para um servidor ou processar o pagamento.
-    alert("Compra finalizada com sucesso! 🎉");
-    setCarrinho([]); // limpa o carrinho
-  };
+  }, [state.carrinho]);
 
   return (
     <CarrinhoContext.Provider
       value={{
-        carrinho,
-        setCarrinho,
+        carrinho: state.carrinho,
+        menuAberto: state.menuAberto,
+        totalPreco,
+        totalQuantidade,
         adicionarAoCarrinho,
         aumentarQuantidade,
         diminuirQuantidade,
         removerItem,
         limparCarrinho,
-        totalPreco,
-        totalQuantidade,
-        menuAberto,
-        setMenuAberto,
         abrirMenu,
         fecharMenu,
         finalizarCompra,
