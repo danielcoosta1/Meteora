@@ -11,13 +11,52 @@ export const AsideEstilizado = styled.aside`
   flex-direction: column;
 `;
 
-export const TituloAside = styled.h2`
+export const TituloAside = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+  color: #333;
   width: 100%;
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-bottom: 20px;
   border-bottom: 3px solid #ddd;
-  margin-top: 50px
+  margin-top: 50px;
+`;
 
+export const ListaPrecos = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #e0e0e0;
+    }
+
+    button {
+      background: none;
+      border: none;
+      color: #333;
+      font-size: 1rem;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+    }
+  }
 `;
 
 export const ListaEstilizada = styled.ul`
@@ -27,5 +66,20 @@ export const ListaEstilizada = styled.ul`
 `;
 
 export const ItemListaEstilizado = styled.li`
-  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+
+  h2 {
+    font-size: 1.5rem;
+
+    color: #333;
+    margin-bottom: 10px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 `;
