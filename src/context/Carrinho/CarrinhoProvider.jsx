@@ -4,6 +4,10 @@ import { CarrinhoContext } from "./CarrinhoContext";
 // Definindo o reducer para gerenciar as ações do carrinho
 const carrinhoReducer = (state, action) => {
   switch (action.type) {
+    // A CASE ESTÁ ENVOLVIDA COM AS CHAVES {} POR BOA PRATICA; 
+    // ELA SÓ É ACESSADA EXCLUSIVAMENTE DENTRO DA CASE ADICIONAR_PRODUTO;
+    // NÃO PODENDO SER "VAZADA" EM OUTRA CASE OU FORA DO SWITCH.
+    // ISSO GARANTE QUE O CÓDIGO SEJA MAIS ORGANIZADO E EVITA ERROS DE ESCOPOS.
     case "ADICIONAR_PRODUTO": {
       const produtoExistente = state.carrinho.find(
         (item) => item.id === action.payload.id
