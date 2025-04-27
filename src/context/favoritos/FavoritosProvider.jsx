@@ -1,60 +1,87 @@
 import { FavoritosContext } from "./FavoritosContext";
 
-import { useState, useEffect } from "react";
+import { useReducer, useEffect } from "react";
+
+// Definindo o reducer para gerenciar as ações de favoritos
+const favoritosReducer = (state, action) => {
+  switch (action.type) {
+    case "ADICIONAR_REMOVER_FAVORITO": {
+      const produtoExistente = state.favoritos.find(
+        (favorito) => favorito.id === action.payload.id
+      );
+
+      if (produtoExistente) {
+        return {
+          ...state,
+          favoritos: state.favoritos.filter(
+            (favorito) => favorito.id !== action.payload.id
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          favoritos: [...state.favoritos, action.payload],
+        };
+      }
+    }
+
+    case "LIMPAR_FAVORITOS":
+      return { ...state, favoritos: [] };
+
+    default:
+      return state;
+  }
+};
+
+// Função para obter os favoritos do localStorage
+const getFavoritosFromLocalStorage = () => {
+  const favoritosSalvos = localStorage.getItem("favorito");
+  return favoritosSalvos ? JSON.parse(favoritosSalvos) : []; // Retorna os favoritos salvos ou um array vazio
+};
+
+// Estado inicial do contexto
+const initialState = {
+  favoritos: getFavoritosFromLocalStorage(), // Carrega os favoritos salvos no localStorage
+};
 
 export const FavoritosProvider = ({ children }) => {
-  const [favoritos, setFavoritos] = useState(() => {
-    const favoritoSalvo = localStorage.getItem("favorito");
-    return favoritoSalvo ? JSON.parse(favoritoSalvo) : [];
-  });
+  // Usando useReducer para gerenciar o estado dos favoritos
+  const [state, dispatch] = useReducer(favoritosReducer, initialState);
 
+  // 💾 Salva os favoritos no localStorage sempre que ele mudar
   useEffect(() => {
-    localStorage.setItem("favorito", JSON.stringify(favoritos)); // Converte o carrinho em string e salva no localStorage
-  }, [favoritos]);
+    localStorage.setItem("favorito", JSON.stringify(state.favoritos));
+  }, [state.favoritos]);
 
   // Função para adicionar ou remover produtos dos favoritos
   const handleFavoritarProduto = (produto) => {
-    const produtoExistente = favoritos.find(
-      (favorito) => favorito.id === produto.id
-    );
-
-    if (produtoExistente) {
-      // Produto já favoritado, removendo
-      setFavoritos(favoritos.filter((favorito) => favorito.id !== produto.id));
-    } else {
-      // Produto não favoritado, adicionando
-      setFavoritos([...favoritos, produto]);
-    }
+    dispatch({ type: "ADICIONAR_REMOVER_FAVORITO", payload: produto });
   };
 
   // Verifica se o produto está favoritado
   const isFavoritado = (produto) => {
-    return favoritos.some((favorito) => favorito.id === produto.id);
+    return state.favoritos.some((favorito) => favorito.id === produto.id);
   };
 
   // Verifica se há itens favoritados
-  const haItensFavoritados = favoritos.length > 0;
+  const haItensFavoritados = state.favoritos.length > 0;
 
-  // Verifica se há itens favoritados
+  // Função para limpar os favoritos
   const limparFavoritos = () => {
-    // Pergunta ao usuário se ele realmente deseja limpar os favoritos
-    window.confirm("Você tem certeza que deseja limpar todos os favoritos?");
-    // Se o usuário confirmar, limpa os favoritos
-    if (window.confirm) {
-      // Limpa os favoritos
-      setFavoritos([]);
+    const confirmar = window.confirm(
+      "Você tem certeza que deseja limpar todos os favoritos?"
+    );
+    if (confirmar) {
+      dispatch({ type: "LIMPAR_FAVORITOS" });
     }
-    return; // Se o usuário cancelar, não faz nada
-    // Limpa os favoritos
   };
-
+  
   return (
     <FavoritosContext.Provider
       value={{
         handleFavoritarProduto,
         isFavoritado,
-        favoritos,
-        setFavoritos,
+        favoritos: state.favoritos,
         limparFavoritos,
         haItensFavoritados,
       }}
