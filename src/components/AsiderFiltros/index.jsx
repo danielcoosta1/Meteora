@@ -4,15 +4,19 @@ import {
   ListaEstilizada,
   ListaPrecos,
   TituloAside,
+  TituloPrecos,
 } from "./styles";
 import { CiFilter } from "react-icons/ci";
 
 import { useProdutos } from "../../hooks/useProdutos";
 
 import { IoMdArrowDropright } from "react-icons/io";
+import { useState } from "react";
 
 const AsiderFiltros = () => {
-  const { setFiltroPreco } = useProdutos();
+  const { setFiltroPreco, filtroPreco } = useProdutos();
+
+  const [abrirListaPrecos, setAbrirListaPrecos] = useState(false);
 
   return (
     <>
@@ -23,28 +27,28 @@ const AsiderFiltros = () => {
         </TituloAside>
         <ListaEstilizada>
           <ItemListaEstilizado>
-            <h2>
+            <TituloPrecos onClick={() => setAbrirListaPrecos(!abrirListaPrecos)}>
               <IoMdArrowDropright size={20} />
               Preços
-            </h2>
-            <ListaPrecos>
-              <li>
-                <button type="button" onClick={() => setFiltroPreco("ate100")}>
-                  Até R$100
-                </button>
+            </TituloPrecos>
+            <ListaPrecos $aberto={abrirListaPrecos}>
+              <li
+                onClick={() => setFiltroPreco("ate100")}
+                className={filtroPreco === "ate100" ? "ativo" : ""}
+              >
+                <button type="button">Até R$100</button>
               </li>
-              <li>
-                <button type="button" onClick={() => setFiltroPreco("100a200")}>
-                  R$100 a R$200
-                </button>
+              <li
+                onClick={() => setFiltroPreco("100a200")}
+                className={filtroPreco === "100a200" ? "ativo" : ""}
+              >
+                <button type="button">R$100 a R$200</button>
               </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => setFiltroPreco("acima200")}
-                >
-                  Acima de R$200
-                </button>
+              <li
+                onClick={() => setFiltroPreco("acima200")}
+                className={filtroPreco === "acima200" ? "ativo" : ""}
+              >
+                <button type="button">Acima de R$200</button>
               </li>
             </ListaPrecos>
           </ItemListaEstilizado>

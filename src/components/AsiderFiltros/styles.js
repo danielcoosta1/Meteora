@@ -28,13 +28,13 @@ export const ListaPrecos = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
-
-  display: flex;
+  display: ${({ $aberto }) => ($aberto ? "flex" : "none")};
   flex-direction: column;
   gap: 10px;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
 
   li {
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
     padding: 10px;
@@ -44,6 +44,10 @@ export const ListaPrecos = styled.ul`
     transition: background-color 0.3s ease;
 
     &:hover {
+      background-color: #e0e0e0;
+    }
+
+    &.ativo {
       background-color: #e0e0e0;
     }
 
@@ -71,15 +75,15 @@ export const ItemListaEstilizado = styled.li`
   gap: 10px;
   margin-bottom: 20px;
   padding: 10px;
+`;
 
-  h2 {
-    font-size: 1.5rem;
+export const TituloPrecos = styled.h2`
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+  margin-bottom: 10px;
 
-    color: #333;
-    margin-bottom: 10px;
-
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
+  display: flex;
+  align-items: center;
+  gap: 10px;
 `;
