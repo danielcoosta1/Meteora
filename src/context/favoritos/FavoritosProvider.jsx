@@ -2,9 +2,11 @@ import { FavoritosContext } from "./FavoritosContext";
 
 import { useReducer, useEffect } from "react";
 
-import { favoritosReducer} from "./favoritosReducer";
+import { favoritosReducer } from "./favoritosReducer";
 
 import { initialState } from "./initialState";
+
+import { localStorageService } from "../../services/localStorageService";
 
 export const FavoritosProvider = ({ children }) => {
   // Usando useReducer para gerenciar o estado dos favoritos
@@ -12,7 +14,7 @@ export const FavoritosProvider = ({ children }) => {
 
   // 💾 Salva os favoritos no localStorage sempre que ele mudar
   useEffect(() => {
-    localStorage.setItem("favorito", JSON.stringify(state.favoritos));
+    localStorageService.salvar("favoritos", state.favoritos);
   }, [state.favoritos]);
 
   // Função para adicionar ou remover produtos dos favoritos

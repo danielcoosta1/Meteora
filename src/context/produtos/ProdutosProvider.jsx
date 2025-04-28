@@ -6,6 +6,7 @@ import todosProdutos from "../../mocks/todosProdutos.json";
 import { produtosReducer } from "./produtosReducer";
 
 import { initialState } from "./initialState";
+import { localStorageService } from "../../services/localStorageService";
 
 export const ProdutoProvider = ({ children }) => {
   // Cria o estado global para os produtos
@@ -13,13 +14,13 @@ export const ProdutoProvider = ({ children }) => {
 
   // Carrega os filtros do localStorage quando o componente é montado
   useEffect(() => {
-    const filtrosParaSalvar = {
+    localStorageService.salvar("filtros", {
       categoriaSelecionada: state.categoriaSelecionada,
       termoBusca: state.termoBusca,
       filtroPreco: state.filtroPreco,
-    };
-    localStorage.setItem("filtros", JSON.stringify(filtrosParaSalvar));
-  }, [state.categoriaSelecionada, state.termoBusca, state.filtroPreco]);
+    });
+  }, [state.categoriaSelecionada, state.termoBusca, state.filtroPreco]); 
+
   // Funções para abrir e fechar o modal
   const abrirModal = (produto) =>
     dispatch({ type: "ABRIR_MODAL", payload: produto });

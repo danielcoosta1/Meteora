@@ -1,17 +1,17 @@
 import { useReducer, useEffect, useMemo } from "react";
 import { CarrinhoContext } from "./CarrinhoContext";
 
-import { carrinhoReducer} from "./carrinhoReducer";
+import { carrinhoReducer } from "./carrinhoReducer";
 
 import { initialState } from "./initialState";
+import { localStorageService } from "../../services/localStorageService";
 
 export const CarrinhoProvider = ({ children }) => {
   // Usando useReducer para gerenciar o estado do carrinho
   const [state, dispatch] = useReducer(carrinhoReducer, initialState);
 
-  // 💾 Salva o carrinho no localStorage sempre que ele mudar
   useEffect(() => {
-    localStorage.setItem("carrinho", JSON.stringify(state.carrinho));
+    localStorageService.salvar("carrinho", state.carrinho);
   }, [state.carrinho]);
 
   const adicionarAoCarrinho = (produto) => {
