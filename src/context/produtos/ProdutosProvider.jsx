@@ -1,4 +1,4 @@
-import { useReducer, useMemo } from "react";
+import { useReducer, useMemo, useEffect } from "react";
 import { ProdutosContext } from "./ProdutosContext";
 
 import todosProdutos from "../../mocks/todosProdutos.json";
@@ -11,6 +11,15 @@ export const ProdutoProvider = ({ children }) => {
   // Cria o estado global para os produtos
   const [state, dispatch] = useReducer(produtosReducer, initialState);
 
+  // Carrega os filtros do localStorage quando o componente é montado
+  useEffect(() => {
+    const filtrosParaSalvar = {
+      categoriaSelecionada: state.categoriaSelecionada,
+      termoBusca: state.termoBusca,
+      filtroPreco: state.filtroPreco,
+    };
+    localStorage.setItem("filtros", JSON.stringify(filtrosParaSalvar));
+  }, [state.categoriaSelecionada, state.termoBusca, state.filtroPreco]);
   // Funções para abrir e fechar o modal
   const abrirModal = (produto) =>
     dispatch({ type: "ABRIR_MODAL", payload: produto });
