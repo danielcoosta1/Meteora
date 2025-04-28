@@ -102,30 +102,34 @@ const Produtos = () => {
           </ContainerTitulo>
           <FiltrosAplicados>{renderFiltros()}</FiltrosAplicados>
           <GridProdutos>
-            {produtosParaExibir.map((produto) => (
-              <Card key={produto.id}>
-                <ImagemProduto src={produto.src} alt={produto.alt} />
-                <TituloProduto>{produto.titulo}</TituloProduto>
-                <DescricaoProduto>{produto.descricao}</DescricaoProduto>
-                <PrecoProduto>R$ {produto.preco.toFixed(2)}</PrecoProduto>
-                <ConteinerBotoes>
-                  <BotaoCarrinho onClick={() => adicionarAoCarrinho(produto)}>
-                    Adicionar ao carrinho
-                  </BotaoCarrinho>
-                  <ConteinerIcones>
-                    <IconesWrapper
-                      onClick={() => handleFavoritarProduto(produto)}
-                      $favoritado={isFavoritado(produto)}
-                    >
-                      {isFavoritado(produto) ? <FaHeart /> : <FaRegHeart />}
-                    </IconesWrapper>
-                    <IconesWrapper onClick={() => abrirModal(produto)}>
-                      <FaExpand />
-                    </IconesWrapper>
-                  </ConteinerIcones>
-                </ConteinerBotoes>
-              </Card>
-            ))}
+            {produtosParaExibir.length === 0 ? (
+              <p>Não há produtos disponíveis para os filtros aplicados.</p>
+            ) : (
+              produtosParaExibir.map((produto) => (
+                <Card key={produto.id}>
+                  <ImagemProduto src={produto.src} alt={produto.alt} />
+                  <TituloProduto>{produto.titulo}</TituloProduto>
+                  <DescricaoProduto>{produto.descricao}</DescricaoProduto>
+                  <PrecoProduto>R$ {produto.preco.toFixed(2)}</PrecoProduto>
+                  <ConteinerBotoes>
+                    <BotaoCarrinho onClick={() => adicionarAoCarrinho(produto)}>
+                      Adicionar ao carrinho
+                    </BotaoCarrinho>
+                    <ConteinerIcones>
+                      <IconesWrapper
+                        onClick={() => handleFavoritarProduto(produto)}
+                        $favoritado={isFavoritado(produto)}
+                      >
+                        {isFavoritado(produto) ? <FaHeart /> : <FaRegHeart />}
+                      </IconesWrapper>
+                      <IconesWrapper onClick={() => abrirModal(produto)}>
+                        <FaExpand />
+                      </IconesWrapper>
+                    </ConteinerIcones>
+                  </ConteinerBotoes>
+                </Card>
+              ))
+            )}
           </GridProdutos>
           {menuAberto && <MenuLateralCarrinho />}
           {produtoAmpliado && <ModoAmpliar />}
