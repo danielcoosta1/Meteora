@@ -1,18 +1,18 @@
-import { useState } from "react";
 import { useCarrinho } from "../../hooks/useCarrinho";
 import { useFavoritos } from "../../hooks/useFavoritos";
 import { useProdutos } from "../../hooks/useProdutos";
 
-import { 
-  CardProduto, 
-  ImagemProduto, 
-  TituloProduto, 
-  DescricaoProduto, 
-  PrecoProduto, 
-  BotaoCarrinho, 
-  ConteinerBotoes, 
-  ConteinerIcones, 
-  IconesWrapper 
+import { toast } from "react-toastify";
+import {
+  CardProduto,
+  ImagemProduto,
+  TituloProduto,
+  DescricaoProduto,
+  PrecoProduto,
+  BotaoCarrinho,
+  ConteinerBotoes,
+  ConteinerIcones,
+  IconesWrapper,
 } from "./styles";
 
 import { FaHeart, FaRegHeart, FaExpand } from "react-icons/fa";
@@ -22,12 +22,11 @@ const ProdutoCard = ({ produto }) => {
   const { handleFavoritarProduto, isFavoritado } = useFavoritos();
   const { abrirModal } = useProdutos();
 
-  const [adicionado, setAdicionado] = useState(false);
-
   const handleAdicionarCarrinho = () => {
     adicionarAoCarrinho(produto);
-    setAdicionado(true);
-    setTimeout(() => setAdicionado(false), 2000);
+    toast.success(`${produto.titulo} adicionado ao carrinho!`, {
+      icon: "🛒",
+    });
   };
 
   return (
@@ -39,7 +38,7 @@ const ProdutoCard = ({ produto }) => {
 
       <ConteinerBotoes>
         <BotaoCarrinho onClick={handleAdicionarCarrinho}>
-          {adicionado ? "Adicionado ✔️" : "Adicionar ao carrinho"}
+          Adicionar ao carrinho
         </BotaoCarrinho>
 
         <ConteinerIcones>

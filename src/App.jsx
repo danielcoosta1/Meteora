@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import { ToastContainer } from "react-toastify";
 import Home from "./pages/Home";
 
 import Checkout from "./pages/Checkout";
@@ -22,6 +22,15 @@ function App() {
       <ProdutoProvider>
         <FavoritosProvider>
           <CarrinhoProvider>
+            <ToastContainer
+              position="top-right"
+              autoClose={2000}
+              hideProgressBar={false}
+              closeOnClick
+              pauseOnHover
+              draggable
+              theme="colored"
+            />
             <Routes>
               <Route path="/produtos" element={<Produtos />} />
               <Route path="/promocoes" element={<Promocoes />} />
