@@ -1,6 +1,12 @@
+import { localStorageService } from "../../services/localStorageService";
+
+const filtrosSalvos = localStorageService.ler("filtros") || {
+  categoriaSelecionada: null,
+  termoBusca: "",
+  filtroPreco: null,
+};
+
 export const initialState = {
-    categoriaSelecionada: null,
-    termoBusca: "",
-    filtroPreco: null,
-    produtoAmpliado: null,
-  };
+  ...filtrosSalvos,
+  produtoAmpliado: null,
+};
