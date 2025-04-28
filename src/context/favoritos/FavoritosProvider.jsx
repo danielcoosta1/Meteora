@@ -19,7 +19,11 @@ export const FavoritosProvider = ({ children }) => {
 
   // Função para adicionar ou remover produtos dos favoritos
   const handleFavoritarProduto = (produto) => {
+    const jaFavoritado = isFavoritado(produto);
+
     dispatch({ type: "ADICIONAR_REMOVER_FAVORITO", payload: produto });
+
+    return jaFavoritado ? "removido" : "adicionado";
   };
 
   // Verifica se o produto está favoritado
