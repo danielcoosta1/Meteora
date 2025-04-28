@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+import { BiX } from "react-icons/bi";
+
+
 export const ContainerProdutos = styled.main`
   /* ou o limite que preferir */
   display: flex;
@@ -18,6 +21,30 @@ export const ContainerTitulo = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`;
+
+export const FiltrosAplicados = styled.div`
+  display: flex;
+`;
+
+export const FiltroSpan = styled.span`
+  display: inline-block;
+  margin-right: 10px;
+  background-color: #f0f0f0;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 14px;
+  color: #333;
+  position: relative;
+`;
+
+export const IconeRemover = styled(BiX)`
+position: absolute;
+top: -7px;
+right: -7px;
+cursor: pointer;
+font-size: 16px;
+color:#000;
 `;
 
 export const GridProdutos = styled.section`

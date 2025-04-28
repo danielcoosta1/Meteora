@@ -12,6 +12,9 @@ import {
   ImagemProduto,
   PrecoProduto,
   TituloProduto,
+  FiltroSpan,
+  FiltrosAplicados,
+  IconeRemover,
 } from "./styles";
 import { BiEraser } from "react-icons/bi";
 import { MdCheckroom } from "react-icons/md";
@@ -30,6 +33,7 @@ import TituloSecao from "../../components/TituloDefaultSecao";
 import { useProdutos } from "../../hooks/useProdutos";
 import BotaoLimpar from "../../components/BotaoLimpar";
 import AsiderFiltros from "../../components/AsiderFiltros";
+
 const Produtos = () => {
   const { handleFavoritarProduto, isFavoritado } = useFavoritos();
   const { adicionarAoCarrinho, menuAberto } = useCarrinho(); // Importa o hook de categorias
@@ -39,7 +43,39 @@ const Produtos = () => {
     produtosParaExibir,
     haProdutosFiltrados,
     limparFiltro,
+    gerarFiltrosAplicados,
+    limparFiltroCategoria,
+    limparFiltroBusca,
+    limparFiltroPreco,
   } = useProdutos();
+
+  // Função para renderizar os filtros aplicados com o "X"
+  const renderFiltros = () => {
+    const filtros = gerarFiltrosAplicados();
+
+    return filtros.map((filtro) => (
+      <FiltroSpan key={filtro.key}>
+        {filtro}
+        <IconeRemover onClick={() => removerFiltro(filtro.key)} />
+      </FiltroSpan>
+    ));
+  };
+
+  // Função de remoção de filtro específico
+  const removerFiltro = (key) => {
+    if (key === "categoria") {
+      limparFiltroCategoria();
+    } else if (key === "busca") {
+      limparFiltroBusca();
+    } else if (key === "preco") {
+      limparFiltroPreco();
+    }
+  };
+
+  // Definir o título dinamicamente com base nos filtros
+  const titulo = haProdutosFiltrados
+    ? "Filtrando por:"
+    : "Todos os produtos disponíveis";
 
   return (
     <>
@@ -49,21 +85,19 @@ const Produtos = () => {
         <ContainerWrapper>
           <Categorias />
           <ContainerTitulo>
-            <TituloSecao
-              texto="Todos os produtos dísponíveis"
-              Icone={MdCheckroom}
-            />
+            <TituloSecao texto={titulo} />
+
             {haProdutosFiltrados && (
               <BotaoLimpar
                 onClick={limparFiltro}
                 Icone={BiEraser}
                 aria-label="Limpar filtros"
               >
-                Limpar filtro
+                Limpar filtros
               </BotaoLimpar>
             )}
           </ContainerTitulo>
-
+          <FiltrosAplicados>{renderFiltros()}</FiltrosAplicados>
           <GridProdutos>
             {produtosParaExibir.map((produto) => (
               <Card key={produto.id}>
