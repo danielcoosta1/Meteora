@@ -54,7 +54,11 @@ const Produtos = () => {
               Icone={MdCheckroom}
             />
             {haProdutosFiltrados && (
-              <BotaoLimpar onClick={limparFiltro} Icone={BiEraser}>
+              <BotaoLimpar
+                onClick={limparFiltro}
+                Icone={BiEraser}
+                aria-label="Limpar filtros"
+              >
                 Limpar filtro
               </BotaoLimpar>
             )}
