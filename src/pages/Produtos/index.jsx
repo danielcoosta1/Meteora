@@ -56,7 +56,10 @@ const Produtos = () => {
     return filtros.map((filtro) => (
       <FiltroSpan key={filtro.key}>
         {filtro}
-        <IconeRemover onClick={() => removerFiltro(filtro.key)} />
+        {/* Verifica se o filtro tem um ícone de remover */}
+        {filtro.key !== "nenhum" && (
+          <IconeRemover onClick={() => removerFiltro(filtro.key)} />
+        )}
       </FiltroSpan>
     ));
   };
