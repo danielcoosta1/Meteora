@@ -1,5 +1,41 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import Home from "./pages/Home";
+
+import Checkout from "./pages/Checkout";
+import Error from "./pages/Error404";
+
+import Novidades from "./pages/Novidades";
+import Promocoes from "./pages/Promocoes";
+
+import { CarrinhoProvider } from "./context/carrinho/CarrinhoProvider";
+import { FavoritosProvider } from "./context/favoritos/FavoritosProvider";
+import { ProdutoProvider } from "./context/produtos/ProdutosProvider";
+
+import Favoritos from "./pages/Favoritos";
+
+import Produtos from "./pages/Produtos";
+
 function App() {
-  return <></>;
+  return (
+    <Router>
+      <ProdutoProvider>
+        <FavoritosProvider>
+          <CarrinhoProvider>
+            <Routes>
+              <Route path="/produtos" element={<Produtos />} />
+              <Route path="/promocoes" element={<Promocoes />} />
+              <Route path="/novidades" element={<Novidades />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/favoritos" element={<Favoritos />} />
+              <Route path="*" element={<Error />} />
+            </Routes>
+          </CarrinhoProvider>
+        </FavoritosProvider>
+      </ProdutoProvider>
+    </Router>
+  );
 }
 
 export default App;
