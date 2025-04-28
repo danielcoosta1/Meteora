@@ -1,8 +1,6 @@
 import { useReducer, useMemo } from "react";
 import { ProdutosContext } from "./ProdutosContext";
 
-import { IconeRemover } from "../../pages/Produtos/styles";
-
 import todosProdutos from "../../mocks/todosProdutos.json";
 
 import { produtosReducer } from "./produtosReducer";
@@ -67,26 +65,19 @@ export const ProdutoProvider = ({ children }) => {
   // Função para limpar todos os filtros
   const limparFiltro = () => dispatch({ type: "LIMPAR_FILTROS" });
 
-  // Função para gerar spans dinâmicos com base nos filtros
+  // Função para gerar os filtros aplicados
+  // Retorna um array de elementos JSX com os filtros aplicados
   const gerarFiltrosAplicados = () => {
     const filtros = [];
 
     if (state.categoriaSelecionada) {
       filtros.push(
-        <span key="categoria">
-          Categoria: {state.categoriaSelecionada}
-          <IconeRemover onClick={limparFiltroCategoria} />
-        </span>
+        <span key="categoria">Categoria: {state.categoriaSelecionada}</span>
       );
     }
 
     if (state.termoBusca.trim()) {
-      filtros.push(
-        <span key="busca">
-          Buscando por: {state.termoBusca}
-          <IconeRemover onClick={limparFiltroBusca} />
-        </span>
-      );
+      filtros.push(<span key="busca">Buscando por: {state.termoBusca}</span>);
     }
 
     if (state.filtroPreco) {
@@ -105,24 +96,13 @@ export const ProdutoProvider = ({ children }) => {
           precoTitulo = "";
           break;
       }
-      filtros.push(
-        <span key="preco">
-          Preço: {precoTitulo}
-          <IconeRemover onClick={limparFiltroPreco} />
-        </span>
-      );
+      filtros.push(<span key="preco">Preço: {precoTitulo}</span>);
     }
 
-    // Caso não tenha filtros, mostrar a mensagem de "Nenhum filtro aplicado"
-    if (filtros.length === 0) {
-      filtros.push(<span key="nenhum">Nenhum filtro aplicado</span>);
-    }
-
-    return filtros;
+    return filtros.length > 0
+      ? filtros
+      : [<span key="nenhum">Nenhum filtro aplicado</span>];
   };
-
-  // Funções para limpar filtros específicos
-
   // Função para limpar o filtro de categoria
   const limparFiltroCategoria = () =>
     dispatch({ type: "SELECIONAR_CATEGORIA", payload: null });

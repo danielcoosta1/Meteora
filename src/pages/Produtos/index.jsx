@@ -12,12 +12,12 @@ import {
   ImagemProduto,
   PrecoProduto,
   TituloProduto,
-  FiltroSpan,
   FiltrosAplicados,
+  MensagemNaoEncontrada,
+  FiltroSpan,
   IconeRemover,
 } from "./styles";
 import { BiEraser } from "react-icons/bi";
-import { MdCheckroom } from "react-icons/md";
 
 import { FaHeart, FaRegHeart, FaExpand } from "react-icons/fa";
 
@@ -43,10 +43,10 @@ const Produtos = () => {
     produtosParaExibir,
     haProdutosFiltrados,
     limparFiltro,
-    gerarFiltrosAplicados,
     limparFiltroCategoria,
     limparFiltroBusca,
     limparFiltroPreco,
+    gerarFiltrosAplicados,
   } = useProdutos();
 
   // Função para renderizar os filtros aplicados com o "X"
@@ -74,7 +74,6 @@ const Produtos = () => {
       limparFiltroPreco();
     }
   };
-
   // Definir o título dinamicamente com base nos filtros
   const titulo = haProdutosFiltrados
     ? "Filtrando por:"
@@ -103,7 +102,9 @@ const Produtos = () => {
           <FiltrosAplicados>{renderFiltros()}</FiltrosAplicados>
           <GridProdutos>
             {produtosParaExibir.length === 0 ? (
-              <p>Não há produtos disponíveis para os filtros aplicados.</p>
+              <MensagemNaoEncontrada>
+                Não há produtos disponíveis para os filtros aplicados.
+              </MensagemNaoEncontrada>
             ) : (
               produtosParaExibir.map((produto) => (
                 <Card key={produto.id}>
