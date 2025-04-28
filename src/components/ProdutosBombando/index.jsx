@@ -1,64 +1,24 @@
-import {
-  BotaoCarrinho,
-  CardProduto,
-  ConteinerBotoes,
-  ConteinerIcones,
-  DescricaoProduto,
-  GridProdutos,
-  IconesWrapper,
-  ImagemProduto,
-  PrecoProduto,
-  SecaoProdutos,
-  TituloProduto,
-} from "./styles";
+import { GridProdutos, SecaoProdutos } from "./styles";
 
-import { useCarrinho } from "../../hooks/useCarrinho";
 import { useProdutos } from "../../hooks/useProdutos";
-import { useFavoritos } from "../../hooks/useFavoritos";
 
-import { FaHeart, FaRegHeart, FaExpand, FaFire } from "react-icons/fa";
+import {  FaFire } from "react-icons/fa";
 
 import produtosBombando from "../../mocks/produtosBombando.json";
 
 import ModoAmpliar from "../ModoAmpliar";
 import TituloSecao from "../TituloDefaultSecao";
-
+import ProdutoCard from "../ProdutoCard";
 
 const ProdutosBombando = () => {
-  const { adicionarAoCarrinho } = useCarrinho();
-
-  const { abrirModal, produtoAmpliado } = useProdutos(); // Importa o hook de carrinho
-
-  const { handleFavoritarProduto, isFavoritado } = useFavoritos();
+  const { produtoAmpliado } = useProdutos(); // Importa o hook de carrinho
 
   return (
     <SecaoProdutos>
       <TituloSecao texto="Produtos que estão bombando" Icone={FaFire} />
-
       <GridProdutos>
         {produtosBombando.map((produto) => (
-          <CardProduto key={produto.id}>
-            <ImagemProduto src={produto.src} alt={produto.alt} />
-            <TituloProduto>{produto.titulo}</TituloProduto>
-            <DescricaoProduto>{produto.descricao}</DescricaoProduto>
-            <PrecoProduto>R$ {produto.preco}</PrecoProduto>
-            <ConteinerBotoes>
-              <BotaoCarrinho onClick={() => adicionarAoCarrinho(produto)}>
-                Adicionar ao carrinho
-              </BotaoCarrinho>
-              <ConteinerIcones>
-                <IconesWrapper
-                  onClick={() => handleFavoritarProduto(produto)}
-                  $favoritado={isFavoritado(produto)}
-                >
-                  {isFavoritado(produto) ? <FaHeart /> : <FaRegHeart />}
-                </IconesWrapper>
-                <IconesWrapper onClick={() => abrirModal(produto)}>
-                  <FaExpand />
-                </IconesWrapper>
-              </ConteinerIcones>
-            </ConteinerBotoes>
-          </CardProduto>
+          <ProdutoCard key={produto.id} produto={produto} />
         ))}
       </GridProdutos>
       {produtoAmpliado && <ModoAmpliar />}
