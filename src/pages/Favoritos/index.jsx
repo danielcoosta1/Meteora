@@ -6,17 +6,8 @@ import { BiEraser } from "react-icons/bi";
 import { LuHandHeart } from "react-icons/lu";
 import {
   BannerFavoritos,
-  BotaoCarrinho,
-  CardProdutos,
-  ConteinerBotoes,
-  ConteinerIcones,
-  DescricaoProduto,
   GridProdutos,
-  IconesWrapper,
-  ImagemProduto,
-  PrecoProduto,
   SecaoFavoritos,
-  TituloProduto,
   ConteinerVazio,
   HeaderFavoritos,
 } from "./styles";
@@ -30,17 +21,17 @@ import TituloSecao from "../../components/TituloDefaultSecao";
 import { useProdutos } from "../../hooks/useProdutos";
 
 import BotaoLimpar from "../../components/BotaoLimpar";
+import ProdutoCard from "../../components/ProdutoCard";
 
 const Favoritos = () => {
   const {
     favoritos,
-    handleFavoritarProduto,
-    isFavoritado,
+
     haItensFavoritados,
     limparFavoritos,
   } = useFavoritos();
 
-  const { abrirModal, produtoAmpliado, adicionarAoCarrinho } = useProdutos();
+  const { produtoAmpliado } = useProdutos();
   const { menuAberto } = useCarrinho();
 
   return (
@@ -67,28 +58,7 @@ const Favoritos = () => {
             </ConteinerVazio>
           ) : (
             favoritos.map((produto) => (
-              <CardProdutos key={produto.id}>
-                <ImagemProduto src={produto.src} alt={produto.alt} />
-                <TituloProduto>{produto.titulo}</TituloProduto>
-                <DescricaoProduto>{produto.descricao}</DescricaoProduto>
-                <PrecoProduto>R$ {produto.preco}</PrecoProduto>
-                <ConteinerBotoes>
-                  <BotaoCarrinho onClick={() => adicionarAoCarrinho(produto)}>
-                    Adicionar ao carrinho
-                  </BotaoCarrinho>
-                  <ConteinerIcones>
-                    <IconesWrapper
-                      onClick={() => handleFavoritarProduto(produto)}
-                      $favoritado={isFavoritado(produto)}
-                    >
-                      {isFavoritado(produto) ? <FaHeart /> : <FaRegHeart />}
-                    </IconesWrapper>
-                    <IconesWrapper onClick={() => abrirModal(produto)}>
-                      <FaExpand />
-                    </IconesWrapper>
-                  </ConteinerIcones>
-                </ConteinerBotoes>
-              </CardProdutos>
+              <ProdutoCard key={produto.id} produto={produto} />
             ))
           )}
         </GridProdutos>
