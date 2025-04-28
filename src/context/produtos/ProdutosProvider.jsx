@@ -3,7 +3,7 @@ import { ProdutosContext } from "./ProdutosContext";
 
 import todosProdutos from "../../mocks/todosProdutos.json";
 
-import { produtosReducer} from "./produtosReducer";
+import { produtosReducer } from "./produtosReducer";
 
 import { initialState } from "./initialState";
 
@@ -56,6 +56,52 @@ export const ProdutoProvider = ({ children }) => {
 
   const limparFiltro = () => dispatch({ type: "LIMPAR_FILTROS" });
 
+  // Função para gerar spans dinâmicos com base nos filtros
+  const gerarFiltrosAplicados = () => {
+    const filtros = [];
+
+    if (state.categoriaSelecionada) {
+      filtros.push(
+        <span key="categoria">Categoria: {state.categoriaSelecionada}</span>
+      );
+    }
+
+    if (state.termoBusca.trim()) {
+      filtros.push(<span key="busca">Buscando por: {state.termoBusca}</span>);
+    }
+
+    if (state.filtroPreco) {
+      let precoTitulo;
+      switch (state.filtroPreco) {
+        case "ate100":
+          precoTitulo = "Até R$100";
+          break;
+        case "100a200":
+          precoTitulo = "R$100 a R$200";
+          break;
+        case "acima200":
+          precoTitulo = "Acima de R$200";
+          break;
+        default:
+          precoTitulo = "";
+          break;
+      }
+      filtros.push(<span key="preco">Preço: {precoTitulo}</span>);
+    }
+
+    return filtros.length > 0
+      ? filtros
+      : [<span key="nenhum">Nenhum filtro aplicado</span>];
+  };
+
+  // Funções para limpar filtros específicos
+  const limparFiltroCategoria = () =>
+    dispatch({ type: "SELECIONAR_CATEGORIA", payload: null });
+  const limparFiltroBusca = () =>
+    dispatch({ type: "DEFINIR_TERMO_BUSCA", payload: "" });
+  const limparFiltroPreco = () =>
+    dispatch({ type: "DEFINIR_FILTRO_PRECO", payload: null });
+
   return (
     <ProdutosContext.Provider
       value={{
@@ -68,6 +114,11 @@ export const ProdutoProvider = ({ children }) => {
         produtosParaExibir,
         haProdutosFiltrados,
         limparFiltro,
+        limparFiltroCategoria,
+        limparFiltroBusca,
+        limparFiltroPreco,
+        gerarFiltrosAplicados,
+
         // Funções de dispatch para atualizar o estado
         setCategoriaSelecionada: (categoria) =>
           dispatch({ type: "SELECIONAR_CATEGORIA", payload: categoria }),
