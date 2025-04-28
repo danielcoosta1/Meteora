@@ -1,13 +1,12 @@
-// src/context/produtos/initialState.js
+import { localStorageService } from "../../services/localStorageService";
 
-const getFiltrosFromLocalStorage = () => {
-  const filtrosSalvos = localStorage.getItem("filtros");
-  return filtrosSalvos
-    ? JSON.parse(filtrosSalvos)
-    : { categoriaSelecionada: null, termoBusca: "", filtroPreco: null };
+const filtrosSalvos = localStorageService.ler("filtros") || {
+  categoriaSelecionada: null,
+  termoBusca: "",
+  filtroPreco: null,
 };
 
 export const initialState = {
-  ...getFiltrosFromLocalStorage(),
-  produtoAmpliado: null, // Modal sempre começa fechado, não precisa salvar no localStorage
+  ...filtrosSalvos,
+  produtoAmpliado: null,
 };
