@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 import { BiX } from "react-icons/bi";
 
-
 export const ContainerProdutos = styled.main`
   /* ou o limite que preferir */
   display: flex;
@@ -39,12 +38,12 @@ export const FiltroSpan = styled.span`
 `;
 
 export const IconeRemover = styled(BiX)`
-position: absolute;
-top: -7px;
-right: -7px;
-cursor: pointer;
-font-size: 16px;
-color:#000;
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #000;
 `;
 
 export const GridProdutos = styled.section`
@@ -52,6 +51,22 @@ export const GridProdutos = styled.section`
   grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
   gap: 2rem;
   padding: 2rem 0;
+`;
+
+export const MensagemNaoEncontrada = styled.p`
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ff4747; /* Um tom de vermelho para chamar atenção */
+  padding: 20px;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 export const Card = styled.div`
