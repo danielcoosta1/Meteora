@@ -1,18 +1,18 @@
-import { useState } from "react";
 import { useCarrinho } from "../../hooks/useCarrinho";
 import { useFavoritos } from "../../hooks/useFavoritos";
 import { useProdutos } from "../../hooks/useProdutos";
+import { toastInfo, toastRemocaoFavorito, toastSucesso } from "../../utils/toast";
 
-import { 
-  CardProduto, 
-  ImagemProduto, 
-  TituloProduto, 
-  DescricaoProduto, 
-  PrecoProduto, 
-  BotaoCarrinho, 
-  ConteinerBotoes, 
-  ConteinerIcones, 
-  IconesWrapper 
+import {
+  CardProduto,
+  ImagemProduto,
+  TituloProduto,
+  DescricaoProduto,
+  PrecoProduto,
+  BotaoCarrinho,
+  ConteinerBotoes,
+  ConteinerIcones,
+  IconesWrapper,
 } from "./styles";
 
 import { FaHeart, FaRegHeart, FaExpand } from "react-icons/fa";
@@ -22,12 +22,19 @@ const ProdutoCard = ({ produto }) => {
   const { handleFavoritarProduto, isFavoritado } = useFavoritos();
   const { abrirModal } = useProdutos();
 
-  const [adicionado, setAdicionado] = useState(false);
-
   const handleAdicionarCarrinho = () => {
     adicionarAoCarrinho(produto);
-    setAdicionado(true);
-    setTimeout(() => setAdicionado(false), 2000);
+    toastSucesso("Produto adicionado ao carrinho!");
+  };
+
+  const handleFavorito = () => {
+    const resultado = handleFavoritarProduto(produto);
+
+    if (resultado === "adicionado") {
+      toastInfo("Produto adicionado aos favoritos.");
+    } else if (resultado === "removido") {
+      toastRemocaoFavorito("Produto removido dos favoritos.");
+    }
   };
 
   return (
@@ -39,12 +46,12 @@ const ProdutoCard = ({ produto }) => {
 
       <ConteinerBotoes>
         <BotaoCarrinho onClick={handleAdicionarCarrinho}>
-          {adicionado ? "Adicionado ✔️" : "Adicionar ao carrinho"}
+          Adicionar ao carrinho
         </BotaoCarrinho>
 
         <ConteinerIcones>
           <IconesWrapper
-            onClick={() => handleFavoritarProduto(produto)}
+            onClick={handleFavorito}
             $favoritado={isFavoritado(produto)}
           >
             {isFavoritado(produto) ? <FaHeart /> : <FaRegHeart />}

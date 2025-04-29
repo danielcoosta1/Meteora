@@ -18,8 +18,14 @@ export const ProdutoProvider = ({ children }) => {
       categoriaSelecionada: state.categoriaSelecionada,
       termoBusca: state.termoBusca,
       filtroPreco: state.filtroPreco,
+      generoSelecionado: state.generoSelecionado,
     });
-  }, [state.categoriaSelecionada, state.termoBusca, state.filtroPreco]); 
+  }, [
+    state.categoriaSelecionada,
+    state.termoBusca,
+    state.filtroPreco,
+    state.generoSelecionado,
+  ]);
 
   // Funções para abrir e fechar o modal
   const abrirModal = (produto) =>
@@ -34,6 +40,7 @@ export const ProdutoProvider = ({ children }) => {
   const produtosParaExibir = useMemo(() => {
     let produtosFiltrados = todosProdutos;
 
+    // Filtrando pela categoria
     if (state.categoriaSelecionada) {
       produtosFiltrados = produtosFiltrados.filter(
         (produto) =>
@@ -42,12 +49,14 @@ export const ProdutoProvider = ({ children }) => {
       );
     }
 
+    // Filtrando pelo termo de busca
     if (state.termoBusca.trim()) {
       produtosFiltrados = produtosFiltrados.filter((produto) =>
         produto.titulo.toLowerCase().includes(state.termoBusca.toLowerCase())
       );
     }
 
+    // Filtrando pelo preço
     if (state.filtroPreco) {
       produtosFiltrados = produtosFiltrados.filter((produto) => {
         switch (state.filtroPreco) {
@@ -63,14 +72,28 @@ export const ProdutoProvider = ({ children }) => {
       });
     }
 
-    return produtosFiltrados;
-  }, [state.categoriaSelecionada, state.termoBusca, state.filtroPreco]);
+    // Filtrando pelo gênero
+    if (state.generoSelecionado) {
+      produtosFiltrados = produtosFiltrados.filter(
+        (produto) =>
+          produto.genero.toLowerCase() === state.generoSelecionado.toLowerCase()
+      );
+    }
+
+    return produtosFiltrados; // Retorna os produtos após aplicar os filtros
+  }, [
+    state.categoriaSelecionada,
+    state.termoBusca,
+    state.filtroPreco,
+    state.generoSelecionado,
+  ]);
 
   // Verifica se há produtos filtrados
   const haProdutosFiltrados =
     state.categoriaSelecionada !== null ||
     state.termoBusca !== "" ||
-    state.filtroPreco !== null;
+    state.filtroPreco !== null ||
+    state.generoSelecionado !== null;
 
   // Função para limpar todos os filtros
   const limparFiltro = () => dispatch({ type: "LIMPAR_FILTROS" });
@@ -109,6 +132,10 @@ export const ProdutoProvider = ({ children }) => {
       filtros.push(<span key="preco">Preço: {precoTitulo}</span>);
     }
 
+    if (state.generoSelecionado) {
+      filtros.push(<span key="genero">Gênero: {state.generoSelecionado}</span>);
+    }
+
     return filtros.length > 0
       ? filtros
       : [<span key="nenhum">Nenhum filtro aplicado</span>];
@@ -122,6 +149,9 @@ export const ProdutoProvider = ({ children }) => {
   // Função para limpar o filtro de preço
   const limparFiltroPreco = () =>
     dispatch({ type: "DEFINIR_FILTRO_PRECO", payload: null });
+  // Função para limpar o filtro de gênero
+  const limparFiltroGenero = () =>
+    dispatch({ type: "DEFINIR_GENERO", payload: null });
 
   return (
     <ProdutosContext.Provider
@@ -129,6 +159,7 @@ export const ProdutoProvider = ({ children }) => {
         categoriaSelecionada: state.categoriaSelecionada,
         termoBusca: state.termoBusca,
         filtroPreco: state.filtroPreco,
+        generoSelecionado: state.generoSelecionado,
         produtoAmpliado: state.produtoAmpliado,
         abrirModal,
         fecharModal,
@@ -138,6 +169,7 @@ export const ProdutoProvider = ({ children }) => {
         limparFiltroCategoria,
         limparFiltroBusca,
         limparFiltroPreco,
+        limparFiltroGenero,
         gerarFiltrosAplicados,
 
         // Funções de dispatch para atualizar o estado
@@ -147,6 +179,8 @@ export const ProdutoProvider = ({ children }) => {
           dispatch({ type: "DEFINIR_TERMO_BUSCA", payload: termo }),
         setFiltroPreco: (filtro) =>
           dispatch({ type: "DEFINIR_FILTRO_PRECO", payload: filtro }),
+        setGeneroSelecionado: (genero) =>
+          dispatch({ type: "DEFINIR_GENERO", payload: genero }),
         setProdutoAmpliado: (produto) =>
           dispatch({ type: "ABRIR_MODAL", payload: produto }),
       }}

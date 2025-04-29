@@ -2,21 +2,18 @@ import {
   AsideEstilizado,
   ItemListaEstilizado,
   ListaEstilizada,
-  ListaPrecos,
+  ListaDeFiltros,
   TituloAside,
-  TituloPrecos,
+  TituloFiltro,
 } from "./styles";
 import { CiFilter } from "react-icons/ci";
 
 import { useProdutos } from "../../hooks/useProdutos";
 
 import { IoMdArrowDropright } from "react-icons/io";
-import { useState } from "react";
 
 const AsiderFiltros = () => {
-  const { setFiltroPreco, filtroPreco } = useProdutos();
-
-  const [abrirListaPrecos, setAbrirListaPrecos] = useState(false);
+  const { setFiltroPreco, filtroPreco, setGeneroSelecionado, generoSelecionado } = useProdutos();
 
   return (
     <>
@@ -27,11 +24,11 @@ const AsiderFiltros = () => {
         </TituloAside>
         <ListaEstilizada>
           <ItemListaEstilizado>
-            <TituloPrecos onClick={() => setAbrirListaPrecos(!abrirListaPrecos)}>
+            <TituloFiltro>
               <IoMdArrowDropright size={20} />
               Preços
-            </TituloPrecos>
-            <ListaPrecos $aberto={abrirListaPrecos}>
+            </TituloFiltro>
+            <ListaDeFiltros>
               <li
                 onClick={() => setFiltroPreco("ate100")}
                 className={filtroPreco === "ate100" ? "ativo" : ""}
@@ -50,7 +47,33 @@ const AsiderFiltros = () => {
               >
                 <button type="button">Acima de R$200</button>
               </li>
-            </ListaPrecos>
+            </ListaDeFiltros>
+          </ItemListaEstilizado>
+          <ItemListaEstilizado>
+            <TituloFiltro>
+            <IoMdArrowDropright size={20} />
+            Gêneros
+            </TituloFiltro>
+            <ListaDeFiltros>
+              <li
+                onClick={() => setGeneroSelecionado("masculino")}
+                className={generoSelecionado === "masculino" ? "ativo" : ""}
+              >
+                <button type="button">Masculino</button>
+              </li>
+              <li
+                onClick={() => setGeneroSelecionado("feminino")}
+                className={generoSelecionado === "feminino" ? "ativo" : ""}
+              >
+                <button type="button">Feminino</button>
+              </li>
+              <li
+                onClick={() => setGeneroSelecionado("unissex")}
+                className={generoSelecionado === "unissex" ? "ativo" : ""}
+              >
+                <button type="button">Unissex</button>
+              </li>
+            </ListaDeFiltros>
           </ItemListaEstilizado>
         </ListaEstilizada>
       </AsideEstilizado>

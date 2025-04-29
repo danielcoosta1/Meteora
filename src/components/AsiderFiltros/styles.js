@@ -24,11 +24,11 @@ export const TituloAside = styled.div`
   margin-top: 50px;
 `;
 
-export const ListaPrecos = styled.ul`
+export const ListaDeFiltros = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
-  display: ${({ $aberto }) => ($aberto ? "flex" : "none")};
+  display: flex;
   flex-direction: column;
   gap: 10px;
   transition: max-height 0.3s ease, opacity 0.3s ease;
@@ -77,7 +77,7 @@ export const ItemListaEstilizado = styled.li`
   padding: 10px;
 `;
 
-export const TituloPrecos = styled.h2`
+export const TituloFiltro= styled.h2`
   font-size: 1.5rem;
   cursor: pointer;
   color: #333;

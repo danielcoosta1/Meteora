@@ -6,6 +6,8 @@ export const produtosReducer = (state, action) => {
       return { ...state, termoBusca: action.payload };
     case "DEFINIR_FILTRO_PRECO":
       return { ...state, filtroPreco: action.payload };
+    case "DEFINIR_GENERO":
+      return { ...state, generoSelecionado: action.payload };
     case "ABRIR_MODAL":
       return { ...state, produtoAmpliado: action.payload };
     case "FECHAR_MODAL":
@@ -16,6 +18,7 @@ export const produtosReducer = (state, action) => {
         categoriaSelecionada: null,
         termoBusca: "",
         filtroPreco: null,
+        generoSelecionado: null,
       };
     default:
       return state;
