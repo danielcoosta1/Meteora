@@ -27,6 +27,24 @@ const GlobalStyle = createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  @keyframes heartbeat {
+    0%, 100% {
+      transform: scale(1);
+    }
+    14% {
+      transform: scale(1.3);
+    }
+    28% {
+      transform: scale(1);
+    }
+    42% {
+      transform: scale(1.3);
+    }
+    70% {
+      transform: scale(1);
+    }
+  }
 `;
 
 export default GlobalStyle;
