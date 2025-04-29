@@ -11,12 +11,9 @@ import { CiFilter } from "react-icons/ci";
 import { useProdutos } from "../../hooks/useProdutos";
 
 import { IoMdArrowDropright } from "react-icons/io";
-import { useState } from "react";
 
 const AsiderFiltros = () => {
   const { setFiltroPreco, filtroPreco } = useProdutos();
-
-  const [abrirListaPrecos, setAbrirListaPrecos] = useState(false);
 
   return (
     <>
@@ -27,11 +24,11 @@ const AsiderFiltros = () => {
         </TituloAside>
         <ListaEstilizada>
           <ItemListaEstilizado>
-            <TituloPrecos onClick={() => setAbrirListaPrecos(!abrirListaPrecos)}>
+            <TituloPrecos>
               <IoMdArrowDropright size={20} />
               Preços
             </TituloPrecos>
-            <ListaPrecos $aberto={abrirListaPrecos}>
+            <ListaPrecos>
               <li
                 onClick={() => setFiltroPreco("ate100")}
                 className={filtroPreco === "ate100" ? "ativo" : ""}

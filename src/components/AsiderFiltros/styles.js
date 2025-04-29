@@ -28,7 +28,7 @@ export const ListaPrecos = styled.ul`
   list-style: none;
   padding: 0;
   margin: 0;
-  display: ${({ $aberto }) => ($aberto ? "flex" : "none")};
+  display: flex;
   flex-direction: column;
   gap: 10px;
   transition: max-height 0.3s ease, opacity 0.3s ease;
