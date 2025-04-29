@@ -1,7 +1,7 @@
 import { useCarrinho } from "../../hooks/useCarrinho";
 import { useFavoritos } from "../../hooks/useFavoritos";
 import { useProdutos } from "../../hooks/useProdutos";
-import { toastInfo, toastSucesso } from "../../utils/toast";
+import { toastInfo, toastRemocaoFavorito, toastSucesso } from "../../utils/toast";
 
 import {
   CardProduto,
@@ -31,9 +31,9 @@ const ProdutoCard = ({ produto }) => {
     const resultado = handleFavoritarProduto(produto);
 
     if (resultado === "adicionado") {
-      toastSucesso("Produto adicionado aos favoritos!");
+      toastInfo("Produto adicionado aos favoritos.");
     } else if (resultado === "removido") {
-      toastInfo("Produto removido dos favoritos.");
+      toastRemocaoFavorito("Produto removido dos favoritos.");
     }
   };
 
