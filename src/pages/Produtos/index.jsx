@@ -34,6 +34,7 @@ const Produtos = () => {
     limparFiltroCategoria,
     limparFiltroBusca,
     limparFiltroPreco,
+    limparFiltroGenero,
     gerarFiltrosAplicados,
   } = useProdutos();
 
@@ -60,7 +61,10 @@ const Produtos = () => {
       limparFiltroBusca();
     } else if (key === "preco") {
       limparFiltroPreco();
+    } else if (key === "genero") {
+      limparFiltroGenero();
     }
+
   };
   // Definir o título dinamicamente com base nos filtros
   const titulo = haProdutosFiltrados
