@@ -1,4 +1,5 @@
 import { FaHeart } from "react-icons/fa";
+import { LiaHeartBrokenSolid } from "react-icons/lia";
 import { toast, Slide } from "react-toastify";
 import React from "react";
 // Toast de sucesso
@@ -62,7 +63,7 @@ export const toastInfo = (mensagem) => {
 // Toast de remoção de favorito
 export const toastRemocaoFavorito = (mensagem) => {
   toast(mensagem, {
-    icon: () => <FaHeart color="#999" />, // cinza ou escuro
+    icon: () => <LiaHeartBrokenSolid color="#999" />, // cinza ou escuro
     transition: Slide,
     style: {
       background: "#f0f0f0", // neutro
