@@ -29,14 +29,14 @@
     "id": 103,
     "categoria": "Camisetas",
     "src": "/assets/images/produtos/camiseta3.jpg",
-    "alt": "Camiseta rosa oversized",
+    "alt": "Camiseta oversized",
     "titulo": "Camiseta Oversized",
     "descricao": "Modelagem larga e moderna.",
     "preco": 74.9,
     "cores": ["Rosa", "Bege"],
     "tamanhos": ["M", "G", "GG"],
     "material": "Algodão",
-    "genero": "Feminino"
+    "genero": "Masculino"
   },
   {
     "id": 201,
