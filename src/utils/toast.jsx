@@ -1,8 +1,6 @@
 import { FaHeart } from "react-icons/fa";
 import { toast, Slide } from "react-toastify";
-
-
-
+import React from "react";
 // Toast de sucesso
 export const toastSucesso = (mensagem) => {
   toast.success(mensagem, {
@@ -37,10 +35,37 @@ export const toastErro = (mensagem) => {
 
 export const toastInfo = (mensagem) => {
   toast.info(mensagem, {
-    icon: () => <FaHeart color="#ff69b4" />, // cor rosa
+    icon: () =>
+      React.createElement(
+        "span",
+        {
+          style: {
+            display: "inline-block",
+            animation: "heartbeat 0.8s ease-in-out infinite",
+            transformOrigin: "center",
+          },
+        },
+        "💖"
+      ),
     transition: Slide,
     style: {
-      background: "#ffb6c1",
+      background: "#ffb6c1", // rosa claro
+      color: "#333",
+      fontSize: "16px",
+    },
+    autoClose: 3000,
+    pauseOnHover: true,
+    draggable: true,
+  });
+};
+
+// Toast de remoção de favorito
+export const toastRemocaoFavorito = (mensagem) => {
+  toast(mensagem, {
+    icon: () => <FaHeart color="#999" />, // cinza ou escuro
+    transition: Slide,
+    style: {
+      background: "#f0f0f0", // neutro
       color: "#333",
       fontSize: "16px",
     },
