@@ -1,4 +1,7 @@
+import { FaHeart } from "react-icons/fa";
 import { toast, Slide } from "react-toastify";
+
+
 
 // Toast de sucesso
 export const toastSucesso = (mensagem) => {
@@ -32,13 +35,12 @@ export const toastErro = (mensagem) => {
   });
 };
 
-// Toast de informação (por exemplo, para favoritos)
 export const toastInfo = (mensagem) => {
   toast.info(mensagem, {
-    icon: "💖",
+    icon: () => <FaHeart color="#ff69b4" />, // cor rosa
     transition: Slide,
     style: {
-      background: "#ffb6c1", // rosa claro
+      background: "#ffb6c1",
       color: "#333",
       fontSize: "16px",
     },
