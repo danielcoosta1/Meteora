@@ -1,8 +1,8 @@
 import { useCarrinho } from "../../hooks/useCarrinho";
 import { useFavoritos } from "../../hooks/useFavoritos";
 import { useProdutos } from "../../hooks/useProdutos";
+import { toastInfo, toastSucesso } from "../../utils/toast";
 
-import { toast } from "react-toastify";
 import {
   CardProduto,
   ImagemProduto,
@@ -24,9 +24,17 @@ const ProdutoCard = ({ produto }) => {
 
   const handleAdicionarCarrinho = () => {
     adicionarAoCarrinho(produto);
-    toast.success(`${produto.titulo} adicionado ao carrinho!`, {
-      icon: "🛒",
-    });
+    toastSucesso("Produto adicionado ao carrinho!");
+  };
+
+  const handleFavorito = () => {
+    const resultado = handleFavoritarProduto(produto);
+
+    if (resultado === "adicionado") {
+      toastSucesso("Produto adicionado aos favoritos!");
+    } else if (resultado === "removido") {
+      toastInfo("Produto removido dos favoritos.");
+    }
   };
 
   return (
@@ -43,7 +51,7 @@ const ProdutoCard = ({ produto }) => {
 
         <ConteinerIcones>
           <IconesWrapper
-            onClick={() => handleFavoritarProduto(produto)}
+            onClick={handleFavorito}
             $favoritado={isFavoritado(produto)}
           >
             {isFavoritado(produto) ? <FaHeart /> : <FaRegHeart />}
