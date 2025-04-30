@@ -1,7 +1,6 @@
 import { useReducer, useMemo, useEffect } from "react";
+import axios from "axios";
 import { ProdutosContext } from "./ProdutosContext";
-
-import todosProdutos from "../../mocks/todosProdutos.json";
 
 import { produtosReducer } from "./produtosReducer";
 
@@ -27,8 +26,21 @@ export const ProdutoProvider = ({ children }) => {
     state.generoSelecionado,
   ]);
 
+  // UseEffect para carregar os produtos do backend
+  useEffect(() => {
+    // Função para buscar os produtos
+    const fetchProdutos = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/produtos"); // URL do seu backend
+        const produtos = response.data; // Os dados retornados da API
+        dispatch({ type: "CARREGAR_PRODUTOS", payload: produtos }); // Dispara a ação de carregar os produtos
+      } catch (error) {
+        console.error("Erro ao carregar os produtos:", error);
+      }
+    };
 
-  
+    fetchProdutos(); // Chama a função para buscar os produtos
+  }, []); // O array vazio garante que a requisição seja feita uma vez, na montagem do componente
 
   // Funções para abrir e fechar o modal
   const abrirModal = (produto) =>
@@ -41,7 +53,7 @@ export const ProdutoProvider = ({ children }) => {
   // e apenas recalcula quando os filtros são alterados
 
   const produtosParaExibir = useMemo(() => {
-    let produtosFiltrados = todosProdutos;
+    let produtosFiltrados = state.produtos; // Começa com todos os produtos
 
     // Filtrando pela categoria
     if (state.categoriaSelecionada) {
@@ -85,6 +97,7 @@ export const ProdutoProvider = ({ children }) => {
 
     return produtosFiltrados; // Retorna os produtos após aplicar os filtros
   }, [
+    state.produtos,
     state.categoriaSelecionada,
     state.termoBusca,
     state.filtroPreco,
