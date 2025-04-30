@@ -1,5 +1,7 @@
 export const produtosReducer = (state, action) => {
   switch (action.type) {
+    case "CARREGAR_PRODUTOS":
+      return { ...state, produtos: action.payload };
     case "SELECIONAR_CATEGORIA":
       return { ...state, categoriaSelecionada: action.payload };
     case "DEFINIR_TERMO_BUSCA":
@@ -24,4 +26,3 @@ export const produtosReducer = (state, action) => {
       return state;
   }
 };
-
