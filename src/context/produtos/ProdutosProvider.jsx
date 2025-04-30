@@ -27,6 +27,9 @@ export const ProdutoProvider = ({ children }) => {
     state.generoSelecionado,
   ]);
 
+
+  
+
   // Funções para abrir e fechar o modal
   const abrirModal = (produto) =>
     dispatch({ type: "ABRIR_MODAL", payload: produto });
@@ -98,7 +101,7 @@ export const ProdutoProvider = ({ children }) => {
   // Função para limpar todos os filtros
   const limparFiltro = () => dispatch({ type: "LIMPAR_FILTROS" });
 
-  // Função para gerar os filtros aplicados
+  // Função para gerar os filtros aplicados - span com informações do filtro utilizado
   // Retorna um array de elementos JSX com os filtros aplicados
   const gerarFiltrosAplicados = () => {
     const filtros = [];
@@ -140,6 +143,7 @@ export const ProdutoProvider = ({ children }) => {
       ? filtros
       : [<span key="nenhum">Nenhum filtro aplicado</span>];
   };
+
   // Função para limpar o filtro de categoria
   const limparFiltroCategoria = () =>
     dispatch({ type: "SELECIONAR_CATEGORIA", payload: null });
