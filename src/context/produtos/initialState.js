@@ -10,4 +10,5 @@ const filtrosSalvos = localStorageService.ler("filtros") || {
 export const initialState = {
   ...filtrosSalvos,
   produtoAmpliado: null,
+  produtos: [], // ← novo campo adicionado para armazenar os produtos da API
 };
