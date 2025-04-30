@@ -8,7 +8,8 @@ const prisma = new PrismaClient();
 async function insertProdutos() {
   try {
     // Caminho para o arquivo todosProdutos.json
-    const dataPath = join(process.cwd(), "data", "todosProdutos.json"); // Corrigido aqui
+    const dataPath = join(process.cwd(), "backend", "data", "todosProdutos.json"); // Corrigido aquiclea
+    console.log(dataPath);
     const file = await readFile(dataPath, "utf-8");
     const produtos = JSON.parse(file); // Converte o conteúdo JSON para um array de objetos
 
