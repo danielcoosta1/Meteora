@@ -1,4 +1,5 @@
-import { useReducer, useEffect, useMemo } from "react";
+import { useReducer, useEffect, useMemo, useRef } from "react";
+import { isEqual } from "lodash";
 import { CarrinhoContext } from "./CarrinhoContext";
 
 import { carrinhoReducer } from "./carrinhoReducer";
@@ -10,8 +11,16 @@ export const CarrinhoProvider = ({ children }) => {
   // Usando useReducer para gerenciar o estado do carrinho
   const [state, dispatch] = useReducer(carrinhoReducer, initialState);
 
+  // Ref para armazenar a última versão salva do carrinho
+  const ultimaVersaoSalva = useRef();
+
+  // Carrega o carrinho do localStorage quando o componente é montado
   useEffect(() => {
-    localStorageService.salvar("carrinho", state.carrinho);
+    // Verifica se já existe um carrinho salvo no localStorage
+    if (!isEqual(ultimaVersaoSalva.current, state.carrinho)) {
+      localStorageService.salvar("carrinho", state.carrinho);
+      ultimaVersaoSalva.current = state.carrinho; // Atualiza a última versão salva
+    }
   }, [state.carrinho]);
 
   const adicionarAoCarrinho = (produto) => {

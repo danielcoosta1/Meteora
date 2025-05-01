@@ -1,6 +1,5 @@
 [
   {
-    "id": 101,
     "categoria": "Camisetas",
     "src": "/assets/images/produtos/camiseta1.jpg",
     "alt": "Camiseta branca com estampa moderna",
@@ -13,7 +12,6 @@
     "genero": "Unissex"
   },
   {
-    "id": 102,
     "categoria": "Camisetas",
     "src": "/assets/images/produtos/camiseta2.jpg",
     "alt": "Camiseta preta com estampa de caveira.",
@@ -26,7 +24,6 @@
     "genero": "Masculino"
   },
   {
-    "id": 103,
     "categoria": "Camisetas",
     "src": "/assets/images/produtos/camiseta3.jpg",
     "alt": "Camiseta oversized",
@@ -39,7 +36,6 @@
     "genero": "Masculino"
   },
   {
-    "id": 201,
     "categoria": "Bolsas",
     "src": "/assets/images/produtos/bolsa1.jpg",
     "alt": "Bolsa transversal marrom.",
@@ -52,7 +48,6 @@
     "genero": "Feminino"
   },
   {
-    "id": 202,
     "categoria": "Bolsas",
     "src": "/assets/images/produtos/bolsa2.jpg",
     "alt": "Bolsa tote de tecido cru.",
@@ -65,7 +60,6 @@
     "genero": "Feminino"
   },
   {
-    "id": 203,
     "categoria": "Bolsas",
     "src": "/assets/images/produtos/bolsa3.jpg",
     "alt": "Mochila unissex urbana.",
@@ -78,7 +72,6 @@
     "genero": "Unissex"
   },
   {
-    "id": 104,
     "categoria": "Calças",
     "src": "/assets/images/produtos/calca1.jpg",
     "alt": "Calça jeans feminina azul escuro.",
@@ -91,7 +84,6 @@
     "genero": "Feminino"
   },
   {
-    "id": 105,
     "categoria": "Calças",
     "src": "/assets/images/produtos/calca2.jpg",
     "alt": "Calça de alfaiataria em modelo feminino.",
@@ -104,7 +96,6 @@
     "genero": "Feminino"
   },
   {
-    "id": 106,
     "categoria": "Calças",
     "src": "/assets/images/produtos/calca3.jpg",
     "alt": "Calça wide leg em ambiente urbano.",
@@ -117,7 +108,6 @@
     "genero": "Unissex"
   },
   {
-    "id": 107,
     "categoria": "Calçados",
     "src": "/assets/images/produtos/calcado1.jpg",
     "alt": "Tênis casual branco com fundo de concreto.",
@@ -130,7 +120,6 @@
     "genero": "Unissex"
   },
   {
-    "id": 108,
     "categoria": "Calçados",
     "src": "/assets/images/produtos/calcado2.jpg",
     "alt": "Tênis moderno unissex em fundo escuro.",
@@ -143,7 +132,6 @@
     "genero": "Unissex"
   },
   {
-    "id": 109,
     "categoria": "Calçados",
     "src": "/assets/images/produtos/calcado3.jpg",
     "alt": "Botinha preta estilo urbano.",
@@ -156,7 +144,6 @@
     "genero": "Feminino"
   },
   {
-    "id": 110,
     "categoria": "Casacos",
     "src": "/assets/images/produtos/casaco1.jpg",
     "alt": "Casaco longo bege em fundo urbano.",
@@ -169,7 +156,6 @@
     "genero": "Feminino"
   },
   {
-    "id": 111,
     "categoria": "Casacos",
     "src": "/assets/images/produtos/casaco2.jpg",
     "alt": "Jaqueta jeans em modelo masculino.",
@@ -182,7 +168,6 @@
     "genero": "Feminino"
   },
   {
-    "id": 112,
     "categoria": "Casacos",
     "src": "/assets/images/produtos/casaco3.jpg",
     "alt": "Casaco oversized preto para frio intenso.",
@@ -195,7 +180,6 @@
     "genero": "Unissex"
   },
   {
-    "id": 301,
     "categoria": "Óculos",
     "src": "/assets/images/produtos/oculos1.jpg",
     "alt": "Óculos de sol redondo com lente escura.",
@@ -208,7 +192,6 @@
     "genero": "Unissex"
   },
   {
-    "id": 302,
     "categoria": "Óculos",
     "src": "/assets/images/produtos/oculos2.jpg",
     "alt": "Óculos de sol com lente degradê.",
@@ -221,7 +204,6 @@
     "genero": "Feminino"
   },
   {
-    "id": 303,
     "categoria": "Óculos",
     "src": "/assets/images/produtos/oculos3.jpg",
     "alt": "Óculos espelhado esportivo.",

@@ -1,20 +1,26 @@
 import { FavoritosContext } from "./FavoritosContext";
 
-import { useReducer, useEffect } from "react";
+import { useReducer, useEffect, useRef } from "react";
 
 import { favoritosReducer } from "./favoritosReducer";
 
 import { initialState } from "./initialState";
 
 import { localStorageService } from "../../services/localStorageService";
+import { isEqual } from "lodash";
 
 export const FavoritosProvider = ({ children }) => {
   // Usando useReducer para gerenciar o estado dos favoritos
   const [state, dispatch] = useReducer(favoritosReducer, initialState);
 
+  const ultimaVersaoSalva = useRef();
+
   // 💾 Salva os favoritos no localStorage sempre que ele mudar
   useEffect(() => {
-    localStorageService.salvar("favoritos", state.favoritos);
+    if (!isEqual(ultimaVersaoSalva.current, state.favoritos)) {
+      localStorageService.salvar("favoritos", state.favoritos);
+      ultimaVersaoSalva.current = state.favoritos; // Atualiza a última versão salva
+    }
   }, [state.favoritos]);
 
   // Função para adicionar ou remover produtos dos favoritos

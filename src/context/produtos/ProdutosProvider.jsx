@@ -1,31 +1,54 @@
-import { useReducer, useMemo, useEffect } from "react";
+import { useReducer, useMemo, useEffect, useRef } from "react";
+import axios from "axios";
 import { ProdutosContext } from "./ProdutosContext";
-
-import todosProdutos from "../../mocks/todosProdutos.json";
 
 import { produtosReducer } from "./produtosReducer";
 
 import { initialState } from "./initialState";
 import { localStorageService } from "../../services/localStorageService";
+import { isEqual } from "lodash";
 
 export const ProdutoProvider = ({ children }) => {
   // Cria o estado global para os produtos
   const [state, dispatch] = useReducer(produtosReducer, initialState);
 
+  const ultimaVersaoSalva = useRef();
+
   // Carrega os filtros do localStorage quando o componente é montado
   useEffect(() => {
-    localStorageService.salvar("filtros", {
+    const filtrosParaSalvar = {
       categoriaSelecionada: state.categoriaSelecionada,
       termoBusca: state.termoBusca,
       filtroPreco: state.filtroPreco,
       generoSelecionado: state.generoSelecionado,
-    });
+    };
+
+    if (!isEqual(ultimaVersaoSalva.current, filtrosParaSalvar)) {
+      localStorageService.salvar("filtros", filtrosParaSalvar);
+      ultimaVersaoSalva.current = filtrosParaSalvar; // Atualiza a última versão salva
+    }
   }, [
     state.categoriaSelecionada,
     state.termoBusca,
     state.filtroPreco,
     state.generoSelecionado,
   ]);
+
+  // UseEffect para carregar os produtos do backend
+  useEffect(() => {
+    // Função para buscar os produtos
+    const fetchProdutos = async () => {
+      try {
+        const response = await axios.get("http://localhost:3001/produtos"); // URL do seu backend
+        const produtos = response.data; // Os dados retornados da API
+        dispatch({ type: "CARREGAR_PRODUTOS", payload: produtos }); // Dispara a ação de carregar os produtos
+      } catch (error) {
+        console.error("Erro ao carregar os produtos:", error);
+      }
+    };
+
+    fetchProdutos(); // Chama a função para buscar os produtos
+  }, []); // O array vazio garante que a requisição seja feita uma vez, na montagem do componente
 
   // Funções para abrir e fechar o modal
   const abrirModal = (produto) =>
@@ -38,7 +61,7 @@ export const ProdutoProvider = ({ children }) => {
   // e apenas recalcula quando os filtros são alterados
 
   const produtosParaExibir = useMemo(() => {
-    let produtosFiltrados = todosProdutos;
+    let produtosFiltrados = state.produtos; // Começa com todos os produtos
 
     // Filtrando pela categoria
     if (state.categoriaSelecionada) {
@@ -82,6 +105,7 @@ export const ProdutoProvider = ({ children }) => {
 
     return produtosFiltrados; // Retorna os produtos após aplicar os filtros
   }, [
+    state.produtos,
     state.categoriaSelecionada,
     state.termoBusca,
     state.filtroPreco,
@@ -98,19 +122,23 @@ export const ProdutoProvider = ({ children }) => {
   // Função para limpar todos os filtros
   const limparFiltro = () => dispatch({ type: "LIMPAR_FILTROS" });
 
-  // Função para gerar os filtros aplicados
-  // Retorna um array de elementos JSX com os filtros aplicados
+  // Função para gerar os filtros aplicados - span com informações do filtro utilizado
+
   const gerarFiltrosAplicados = () => {
     const filtros = [];
 
     if (state.categoriaSelecionada) {
-      filtros.push(
-        <span key="categoria">Categoria: {state.categoriaSelecionada}</span>
-      );
+      filtros.push({
+        tipo: "categoria",
+        componente: <span>Categoria: {state.categoriaSelecionada}</span>,
+      });
     }
 
     if (state.termoBusca.trim()) {
-      filtros.push(<span key="busca">Buscando por: {state.termoBusca}</span>);
+      filtros.push({
+        tipo: "busca",
+        componente: <span>Buscando por: {state.termoBusca}</span>,
+      });
     }
 
     if (state.filtroPreco) {
@@ -129,17 +157,24 @@ export const ProdutoProvider = ({ children }) => {
           precoTitulo = "";
           break;
       }
-      filtros.push(<span key="preco">Preço: {precoTitulo}</span>);
+      filtros.push({
+        tipo: "preco",
+        componente: <span>Preço: {precoTitulo}</span>,
+      });
     }
 
     if (state.generoSelecionado) {
-      filtros.push(<span key="genero">Gênero: {state.generoSelecionado}</span>);
+      filtros.push({
+        tipo: "genero",
+        componente: <span>Gênero: {state.generoSelecionado}</span>,
+      });
     }
 
     return filtros.length > 0
       ? filtros
-      : [<span key="nenhum">Nenhum filtro aplicado</span>];
+      : [{ tipo: "nenhum", componente: <span>Nenhum filtro aplicado</span> }];
   };
+
   // Função para limpar o filtro de categoria
   const limparFiltroCategoria = () =>
     dispatch({ type: "SELECIONAR_CATEGORIA", payload: null });
