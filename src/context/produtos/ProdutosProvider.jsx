@@ -123,18 +123,22 @@ export const ProdutoProvider = ({ children }) => {
   const limparFiltro = () => dispatch({ type: "LIMPAR_FILTROS" });
 
   // Função para gerar os filtros aplicados - span com informações do filtro utilizado
-  // Retorna um array de elementos JSX com os filtros aplicados
+
   const gerarFiltrosAplicados = () => {
     const filtros = [];
 
     if (state.categoriaSelecionada) {
-      filtros.push(
-        <span key="categoria">Categoria: {state.categoriaSelecionada}</span>
-      );
+      filtros.push({
+        tipo: "categoria",
+        componente: <span>Categoria: {state.categoriaSelecionada}</span>,
+      });
     }
 
     if (state.termoBusca.trim()) {
-      filtros.push(<span key="busca">Buscando por: {state.termoBusca}</span>);
+      filtros.push({
+        tipo: "busca",
+        componente: <span>Buscando por: {state.termoBusca}</span>,
+      });
     }
 
     if (state.filtroPreco) {
@@ -153,16 +157,22 @@ export const ProdutoProvider = ({ children }) => {
           precoTitulo = "";
           break;
       }
-      filtros.push(<span key="preco">Preço: {precoTitulo}</span>);
+      filtros.push({
+        tipo: "preco",
+        componente: <span>Preço: {precoTitulo}</span>,
+      });
     }
 
     if (state.generoSelecionado) {
-      filtros.push(<span key="genero">Gênero: {state.generoSelecionado}</span>);
+      filtros.push({
+        tipo: "genero",
+        componente: <span>Gênero: {state.generoSelecionado}</span>,
+      });
     }
 
     return filtros.length > 0
       ? filtros
-      : [<span key="nenhum">Nenhum filtro aplicado</span>];
+      : [{ tipo: "nenhum", componente: <span>Nenhum filtro aplicado</span> }];
   };
 
   // Função para limpar o filtro de categoria

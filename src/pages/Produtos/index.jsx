@@ -38,20 +38,20 @@ const Produtos = () => {
     gerarFiltrosAplicados,
   } = useProdutos();
 
-  // Função para renderizar os filtros aplicados com o "X"
+  //Funcao para renderizar de acordo com o retorno da função gerarFiltrosAplicados
   const renderFiltros = () => {
     const filtros = gerarFiltrosAplicados();
-
-    return filtros.map((filtro) => (
-      <FiltroSpan key={filtro.key}>
-        {filtro}
-        {/* Verifica se o filtro tem um ícone de remover */}
-        {filtro.key !== "nenhum" && (
-          <IconeRemover onClick={() => removerFiltro(filtro.key)} />
+  
+    return filtros.map(({ tipo, componente }) => (
+      <FiltroSpan key={tipo}>
+        {componente}
+        {tipo !== "nenhum" && (
+          <IconeRemover onClick={() => removerFiltro(tipo)} />
         )}
       </FiltroSpan>
     ));
   };
+  
 
   // Função de remoção de filtro específico
   const removerFiltro = (key) => {
