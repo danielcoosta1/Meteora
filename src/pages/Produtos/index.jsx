@@ -37,11 +37,23 @@ const Produtos = () => {
     limparFiltroGenero,
     gerarFiltrosAplicados,
   } = useProdutos();
-
+  
+  // Função de remoção de filtro específico
+  const removerFiltro = (tipo) => {
+    if (tipo === "categoria") {
+      limparFiltroCategoria();
+    } else if (tipo === "busca") {
+      limparFiltroBusca();
+    } else if (tipo === "preco") {
+      limparFiltroPreco();
+    } else if (tipo === "genero") {
+      limparFiltroGenero();
+    }
+  };
   //Funcao para renderizar de acordo com o retorno da função gerarFiltrosAplicados
   const renderFiltros = () => {
     const filtros = gerarFiltrosAplicados();
-  
+
     return filtros.map(({ tipo, componente }) => (
       <FiltroSpan key={tipo}>
         {componente}
@@ -51,21 +63,7 @@ const Produtos = () => {
       </FiltroSpan>
     ));
   };
-  
 
-  // Função de remoção de filtro específico
-  const removerFiltro = (key) => {
-    if (key === "categoria") {
-      limparFiltroCategoria();
-    } else if (key === "busca") {
-      limparFiltroBusca();
-    } else if (key === "preco") {
-      limparFiltroPreco();
-    } else if (key === "genero") {
-      limparFiltroGenero();
-    }
-
-  };
   // Definir o título dinamicamente com base nos filtros
   const titulo = haProdutosFiltrados
     ? "Filtrando por:"
