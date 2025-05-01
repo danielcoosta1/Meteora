@@ -34,6 +34,7 @@ Meteora é uma aplicação de e-commerce de moda que permite visualizar produtos
   - Compartilhamento global de estado para produtos, carrinho e favoritos
   - Uso de `useMemo` para otimização na renderização dos produtos filtrados
   - Persistência dos estados relevantes no LocalStorage
+  - Uso de `useRef` para armazenar a última versão salva dos filtros e evitar chamadas desnecessárias ao `localStorage`
 
 - **Componentização e Modularização:**
   - Estrutura organizacional com componentes reutilizáveis (ex.: ProdutoCard, Barra de Navegação, Modal)
@@ -53,6 +54,29 @@ Meteora é uma aplicação de e-commerce de moda que permite visualizar produtos
   - Código limpo e organizado, com separação de responsabilidades
   - Modularização e reutilização eficiente de componentes e hooks
 
+### Backend
+- **Node.js e Express:**
+  - A aplicação utiliza um backend com **Node.js** e **Express** para fornecer os dados dos produtos, como lista de produtos, categorias, e detalhes dos itens. O backend também permite implementar outras funcionalidades que exigem interação com um servidor.
+  - O backend foi desenvolvido para suportar as operações de consulta de produtos e outras funcionalidades que a aplicação precisa.
+
+- **Comunicação Frontend-Backend:**
+  - O front-end faz chamadas assíncronas para o backend utilizando **fetch** para obter os dados, como a lista de produtos e as categorias, por meio de requisições GET.
+  - O uso do `fetch` permite a integração direta entre o frontend e o backend, possibilitando a atualização dinâmica dos dados na interface.
+
+```javascript
+fetch('http://localhost:5000/api/produtos')
+  .then(response => response.json())
+  .then(data => {
+    // Atualiza o estado com os dados recebidos do backend
+  })
+  .catch(error => console.error('Erro ao buscar produtos:', error));
+```
+
+- **Estrutura do Backend:**
+  - O servidor Express é responsável por expor endpoints que retornam os dados necessários para a aplicação frontend.
+  - A estrutura do servidor inclui uma API RESTful para comunicação entre o backend e o frontend.
+  - O backend pode ser expandido para implementar funcionalidades adicionais, como autenticação de usuários, gerenciamento de pedidos e outras operações relacionadas a e-commerce.
+
 ## 🛠️ Tecnologias Utilizadas
 
 - **Core:**
@@ -64,11 +88,12 @@ Meteora é uma aplicação de e-commerce de moda que permite visualizar produtos
   ![Styled Components](https://img.shields.io/badge/Styled_Components-DB7093?logo=styled-components&logoColor=white&style=flat)
   ![React Toastify](https://img.shields.io/badge/React_Toastify-FF4081?logo=react&logoColor=white&style=flat)
 
+- **Backend:**
+  ![Node.js](https://img.shields.io/badge/Node.js-339933?logo=node.js&logoColor=white&style=flat)
+  ![Express](https://img.shields.io/badge/Express-000000?logo=express&logoColor=white&style=flat)
+
 - **Iconografia:**
   ![React Icons](https://img.shields.io/badge/React_Icons-FF4081?logo=react&logoColor=white&style=flat)
-
-- **Backend (Futuro):**
-  Planejado com Node.js e Express para manipulação dos dados dos produtos e demais funcionalidades.
 
 ## ⚙️ Instalação e Execução
 
@@ -76,6 +101,7 @@ Meteora é uma aplicação de e-commerce de moda que permite visualizar produtos
 
 - [Node.js](https://nodejs.org/) (v14 ou superior)
 - [Git](https://git-scm.com/)
+- Backend rodando localmente ou em um servidor (caso deseje testar a integração)
 
 ### Passo a Passo
 
@@ -83,3 +109,30 @@ Meteora é uma aplicação de e-commerce de moda que permite visualizar produtos
    ```bash
    git clone https://github.com/seu-usuario/meteora.git
    cd meteora
+   ```
+
+2. **Instale as dependências do frontend:**
+   ```bash
+   npm install
+   ```
+
+3. **Inicie o backend:**
+   - Vá até a pasta do backend e execute:
+   ```bash
+   cd backend
+   npm install
+   npm start
+   ```
+
+4. **Inicie a aplicação frontend:**
+   ```bash
+   cd ..
+   npm start
+   ```
+
+5. **Acesse a aplicação:**
+   Abra o navegador e acesse `http://localhost:3001` para visualizar a aplicação em funcionamento.
+
+---
+
+**Meteora** foi projetado para ser uma solução escalável e de fácil manutenção, com o objetivo de melhorar a experiência do usuário no processo de compra de moda online. Ao longo do desenvolvimento, busquei aplicar as melhores práticas em React, otimização de performance e design responsivo, com foco na experiência do usuário.
