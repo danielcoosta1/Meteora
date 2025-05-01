@@ -131,7 +131,7 @@ fetch('http://localhost:5000/api/produtos')
    ```
 
 5. **Acesse a aplicação:**
-   Abra o navegador e acesse `http://localhost:3000` para visualizar a aplicação em funcionamento.
+   Abra o navegador e acesse `http://localhost:3001` para visualizar a aplicação em funcionamento.
 
 ---
 
