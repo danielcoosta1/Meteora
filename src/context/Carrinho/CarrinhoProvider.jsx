@@ -11,14 +11,17 @@ export const CarrinhoProvider = ({ children }) => {
   // Usando useReducer para gerenciar o estado do carrinho
   const [state, dispatch] = useReducer(carrinhoReducer, initialState);
 
+  // Ref para armazenar a última versão salva do carrinho
   const ultimaVersaoSalva = useRef();
 
-useEffect(() => {
-  if (!isEqual(ultimaVersaoSalva.current, state.carrinho)) {
-    localStorageService.salvar("carrinho", state.carrinho);
-    ultimaVersaoSalva.current = state.carrinho;
-  }
-}, [state.carrinho]);
+  // Carrega o carrinho do localStorage quando o componente é montado
+  useEffect(() => {
+    // Verifica se já existe um carrinho salvo no localStorage
+    if (!isEqual(ultimaVersaoSalva.current, state.carrinho)) {
+      localStorageService.salvar("carrinho", state.carrinho);
+      ultimaVersaoSalva.current = state.carrinho; // Atualiza a última versão salva
+    }
+  }, [state.carrinho]);
 
   const adicionarAoCarrinho = (produto) => {
     dispatch({ type: "ADICIONAR_PRODUTO", payload: produto });

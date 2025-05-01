@@ -1,4 +1,4 @@
-import { useReducer, useMemo, useEffect } from "react";
+import { useReducer, useMemo, useEffect, useRef } from "react";
 import axios from "axios";
 import { ProdutosContext } from "./ProdutosContext";
 
@@ -6,19 +6,27 @@ import { produtosReducer } from "./produtosReducer";
 
 import { initialState } from "./initialState";
 import { localStorageService } from "../../services/localStorageService";
+import { isEqual } from "lodash";
 
 export const ProdutoProvider = ({ children }) => {
   // Cria o estado global para os produtos
   const [state, dispatch] = useReducer(produtosReducer, initialState);
 
+  const ultimaVersaoSalva = useRef();
+
   // Carrega os filtros do localStorage quando o componente é montado
   useEffect(() => {
-    localStorageService.salvar("filtros", {
+    const filtrosParaSalvar = {
       categoriaSelecionada: state.categoriaSelecionada,
       termoBusca: state.termoBusca,
       filtroPreco: state.filtroPreco,
       generoSelecionado: state.generoSelecionado,
-    });
+    };
+
+    if (!isEqual(ultimaVersaoSalva.current, filtrosParaSalvar)) {
+      localStorageService.salvar("filtros", filtrosParaSalvar);
+      ultimaVersaoSalva.current = filtrosParaSalvar; // Atualiza a última versão salva
+    }
   }, [
     state.categoriaSelecionada,
     state.termoBusca,
