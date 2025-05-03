@@ -5,7 +5,10 @@ import { CarrinhoContext } from "./CarrinhoContext";
 import { carrinhoReducer } from "./carrinhoReducer";
 
 import { initialState } from "./initialState";
-import { localStorageService } from "../../services/localStorageService";
+
+
+import { useAuth } from "../../hooks/useAuth";
+import axios from "axios";
 
 export const CarrinhoProvider = ({ children }) => {
   // Usando useReducer para gerenciar o estado do carrinho
@@ -14,14 +17,48 @@ export const CarrinhoProvider = ({ children }) => {
   // Ref para armazenar a última versão salva do carrinho
   const ultimaVersaoSalva = useRef();
 
-  // Carrega o carrinho do localStorage quando o componente é montado
+  const { usuario } = useAuth(); // assume que já está logado e tem `id` ou `userId`
+
+  // Carrega o carrinho do banco de dados
   useEffect(() => {
-    // Verifica se já existe um carrinho salvo no localStorage
-    if (!isEqual(ultimaVersaoSalva.current, state.carrinho)) {
-      localStorageService.salvar("carrinho", state.carrinho);
-      ultimaVersaoSalva.current = state.carrinho; // Atualiza a última versão salva
-    }
-  }, [state.carrinho]);
+    const carregarCarrinho = async () => {
+      if (!usuario?.id) return;
+
+      try {
+        const resposta = await axios.get(
+          `http://localhost:3001/carrinho/${usuario.id}`
+        );
+        dispatch({
+          type: "CARREGAR_CARRINHO",
+          payload: resposta.data.produtos || [],
+        });
+        ultimaVersaoSalva.current = resposta.data.produtos;
+      } catch (error) {
+        console.error("Erro ao carregar carrinho:", error);
+      }
+    };
+
+    carregarCarrinho();
+  }, [usuario]);
+
+  // Salva no banco de dados sempre que o carrinho mudar
+  useEffect(() => {
+    const salvarCarrinho = async () => {
+      if (!usuario?.id || isEqual(ultimaVersaoSalva.current, state.carrinho))
+        return;
+
+      try {
+        await axios.post(`http://localhost:3001/carrinho/${usuario.id}`, {
+          produtos: state.carrinho,
+        });
+        ultimaVersaoSalva.current = state.carrinho;
+      } catch (error) {
+        console.error("Erro ao salvar carrinho:", error);
+      }
+    };
+
+    salvarCarrinho();
+  }, [state.carrinho, usuario]);
 
   const adicionarAoCarrinho = (produto) => {
     dispatch({ type: "ADICIONAR_PRODUTO", payload: produto });

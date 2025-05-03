@@ -1,7 +1,7 @@
 // Definindo o reducer para gerenciar as ações do carrinho
 export const carrinhoReducer = (state, action) => {
   switch (action.type) {
-    // A CASE ESTÁ ENVOLVIDA COM AS CHAVES {} POR BOA PRATICA; 
+    // A CASE ESTÁ ENVOLVIDA COM AS CHAVES {} POR BOA PRATICA;
     // ELA SÓ É ACESSADA EXCLUSIVAMENTE DENTRO DA CASE ADICIONAR_PRODUTO;
     // NÃO PODENDO SER "VAZADA" EM OUTRA CASE OU FORA DO SWITCH.
     // ISSO GARANTE QUE O CÓDIGO SEJA MAIS ORGANIZADO E EVITA ERROS DE ESCOPOS.
@@ -58,6 +58,11 @@ export const carrinhoReducer = (state, action) => {
         ...state,
         carrinho: state.carrinho.filter((item) => item.id !== action.payload),
       };
+    case "CARREGAR_CARRINHO":
+      return {
+        ...state,
+        carrinho: action.payload,
+      };
     case "LIMPAR_CARRINHO":
       return { ...state, carrinho: [] };
     case "TOGGLAR_MENU":
@@ -68,4 +73,3 @@ export const carrinhoReducer = (state, action) => {
       return state;
   }
 };
-

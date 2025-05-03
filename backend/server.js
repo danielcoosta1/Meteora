@@ -3,6 +3,7 @@ import cors from "cors";
 import { PrismaClient } from "@prisma/client";
 
 import produtosRoutes from "./routes/produtos.js";
+import carrinhoRoutes from "./routes/carrinho.js"
 /* global process */
 
 const app = express();
@@ -24,6 +25,7 @@ prisma.$connect()
 
 // Roteamento
 app.use('/produtos', produtosRoutes);
+app.use("/carrinho", carrinhoRoutes);
 
 // Rota de teste
 app.get("/", (req, res) => {

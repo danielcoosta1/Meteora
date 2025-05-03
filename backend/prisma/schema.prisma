@@ -24,6 +24,6 @@ model Produto {
 model Carrinho {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
   userId       String   @unique
-  produtos     Json     // o array direto vindo do front
+  produtos     Json
   atualizadoEm DateTime @updatedAt
 }
