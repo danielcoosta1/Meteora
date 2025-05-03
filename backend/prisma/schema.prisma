@@ -20,3 +20,21 @@ model Produto {
   material  String
   genero    String
 }
+
+model ProdutoNoCarrinho {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  produtoId  String // Referência ao produto original
+  nome       String // Cópia do título
+  preco      Float
+  imagem     String
+  quantidade Int
+  carrinho   Carrinho @relation(fields: [carrinhoId], references: [id])
+  carrinhoId String   @db.ObjectId
+}
+
+model Carrinho {
+  id           String              @id @default(auto()) @map("_id") @db.ObjectId
+  userId       String              @unique
+  produtos     ProdutoNoCarrinho[] // <--- relação com os produtos no carrinho
+  atualizadoEm DateTime            @default(now())
+}
