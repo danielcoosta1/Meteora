@@ -1,28 +1,26 @@
-import { useState, useEffect } from "react";
+import { useReducer, useEffect } from "react";
 import { AuthContext } from "./AuthContext";
+import { authReducer } from "./authReducer";
+import { initialState } from "./initialState";
+import { localStorageService } from "../../services/localStorageService";
 
 export const AuthProvider = ({ children }) => {
-  const [usuario, setUsuario] = useState(null);
+  const [state, dispatch] = useReducer(authReducer, initialState);
 
   useEffect(() => {
-    const usuarioSalvo = localStorage.getItem("usuario");
-    if (usuarioSalvo) {
-      setUsuario(JSON.parse(usuarioSalvo));
-    }
-  }, []);
+    localStorageService.salvar("usuario", state.usuario);
+  }, [state.usuario]);
 
   const login = (dadosUsuario) => {
-    setUsuario(dadosUsuario);
-    localStorage.setItem("usuario", JSON.stringify(dadosUsuario));
+    dispatch({ type: "LOGIN", payload: dadosUsuario });
   };
 
   const logout = () => {
-    setUsuario(null);
-    localStorage.removeItem("usuario");
+    dispatch({ type: "LOGOUT" });
   };
 
   return (
-    <AuthContext.Provider value={{ usuario, login, logout }}>
+    <AuthContext.Provider value={{ usuario: state.usuario, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
