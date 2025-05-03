@@ -27,7 +27,7 @@ import { useLocation } from "react-router-dom";
 import { useProdutos } from "../../hooks/useProdutos";
 
 const BarraDeNavegacao = () => {
-  const { carrinho, abrirMenu} = useCarrinho();
+  const { carrinho, abrirMenu } = useCarrinho();
   const { termoBusca, setTermoBusca } = useProdutos(); // Importa o hook de carrinho
   const { favoritos } = useFavoritos();
 
@@ -44,7 +44,10 @@ const BarraDeNavegacao = () => {
   // Flags para verificar as rotas específicas
   const exibirCampoBusca =
     rotaAtual === "/produtos" || rotaAtual === "/favoritos";
-  const exibirIconeCarrinho = rotaAtual === "/" || rotaAtual === "/favoritos" || rotaAtual === "/produtos";
+  const exibirIconeCarrinho =
+    rotaAtual === "/" ||
+    rotaAtual === "/favoritos" ||
+    rotaAtual === "/produtos";
 
   return (
     <NavEstilizada>
@@ -103,10 +106,16 @@ const BarraDeNavegacao = () => {
           </NavLink>
         </ContainerIcones>
         <ContainerAuth>
-          <NavLink to="/login">
+          <NavLink
+            to="/login"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
             <button>Login</button>
           </NavLink>
-          <NavLink to="/cadastro">
+          <NavLink
+            to="/cadastro"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
             <button>Cadastro</button>
           </NavLink>
         </ContainerAuth>
