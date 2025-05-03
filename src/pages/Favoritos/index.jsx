@@ -1,6 +1,6 @@
 import { FaExpand, FaHeart, FaRegHeart } from "react-icons/fa";
 import BarraDeNavegacao from "../../components/BarraDeNavegacao";
-import { useCarrinho } from "../../hooks/useCarrinho";
+
 import { useFavoritos } from "../../hooks/useFavoritos";
 import { BiEraser } from "react-icons/bi";
 import { LuHandHeart } from "react-icons/lu";
@@ -16,7 +16,7 @@ import imgBannerFavoritos from "/assets/images/banner-carrinho.png";
 
 import ModoAmpliar from "../../components/ModoAmpliar";
 import VoltarHome from "../../components/VoltarHome";
-import MenuLateralCarrinho from "../../components/MenuLateralCarrinho";
+
 import TituloSecao from "../../components/TituloDefaultSecao";
 import { useProdutos } from "../../hooks/useProdutos";
 
@@ -32,7 +32,6 @@ const Favoritos = () => {
   } = useFavoritos();
 
   const { produtoAmpliado } = useProdutos();
-  const { menuAberto } = useCarrinho();
 
   return (
     <>
@@ -63,7 +62,7 @@ const Favoritos = () => {
           )}
         </GridProdutos>
       </SecaoFavoritos>
-      {menuAberto && <MenuLateralCarrinho />}
+
       {produtoAmpliado && <ModoAmpliar />}
     </>
   );
