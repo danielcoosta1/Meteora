@@ -1,7 +1,7 @@
 import { useReducer, useEffect } from "react";
 import { AuthContext } from "./AuthContext";
 import { authReducer } from "./authReducer";
-import { initialState } from "./initialState";
+import { initialState } from "./inicialState";
 import { localStorageService } from "../../services/localStorageService";
 
 export const AuthProvider = ({ children }) => {
