@@ -6,7 +6,6 @@ import { carrinhoReducer } from "./carrinhoReducer";
 
 import { initialState } from "./initialState";
 
-
 import { useAuth } from "../../hooks/useAuth";
 import axios from "axios";
 
@@ -19,11 +18,18 @@ export const CarrinhoProvider = ({ children }) => {
 
   const { usuario } = useAuth(); // assume que já está logado e tem `id` ou `userId`
 
-  // Carrega o carrinho do banco de dados
+  //Carrega o carrinho - busca os dados na API
   useEffect(() => {
-    const carregarCarrinho = async () => {
-      if (!usuario?.id) return;
+    if (usuario === undefined) return; // Ainda carregando
 
+    if (!usuario?.id) {
+      // Se não estiver logado, limpar o carrinho local
+      dispatch({ type: "LIMPAR_CARRINHO" });
+      ultimaVersaoSalva.current = [];
+      return;
+    }
+
+    const carregarCarrinho = async () => {
       try {
         const resposta = await axios.get(
           `http://localhost:3001/carrinho/${usuario.id}`
