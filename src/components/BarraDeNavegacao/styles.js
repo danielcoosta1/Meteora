@@ -60,6 +60,8 @@ const ContainerIcones = styled.div`
   gap: 2rem;
 `;
 
+
+
 const IconeCarrinho = styled.div`
   position: relative;
   display: flex;
@@ -134,6 +136,11 @@ const ListaEstilizada = styled.ul`
 
 const ImgEstilizada = styled.img``;
 
+
+const ContainerAuth = styled.div``;
+
+
+
 export {
   ImgEstilizada,
   InputEstilizado,
@@ -146,4 +153,5 @@ export {
   IconeFavoritos,
   CampoFormSearch,
   Button,
+  ContainerAuth
 };

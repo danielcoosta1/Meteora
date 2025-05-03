@@ -10,6 +10,7 @@ import {
   NavEstilizada,
   IconeCarrinho,
   IconeFavoritos,
+  ContainerAuth,
 } from "./styles";
 
 import { useCarrinho } from "../../hooks/useCarrinho";
@@ -101,6 +102,14 @@ const BarraDeNavegacao = () => {
             )}
           </NavLink>
         </ContainerIcones>
+        <ContainerAuth>
+          <NavLink to="/login">
+            <button>Login</button>
+          </NavLink>
+          <NavLink to="/cadastro">
+            <button>Cadastro</button>
+          </NavLink>
+        </ContainerAuth>
       </ConteinerDireitoEstilizado>
     </NavEstilizada>
   );
