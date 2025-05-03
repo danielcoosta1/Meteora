@@ -11,6 +11,7 @@ import Promocoes from "./pages/Promocoes";
 import { CarrinhoProvider } from "./context/carrinho/CarrinhoProvider";
 import { FavoritosProvider } from "./context/favoritos/FavoritosProvider";
 import { ProdutoProvider } from "./context/produtos/ProdutosProvider";
+import { AuthProvider } from "./context/auth/AuthProvider";
 
 import Favoritos from "./pages/Favoritos";
 
@@ -19,30 +20,32 @@ import Produtos from "./pages/Produtos";
 function App() {
   return (
     <Router>
-      <ProdutoProvider>
-        <FavoritosProvider>
-          <CarrinhoProvider>
-            <ToastContainer
-              position="top-right"
-              autoClose={2000}
-              hideProgressBar={false}
-              closeOnClick
-              pauseOnHover
-              draggable
-              theme="colored"
-            />
-            <Routes>
-              <Route path="/produtos" element={<Produtos />} />
-              <Route path="/promocoes" element={<Promocoes />} />
-              <Route path="/novidades" element={<Novidades />} />
-              <Route path="/" element={<Home />} />
-              <Route path="/checkout" element={<Checkout />} />
-              <Route path="/favoritos" element={<Favoritos />} />
-              <Route path="*" element={<Error />} />
-            </Routes>
-          </CarrinhoProvider>
-        </FavoritosProvider>
-      </ProdutoProvider>
+      <AuthProvider>
+        <ProdutoProvider>
+          <FavoritosProvider>
+            <CarrinhoProvider>
+              <ToastContainer
+                position="top-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                closeOnClick
+                pauseOnHover
+                draggable
+                theme="colored"
+              />
+              <Routes>
+                <Route path="/produtos" element={<Produtos />} />
+                <Route path="/promocoes" element={<Promocoes />} />
+                <Route path="/novidades" element={<Novidades />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/favoritos" element={<Favoritos />} />
+                <Route path="*" element={<Error />} />
+              </Routes>
+            </CarrinhoProvider>
+          </FavoritosProvider>
+        </ProdutoProvider>
+      </AuthProvider>
     </Router>
   );
 }
