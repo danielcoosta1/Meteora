@@ -16,6 +16,7 @@ import { AuthProvider } from "./context/auth/AuthProvider";
 import Favoritos from "./pages/Favoritos";
 
 import Produtos from "./pages/Produtos";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
                 theme="colored"
               />
               <Routes>
+                <Route path="/login" element={<Login/>} />
                 <Route path="/produtos" element={<Produtos />} />
                 <Route path="/promocoes" element={<Promocoes />} />
                 <Route path="/novidades" element={<Novidades />} />
