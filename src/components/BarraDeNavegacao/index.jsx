@@ -31,7 +31,7 @@ const BarraDeNavegacao = () => {
   const { carrinho, abrirMenu } = useCarrinho();
   const { termoBusca, setTermoBusca } = useProdutos(); // Importa o hook de carrinho
   const { favoritos } = useFavoritos();
-  const { usuario } = useAuth();
+  const { usuario,logout } = useAuth();
 
   const location = useLocation();
   const rotaAtual = location.pathname;
@@ -101,21 +101,29 @@ const BarraDeNavegacao = () => {
             )}
           </NavLink>
         </ContainerIcones>
-        {!usuario && rotaAtual !== "/login" && rotaAtual !== "/cadastro" && (
+        {usuario ? (
           <ContainerAuth>
-            <NavLink
-              to="/login"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              <button>Login</button>
-            </NavLink>
-            <NavLink
-              to="/cadastro"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              <button>Cadastro</button>
-            </NavLink>
+            <span>Olá, {usuario.nome}!</span>
+            <button onClick={logout}>Sair</button>
           </ContainerAuth>
+        ) : (
+          rotaAtual !== "/login" &&
+          rotaAtual !== "/cadastro" && (
+            <ContainerAuth>
+              <NavLink
+                to="/login"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                <button>Login</button>
+              </NavLink>
+              <NavLink
+                to="/cadastro"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                <button>Cadastro</button>
+              </NavLink>
+            </ContainerAuth>
+          )
         )}
       </ConteinerDireitoEstilizado>
     </NavEstilizada>
