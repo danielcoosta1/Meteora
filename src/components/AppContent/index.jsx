@@ -12,6 +12,7 @@ import Novidades from "../../pages/Novidades";
 import Promocoes from "../../pages/Promocoes";
 import Favoritos from "../../pages/Favoritos";
 import { useCarrinho } from "../../hooks/useCarrinho";
+import Cadastro from "../../pages/Cadastro";
 
 const AppContent = () => {
   const { menuAberto } = useCarrinho();
@@ -32,6 +33,7 @@ const AppContent = () => {
 
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/cadastro" element={<Cadastro />} />
         <Route path="/produtos" element={<Produtos />} />
         <Route path="/promocoes" element={<Promocoes />} />
         <Route path="/novidades" element={<Novidades />} />
