@@ -11,10 +11,26 @@ export const AuthProvider = ({ children }) => {
     localStorageService.salvar("usuario", state.usuario);
   }, [state.usuario]);
 
-  const login = (dadosUsuario) => {
-    dispatch({ type: "LOGIN", payload: dadosUsuario });
+  const login = async (credenciais) => {
+    try {
+      const resposta = await fetch("http://localhost:3001/usuarios/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(credenciais),
+      });
+  
+      if (!resposta.ok) {
+        throw new Error("Erro ao fazer login");
+      }
+  
+      const usuario = await resposta.json();
+      dispatch({ type: "LOGIN", payload: usuario });
+    } catch (erro) {
+      console.error("Erro no login:", erro.message);
+      // Aqui você pode mostrar feedback ao usuário, etc.
+    }
   };
-
+  
   const logout = () => {
     dispatch({ type: "LOGOUT" });
   };

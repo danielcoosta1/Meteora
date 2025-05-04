@@ -11,16 +11,17 @@ import {
   BotaoSubmit,
   LinkCadastro,
 } from "./styles";
+import { useAuth } from "../../hooks/useAuth";
 
 const Login = () => {
-    
+  const { login } = useAuth();
+
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulação de login será feita futuramente
-    console.log("Login:", { email, senha });
+    await login({ email, senha });
   };
 
   return (
