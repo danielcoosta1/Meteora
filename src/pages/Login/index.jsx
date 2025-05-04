@@ -1,6 +1,6 @@
-// src/pages/Login/Login.jsx
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/auth/AuthContext";
 import BarraDeNavegacao from "../../components/BarraDeNavegacao";
 import {
   ContainerPagina,
@@ -11,17 +11,24 @@ import {
   BotaoSubmit,
   LinkCadastro,
 } from "./styles";
-import { useAuth } from "../../hooks/useAuth";
 
 const Login = () => {
-  const { login } = useAuth();
-
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [erro, setErro] = useState("");
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login({ email, senha });
+    setErro("");
+    try {
+      await login({ email, senha });
+      navigate("/");
+    } catch (err) {
+      console.error("Erro ao fazer login:", err.message);
+      setErro("E-mail ou senha inválidos.");
+    }
   };
 
   return (
@@ -30,6 +37,7 @@ const Login = () => {
       <ContainerPagina>
         <ConteudoCentralizado>
           <Titulo>Entrar na sua conta</Titulo>
+          {erro && <p style={{ color: "red", marginBottom: "1rem" }}>{erro}</p>}
           <Formulario onSubmit={handleSubmit}>
             <CampoInput
               type="email"

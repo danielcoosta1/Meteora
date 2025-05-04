@@ -18,19 +18,19 @@ export const AuthProvider = ({ children }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(credenciais),
       });
-  
+
       if (!resposta.ok) {
-        throw new Error("Erro ao fazer login");
+        throw new Error("Credenciais inválidas");
       }
-  
+
       const usuario = await resposta.json();
       dispatch({ type: "LOGIN", payload: usuario });
     } catch (erro) {
       console.error("Erro no login:", erro.message);
-      // Aqui você pode mostrar feedback ao usuário, etc.
+      throw erro; // isso permite capturar no Login.jsx
     }
   };
-  
+
   const logout = () => {
     dispatch({ type: "LOGOUT" });
   };
