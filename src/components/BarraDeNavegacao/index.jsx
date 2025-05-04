@@ -11,6 +11,7 @@ import {
   IconeCarrinho,
   IconeFavoritos,
   ContainerAuth,
+  ContainerLogado,
 } from "./styles";
 
 import { useCarrinho } from "../../hooks/useCarrinho";
@@ -102,10 +103,10 @@ const BarraDeNavegacao = () => {
           </NavLink>
         </ContainerIcones>
         {usuario ? (
-          <ContainerAuth>
+          <ContainerLogado>
             <span>Olá, {usuario.nome}!</span>
             <button onClick={logout}>Sair</button>
-          </ContainerAuth>
+          </ContainerLogado>
         ) : (
           rotaAtual !== "/login" &&
           rotaAtual !== "/cadastro" && (

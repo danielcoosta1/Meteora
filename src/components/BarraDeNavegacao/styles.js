@@ -161,6 +161,13 @@ const ContainerAuth = styled.div`
   }
 `;
 
+const ContainerLogado = styled.div`
+  display: flex;
+  gap: 1rem;
+  
+`;
+
+
 export {
   ImgEstilizada,
   InputEstilizado,
@@ -174,4 +181,5 @@ export {
   CampoFormSearch,
   Button,
   ContainerAuth,
+  ContainerLogado
 };
