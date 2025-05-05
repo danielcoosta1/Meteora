@@ -16,7 +16,7 @@ const RotaPrivada = () => {
   return usuario ? (
     <Outlet />
   ) : (
-    <Navigate to="/login" replace state={{ from: location }} />
+    <Navigate to="/login" replace state={{ from: location }} /> //Guarda a rota anterior no state.from
   );
 };
 
