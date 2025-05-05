@@ -18,4 +18,12 @@ export const localStorageService = {
       return null;
     }
   },
+
+  remover(key) {
+    try {
+      localStorage.removeItem(key);
+    } catch (error) {
+      console.error("Erro ao remover do localStorage:", error);
+    }
+  },
 };

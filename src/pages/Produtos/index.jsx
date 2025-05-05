@@ -11,10 +11,8 @@ import {
 import { BiEraser } from "react-icons/bi";
 
 import Categorias from "../../components/Categoria";
-import { useCarrinho } from "../../hooks/useCarrinho";
-import BarraDeNavegacao from "../../components/BarraDeNavegacao";
 
-import MenuLateralCarrinho from "../../components/MenuLateralCarrinho";
+import BarraDeNavegacao from "../../components/BarraDeNavegacao";
 
 import ModoAmpliar from "../../components/ModoAmpliar";
 import TituloSecao from "../../components/TituloDefaultSecao";
@@ -25,7 +23,7 @@ import AsiderFiltros from "../../components/AsiderFiltros";
 import ProdutoCard from "../../components/ProdutoCard";
 
 const Produtos = () => {
-  const { menuAberto } = useCarrinho(); // Importa o hook de categorias
+  // Importa o hook de categorias
   const {
     produtoAmpliado,
     produtosParaExibir,
@@ -37,7 +35,7 @@ const Produtos = () => {
     limparFiltroGenero,
     gerarFiltrosAplicados,
   } = useProdutos();
-  
+
   // Função de remoção de filtro específico
   const removerFiltro = (tipo) => {
     if (tipo === "categoria") {
@@ -100,7 +98,7 @@ const Produtos = () => {
               ))
             )}
           </GridProdutos>
-          {menuAberto && <MenuLateralCarrinho />}
+
           {produtoAmpliado && <ModoAmpliar />}
         </ContainerWrapper>
       </ContainerProdutos>

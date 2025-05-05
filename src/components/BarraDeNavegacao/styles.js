@@ -13,13 +13,14 @@ const ConteinerEsquerdaEstilizado = styled.section`
   align-items: center;
   justify-content: center;
   gap: 3rem;
+ 
 `;
 
 const ConteinerDireitoEstilizado = styled.section`
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
+
+  gap: 10rem;
 `;
 
 const CampoFormSearch = styled.form`
@@ -134,6 +135,39 @@ const ListaEstilizada = styled.ul`
 
 const ImgEstilizada = styled.img``;
 
+const ContainerAuth = styled.div`
+  display: flex;
+  gap: 1rem;
+
+  a button {
+    padding: 0.75rem 1.5rem;
+    border: 1px solid #ffffff;
+    background-color: transparent;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  a button:hover {
+    background-color: #ffffff;
+    color: #000000;
+  }
+
+  a.active button {
+    background-color: #daff01;
+    color: #000000;
+    font-weight: bold;
+  }
+`;
+
+const ContainerLogado = styled.div`
+  display: flex;
+  gap: 1rem;
+  
+`;
+
+
 export {
   ImgEstilizada,
   InputEstilizado,
@@ -146,4 +180,6 @@ export {
   IconeFavoritos,
   CampoFormSearch,
   Button,
+  ContainerAuth,
+  ContainerLogado
 };

@@ -1,28 +1,82 @@
 import { useReducer, useEffect, useMemo, useRef } from "react";
 import { isEqual } from "lodash";
 import { CarrinhoContext } from "./CarrinhoContext";
-
 import { carrinhoReducer } from "./carrinhoReducer";
-
 import { initialState } from "./initialState";
+import { useAuth } from "../../hooks/useAuth";
+import { CarrinhoService } from "./CarrinhoService";
 import { localStorageService } from "../../services/localStorageService";
 
 export const CarrinhoProvider = ({ children }) => {
-  // Usando useReducer para gerenciar o estado do carrinho
   const [state, dispatch] = useReducer(carrinhoReducer, initialState);
-
-  // Ref para armazenar a última versão salva do carrinho
   const ultimaVersaoSalva = useRef();
+  const { usuario } = useAuth();
 
-  // Carrega o carrinho do localStorage quando o componente é montado
+  // Carregar carrinho do localStorage se não houver usuário logado
   useEffect(() => {
-    // Verifica se já existe um carrinho salvo no localStorage
-    if (!isEqual(ultimaVersaoSalva.current, state.carrinho)) {
-      localStorageService.salvar("carrinho", state.carrinho);
-      ultimaVersaoSalva.current = state.carrinho; // Atualiza a última versão salva
+    if (!usuario?.id) {
+      const carrinhoLocal = localStorageService.ler("carrinho") || [];
+      dispatch({ type: "CARREGAR_CARRINHO", payload: carrinhoLocal });
+      ultimaVersaoSalva.current = carrinhoLocal;
     }
-  }, [state.carrinho]);
+  }, [usuario]);
 
+  // Carregar carrinho do backend e mesclar se necessário
+  useEffect(() => {
+    if (usuario === undefined || !usuario?.id) return;
+
+    const carregarCarrinhoComMesclagem = async () => {
+      try {
+        const carrinhoSalvo = await CarrinhoService.buscarCarrinho(usuario.id);
+
+        if (state.carrinho.length > 0) {
+          const carrinhoMesclado = [...carrinhoSalvo];
+
+          state.carrinho.forEach((produtoLocal) => {
+            const index = carrinhoMesclado.findIndex((p) => p.id === produtoLocal.id);
+            if (index > -1) {
+              carrinhoMesclado[index].quantidade += produtoLocal.quantidade;
+            } else {
+              carrinhoMesclado.push(produtoLocal);
+            }
+          });
+
+          dispatch({ type: "CARREGAR_CARRINHO", payload: carrinhoMesclado });
+          ultimaVersaoSalva.current = carrinhoMesclado;
+
+          await CarrinhoService.salvarCarrinho(usuario.id, carrinhoMesclado);
+        } else {
+          dispatch({ type: "CARREGAR_CARRINHO", payload: carrinhoSalvo });
+          ultimaVersaoSalva.current = carrinhoSalvo;
+        }
+      } catch (error) {
+        console.error("Erro ao carregar carrinho:", error);
+      }
+    };
+
+    carregarCarrinhoComMesclagem();
+  }, [usuario, state.carrinho]);
+
+  // Sincronizar carrinho com backend ou localStorage
+  useEffect(() => {
+    const salvarCarrinho = async () => {
+      if (usuario?.id) {
+        if (isEqual(ultimaVersaoSalva.current, state.carrinho)) return;
+        try {
+          await CarrinhoService.salvarCarrinho(usuario.id, state.carrinho);
+          ultimaVersaoSalva.current = state.carrinho;
+        } catch (error) {
+          console.error("Erro ao salvar carrinho:", error);
+        }
+      } else {
+        localStorageService.salvar("carrinho", state.carrinho);
+      }
+    };
+
+    salvarCarrinho();
+  }, [state.carrinho, usuario]);
+
+  // Ações
   const adicionarAoCarrinho = (produto) => {
     dispatch({ type: "ADICIONAR_PRODUTO", payload: produto });
   };
@@ -47,6 +101,9 @@ export const CarrinhoProvider = ({ children }) => {
     const confirmar = window.confirm("Deseja limpar o carrinho?");
     if (confirmar) {
       dispatch({ type: "LIMPAR_CARRINHO" });
+      if (!usuario?.id) {
+        localStorageService.remover("carrinho");
+      }
     }
   };
 
@@ -65,9 +122,16 @@ export const CarrinhoProvider = ({ children }) => {
     }
     alert("Compra finalizada com sucesso! 🎉");
     dispatch({ type: "FINALIZAR_COMPRA" });
+
+    if (usuario?.id) {
+      CarrinhoService.salvarCarrinho(usuario.id, []);
+      ultimaVersaoSalva.current = [];
+    } else {
+      localStorageService.remover("carrinho");
+    }
   };
 
-  // Calcula o total de preço e quantidade do carrinho
+  // Total
   const { totalPreco, totalQuantidade } = useMemo(() => {
     const resultado = state.carrinho.reduce(
       (acc, item) => {

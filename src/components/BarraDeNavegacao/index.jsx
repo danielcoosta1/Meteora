@@ -10,6 +10,8 @@ import {
   NavEstilizada,
   IconeCarrinho,
   IconeFavoritos,
+  ContainerAuth,
+  ContainerLogado,
 } from "./styles";
 
 import { useCarrinho } from "../../hooks/useCarrinho";
@@ -24,11 +26,13 @@ import { NavLink } from "react-router-dom";
 
 import { useLocation } from "react-router-dom";
 import { useProdutos } from "../../hooks/useProdutos";
+import { useAuth } from "../../hooks/useAuth";
 
 const BarraDeNavegacao = () => {
-  const { carrinho, abrirMenu} = useCarrinho();
+  const { carrinho, abrirMenu } = useCarrinho();
   const { termoBusca, setTermoBusca } = useProdutos(); // Importa o hook de carrinho
   const { favoritos } = useFavoritos();
+  const { usuario,logout } = useAuth();
 
   const location = useLocation();
   const rotaAtual = location.pathname;
@@ -43,7 +47,6 @@ const BarraDeNavegacao = () => {
   // Flags para verificar as rotas específicas
   const exibirCampoBusca =
     rotaAtual === "/produtos" || rotaAtual === "/favoritos";
-  const exibirIconeCarrinho = rotaAtual === "/" || rotaAtual === "/favoritos" || rotaAtual === "/produtos";
 
   return (
     <NavEstilizada>
@@ -80,17 +83,15 @@ const BarraDeNavegacao = () => {
         )}
 
         <ContainerIcones>
-          {exibirIconeCarrinho && (
-            <IconeCarrinho onClick={abrirMenu}>
-              <ImgEstilizada
-                src={iconeCarrinho}
-                alt="Abrir carrinho de compras"
-              />
-              <span>
-                {carrinho.reduce((acc, item) => acc + item.quantidade, 0)}
-              </span>
-            </IconeCarrinho>
-          )}
+          <IconeCarrinho onClick={abrirMenu}>
+            <ImgEstilizada
+              src={iconeCarrinho}
+              alt="Abrir carrinho de compras"
+            />
+            <span>
+              {carrinho.reduce((acc, item) => acc + item.quantidade, 0)}
+            </span>
+          </IconeCarrinho>
 
           <NavLink to="/favoritos">
             {({ isActive }) => (
@@ -101,6 +102,30 @@ const BarraDeNavegacao = () => {
             )}
           </NavLink>
         </ContainerIcones>
+        {usuario ? (
+          <ContainerLogado>
+            <span>Olá, {usuario.nome}!</span>
+            <button onClick={logout}>Sair</button>
+          </ContainerLogado>
+        ) : (
+          rotaAtual !== "/login" &&
+          rotaAtual !== "/cadastro" && (
+            <ContainerAuth>
+              <NavLink
+                to="/login"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                <button>Login</button>
+              </NavLink>
+              <NavLink
+                to="/cadastro"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                <button>Cadastro</button>
+              </NavLink>
+            </ContainerAuth>
+          )
+        )}
       </ConteinerDireitoEstilizado>
     </NavEstilizada>
   );
