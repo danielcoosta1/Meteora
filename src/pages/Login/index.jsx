@@ -1,6 +1,6 @@
-import { useState, useContext } from "react";
+import { useState, useLocation } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/auth/AuthContext";
+
 import BarraDeNavegacao from "../../components/BarraDeNavegacao";
 import {
   ContainerPagina,
@@ -11,23 +11,35 @@ import {
   BotaoSubmit,
   LinkCadastro,
 } from "./styles";
+import { useAuth } from "../../hooks/useAuth";
+import { toastErro } from "../../utils/toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+
   const [erro, setErro] = useState("");
-  const { login } = useContext(AuthContext);
+
+
+
+  const { login } = useAuth();
+
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErro("");
+
     try {
       await login({ email, senha });
-      navigate("/");
+      navigate(from, { replace: true }); // Redireciona para a rota protegida original
     } catch (err) {
       console.error("Erro ao fazer login:", err.message);
       setErro("E-mail ou senha inválidos.");
+      toastErro("E-mail ou senha inválidos.");
     }
   };
 
