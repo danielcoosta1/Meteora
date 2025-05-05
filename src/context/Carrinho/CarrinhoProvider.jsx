@@ -10,6 +10,7 @@ import { localStorageService } from "../../services/localStorageService";
 export const CarrinhoProvider = ({ children }) => {
   const [state, dispatch] = useReducer(carrinhoReducer, initialState);
   const ultimaVersaoSalva = useRef();
+  const jaMesclouCarrinho = useRef(false); // Referência para controlar mesclagem
   const { usuario } = useAuth();
 
   // Carregar carrinho do localStorage se não houver usuário logado
@@ -23,17 +24,24 @@ export const CarrinhoProvider = ({ children }) => {
 
   // Carregar carrinho do backend e mesclar se necessário
   useEffect(() => {
-    if (usuario === undefined || !usuario?.id) return;
+    if (!usuario?.id || jaMesclouCarrinho.current) return; // Verifica se já foi mesclado
 
     const carregarCarrinhoComMesclagem = async () => {
       try {
+        // Buscar carrinho salvo no backend
         const carrinhoSalvo = await CarrinhoService.buscarCarrinho(usuario.id);
 
+        // Mesclando carrinho do backend com o carrinho local
+        let carrinhoFinal = carrinhoSalvo;
+
         if (state.carrinho.length > 0) {
+          // Mesclando produtos do carrinho local com o do backend
           const carrinhoMesclado = [...carrinhoSalvo];
 
           state.carrinho.forEach((produtoLocal) => {
-            const index = carrinhoMesclado.findIndex((p) => p.id === produtoLocal.id);
+            const index = carrinhoMesclado.findIndex(
+              (p) => p.id === produtoLocal.id
+            );
             if (index > -1) {
               carrinhoMesclado[index].quantidade += produtoLocal.quantidade;
             } else {
@@ -41,40 +49,45 @@ export const CarrinhoProvider = ({ children }) => {
             }
           });
 
-          dispatch({ type: "CARREGAR_CARRINHO", payload: carrinhoMesclado });
-          ultimaVersaoSalva.current = carrinhoMesclado;
-
+          carrinhoFinal = carrinhoMesclado;
+          // Salvar o carrinho mesclado no backend
           await CarrinhoService.salvarCarrinho(usuario.id, carrinhoMesclado);
-        } else {
-          dispatch({ type: "CARREGAR_CARRINHO", payload: carrinhoSalvo });
-          ultimaVersaoSalva.current = carrinhoSalvo;
+          localStorageService.remover("carrinho");
         }
+
+        // Atualizar estado com o carrinho final (mesclado ou não)
+        dispatch({ type: "CARREGAR_CARRINHO", payload: carrinhoFinal });
+        ultimaVersaoSalva.current = carrinhoFinal;
+        jaMesclouCarrinho.current = true; // Marcar como mesclado
       } catch (error) {
         console.error("Erro ao carregar carrinho:", error);
       }
     };
 
     carregarCarrinhoComMesclagem();
-  }, [usuario, state.carrinho]);
+  }, [usuario, state.carrinho]); // Atualiza quando o usuário ou carrinho local muda
 
   // Sincronizar carrinho com backend ou localStorage
   useEffect(() => {
     const salvarCarrinho = async () => {
       if (usuario?.id) {
+        // Evita salvar se não houver mudança no carrinho
         if (isEqual(ultimaVersaoSalva.current, state.carrinho)) return;
         try {
+          // Salvar carrinho no backend
           await CarrinhoService.salvarCarrinho(usuario.id, state.carrinho);
-          ultimaVersaoSalva.current = state.carrinho;
+          ultimaVersaoSalva.current = state.carrinho; // Atualiza a versão salva
         } catch (error) {
           console.error("Erro ao salvar carrinho:", error);
         }
       } else {
+        // Se não estiver logado, salva no localStorage
         localStorageService.salvar("carrinho", state.carrinho);
       }
     };
 
     salvarCarrinho();
-  }, [state.carrinho, usuario]);
+  }, [state.carrinho, usuario]); // Só sincroniza quando o carrinho ou o usuário muda
 
   // Ações
   const adicionarAoCarrinho = (produto) => {
