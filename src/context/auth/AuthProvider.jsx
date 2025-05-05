@@ -30,8 +30,9 @@ export const AuthProvider = ({ children }) => {
       throw erro; // isso permite capturar no Login.jsx
     }
   };
-
   const logout = () => {
+    localStorageService.remover("usuario"); // Remove o usuário do localStorage
+    localStorageService.remover("carrinho"); // Remove o carrinho do localStorage também
     dispatch({ type: "LOGOUT" });
   };
 
