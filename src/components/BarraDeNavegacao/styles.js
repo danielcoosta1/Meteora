@@ -164,7 +164,22 @@ const ContainerAuth = styled.div`
 const ContainerLogado = styled.div`
   display: flex;
   gap: 1rem;
-  
+  align-items: center;
+  justify-content: center;
+`;
+
+const UsuarioLogado = styled.span`
+color:  #daff01;
+font-size:1.25rem;
+`;
+
+const ButtonLogout = styled.button`
+padding: .5rem .75rem;
+color:  #ffffff;
+background-color: transparent;
+border: none;
+text-decoration: underline;
+font-size: 1rem;
 `;
 
 
@@ -181,5 +196,7 @@ export {
   CampoFormSearch,
   Button,
   ContainerAuth,
-  ContainerLogado
+  ContainerLogado,
+  UsuarioLogado,
+  ButtonLogout
 };
