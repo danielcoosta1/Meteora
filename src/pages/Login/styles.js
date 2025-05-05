@@ -1,25 +1,28 @@
-// src/pages/Login/styles.js
 import styled from "styled-components";
 
 export const ContainerPagina = styled.main`
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  background-color: #f4f4f4;
+  padding: 20px;
 `;
 
 export const ConteudoCentralizado = styled.section`
-  background-color: white;
-  padding: 3rem 2rem;
-  margin-top: 4rem;
-  border-radius: 16px;
-  box-shadow: 0 0 16px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
 `;
 
 export const Titulo = styled.h2`
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  text-align: center;
 `;
 
 export const Formulario = styled.form`
@@ -37,7 +40,7 @@ export const CampoInput = styled.input`
 
 export const BotaoSubmit = styled.button`
   padding: 0.75rem;
-  background-color: #ffa724;
+  background-color: #9353ff;
   color: white;
   border: none;
   border-radius: 8px;
@@ -46,7 +49,7 @@ export const BotaoSubmit = styled.button`
   transition: background-color 0.2s;
 
   &:hover {
-    background-color: #ff8c00;
+    background-color: #7a40d5;
   }
 `;
 
@@ -55,7 +58,7 @@ export const LinkCadastro = styled.p`
   margin-top: 1rem;
 
   a {
-    color: #ffa724;
+    color: #9353ff;
     font-weight: bold;
     text-decoration: none;
 

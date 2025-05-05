@@ -1,69 +1,78 @@
-// src/pages/Cadastro/styles.js
 import styled from "styled-components";
 
 export const ContainerPagina = styled.div`
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  padding: 5rem 1rem;
+  background-color: #f4f4f4;
+  padding: 20px;
 `;
 
 export const ConteudoCentralizado = styled.div`
-  max-width: 400px;
+  max-width: 500px;
   width: 100%;
-  background-color: #f9f9f9;
-  padding: 3rem 2rem;
+  background-color: #fff;
+  padding: 2rem;
   border-radius: 8px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
-export const Titulo = styled.h2`
+export const Titulo = styled.h1`
+  font-size: 24px;
+  color: #5e2ca5;
+  margin-bottom: 1.5rem;
   text-align: center;
-  margin-bottom: 2rem;
-  font-size: 1.8rem;
-  color: #333;
 `;
 
 export const Formulario = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 `;
 
 export const CampoInput = styled.input`
-  padding: 0.8rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
 
   &:focus {
-    outline: none;
-    border-color: #ffcb05;
-    box-shadow: 0 0 0 2px rgba(255, 203, 5, 0.3);
+    border-color: #9353ff;
   }
 `;
 
 export const BotaoSubmit = styled.button`
-  background-color: #000;
-  color: #fff;
+  padding: 12px;
+  background-color: #9353ff;
+  color: white;
+  font-size: 16px;
   border: none;
-  padding: 0.9rem;
-  font-size: 1rem;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #333;
+    background-color: #5e2ca5;
   }
 `;
 
-export const LinkCadastro = styled.p`
-  margin-top: 2rem;
+export const ConteinerLinks = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const LinkCadastro = styled.div`
   text-align: center;
-  font-size: 0.9rem;
+  margin-top: 1rem;
 
   a {
-    color: #ffcb05;
+    color: #9353ff;
     text-decoration: none;
     font-weight: bold;
 
@@ -71,4 +80,28 @@ export const LinkCadastro = styled.p`
       text-decoration: underline;
     }
   }
+`;
+
+export const BotaoAlternativo = styled.button`
+  padding: 12px;
+  background-color: #ffa724;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+
+  &:hover {
+    background-color: #ff8c00;
+  }
+`;
+
+export const TextoSucesso = styled.p`
+  color: #333;
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 2rem;
 `;

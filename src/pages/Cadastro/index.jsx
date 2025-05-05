@@ -11,6 +11,7 @@ import {
   LinkCadastro,
   BotaoAlternativo,
   TextoSucesso,
+  ConteinerLinks,
 } from "./styles";
 
 const Cadastro = () => {
@@ -91,14 +92,16 @@ const Cadastro = () => {
                 Você foi cadastrado com sucesso! Agora, você pode acessar a
                 plataforma.
               </TextoSucesso>
-              <BotaoAlternativo onClick={() => navigate("/")}>
-                Ir para a Home
-              </BotaoAlternativo>
-              <LinkCadastro>
-                <Link to="/login">
-                  Ou clique aqui para fazer login e acessar sua conta.
-                </Link>
-              </LinkCadastro>
+              <ConteinerLinks>
+                <BotaoAlternativo onClick={() => navigate("/")}>
+                  Ir para a Home
+                </BotaoAlternativo>
+                <LinkCadastro>
+                  <Link to="/login">
+                    Ou clique aqui para fazer login e acessar sua conta.
+                  </Link>
+                </LinkCadastro>
+              </ConteinerLinks>
             </>
           )}
         </ConteudoCentralizado>
