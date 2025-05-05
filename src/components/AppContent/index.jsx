@@ -13,6 +13,7 @@ import Promocoes from "../../pages/Promocoes";
 import Favoritos from "../../pages/Favoritos";
 import { useCarrinho } from "../../hooks/useCarrinho";
 import Cadastro from "../../pages/Cadastro";
+import RotaPrivada from "../RotaPrivada";
 
 const AppContent = () => {
   const { menuAberto } = useCarrinho();
@@ -28,7 +29,6 @@ const AppContent = () => {
         draggable
         theme="colored"
       />
-
       {menuAberto && <MenuLateralCarrinho />}
 
       <Routes>
@@ -38,8 +38,13 @@ const AppContent = () => {
         <Route path="/promocoes" element={<Promocoes />} />
         <Route path="/novidades" element={<Novidades />} />
         <Route path="/" element={<Home />} />
-        <Route path="/checkout" element={<Checkout />} />
-        <Route path="/favoritos" element={<Favoritos />} />
+
+        {/* Rotas protegidas */}
+        <Route element={<RotaPrivada />}>
+          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/favoritos" element={<Favoritos />} />
+        </Route>
+
         <Route path="*" element={<Error />} />
       </Routes>
     </>
