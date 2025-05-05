@@ -12,7 +12,7 @@ import {
   LinkCadastro,
 } from "./styles";
 import { useAuth } from "../../hooks/useAuth";
-import { toastErro } from "../../utils/toast";
+import { toastErro, toastSucesso } from "../../utils/toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -35,6 +35,7 @@ const Login = () => {
 
     try {
       await login({ email, senha });
+      toastSucesso("Login efetuado com sucesso")
       navigate(from, { replace: true }); // Redireciona para a rota protegida original
     } catch (err) {
       console.error("Erro ao fazer login:", err.message);
