@@ -1,6 +1,6 @@
 import {  useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import { toastErro } from "../../utils/toasts"; // ajuste o caminho conforme seu projeto
+import { toastErro } from "../../utils/toast";
 import { useAuth } from "../../hooks/useAuth";
 
 const RotaPrivada = () => {
