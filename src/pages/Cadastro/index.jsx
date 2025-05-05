@@ -1,4 +1,3 @@
-// src/pages/Cadastro/Cadastro.jsx
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import BarraDeNavegacao from "../../components/BarraDeNavegacao";
@@ -10,6 +9,8 @@ import {
   CampoInput,
   BotaoSubmit,
   LinkCadastro,
+  BotaoAlternativo,
+  TextoSucesso,
 } from "./styles";
 
 const Cadastro = () => {
@@ -39,7 +40,7 @@ const Cadastro = () => {
         throw new Error(dados.erro || "Erro ao cadastrar");
       }
 
-      setCadastroSucesso(true); //// Mostrar mensagem ao invés de redirecionar
+      setCadastroSucesso(true); // Mostrar mensagem ao invés de redirecionar
     } catch (err) {
       console.error("Erro no cadastro:", err.message);
       setErro(err.message);
@@ -86,12 +87,18 @@ const Cadastro = () => {
           ) : (
             <>
               <Titulo>Cadastro realizado com sucesso!</Titulo>
-              <p style={{ marginBottom: "2rem" }}>
-                Você já está logado. Clique abaixo para voltar à página inicial.
-              </p>
-              <BotaoSubmit onClick={() => navigate("/")}>
-                Ir para Home
-              </BotaoSubmit>
+              <TextoSucesso>
+                Você foi cadastrado com sucesso! Agora, você pode acessar a
+                plataforma.
+              </TextoSucesso>
+              <BotaoAlternativo onClick={() => navigate("/")}>
+                Ir para a Home
+              </BotaoAlternativo>
+              <LinkCadastro>
+                <Link to="/login">
+                  Ou clique aqui para fazer login e acessar sua conta.
+                </Link>
+              </LinkCadastro>
             </>
           )}
         </ConteudoCentralizado>
