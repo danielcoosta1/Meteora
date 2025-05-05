@@ -1,13 +1,11 @@
 import { Router } from 'express';
-import { PrismaClient } from '@prisma/client';
+import prisma from "../lib/prisma.js"; // 👈 ajuste aqui
 
-const prisma = new PrismaClient();
 const router = Router();
 
-// GET /produtos — retorna todos os produtos
 router.get('/', async (req, res) => {
   try {
-    const produtos = await prisma.produto.findMany(); // Buscando no banco de dados
+    const produtos = await prisma.produto.findMany();
     res.json(produtos);
   } catch (erro) {
     console.error('Erro ao carregar produtos:', erro);

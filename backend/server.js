@@ -1,15 +1,12 @@
 import express from "express";
 import cors from "cors";
-import { PrismaClient } from "@prisma/client";
+import prisma from "./lib/prisma.js"; // 👈 ajuste aqui
 
 import produtosRoutes from "./routes/produtos.js";
-import carrinhoRoutes from "./routes/carrinho.js"
-import usuariosRoutes from "./routes/usuarios.js"
+import carrinhoRoutes from "./routes/carrinho.js";
+import usuariosRoutes from "./routes/usuarios.js";
 /* global process */
-
 const app = express();
-const prisma = new PrismaClient();
-
 const PORT = process.env.PORT || 3001;
 
 // Middlewares
@@ -21,20 +18,18 @@ prisma.$connect()
   .then(() => console.log('Conexão com o banco de dados estabelecida.'))
   .catch((error) => {
     console.error('Erro ao conectar com o banco de dados:', error);
-    process.exit(1); // Encerra o servidor em caso de falha na conexão com o banco de dados
+    process.exit(1);
   });
 
 // Roteamento
 app.use('/produtos', produtosRoutes);
-app.use("/carrinho", carrinhoRoutes);
-app.use("/usuarios", usuariosRoutes);
+app.use('/carrinho', carrinhoRoutes);
+app.use('/usuarios', usuariosRoutes);
 
-// Rota de teste
 app.get("/", (req, res) => {
   res.send("Backend Meteora rodando!");
 });
 
-// Inicia o servidor
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });

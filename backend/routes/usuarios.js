@@ -1,9 +1,8 @@
 import express from "express";
 import bcrypt from "bcrypt";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../lib/prisma.js"; // 👈 usa instância única
 
 const router = express.Router();
-const prisma = new PrismaClient();
 
 // Cadastro
 router.post("/cadastro", async (req, res) => {
