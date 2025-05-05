@@ -1,93 +1,202 @@
 import styled from "styled-components";
 
-export const ContainerPagina = styled.div`
-  min-height: 100vh;
+const NavEstilizada = styled.nav`
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 2rem 0;
+  background-color: #000000;
+`;
+
+const ConteinerEsquerdaEstilizado = styled.section`
+  display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f4f4f4;
-  padding: 20px;
+  gap: 3rem;
+ 
 `;
 
-export const ConteudoCentralizado = styled.div`
-  max-width: 500px;
-  width: 100%;
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-`;
-
-export const Titulo = styled.h1`
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 1.5rem;
-  text-align: center;
-`;
-
-export const Formulario = styled.form`
+const ConteinerDireitoEstilizado = styled.section`
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  align-items: center;
+
+  gap: 10rem;
 `;
 
-export const CampoInput = styled.input`
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  outline: none;
-  &:focus {
-    border-color: #3b9eff;
-  }
+const CampoFormSearch = styled.form`
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
 `;
 
-export const BotaoSubmit = styled.button`
-  padding: 12px;
-  background-color: #3b9eff;
-  color: white;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
+const Button = styled.button`
+  padding: 1rem;
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid #ffffff;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+
   &:hover {
-    background-color: #3181d9;
+    background-color: #ffffff;
+    color: #000000;
   }
 `;
 
-export const LinkCadastro = styled.div`
-  text-align: center;
-  margin-top: 1rem;
+const InputEstilizado = styled.input`
+  background: #ffffff;
+  border: 1px solid #ced4da;
+  color: #ced4da;
+  width: 60%;
+  padding: 1rem;
+
+  &::placeholder {
+    color: #6c757d;
+  }
+`;
+
+const ContainerIcones = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+`;
+
+const IconeCarrinho = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.05);
+  }
+  span {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #daff01;
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 999px;
+  }
+`;
+
+const IconeFavoritos = styled.div`
+  position: relative;
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #ffffff;
+  transition: transform 0.2s ease;
+
+  &.ativo {
+    color: #daff01;
+  }
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  span {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #daff01;
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 999px;
+  }
+`;
+
+const ListaEstilizada = styled.ul`
+  display: flex;
+  gap: 1rem;
+
   a {
-    color: #3b9eff;
+    color: #ffffff;
     text-decoration: none;
+    transition: all 0.2s ease;
+
+    &:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+
+    &.active {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+  }
+`;
+
+const ImgEstilizada = styled.img``;
+
+const ContainerAuth = styled.div`
+  display: flex;
+  gap: 1rem;
+
+  a button {
+    padding: 0.75rem 1.5rem;
+    border: 1px solid #ffffff;
+    background-color: transparent;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  a button:hover {
+    background-color: #ffffff;
+    color: #000000;
+  }
+
+  a.active button {
+    background-color: #daff01;
+    color: #000000;
     font-weight: bold;
   }
-  a:hover {
-    text-decoration: underline;
-  }
 `;
 
-export const BotaoAlternativo = styled.button`
-  padding: 12px;
-  background-color: #28a745;
-  color: white;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 1rem;
-  &:hover {
-    background-color: #218838;
-  }
+const ContainerLogado = styled.div`
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
 `;
 
-export const TextoSucesso = styled.p`
-  color: #28a745;
-  font-size: 18px;
-  text-align: center;
-  margin-bottom: 2rem;
+const UsuarioLogado = styled.span`
+color:  #daff01;
+font-size:1.25rem;
 `;
+
+const ButtonLogout = styled.button`
+padding: .5rem .75rem;
+color:  #ffffff;
+background-color: transparent;
+border: none;
+text-decoration: underline;
+font-size: 1rem;
+`;
+
+
+export {
+  ImgEstilizada,
+  InputEstilizado,
+  NavEstilizada,
+  ConteinerEsquerdaEstilizado,
+  ListaEstilizada,
+  ConteinerDireitoEstilizado,
+  ContainerIcones,
+  IconeCarrinho,
+  IconeFavoritos,
+  CampoFormSearch,
+  Button,
+  ContainerAuth,
+  ContainerLogado,
+  UsuarioLogado,
+  ButtonLogout
+};
