@@ -11,10 +11,8 @@ import {
   BotaoSubmit,
   LinkCadastro,
 } from "./styles";
-import { useAuth } from "../../hooks/useAuth";
 
 const Cadastro = () => {
-  const { login } = useAuth();
   const navigate = useNavigate();
 
   const [nome, setNome] = useState("");

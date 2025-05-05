@@ -4,7 +4,10 @@ import prisma from "./lib/prisma.js"; // 👈 ajuste aqui
 
 import produtosRoutes from "./routes/produtos.js";
 import carrinhoRoutes from "./routes/carrinho.js";
-import usuariosRoutes from "./routes/usuarios.js";
+import cadastroRoutes from "./routes/cadastro.js"; // Importando a rota de cadastro
+import loginRoutes from "./routes/login.js"; // Importando a rota de login
+
+
 /* global process */
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -24,7 +27,9 @@ prisma.$connect()
 // Roteamento
 app.use('/produtos', produtosRoutes);
 app.use('/carrinho', carrinhoRoutes);
-app.use('/usuarios', usuariosRoutes);
+app.use('/usuarios/cadastro', cadastroRoutes); // Usando a rota de cadastro
+app.use('/usuarios/login', loginRoutes); // Usando a rota de login
+
 
 app.get("/", (req, res) => {
   res.send("Backend Meteora rodando!");
