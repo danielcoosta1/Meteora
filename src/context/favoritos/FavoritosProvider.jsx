@@ -1,34 +1,80 @@
 import { FavoritosContext } from "./FavoritosContext";
-
 import { useReducer, useEffect, useRef } from "react";
-
 import { favoritosReducer } from "./favoritosReducer";
-
 import { initialState } from "./initialState";
-
 import { localStorageService } from "../../services/localStorageService";
 import { isEqual } from "lodash";
 
+import { useAuth } from "../../hooks/useAuth";
+import { FavoritosService } from "./FavoritosService";
+
 export const FavoritosProvider = ({ children }) => {
-  // Usando useReducer para gerenciar o estado dos favoritos
   const [state, dispatch] = useReducer(favoritosReducer, initialState);
-
   const ultimaVersaoSalva = useRef();
+    const { usuario } = useAuth();
 
-  // 💾 Salva os favoritos no localStorage sempre que ele mudar
+  // 💾 Sincronizando favoritos com o backend
   useEffect(() => {
-    if (!isEqual(ultimaVersaoSalva.current, state.favoritos)) {
-      localStorageService.salvar("favoritos", state.favoritos);
-      ultimaVersaoSalva.current = state.favoritos; // Atualiza a última versão salva
-    }
-  }, [state.favoritos]);
+    const carregarFavoritos = async () => {
+      if (!usuario?.id) {
+        // Caso o usuário não esteja logado, só carrega favoritos do localStorage
+        const favoritosLocal = localStorageService.ler("favoritos") || [];
+        dispatch({ type: "CARREGAR_FAVORITOS", payload: favoritosLocal });
+        ultimaVersaoSalva.current = favoritosLocal;
+        return; // Não tenta carregar favoritos do backend
+      }
+  
+      try {
+        // Caso o usuário esteja logado, tenta buscar favoritos no backend
+        const favoritosBackend = await FavoritosService.buscarFavoritos(usuario.id);
+        const favoritosLocal = localStorageService.ler("favoritos") || [];
+        let favoritosFinal = [...favoritosBackend];
+  
+        // Mescla os favoritos locais com os do backend, se necessário
+        favoritosLocal.forEach((favoritoLocal) => {
+          const index = favoritosFinal.findIndex((f) => f.id === favoritoLocal.id);
+          if (index === -1) {
+            favoritosFinal.push(favoritoLocal);
+          }
+        });
+  
+        dispatch({ type: "CARREGAR_FAVORITOS", payload: favoritosFinal });
+        ultimaVersaoSalva.current = favoritosFinal;
+        localStorageService.remover("favoritos");
+      } catch (error) {
+        console.error("Erro ao carregar favoritos do backend:", error);
+      }
+    };
+  
+    carregarFavoritos();
+  }, [usuario]);
+  
 
-  // Função para adicionar ou remover produtos dos favoritos
+  // Salvando favoritos no backend
+  useEffect(() => {
+    const salvarFavoritos = async () => {
+      if (isEqual(ultimaVersaoSalva.current, state.favoritos)) return;
+
+      try {
+        if (usuario?.id) {
+          await FavoritosService.salvarFavoritos(usuario.id, state.favoritos);
+        } else {
+          localStorageService.salvar("favoritos", state.favoritos);
+        }
+
+        ultimaVersaoSalva.current = state.favoritos;
+      } catch (error) {
+        console.error("Erro ao salvar favoritos:", error);
+      }
+    };
+
+    salvarFavoritos();
+  }, [state.favoritos, usuario]);
+
+  // Função para adicionar/remover do favoritos
   const handleFavoritarProduto = (produto) => {
     const jaFavoritado = isFavoritado(produto);
-
     dispatch({ type: "ADICIONAR_REMOVER_FAVORITO", payload: produto });
-
     return jaFavoritado ? "removido" : "adicionado";
   };
 
@@ -37,14 +83,9 @@ export const FavoritosProvider = ({ children }) => {
     return state.favoritos.some((favorito) => favorito.id === produto.id);
   };
 
-  // Verifica se há itens favoritados
-  const haItensFavoritados = state.favoritos.length > 0;
-
-  // Função para limpar os favoritos
+  // Função para limpar favoritos
   const limparFavoritos = () => {
-    const confirmar = window.confirm(
-      "Você tem certeza que deseja limpar todos os favoritos?"
-    );
+    const confirmar = window.confirm("Você tem certeza que deseja limpar todos os favoritos?");
     if (confirmar) {
       dispatch({ type: "LIMPAR_FAVORITOS" });
     }
@@ -57,7 +98,6 @@ export const FavoritosProvider = ({ children }) => {
         isFavoritado,
         favoritos: state.favoritos,
         limparFavoritos,
-        haItensFavoritados,
       }}
     >
       {children}
