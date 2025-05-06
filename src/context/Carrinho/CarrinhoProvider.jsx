@@ -142,8 +142,9 @@ export const CarrinhoProvider = ({ children }) => {
   // **Adicionando a limpeza do carrinho no logout**
   useEffect(() => {
     if (!usuario?.id) {
-      // Limpar carrinho do localStorage quando o usuário fizer logout
-      localStorageService.remover("carrinho");
+      // Limpar carrinho imediatamente após logout
+      localStorageService.remover("carrinho"); // Remover carrinho do localStorage
+      dispatch({ type: "LIMPAR_CARRINHO" }); // Limpar carrinho do estado
     }
   }, [usuario]);
 

@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     logoutUsuario();
+
     dispatch({ type: "LOGOUT" });
   };
 
