@@ -51,6 +51,12 @@ export const BotaoSubmit = styled.button`
   &:hover {
     background-color: #7a40d5;
   }
+
+  &:disabled {
+    background-color: #999;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
 `;
 
 export const LinkCadastro = styled.p`

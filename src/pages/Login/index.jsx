@@ -20,7 +20,7 @@ const Login = () => {
 
   const [erro, setErro] = useState("");
 
-
+  const [carregando, setCarregando] = useState(false);
 
   const { login } = useAuth();
 
@@ -28,19 +28,21 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErro("");
+    setCarregando(true);
 
     try {
       await login({ email, senha });
-      toastSucesso("Login efetuado com sucesso")
-      navigate(from, { replace: true }); // Redireciona para a rota protegida original
+      toastSucesso("Login efetuado com sucesso");
+      navigate(from, { replace: true });
     } catch (err) {
       console.error("Erro ao fazer login:", err.message);
       setErro("E-mail ou senha inválidos.");
       toastErro("E-mail ou senha inválidos.");
+    } finally {
+      setCarregando(false);
     }
   };
 
@@ -66,7 +68,9 @@ const Login = () => {
               onChange={(e) => setSenha(e.target.value)}
               required
             />
-            <BotaoSubmit type="submit">Entrar</BotaoSubmit>
+            <BotaoSubmit type="submit" disabled={carregando}>
+              {carregando ? <>🔄 Entrando...</> : "Entrar"}
+            </BotaoSubmit>
           </Formulario>
           <LinkCadastro>
             Não tem uma conta? <Link to="/cadastro">Cadastre-se</Link>
