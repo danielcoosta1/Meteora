@@ -6,7 +6,7 @@ import produtosRoutes from "./routes/produtos.js";
 import carrinhoRoutes from "./routes/carrinho.js";
 import cadastroRoutes from "./routes/cadastro.js"; // Importando a rota de cadastro
 import loginRoutes from "./routes/login.js"; // Importando a rota de login
-
+import favoritosRouter from "./routes/favoritos.js"
 
 /* global process */
 const app = express();
@@ -27,6 +27,7 @@ prisma.$connect()
 // Roteamento
 app.use('/produtos', produtosRoutes);
 app.use('/carrinho', carrinhoRoutes);
+app.use('/favoritos', favoritosRouter);
 app.use('/usuarios/cadastro', cadastroRoutes); // Usando a rota de cadastro
 app.use('/usuarios/login', loginRoutes); // Usando a rota de login
 

@@ -35,3 +35,10 @@ model Usuario {
   email    String   @unique
   senha    String
 }
+
+model Favoritos {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String   @unique
+  produtos   Json
+  atualizadoEm DateTime @updatedAt
+}
