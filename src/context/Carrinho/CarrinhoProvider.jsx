@@ -10,7 +10,7 @@ import { localStorageService } from "../../services/localStorageService";
 export const CarrinhoProvider = ({ children }) => {
   const [state, dispatch] = useReducer(carrinhoReducer, initialState);
   const ultimaVersaoSalva = useRef();
-  const jaMesclouCarrinho = useRef(false);
+  const jaMesclouCarrinho = useRef(false); // Controla a mesclagem do carrinho
   const { usuario } = useAuth();
 
   // Carregamento e mesclagem do carrinho
@@ -46,10 +46,11 @@ export const CarrinhoProvider = ({ children }) => {
           console.error("Erro ao carregar carrinho do backend:", error);
         }
       } else {
-        const carrinhoLocal = localStorageService.ler("carrinho") || [];
-        dispatch({ type: "CARREGAR_CARRINHO", payload: carrinhoLocal });
-        ultimaVersaoSalva.current = carrinhoLocal;
-
+        if (!state.carrinho.length) {
+          const carrinhoLocal = localStorageService.ler("carrinho") || [];
+          dispatch({ type: "CARREGAR_CARRINHO", payload: carrinhoLocal });
+          ultimaVersaoSalva.current = carrinhoLocal;
+        }
         jaMesclouCarrinho.current = false;
       }
     };
@@ -77,7 +78,9 @@ export const CarrinhoProvider = ({ children }) => {
       }
     };
 
-    salvarCarrinho();
+    if (jaMesclouCarrinho.current) {
+      salvarCarrinho();
+    }
   }, [state.carrinho, usuario]);
 
   // Ações
@@ -135,6 +138,14 @@ export const CarrinhoProvider = ({ children }) => {
 
     ultimaVersaoSalva.current = [];
   };
+
+  // **Adicionando a limpeza do carrinho no logout**
+  useEffect(() => {
+    if (!usuario?.id) {
+      // Limpar carrinho do localStorage quando o usuário fizer logout
+      localStorageService.remover("carrinho");
+    }
+  }, [usuario]);
 
   // Totais
   const { totalPreco, totalQuantidade } = useMemo(() => {
