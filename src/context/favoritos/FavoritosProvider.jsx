@@ -91,6 +91,15 @@ export const FavoritosProvider = ({ children }) => {
     }
   };
 
+  // **Adicionando a limpeza dos favoritos no logout**
+useEffect(() => {
+  if (!usuario?.id) {
+    // Limpar favoritos imediatamente após logout
+    localStorageService.remover("favoritos"); // Remover favoritos do localStorage
+    dispatch({ type: "LIMPAR_FAVORITOS" }); // Limpar favoritos do estado
+  }
+}, [usuario]);
+
   return (
     <FavoritosContext.Provider
       value={{
