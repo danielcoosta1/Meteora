@@ -21,6 +21,12 @@ export const favoritosReducer = (state, action) => {
       }
     }
 
+    case "CARREGAR_FAVORITOS":
+      return {
+        ...state,
+        favoritos: action.payload,
+      };
+
     case "LIMPAR_FAVORITOS":
       return { ...state, favoritos: [] };
 

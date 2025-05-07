@@ -1,103 +1,121 @@
-import { FavoritosContext } from "./FavoritosContext";
 import { useReducer, useEffect, useRef } from "react";
+import { FavoritosContext } from "./FavoritosContext";
+import { FavoritosService } from "./FavoritosService";
 import { favoritosReducer } from "./favoritosReducer";
 import { initialState } from "./initialState";
 import { localStorageService } from "../../services/localStorageService";
 import { isEqual } from "lodash";
-
 import { useAuth } from "../../hooks/useAuth";
-import { FavoritosService } from "./FavoritosService";
 
 export const FavoritosProvider = ({ children }) => {
   const [state, dispatch] = useReducer(favoritosReducer, initialState);
   const ultimaVersaoSalva = useRef();
+  const jaMesclouFavoritos = useRef(false); //Controla a mesclagem dos favoritos
   const { usuario } = useAuth();
 
-  // 💾 Sincronizando favoritos com o backend
+  // Carregar favoritos ao montar
   useEffect(() => {
     const carregarFavoritos = async () => {
-      if (!usuario?.id) {
-        // Caso o usuário não esteja logado, só carrega favoritos do localStorage
-        const favoritosLocal = localStorageService.ler("favoritos") || [];
-        dispatch({ type: "CARREGAR_FAVORITOS", payload: favoritosLocal });
-        ultimaVersaoSalva.current = favoritosLocal;
-        return; // Não tenta carregar favoritos do backend
-      }
+      if (usuario?.id) {
+        if (jaMesclouFavoritos.current) return;
 
-      try {
-        // Caso o usuário esteja logado, tenta buscar favoritos no backend
-        const favoritosBackend = await FavoritosService.buscarFavoritos(usuario.id);
-        const favoritosLocal = localStorageService.ler("favoritos") || [];
-        let favoritosFinal = [...favoritosBackend];
+        try {
+          const favoritosBackend = await FavoritosService.buscarFavoritos(
+            usuario.id
+          );
+          const favoritosLocal = localStorageService.ler("favoritos") || [];
+          let favoritosFinal = [...favoritosBackend];
 
-        // Mescla os favoritos locais com os do backend, se necessário
-        favoritosLocal.forEach((favoritoLocal) => {
-          const index = favoritosFinal.findIndex((f) => f.id === favoritoLocal.id);
-          if (index === -1) {
-            favoritosFinal.push(favoritoLocal);
-          }
-        });
+          favoritosLocal.forEach((produtoLocal) => {
+            const index = favoritosFinal.findIndex(
+              (p) => p.id === produtoLocal.id
+            );
 
-        dispatch({ type: "CARREGAR_FAVORITOS", payload: favoritosFinal });
-        ultimaVersaoSalva.current = favoritosFinal;
-        localStorageService.remover("favoritos");
-      } catch (error) {
-        console.error("Erro ao carregar favoritos do backend:", error);
+            if (index > -1) {
+              favoritosFinal[index].quantidade += produtoLocal.quantidade;
+            } else {
+              favoritosFinal.push(produtoLocal);
+            }
+          });
+
+          dispatch({ type: "CARREGAR_FAVORITOS", payload: favoritosFinal });
+          ultimaVersaoSalva.current = favoritosFinal;
+          localStorageService.remover("favoritos");
+          jaMesclouFavoritos.current = true;
+        } catch (error) {
+          console.error("Erro ao carregar favoritos do backend:", error);
+        }
+      } else {
+        if (!state.favoritos.length) {
+          const favoritosLocal = localStorageService.ler("favoritos") || [];
+          dispatch({ type: "CARREGAR_FAVORITOS", payload: favoritosLocal });
+          ultimaVersaoSalva.current = favoritosLocal;
+        }
+        jaMesclouFavoritos.current = false;
       }
     };
 
     carregarFavoritos();
-  }, [usuario]);
+  }, [usuario]); // Atualiza quando o usuário muda (login/logout)
 
-  // Salvando favoritos no backend ou no localStorage
+  // Salvar favoritos sempre que mudar
   useEffect(() => {
     const salvarFavoritos = async () => {
-      if (isEqual(ultimaVersaoSalva.current, state.favoritos)) return;
+      const favoritosAtual = state.favoritos;
+      if (isEqual(favoritosAtual, ultimaVersaoSalva.current)) return;
 
       try {
         if (usuario?.id) {
-          await FavoritosService.salvarFavoritos(usuario.id, state.favoritos);
+          await FavoritosService.salvarFavoritos(usuario.id, favoritosAtual);
         } else {
-          localStorageService.salvar("favoritos", state.favoritos);
+          localStorageService.salvar("favoritos", favoritosAtual);
         }
 
-        ultimaVersaoSalva.current = state.favoritos;
+        ultimaVersaoSalva.current = favoritosAtual;
       } catch (error) {
-        console.error("Erro ao salvar favoritos:", error);
+        console.error("Erro ao salvar favoritos", error);
       }
     };
 
-    salvarFavoritos();
-  }, [state.favoritos, usuario]);
+    if (jaMesclouFavoritos.current) {
+      salvarFavoritos();
+    }
+  }, [state.favoritos, usuario]); // Atualiza sempre que os favoritos mudam
 
-  // Função para adicionar/remover do favoritos
+  // Adicionar ou remover do favoritos
   const handleFavoritarProduto = (produto) => {
     const jaFavoritado = isFavoritado(produto);
     dispatch({ type: "ADICIONAR_REMOVER_FAVORITO", payload: produto });
     return jaFavoritado ? "removido" : "adicionado";
   };
 
-  // Verifica se o produto está favoritado
+  // Verificar se o produto já está favoritado
   const isFavoritado = (produto) => {
     return state.favoritos.some((favorito) => favorito.id === produto.id);
   };
 
-  // Função para limpar favoritos
+  // Limpar favoritos
   const limparFavoritos = () => {
-    const confirmar = window.confirm("Você tem certeza que deseja limpar todos os favoritos?");
-    if (confirmar) {
+    if (state.favoritos.length === 0) {
+      alert("Não há produtos favoritados!");
+      return;
+    }
+    if (window.confirm("Deseja limpar os favoritos?")) {
       dispatch({ type: "LIMPAR_FAVORITOS" });
+      if (!usuario?.id) {
+        localStorageService.remover("favoritos");
+      }
     }
   };
 
-  // **Adicionando a limpeza dos favoritos no logout**
+  // Sincronizar quando o usuário fizer login/logout
   useEffect(() => {
     if (!usuario?.id) {
-      // Limpar favoritos imediatamente após logout
-      localStorageService.remover("favoritos"); // Remover favoritos do localStorage
-      dispatch({ type: "LIMPAR_FAVORITOS" }); // Limpar favoritos do estado
+      // Limpa os favoritos no localStorage quando o usuário deslogar
+      localStorageService.remover("favoritos");
+      dispatch({ type: "LIMPAR_FAVORITOS" });
     }
-  }, [usuario]);
+  }, [usuario]); // Executa quando o usuário faz login ou logout
 
   return (
     <FavoritosContext.Provider

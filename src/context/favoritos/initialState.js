@@ -5,5 +5,5 @@ const getFavoritosInicial = () => {
 };
 
 export const initialState = {
-  favoritos: getFavoritosInicial(), // Carrega os favoritos salvos no localStorage
+  favoritos: getFavoritosInicial(),
 };

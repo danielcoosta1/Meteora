@@ -1,17 +1,14 @@
+// FavoritosService.js
 import axios from "axios";
 
-const api = axios.create({
-  baseURL: "/api", // Ajuste para o seu endpoint da API
-});
+const BASE_URL = "http://localhost:3001/favoritos";
 
 export const FavoritosService = {
-  buscarFavoritos: async (userId) => {
-    const response = await api.get(`/favoritos/${userId}`);
-    return response.data.produtos;
+  async buscarFavoritos(idUsuario) {
+    const resposta = await axios.get(`${BASE_URL}/${idUsuario}`);
+    return resposta.data?.produtos || [];
   },
-
-  salvarFavoritos: async (userId, produtos) => {
-    const response = await api.post(`/favoritos/${userId}`, { produtos });
-    return response.data;
+  async salvarFavoritos(idUsuario, produtos) {
+    return await axios.post(`${BASE_URL}/${idUsuario}`, { produtos });
   },
 };
