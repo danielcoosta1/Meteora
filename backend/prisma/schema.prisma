@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "./node_modules/@prisma/client"
+  
 }
 
 datasource db {
@@ -34,4 +34,11 @@ model Usuario {
   nome     String
   email    String   @unique
   senha    String
+}
+
+model Favoritos {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String   @unique
+  produtos   Json
+  atualizadoEm DateTime @updatedAt
 }

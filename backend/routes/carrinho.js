@@ -1,9 +1,7 @@
-// src/routes/carrinho.js
 import express from "express";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../lib/prisma.js"; // 👈 usa instância única
 
 const router = express.Router();
-const prisma = new PrismaClient();
 
 // GET: /carrinho/:userId
 router.get("/:userId", async (req, res) => {
@@ -15,7 +13,7 @@ router.get("/:userId", async (req, res) => {
     });
 
     if (!carrinho) {
-      return res.status(200).json({ produtos: [] }); // retorna vazio se não existir
+      return res.status(200).json({ produtos: [] });
     }
 
     return res.status(200).json({ produtos: carrinho.produtos });

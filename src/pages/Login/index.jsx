@@ -1,6 +1,6 @@
-import { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/auth/AuthContext";
+import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
 import BarraDeNavegacao from "../../components/BarraDeNavegacao";
 import {
   ContainerPagina,
@@ -11,23 +11,38 @@ import {
   BotaoSubmit,
   LinkCadastro,
 } from "./styles";
+import { useAuth } from "../../hooks/useAuth";
+import { toastErro, toastSucesso } from "../../utils/toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+
   const [erro, setErro] = useState("");
-  const { login } = useContext(AuthContext);
+
+  const [carregando, setCarregando] = useState(false);
+
+  const { login } = useAuth();
+
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErro("");
+    setCarregando(true);
+
     try {
       await login({ email, senha });
-      navigate("/");
+      toastSucesso("Login efetuado com sucesso");
+      navigate(from, { replace: true });
     } catch (err) {
       console.error("Erro ao fazer login:", err.message);
       setErro("E-mail ou senha inválidos.");
+      toastErro("E-mail ou senha inválidos.");
+    } finally {
+      setCarregando(false);
     }
   };
 
@@ -53,7 +68,9 @@ const Login = () => {
               onChange={(e) => setSenha(e.target.value)}
               required
             />
-            <BotaoSubmit type="submit">Entrar</BotaoSubmit>
+            <BotaoSubmit type="submit" disabled={carregando}>
+              {carregando ? <>🔄 Entrando...</> : "Entrar"}
+            </BotaoSubmit>
           </Formulario>
           <LinkCadastro>
             Não tem uma conta? <Link to="/cadastro">Cadastre-se</Link>
