@@ -1,4 +1,4 @@
-import { FaExpand, FaHeart, FaRegHeart } from "react-icons/fa";
+
 import BarraDeNavegacao from "../../components/BarraDeNavegacao";
 
 import { useFavoritos } from "../../hooks/useFavoritos";
@@ -24,12 +24,7 @@ import BotaoLimpar from "../../components/BotaoLimpar";
 import ProdutoCard from "../../components/ProdutoCard";
 
 const Favoritos = () => {
-  const {
-    favoritos,
-
-    haItensFavoritados,
-    limparFavoritos,
-  } = useFavoritos();
+  const { favoritos, haItensFavoritados, limparFavoritos } = useFavoritos();
 
   const { produtoAmpliado } = useProdutos();
 
