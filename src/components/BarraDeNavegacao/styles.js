@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const NavEstilizada = styled.nav`
+position: relative;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -13,20 +14,29 @@ const ConteinerEsquerdaEstilizado = styled.section`
   align-items: center;
   justify-content: center;
   gap: 3rem;
- 
 `;
 
 const ConteinerDireitoEstilizado = styled.section`
   display: flex;
   align-items: center;
 
-  gap: 10rem;
+  gap:3rem;
+
+  @media (min-width: 1024px) {
+    gap: 10rem;
+  }
+ 
+    
 `;
 
 const CampoFormSearch = styled.form`
   display: flex;
   gap: 0.25rem;
   align-items: center;
+  
+  @media (min-width: 1024px) {
+    
+  }
 `;
 
 const Button = styled.button`
@@ -111,10 +121,17 @@ const IconeFavoritos = styled.div`
     border-radius: 999px;
   }
 `;
-
 const ListaEstilizada = styled.ul`
-  display: flex;
+  display: ${({ $aberto }) => ($aberto ? "flex" : "none")};
+  flex-direction: column;
   gap: 1rem;
+  background-color: #000;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  z-index: 10;
 
   a {
     color: #ffffff;
@@ -130,6 +147,29 @@ const ListaEstilizada = styled.ul`
       font-weight: bold;
       text-decoration: underline;
     }
+  }
+
+  @media (min-width: 1024px) {
+    position: static;
+    display: flex !important;
+    flex-direction: row;
+    background-color: transparent;
+    width: auto;
+    padding: 0;
+  }
+`;
+
+
+const BotaoMenuHamburguer = styled.button`
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  display: block;
+  cursor: pointer;
+
+  @media (min-width: 1024px) {
+    display: none;
   }
 `;
 
@@ -169,19 +209,18 @@ const ContainerLogado = styled.div`
 `;
 
 const UsuarioLogado = styled.span`
-color:  #daff01;
-font-size:1.25rem;
+  color: #daff01;
+  font-size: 1.25rem;
 `;
 
 const ButtonLogout = styled.button`
-padding: .5rem .75rem;
-color:  #ffffff;
-background-color: transparent;
-border: none;
-text-decoration: underline;
-font-size: 1rem;
+  padding: 0.5rem 0.75rem;
+  color: #ffffff;
+  background-color: transparent;
+  border: none;
+  text-decoration: underline;
+  font-size: 1rem;
 `;
-
 
 export {
   ImgEstilizada,
@@ -198,5 +237,6 @@ export {
   ContainerAuth,
   ContainerLogado,
   UsuarioLogado,
-  ButtonLogout
+  ButtonLogout,
+  BotaoMenuHamburguer
 };

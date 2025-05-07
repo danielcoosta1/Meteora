@@ -14,6 +14,7 @@ import {
   ContainerLogado,
   UsuarioLogado,
   ButtonLogout,
+  BotaoMenuHamburguer,
 } from "./styles";
 
 import { useCarrinho } from "../../hooks/useCarrinho";
@@ -29,15 +30,18 @@ import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useProdutos } from "../../hooks/useProdutos";
 import { useAuth } from "../../hooks/useAuth";
+import { useState } from "react";
 
 const BarraDeNavegacao = () => {
   const { carrinho, abrirMenu } = useCarrinho();
   const { termoBusca, setTermoBusca } = useProdutos(); // Importa o hook de carrinho
   const { favoritos } = useFavoritos();
-  const { usuario,logout } = useAuth();
+  const { usuario, logout } = useAuth();
 
   const location = useLocation();
   const rotaAtual = location.pathname;
+
+  const [menuNavAberto, setMenuNavAberto] = useState(false);
 
   const links = [
     { name: "Home", path: "/" },
@@ -53,12 +57,16 @@ const BarraDeNavegacao = () => {
   return (
     <NavEstilizada>
       <ConteinerEsquerdaEstilizado>
+        <BotaoMenuHamburguer onClick={() => setMenuNavAberto(!menuNavAberto)}>
+          ☰
+        </BotaoMenuHamburguer>
         <NavLink to="/">
           <h1>
             <ImgEstilizada src={logoMeteora} alt="Logo do Meteora" />
           </h1>
         </NavLink>
-        <ListaEstilizada>
+
+        <ListaEstilizada $aberto={menuNavAberto}>
           {links.map((link, index) => (
             <li key={index}>
               <NavLink
