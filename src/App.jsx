@@ -6,7 +6,6 @@ import { ProdutoProvider } from "./context/produtos/ProdutosProvider";
 import { AuthProvider } from "./context/auth/AuthProvider";
 import AppContent from "./components/AppContent";
 
-
 function App() {
   return (
     <Router>
@@ -14,7 +13,7 @@ function App() {
         <ProdutoProvider>
           <FavoritosProvider>
             <CarrinhoProvider>
-              <AppContent/>
+              <AppContent />
             </CarrinhoProvider>
           </FavoritosProvider>
         </ProdutoProvider>
