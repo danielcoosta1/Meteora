@@ -29,11 +29,14 @@ const Cadastro = () => {
     setErro("");
 
     try {
-      const resposta = await fetch("http://localhost:3001/usuarios/cadastro", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome, email, senha }),
-      });
+      const resposta = await fetch(
+        `${import.meta.env.VITE_API_URL}/usuarios/cadastro`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ nome, email, senha }),
+        }
+      );
 
       const dados = await resposta.json();
 

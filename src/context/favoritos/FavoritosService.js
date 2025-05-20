@@ -1,7 +1,7 @@
 // FavoritosService.js
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3001/favoritos";
+const BASE_URL = `${import.meta.env.VITE_API_URL}/favoritos`;
 
 export const FavoritosService = {
   async buscarFavoritos(idUsuario) {

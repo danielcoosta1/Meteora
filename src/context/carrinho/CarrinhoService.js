@@ -1,7 +1,7 @@
 // CarrinhoService.js
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3001/carrinho";
+const BASE_URL = `${import.meta.env.VITE_API_URL}/carrinho`;
 
 export const CarrinhoService = {
   async buscarCarrinho(idUsuario) {

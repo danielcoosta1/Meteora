@@ -39,7 +39,10 @@ export const ProdutoProvider = ({ children }) => {
     // Função para buscar os produtos
     const fetchProdutos = async () => {
       try {
-        const response = await axios.get("http://localhost:3001/produtos"); // URL do seu backend
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/produtos`
+        );
+        // URL do seu backend
         const produtos = response.data; // Os dados retornados da API
         dispatch({ type: "CARREGAR_PRODUTOS", payload: produtos }); // Dispara a ação de carregar os produtos
       } catch (error) {
