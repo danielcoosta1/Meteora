@@ -1,202 +1,284 @@
 import styled from "styled-components";
 
-const NavEstilizada = styled.nav`
-  display: flex;
+export const BotaoHamburguer = styled.button`
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
   justify-content: space-around;
-  align-items: center;
-  padding: 2rem 0;
-  background-color: #000000;
+  width: 2rem;
+  height: 1.5rem;
+  padding: 0;
+  z-index: 10;
+
+  div {
+    width: 1.5rem;
+    height: 0.15rem;
+    background: #daff01;
+    border-radius: 10px;
+    transition: all 0.3s linear;
+    position: relative;
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+  }
 `;
 
-const ConteinerEsquerdaEstilizado = styled.section`
+export const NavEstilizada = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 2rem;
+  background-color: #000000;
+
+  @media (max-width: 768px) {
+    padding: 1rem 1.5rem;
+  }
+`;
+
+export const ConteinerEsquerdaEstilizado = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 3rem;
- 
-`;
 
-const ConteinerDireitoEstilizado = styled.section`
-  display: flex;
-  align-items: center;
+  @media (max-width: 1200px) {
+    gap: 1.5rem;
+  }
 
-  gap: 10rem;
-`;
-
-const CampoFormSearch = styled.form`
-  display: flex;
-  gap: 0.25rem;
-  align-items: center;
-`;
-
-const Button = styled.button`
-  padding: 1rem;
-  background-color: transparent;
-  color: #ffffff;
-  border: 1px solid #ffffff;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background-color: #ffffff;
-    color: #000000;
+  @media (max-width: 768px) {
+    gap: 1rem;
   }
 `;
 
-const InputEstilizado = styled.input`
-  background: #ffffff;
-  border: 1px solid #ced4da;
-  color: #ced4da;
-  width: 60%;
-  padding: 1rem;
+export const ListaEstilizada = styled.ul`
+  display: flex;
+  list-style: none;
+  gap: 3rem;
 
-  &::placeholder {
-    color: #6c757d;
+  @media (max-width: 1200px) {
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    display: ${({ $menuAberto }) => ($menuAberto ? "flex" : "none")};
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background-color: #000000;
+    flex-direction: column;
+    padding: 1rem 0;
+    z-index: 9;
+    gap: 1rem;
+  }
+
+  li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+
+    &.ativo {
+      color: #daff01;
+    }
+
+    &:hover {
+      color: #daff01;
+    }
   }
 `;
 
-const ContainerIcones = styled.div`
+export const ConteinerDireitoEstilizado = styled.section`
   display: flex;
   align-items: center;
   gap: 2rem;
+
+  @media (max-width: 768px) {
+    gap: 1rem;
+  }
 `;
 
-const IconeCarrinho = styled.div`
-  position: relative;
+export const ContainerIcones = styled.div`
   display: flex;
   align-items: center;
-  cursor: pointer;
-  &:hover {
-    transform: scale(1.05);
+  gap: 2rem;
+
+  @media (max-width: 1200px) {
+    gap: 1.5rem;
   }
+
+  @media (max-width: 768px) {
+    width: auto;
+    justify-content: flex-start;
+  }
+`;
+
+export const IconeCarrinho = styled.button`
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+
   span {
     position: absolute;
     top: -8px;
-    right: -8px;
+    right: -10px;
     background-color: #daff01;
-    color: #000;
+    color: #000000;
     font-size: 0.75rem;
-    font-weight: bold;
-    padding: 2px 6px;
-    border-radius: 999px;
+    font-weight: 700;
+    padding: 0.2rem 0.4rem;
+    border-radius: 50%;
+  }
+
+  img {
+    width: 2rem;
+    height: 2rem;
   }
 `;
 
-const IconeFavoritos = styled.div`
+export const IconeFavoritos = styled.div`
   position: relative;
-  font-size: 2.5rem;
-  display: flex;
-  align-items: center;
   cursor: pointer;
-  color: #ffffff;
-  transition: transform 0.2s ease;
+  font-size: 1.8rem;
+  color: #fff;
 
   &.ativo {
     color: #daff01;
   }
 
-  &:hover {
-    transform: scale(1.05);
-  }
-
   span {
     position: absolute;
     top: -8px;
-    right: -8px;
+    right: -10px;
     background-color: #daff01;
-    color: #000;
+    color: #000000;
     font-size: 0.75rem;
-    font-weight: bold;
-    padding: 2px 6px;
-    border-radius: 999px;
+    font-weight: 700;
+    padding: 0.2rem 0.4rem;
+    border-radius: 50%;
   }
 `;
 
-const ListaEstilizada = styled.ul`
-  display: flex;
-  gap: 1rem;
+export const ImgEstilizada = styled.img`
+  width: 120px;
+  height: auto;
 
-  a {
-    color: #ffffff;
-    text-decoration: none;
-    transition: all 0.2s ease;
+  @media (max-width: 768px) {
+    width: 90px;
+  }
+`;
+
+export const CampoFormSearch = styled.form`
+  display: flex;
+  width: 100%;
+  max-width: 400px;
+  margin: 1rem auto;
+  gap: 0.5rem;
+
+  button {
+    background-color: #daff01;
+    border: none;
+    padding: 0 1rem;
+    cursor: pointer;
+    font-weight: 700;
+    border-radius: 4px;
+    color: #000;
+    transition: background-color 0.3s ease;
 
     &:hover {
-      opacity: 0.8;
-      text-decoration: underline;
-    }
-
-    &.active {
-      font-weight: bold;
-      text-decoration: underline;
+      background-color: #c4d600;
     }
   }
 `;
 
-const ImgEstilizada = styled.img``;
+export const Button = styled.button`
+  background-color: #daff01;
+  border: none;
+  padding: 0 1rem;
+  cursor: pointer;
+  font-weight: 700;
+  border-radius: 4px;
+  color: #000;
+  transition: background-color 0.3s ease;
 
-const ContainerAuth = styled.div`
+  &:hover {
+    background-color: #c4d600;
+  }
+`;
+
+export const InputEstilizado = styled.input`
+  flex: 1;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: none;
+  font-size: 1rem;
+`;
+
+export const ContainerBuscaMobile = styled.div`
+  display: ${({ $mostrar }) => ($mostrar ? "block" : "none")};
+  background-color: #000;
+  padding: 1rem 2rem;
+
+  @media (min-width: 769px) {
+    display: none;
+  }
+`;
+export const CampoBuscaDesktop = styled.div`
+  display: none;
+
+  @media (min-width: 769px) {
+    display: block;
+  }
+`;
+
+export const ContainerAuth = styled.div`
   display: flex;
   gap: 1rem;
 
   a button {
-    padding: 0.75rem 1.5rem;
-    border: 1px solid #ffffff;
     background-color: transparent;
-    color: #ffffff;
+    border: 1px solid #daff01;
+    color: #daff01;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-weight: 600;
     cursor: pointer;
-    font-weight: 500;
-    transition: all 0.3s ease;
-  }
+    transition: all 0.3s;
 
-  a button:hover {
-    background-color: #ffffff;
-    color: #000000;
-  }
-
-  a.active button {
-    background-color: #daff01;
-    color: #000000;
-    font-weight: bold;
+    &:hover {
+      background-color: #daff01;
+      color: #000;
+    }
   }
 `;
 
-const ContainerLogado = styled.div`
+export const ContainerLogado = styled.div`
   display: flex;
-  gap: 1rem;
   align-items: center;
-  justify-content: center;
+  gap: 1rem;
 `;
 
-const UsuarioLogado = styled.span`
-color:  #daff01;
-font-size:1.25rem;
+export const UsuarioLogado = styled.span`
+  color: #fff;
+  font-weight: 600;
 `;
 
-const ButtonLogout = styled.button`
-padding: .5rem .75rem;
-color:  #ffffff;
-background-color: transparent;
-border: none;
-text-decoration: underline;
-font-size: 1rem;
+export const ButtonLogout = styled.button`
+  background-color: transparent;
+  border: 1px solid #daff01;
+  color: #daff01;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: #daff01;
+    color: #000;
+  }
 `;
-
-
-export {
-  ImgEstilizada,
-  InputEstilizado,
-  NavEstilizada,
-  ConteinerEsquerdaEstilizado,
-  ListaEstilizada,
-  ConteinerDireitoEstilizado,
-  ContainerIcones,
-  IconeCarrinho,
-  IconeFavoritos,
-  CampoFormSearch,
-  Button,
-  ContainerAuth,
-  ContainerLogado,
-  UsuarioLogado,
-  ButtonLogout
-};
