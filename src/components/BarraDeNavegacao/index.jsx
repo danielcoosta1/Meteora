@@ -1,3 +1,4 @@
+// BarraDeNavegacao.jsx
 import {
   Button,
   CampoFormSearch,
@@ -14,27 +15,27 @@ import {
   ContainerLogado,
   UsuarioLogado,
   ButtonLogout,
+  BotaoHamburguer,
+  ContainerBuscaMobile,
+  CampoBuscaDesktop,
 } from "./styles";
 
 import { useCarrinho } from "../../hooks/useCarrinho";
-
 import logoMeteora from "/assets/images/logo-meteora.png";
-
 import { useFavoritos } from "../../hooks/useFavoritos";
-
 import iconeCarrinho from "/assets/cart.svg";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
-
-import { useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useProdutos } from "../../hooks/useProdutos";
 import { useAuth } from "../../hooks/useAuth";
+import { useState } from "react";
 
 const BarraDeNavegacao = () => {
   const { carrinho, abrirMenu } = useCarrinho();
-  const { termoBusca, setTermoBusca } = useProdutos(); // Importa o hook de carrinho
+  const { termoBusca, setTermoBusca } = useProdutos();
   const { favoritos } = useFavoritos();
-  const { usuario,logout } = useAuth();
+  const { usuario, logout } = useAuth();
+  const [menuAberto, setMenuAberto] = useState(false);
 
   const location = useLocation();
   const rotaAtual = location.pathname;
@@ -46,90 +47,115 @@ const BarraDeNavegacao = () => {
     { name: "Produtos", path: "/produtos" },
   ];
 
-  // Flags para verificar as rotas específicas
   const exibirCampoBusca =
     rotaAtual === "/produtos" || rotaAtual === "/favoritos";
 
   return (
-    <NavEstilizada>
-      <ConteinerEsquerdaEstilizado>
-        <NavLink to="/">
-          <h1>
-            <ImgEstilizada src={logoMeteora} alt="Logo do Meteora" />
-          </h1>
-        </NavLink>
-        <ListaEstilizada>
-          {links.map((link, index) => (
-            <li key={index}>
-              <NavLink
-                to={link.path}
-                className={({ isActive }) => (isActive ? "ativo" : "")}
-              >
-                {link.name}
-              </NavLink>
-            </li>
-          ))}
-        </ListaEstilizada>
-      </ConteinerEsquerdaEstilizado>
-      <ConteinerDireitoEstilizado>
-        {exibirCampoBusca && (
-          <CampoFormSearch role="search">
+    <>
+      <NavEstilizada>
+        <ConteinerEsquerdaEstilizado>
+          <NavLink to="/">
+            <h1>
+              <ImgEstilizada src={logoMeteora} alt="Logo do Meteora" />
+            </h1>
+          </NavLink>
+
+          <ListaEstilizada $menuAberto={menuAberto}>
+            {links.map((link, index) => (
+              <li key={index}>
+                <NavLink
+                  to={link.path}
+                  className={({ isActive }) => (isActive ? "ativo" : "")}
+                  onClick={() => setMenuAberto(false)}
+                >
+                  {link.name}
+                </NavLink>
+              </li>
+            ))}
+          </ListaEstilizada>
+        </ConteinerEsquerdaEstilizado>
+
+        <ConteinerDireitoEstilizado>
+          {exibirCampoBusca && (
+            <CampoBuscaDesktop>
+              <CampoFormSearch onSubmit={(e) => e.preventDefault()}>
+                <InputEstilizado
+                  type="search"
+                  placeholder="Digite o produto"
+                  value={termoBusca}
+                  onChange={(e) => setTermoBusca(e.target.value)}
+                  aria-label="Buscar produto"
+                />
+                <Button type="submit">Buscar</Button>
+              </CampoFormSearch>
+            </CampoBuscaDesktop>
+          )}
+
+          <ContainerIcones>
+            <IconeCarrinho
+              onClick={abrirMenu}
+              aria-label="Abrir carrinho de compras"
+              title="Abrir carrinho de compras"
+            >
+              <ImgEstilizada src={iconeCarrinho} alt="Carrinho" />
+              <span>
+                {carrinho.reduce((acc, item) => acc + item.quantidade, 0)}
+              </span>
+            </IconeCarrinho>
+
+            <NavLink to="/favoritos" aria-label="Favoritos" title="Favoritos">
+              {({ isActive }) => (
+                <IconeFavoritos className={isActive ? "ativo" : ""}>
+                  {isActive ? <FaHeart /> : <FaRegHeart />}
+                  <span>{favoritos.length}</span>
+                </IconeFavoritos>
+              )}
+            </NavLink>
+
+            {usuario ? (
+              <ContainerLogado>
+                <UsuarioLogado>Olá, {usuario.nome}!</UsuarioLogado>
+                <ButtonLogout onClick={logout}>Sair</ButtonLogout>
+              </ContainerLogado>
+            ) : (
+              <ContainerAuth>
+                <NavLink to="/login">
+                  <button>Login</button>
+                </NavLink>
+                <NavLink to="/cadastro">
+                  <button>Cadastro</button>
+                </NavLink>
+              </ContainerAuth>
+            )}
+          </ContainerIcones>
+
+          <BotaoHamburguer
+            onClick={() => setMenuAberto(!menuAberto)}
+            aria-label="Abrir menu"
+            aria-expanded={menuAberto}
+          >
+            <div />
+            <div />
+            <div />
+          </BotaoHamburguer>
+        </ConteinerDireitoEstilizado>
+      </NavEstilizada>
+
+      {exibirCampoBusca && (
+        <ContainerBuscaMobile $mostrar={true}>
+          <CampoFormSearch onSubmit={(e) => e.preventDefault()}>
             <InputEstilizado
               type="search"
               placeholder="Digite o produto"
               value={termoBusca}
               onChange={(e) => setTermoBusca(e.target.value)}
+              aria-label="Buscar produto"
             />
             <Button type="submit">Buscar</Button>
           </CampoFormSearch>
-        )}
-
-        <ContainerIcones>
-          <IconeCarrinho onClick={abrirMenu}>
-            <ImgEstilizada
-              src={iconeCarrinho}
-              alt="Abrir carrinho de compras"
-            />
-            <span>
-              {carrinho.reduce((acc, item) => acc + item.quantidade, 0)}
-            </span>
-          </IconeCarrinho>
-
-          <NavLink to="/favoritos">
-            {({ isActive }) => (
-              <IconeFavoritos className={isActive ? "ativo" : ""}>
-                {isActive ? <FaHeart /> : <FaRegHeart />}
-                <span>{favoritos.length}</span>
-              </IconeFavoritos>
-            )}
-          </NavLink>
-        </ContainerIcones>
-        {usuario ? (
-          <ContainerLogado>
-            <UsuarioLogado>Olá, {usuario.nome}!</UsuarioLogado>
-            <ButtonLogout onClick={logout}>Sair</ButtonLogout>
-          </ContainerLogado>
-        ) : (
-          rotaAtual !== "/login" &&
-          rotaAtual !== "/cadastro" && (
-            <ContainerAuth>
-              <NavLink
-                to="/login"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                <button>Login</button>
-              </NavLink>
-              <NavLink
-                to="/cadastro"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                <button>Cadastro</button>
-              </NavLink>
-            </ContainerAuth>
-          )
-        )}
-      </ConteinerDireitoEstilizado>
-    </NavEstilizada>
+        </ContainerBuscaMobile>
+      )}
+    </>
   );
 };
 
