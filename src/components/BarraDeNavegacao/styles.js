@@ -138,6 +138,15 @@ export const IconeCarrinho = styled.button`
     width: 2rem;
     height: 2rem;
   }
+  @media (max-width: 768px) {
+    img {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+    span {
+      font-size: 0.45rem;
+    }
+  }
 `;
 
 export const IconeFavoritos = styled.div`
@@ -160,6 +169,13 @@ export const IconeFavoritos = styled.div`
     font-weight: 700;
     padding: 0.2rem 0.4rem;
     border-radius: 50%;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.4rem;
+    span {
+      font-size: 0.45rem;
+    }
   }
 `;
 
