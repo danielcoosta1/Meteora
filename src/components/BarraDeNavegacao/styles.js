@@ -21,7 +21,7 @@ export const BotaoHamburguer = styled.button`
     position: relative;
   }
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1300px) {
     display: flex;
   }
 
