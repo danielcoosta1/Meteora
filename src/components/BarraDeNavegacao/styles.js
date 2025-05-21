@@ -11,6 +11,13 @@ export const BotaoHamburguer = styled.button`
   height: 1.5rem;
   padding: 0;
   z-index: 10;
+  transition: transform 0.3s ease;
+
+  ${({ $ativo }) =>
+    $ativo &&
+    `
+    transform: translateX(-10px);
+  `}
 
   div {
     width: 1.5rem;
@@ -19,7 +26,24 @@ export const BotaoHamburguer = styled.button`
     border-radius: 10px;
     transition: all 0.3s linear;
     position: relative;
+    transform-origin: 1px;
   }
+
+  ${({ $ativo }) =>
+    $ativo &&
+    `
+    div:nth-child(1) {
+      transform: rotate(45deg);
+    }
+
+    div:nth-child(2) {
+      opacity: 0;
+    }
+
+    div:nth-child(3) {
+      transform: rotate(-45deg);
+    }
+  `}
 
   @media (max-width: 1300px) {
     display: flex;
@@ -80,14 +104,20 @@ export const ListaEstilizada = styled.ul`
   @media (max-width: 1300px) {
     flex-direction: column;
     position: fixed;
-    top: 80px;
+    top: 100px;
     right: ${({ $menuAberto }) => ($menuAberto ? "0" : "-300px")};
     height: 100vh;
     width: 300px;
-    background-color: rgba(0, 0, 0, 0.7); /* <-- aqui */
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.4);
     padding: 5rem 2rem 2rem 2rem;
     z-index: 9;
-    transition: right 0.3s ease-in-out;
+    transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out,
+      transform 0.3s ease-in-out;
+    opacity: ${({ $menuAberto }) => ($menuAberto ? 1 : 0)};
+    transform: ${({ $menuAberto }) =>
+      $menuAberto ? "translateX(0)" : "translateX(20px)"};
     display: flex;
     gap: 1rem;
     text-align: end;
@@ -98,6 +128,8 @@ export const ListaEstilizada = styled.ul`
     text-decoration: none;
     font-weight: 700;
     font-size: 0.8rem;
+    position: relative;
+    transition: color 0.2s ease-in-out;
 
     &.ativo {
       color: #daff01;
@@ -106,10 +138,25 @@ export const ListaEstilizada = styled.ul`
     &:hover {
       color: #daff01;
     }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: #daff01;
+      transition: width 0.3s ease;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
   }
 
   @media (max-width: 780px) {
-    top: 60px;
+    top: 68px;
   }
   @media (max-width: 550px) {
     width: 40%;

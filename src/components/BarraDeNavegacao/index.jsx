@@ -33,9 +33,13 @@ import { useState } from "react";
 
 const BarraDeNavegacao = () => {
   const { carrinho, abrirMenu } = useCarrinho();
+
   const { termoBusca, setTermoBusca } = useProdutos();
+
   const { favoritos } = useFavoritos();
+
   const { usuario, logout } = useAuth();
+
   const [menuAberto, setMenuAberto] = useState(false);
 
   const location = useLocation();
@@ -134,6 +138,7 @@ const BarraDeNavegacao = () => {
             onClick={() => setMenuAberto(!menuAberto)}
             aria-label="Abrir menu"
             aria-expanded={menuAberto}
+            $ativo={menuAberto}
           >
             <div />
             <div />
