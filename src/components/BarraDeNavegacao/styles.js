@@ -24,6 +24,15 @@ export const BotaoHamburguer = styled.button`
   @media (max-width: 768px) {
     display: flex;
   }
+
+  @media (max-width: 450px) {
+    width: 1.5rem;
+    height: 1.2rem;
+
+    div {
+      width: 1.3rem;
+    }
+  }
 `;
 
 export const NavEstilizada = styled.nav`
@@ -35,6 +44,10 @@ export const NavEstilizada = styled.nav`
 
   @media (max-width: 768px) {
     padding: 1rem 1.5rem;
+  }
+
+  @media (max-width: 400px) {
+    flex-direction: column;
   }
 `;
 
@@ -50,6 +63,11 @@ export const ConteinerEsquerdaEstilizado = styled.section`
 
   @media (max-width: 768px) {
     gap: 1rem;
+  }
+
+  @media (max-width: 450px) {
+    gap: 0.5rem;
+    flex: 1;
   }
 `;
 
@@ -72,7 +90,7 @@ export const ListaEstilizada = styled.ul`
     flex-direction: column;
     padding: 1rem 1.5rem;
     z-index: 9;
-    gap: .5rem;
+    gap: 0.5rem;
   }
 
   li a {
@@ -113,6 +131,9 @@ export const ContainerIcones = styled.div`
   @media (max-width: 768px) {
     width: auto;
     justify-content: flex-start;
+  }
+  @media (max-width: 450px) {
+    gap: 0.75rem;
   }
 `;
 
@@ -252,32 +273,40 @@ export const CampoBuscaDesktop = styled.div`
     display: block;
   }
 `;
+export const BotaoAuth = styled.button`
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #daff01; /* verde */
+  background-color: transparent;
+  border: 1px solid #daff01;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #daff01;
+    color: #000;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.7rem;
+  }
+
+  @media (max-width: 450px) {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.65rem;
+  }
+`;
 
 export const ContainerAuth = styled.div`
   display: flex;
   gap: 1rem;
-
-  a button {
-    background-color: transparent;
-    border: 1px solid #daff01;
-    color: #daff01;
-    padding: 0.4rem 0.8rem;
-    border-radius: 4px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-
-    &:hover {
-      background-color: #daff01;
-      color: #000;
-    }
-  
-   
+  @media (max-width: 450px) {
+    gap: 0.25rem;
   }
-
- 
 `;
-
 
 export const ContainerLogado = styled.div`
   display: flex;

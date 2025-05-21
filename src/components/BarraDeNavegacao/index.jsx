@@ -18,6 +18,7 @@ import {
   BotaoHamburguer,
   ContainerBuscaMobile,
   CampoBuscaDesktop,
+  BotaoAuth,
 } from "./styles";
 
 import { useCarrinho } from "../../hooks/useCarrinho";
@@ -120,10 +121,10 @@ const BarraDeNavegacao = () => {
             ) : (
               <ContainerAuth>
                 <NavLink to="/login">
-                  <button>Login</button>
+                  <BotaoAuth>Login</BotaoAuth>
                 </NavLink>
                 <NavLink to="/cadastro">
-                  <button>Cadastro</button>
+                  <BotaoAuth>Cadastro</BotaoAuth>
                 </NavLink>
               </ContainerAuth>
             )}
