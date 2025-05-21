@@ -33,9 +33,13 @@ import { useState } from "react";
 
 const BarraDeNavegacao = () => {
   const { carrinho, abrirMenu } = useCarrinho();
+
   const { termoBusca, setTermoBusca } = useProdutos();
+
   const { favoritos } = useFavoritos();
+
   const { usuario, logout } = useAuth();
+
   const [menuAberto, setMenuAberto] = useState(false);
 
   const location = useLocation();
@@ -50,7 +54,7 @@ const BarraDeNavegacao = () => {
 
   const exibirCampoBusca =
     rotaAtual === "/produtos" || rotaAtual === "/favoritos";
-
+  
   return (
     <>
       <NavEstilizada>
@@ -61,7 +65,7 @@ const BarraDeNavegacao = () => {
             </h1>
           </NavLink>
 
-          <ListaEstilizada $menuAberto={menuAberto}>
+          <ListaEstilizada $menuAberto={menuAberto} $exibirCampoBusca={exibirCampoBusca}>
             {links.map((link, index) => (
               <li key={index}>
                 <NavLink
@@ -98,7 +102,7 @@ const BarraDeNavegacao = () => {
               aria-label="Abrir carrinho de compras"
               title="Abrir carrinho de compras"
             >
-              <ImgEstilizada src={iconeCarrinho} alt="Carrinho" />
+              <img src={iconeCarrinho} alt="Carrinho" />
               <span>
                 {carrinho.reduce((acc, item) => acc + item.quantidade, 0)}
               </span>
@@ -134,6 +138,7 @@ const BarraDeNavegacao = () => {
             onClick={() => setMenuAberto(!menuAberto)}
             aria-label="Abrir menu"
             aria-expanded={menuAberto}
+            $ativo={menuAberto}
           >
             <div />
             <div />

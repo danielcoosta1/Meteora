@@ -11,6 +11,13 @@ export const BotaoHamburguer = styled.button`
   height: 1.5rem;
   padding: 0;
   z-index: 10;
+  transition: transform 0.3s ease;
+
+  ${({ $ativo }) =>
+    $ativo &&
+    `
+    transform: translateX(-10px);
+  `}
 
   div {
     width: 1.5rem;
@@ -19,18 +26,41 @@ export const BotaoHamburguer = styled.button`
     border-radius: 10px;
     transition: all 0.3s linear;
     position: relative;
+    transform-origin: 1px;
   }
 
-  @media (max-width: 768px) {
+  ${({ $ativo }) =>
+    $ativo &&
+    `
+    div:nth-child(1) {
+      transform: rotate(45deg);
+    }
+
+    div:nth-child(2) {
+      opacity: 0;
+    }
+
+    div:nth-child(3) {
+      transform: rotate(-45deg);
+    }
+  `}
+
+  @media (max-width: 1300px) {
     display: flex;
   }
 
   @media (max-width: 450px) {
-    width: 1.5rem;
+    width: 1.2rem;
     height: 1.2rem;
 
     div {
       width: 1.3rem;
+    }
+  }
+
+  @media (max-width: 400px) {
+    div {
+      margin-left: 2.25rem;
     }
   }
 `;
@@ -46,6 +76,10 @@ export const NavEstilizada = styled.nav`
     padding: 1rem 1.5rem;
   }
 
+  @media (max-width: 468px) {
+    gap: 0.5rem;
+  }
+
   @media (max-width: 400px) {
     flex-direction: column;
   }
@@ -56,41 +90,37 @@ export const ConteinerEsquerdaEstilizado = styled.section`
   align-items: center;
   justify-content: center;
   gap: 3rem;
-
-  @media (max-width: 1200px) {
-    gap: 1.5rem;
-  }
-
-  @media (max-width: 768px) {
-    gap: 1rem;
-  }
-
-  @media (max-width: 450px) {
-    gap: 0.5rem;
-    flex: 1;
-  }
 `;
 
 export const ListaEstilizada = styled.ul`
   display: flex;
   list-style: none;
-  gap: 3rem;
+  gap: 2rem;
 
   @media (max-width: 1200px) {
     gap: 1.5rem;
   }
 
-  @media (max-width: 768px) {
-    display: ${({ $menuAberto }) => ($menuAberto ? "flex" : "none")};
-    position: fixed;
-    top: 54px;
-    left: 0;
-    right: 0;
-    background-color: #000000;
+  @media (max-width: 1300px) {
     flex-direction: column;
-    padding: 1rem 1.5rem;
+    position: fixed;
+    top: 100px;
+    right: ${({ $menuAberto }) => ($menuAberto ? "0" : "-300px")};
+    height: 100vh;
+    width: 300px;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.4);
+    padding: 5rem 2rem 2rem 2rem;
     z-index: 9;
-    gap: 0.5rem;
+    transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out,
+      transform 0.3s ease-in-out;
+    opacity: ${({ $menuAberto }) => ($menuAberto ? 1 : 0)};
+    transform: ${({ $menuAberto }) =>
+      $menuAberto ? "translateX(0)" : "translateX(20px)"};
+    display: flex;
+    gap: 1rem;
+    text-align: end;
   }
 
   li a {
@@ -98,6 +128,8 @@ export const ListaEstilizada = styled.ul`
     text-decoration: none;
     font-weight: 700;
     font-size: 0.8rem;
+    position: relative;
+    transition: color 0.2s ease-in-out;
 
     &.ativo {
       color: #daff01;
@@ -106,6 +138,34 @@ export const ListaEstilizada = styled.ul`
     &:hover {
       color: #daff01;
     }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: #daff01;
+      transition: width 0.3s ease;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 780px) {
+   top: ${({ $exibirCampoBusca }) => ($exibirCampoBusca ? "130px" : "68px")};
+  }
+  @media (max-width: 450px) {
+    width: 40%;
+     top: ${({ $exibirCampoBusca }) => ($exibirCampoBusca ? "125px" : "68px")};
+  }
+
+  @media (max-width: 400px) {
+    width: 40%;
+     top: ${({ $exibirCampoBusca }) => ($exibirCampoBusca ? "176px" : "120px")};
   }
 `;
 
@@ -114,8 +174,12 @@ export const ConteinerDireitoEstilizado = styled.section`
   align-items: center;
   gap: 2rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 450px) {
     gap: 1rem;
+  }
+
+  @media (max-width: 400px) {
+    margin-top: 1rem;
   }
 `;
 
@@ -131,9 +195,7 @@ export const ContainerIcones = styled.div`
   @media (max-width: 768px) {
     width: auto;
     justify-content: flex-start;
-  }
-  @media (max-width: 450px) {
-    gap: 0.75rem;
+    gap: 1rem;
   }
 `;
 
@@ -203,35 +265,18 @@ export const IconeFavoritos = styled.div`
 `;
 
 export const ImgEstilizada = styled.img`
-  width: 120px;
+  width: 100%;
   height: auto;
-
-  @media (max-width: 768px) {
-    width: 90px;
-  }
+  min-width: 70px;
 `;
 
 export const CampoFormSearch = styled.form`
   display: flex;
   width: 100%;
-  max-width: 400px;
-  margin: 1rem auto;
+
+  margin: 0 auto;
   gap: 0.5rem;
-
-  button {
-    background-color: #daff01;
-    border: none;
-    padding: 0 1rem;
-    cursor: pointer;
-    font-weight: 700;
-    border-radius: 4px;
-    color: #000;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: #c4d600;
-    }
-  }
+  object-fit: cover;
 `;
 
 export const Button = styled.button`
@@ -247,6 +292,15 @@ export const Button = styled.button`
   &:hover {
     background-color: #c4d600;
   }
+
+  @media (max-width: 768px) {
+    padding: 0 0.5rem;
+    font-size: 0.8rem;
+  }
+  @media (max-width: 450px) {
+    padding: 0 0.4rem;
+    font-size: 0.7rem;
+  }
 `;
 
 export const InputEstilizado = styled.input`
@@ -255,6 +309,15 @@ export const InputEstilizado = styled.input`
   border-radius: 4px;
   border: none;
   font-size: 1rem;
+
+  @media (max-width: 768px) {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  @media (max-width: 450px) {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
 `;
 
 export const ContainerBuscaMobile = styled.div`
@@ -262,14 +325,14 @@ export const ContainerBuscaMobile = styled.div`
   background-color: #000;
   padding: 1rem 2rem;
 
-  @media (min-width: 769px) {
+  @media (min-width: 860px) {
     display: none;
   }
 `;
 export const CampoBuscaDesktop = styled.div`
   display: none;
 
-  @media (min-width: 769px) {
+  @media (min-width: 860px) {
     display: block;
   }
 `;
@@ -294,7 +357,7 @@ export const BotaoAuth = styled.button`
     font-size: 0.7rem;
   }
 
-  @media (max-width: 450px) {
+  @media (max-width: 430px) {
     padding: 0.25rem 0.5rem;
     font-size: 0.65rem;
   }
@@ -303,7 +366,7 @@ export const BotaoAuth = styled.button`
 export const ContainerAuth = styled.div`
   display: flex;
   gap: 1rem;
-  @media (max-width: 450px) {
+  @media (max-width: 430px) {
     gap: 0.25rem;
   }
 `;
@@ -311,12 +374,22 @@ export const ContainerAuth = styled.div`
 export const ContainerLogado = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+ gap: 1rem;
+  @media (max-width: 490px) {
+    gap: 0.25rem;
+  }
 `;
 
 export const UsuarioLogado = styled.span`
   color: #fff;
   font-weight: 600;
+  
+  @media (max-width: 490px) {
+    font-size: 0.8rem;
+  }
+  @media (max-width: 420px) {
+    font-size: 0.7rem;
+  }
 `;
 
 export const ButtonLogout = styled.button`
@@ -332,5 +405,16 @@ export const ButtonLogout = styled.button`
   &:hover {
     background-color: #daff01;
     color: #000;
+  }
+
+    @media (max-width: 490px) {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+
+  }
+
+  @media (max-width: 420px) {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.7rem;
   }
 `;
