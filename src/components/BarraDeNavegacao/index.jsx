@@ -54,7 +54,7 @@ const BarraDeNavegacao = () => {
 
   const exibirCampoBusca =
     rotaAtual === "/produtos" || rotaAtual === "/favoritos";
-
+  
   return (
     <>
       <NavEstilizada>
@@ -65,7 +65,7 @@ const BarraDeNavegacao = () => {
             </h1>
           </NavLink>
 
-          <ListaEstilizada $menuAberto={menuAberto}>
+          <ListaEstilizada $menuAberto={menuAberto} $exibirCampoBusca={exibirCampoBusca}>
             {links.map((link, index) => (
               <li key={index}>
                 <NavLink

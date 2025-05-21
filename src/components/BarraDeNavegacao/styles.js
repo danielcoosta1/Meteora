@@ -156,15 +156,16 @@ export const ListaEstilizada = styled.ul`
   }
 
   @media (max-width: 780px) {
-    top: 68px;
+   top: ${({ $exibirCampoBusca }) => ($exibirCampoBusca ? "130px" : "68px")};
   }
-  @media (max-width: 550px) {
+  @media (max-width: 450px) {
     width: 40%;
+     top: ${({ $exibirCampoBusca }) => ($exibirCampoBusca ? "125px" : "68px")};
   }
 
   @media (max-width: 400px) {
     width: 40%;
-    top: 60px;
+     top: ${({ $exibirCampoBusca }) => ($exibirCampoBusca ? "176px" : "120px")};
   }
 `;
 
@@ -373,12 +374,22 @@ export const ContainerAuth = styled.div`
 export const ContainerLogado = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+ gap: 1rem;
+  @media (max-width: 490px) {
+    gap: 0.25rem;
+  }
 `;
 
 export const UsuarioLogado = styled.span`
   color: #fff;
   font-weight: 600;
+  
+  @media (max-width: 490px) {
+    font-size: 0.8rem;
+  }
+  @media (max-width: 420px) {
+    font-size: 0.7rem;
+  }
 `;
 
 export const ButtonLogout = styled.button`
@@ -394,5 +405,16 @@ export const ButtonLogout = styled.button`
   &:hover {
     background-color: #daff01;
     color: #000;
+  }
+
+    @media (max-width: 490px) {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+
+  }
+
+  @media (max-width: 420px) {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.7rem;
   }
 `;
