@@ -14,7 +14,7 @@ import Favoritos from "../../pages/Favoritos";
 import { useCarrinho } from "../../hooks/useCarrinho";
 import Cadastro from "../../pages/Cadastro";
 import RotaPrivada from "../RotaPrivada";
-import ContainerGeral from "./ContainerGeral";
+import { ContainerGeral } from "./ContainerGeral";
 const AppContent = () => {
   const { menuAberto } = useCarrinho();
 
