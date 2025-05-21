@@ -26,6 +26,7 @@ const GlobalStyle = createGlobalStyle`
   button {
     cursor: pointer;
   }
+  
 
   @keyframes heartbeat {
     0%, 100% {
