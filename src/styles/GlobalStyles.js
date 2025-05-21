@@ -9,15 +9,14 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  /* Fonte padrão */
-  body {
+  html, body {
     font-family: "Inter", sans-serif;
-
+    overflow-x: hidden;
+    width: 100%;
   }
 
   a {
     text-decoration: none;
-
   }
 
   ul {
