@@ -33,6 +33,12 @@ export const BotaoHamburguer = styled.button`
       width: 1.3rem;
     }
   }
+
+  @media (max-width: 400px) {
+    div {
+      margin-left: 2.25rem;
+    }
+  }
 `;
 
 export const NavEstilizada = styled.nav`
@@ -44,20 +50,14 @@ export const NavEstilizada = styled.nav`
 
   @media (max-width: 768px) {
     padding: 1rem 1.5rem;
-
   }
 
-  
   @media (max-width: 468px) {
     gap: 0.5rem;
-  
-   
   }
 
   @media (max-width: 400px) {
     flex-direction: column;
-  
-   
   }
 `;
 
@@ -66,24 +66,12 @@ export const ConteinerEsquerdaEstilizado = styled.section`
   align-items: center;
   justify-content: center;
   gap: 3rem;
-
-  @media (max-width: 1200px) {
-    gap: 1.5rem;
-  }
-
-  @media (max-width: 768px) {
-    gap: 1rem;
-  }
-
-  @media (max-width: 450px) {
-    gap: 0.5rem;
-  }
 `;
 
 export const ListaEstilizada = styled.ul`
   display: flex;
   list-style: none;
-  gap: 3rem;
+  gap: 2rem;
 
   @media (max-width: 1200px) {
     gap: 1.5rem;
@@ -92,16 +80,17 @@ export const ListaEstilizada = styled.ul`
   @media (max-width: 1300px) {
     flex-direction: column;
     position: fixed;
-    top: 0;
+    top: 80px;
     right: ${({ $menuAberto }) => ($menuAberto ? "0" : "-300px")};
     height: 100vh;
     width: 300px;
-    background-color: #000000;
+    background-color: rgba(0, 0, 0, 0.7); /* <-- aqui */
     padding: 5rem 2rem 2rem 2rem;
     z-index: 9;
     transition: right 0.3s ease-in-out;
     display: flex;
     gap: 1rem;
+    text-align: end;
   }
 
   li a {
@@ -119,9 +108,16 @@ export const ListaEstilizada = styled.ul`
     }
   }
 
-  @media (max-width: 450px) {
-    width: 60%;
-    margin-top: 2rem;
+  @media (max-width: 780px) {
+    top: 60px;
+  }
+  @media (max-width: 550px) {
+    width: 40%;
+  }
+
+  @media (max-width: 400px) {
+    width: 40%;
+    top: 60px;
   }
 `;
 
@@ -131,12 +127,11 @@ export const ConteinerDireitoEstilizado = styled.section`
   gap: 2rem;
 
   @media (max-width: 450px) {
-   gap: 1rem;
+    gap: 1rem;
   }
-  
+
   @media (max-width: 400px) {
     margin-top: 1rem;
-   
   }
 `;
 
