@@ -5,94 +5,129 @@ export const LateralContainer = styled.div`
   top: 0;
   right: 0;
   width: 700px;
+  max-width: 100vw;
   height: 100vh;
   background: #343a40;
   box-shadow: -4px 0 10px rgba(0, 0, 0, 0.2);
   z-index: 1000;
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s ease-in-out;
+
+  @media (max-width: 1024px) {
+    width: min(90vw, 500px);
+  }
+
+  @media (max-width: 768px) {
+    width: 100vw;
+  }
 `;
+
 export const HeaderLateral = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
   justify-content: space-between;
-  padding: 24px 28px 24px 80px;
-  gap: 20px;
-  width: 100%;
-  min-height: 82px;
-  border-radius: 4px 4px 0px 0px;
+  align-items: center;
+  padding: 1.5rem 2rem;
   background-color: #9353ff;
-  color: #ffffff;
+  color: white;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 export const TituloLateral = styled.h3`
   margin: 0;
+  font-size: 1.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
 `;
 
 export const BotaoFechar = styled.button`
-  background: none;
+  background: transparent;
   border: none;
-  font-size: 1rem;
+  font-size: 1.5rem;
+  color: white;
   cursor: pointer;
-  background-color: transparent;
-  padding: 1rem;
-  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
+  padding: 0.5rem;
+
   &:hover {
-    transform: scale(1.3);
+    transform: scale(1.2);
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
   }
 `;
 
 export const ListaItens = styled.ul`
   list-style: none;
-
-  margin: 1rem 0;
+  padding: 0 3rem;
   flex: 1;
   overflow-y: auto;
-  padding: 0 5rem;
-  display: ${(props) =>
-    props.$isEmpty ? "flex" : "block"}; /* Flex para centralizar */
-  justify-content: ${(props) =>
-    props.$isEmpty ? "center" : "flex-start"}; /* Centraliza quando vazio */
-  align-items: ${(props) =>
-    props.$isEmpty
-      ? "center"
-      : "flex-start"}; /* Centraliza verticalmente quando vazio */
-  height: 100%; /* Garante que o conteúdo ocupe toda a altura do container */
-  color: ${(props) => (props.$isEmpty ? "#fff" : "#000")}; /* Cor do texto */
+  margin: 1rem 0;
+  color: white;
+  display: ${(props) => (props.$isEmpty ? "flex" : "block")};
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 3px;
+  }
 `;
 
 export const ItemCarrinho = styled.li`
-  border-bottom: 1px solid #ccc;
-
   display: flex;
-  color: #ffffff;
-  padding: 2rem 0;
+  gap: 1rem;
+  border-bottom: 1px solid #ccc;
+  padding: 1rem 0;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+  }
 `;
+
 export const ImgProduto = styled.img`
-  width: 109px;
+  width: 100px;
+  height: auto;
+
+  @media (max-width: 768px) {
+    width: 80px;
+  }
 `;
 
 export const ConteinerDescricaoProduto = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 1rem 2rem;
-  gap: 1em;
+  gap: 0.8rem;
 `;
 
-export const IconeLixeira = styled.button`
-  color: #ffffff;
-  background-color: transparent;
-  border: none;
-  margin-left: auto;
-`;
+export const NomeProduto = styled.span`
+  font-size: 1.2rem;
 
-export const NomeProduto = styled.span``;
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+`;
 
 export const ConteinerQuantidade = styled.div`
   display: flex;
   align-items: center;
+  gap: 0.5rem;
+
   h1 {
     font-size: 1rem;
   }
@@ -100,25 +135,40 @@ export const ConteinerQuantidade = styled.div`
   div {
     display: flex;
     align-items: center;
-    gap: 1em;
+    gap: 0.5rem;
   }
 
-  gap: 1em;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    h1 {
+      font-size: 0.9rem;
+    }
+  }
 `;
 
 export const BotaoQuantidade = styled.button`
-  border: 1px solid #ffffff;
-  color: #ffffff;
-  background-color: transparent;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
+  border: 1px solid white;
+  background: transparent;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    width: 24px;
+    height: 24px;
+    font-size: 0.9rem;
+  }
 `;
 
 export const QuantidadeProduto = styled.span`
-  border: 1px solid #ffffff;
+  padding: 0.3rem 1rem;
+  border: 1px solid white;
   border-radius: 4px;
-  padding: 0.5em 1.5em;
 `;
 
 export const PrecoProduto = styled.span`
@@ -126,11 +176,28 @@ export const PrecoProduto = styled.span`
   color: #daff01;
 `;
 
+export const IconeLixeira = styled.button`
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin: 0;
+  }
+`;
+
 export const RodapeLateral = styled.div`
   border-top: 1px solid #ccc;
-  padding-top: 1rem;
-  display: flex;
-  flex-direction: column;
+  padding: 1rem 2rem;
+  background-color: #343a40;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 export const ConteinerValorTotal = styled.div`
@@ -140,65 +207,61 @@ export const ConteinerValorTotal = styled.div`
   align-items: center;
   color: #daff01;
 
+  h1 {
+    font-size: 1.2rem;
+  }
+
   p {
     font-size: 1.5rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+    p {
+      font-size: 1.2rem;
+    }
   }
 `;
 
 export const ConteinerBotoes = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
   padding: 1rem 2rem;
-  
-`;
 
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+    padding: 0.7rem;
+  }
+`;
 
 export const BotaoCheckout = styled.button`
-  background-color: #9353ff;  /* Cor do botão, combina com o cabeçalho */
-  color: #fff;  /* Texto em branco para contraste */
-  padding: 1rem 2rem;  /* Espaçamento adequado */
+  flex: 1;
+  background-color: #9353ff;
+  color: white;
+  padding: 1rem;
   border: none;
   border-radius: 4px;
-  font-size: 1.2rem;
   font-weight: bold;
+  font-size: 1.1rem;
   cursor: pointer;
-  width: 100%;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s;
 
   &:hover {
-    background-color: #7e2dd0;  /* Tom mais escuro no hover */
-    transform: scale(1.05);  /* Efeito de zoom suave */
+    background-color: #7e2dd0;
   }
 
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px #daff01;  /* Efeito de foco */
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    padding: 0.8rem;
   }
 `;
 
-export const BotaoLimparCarrinho = styled.button`
-  background-color:transparent;  /* Cor de destaque para "Limpar" */
-  color: #ffffff;
-  border: 1px solid #daff01;  /* Texto escuro para contraste */
-  padding: 1rem 2rem;
-  
-  border-radius: 4px;
-  font-size: 1.2rem;
-  font-weight: bold;
-  cursor: pointer;
-  width: 100%;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+export const BotaoLimparCarrinho = styled(BotaoCheckout)`
+  background-color: transparent;
+  color: white;
+  border: 1px solid #daff01;
 
   &:hover {
-    background-color: #b7d600;  /* Tom mais escuro no hover */
-    transform: scale(1.05);
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px #343a40;  /* Efeito de foco */
+    background-color: rgba(255, 255, 255, 0.1);
   }
 `;

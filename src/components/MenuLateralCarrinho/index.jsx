@@ -60,11 +60,19 @@ const MenuLateralCarrinho = () => {
       <ListaItens $isEmpty={!háItensCarrinho}>
         {!háItensCarrinho ? (
           <div style={{ textAlign: "center", padding: "2rem 0" }}>
-            <FaShoppingCart style={{ fontSize: "3rem", color: "#ccc" }} />
+            <FaShoppingCart style={{ fontSize: "2.5rem", color: "#ccc" }} />
             <FaSadTear
-              style={{ fontSize: "2rem", color: "#ccc", marginLeft: "1rem" }}
+              style={{
+                fontSize: "1.5rem",
+                color: "#ccc",
+                marginLeft: "0.5rem",
+              }}
             />
-            <h1>Seu carrinho está vazio</h1>
+            <h1
+              style={{ fontSize: "1.2rem", color: "#ccc", marginTop: "1rem" }}
+            >
+              Seu carrinho está vazio
+            </h1>
           </div>
         ) : (
           carrinho.map((item) => (

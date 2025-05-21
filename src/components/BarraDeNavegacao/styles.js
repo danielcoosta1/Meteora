@@ -65,21 +65,21 @@ export const ListaEstilizada = styled.ul`
   @media (max-width: 768px) {
     display: ${({ $menuAberto }) => ($menuAberto ? "flex" : "none")};
     position: fixed;
-    top: 64px;
+    top: 54px;
     left: 0;
     right: 0;
     background-color: #000000;
     flex-direction: column;
-    padding: 1rem 0;
+    padding: 1rem 1.5rem;
     z-index: 9;
-    gap: 1rem;
+    gap: .5rem;
   }
 
   li a {
     color: #fff;
     text-decoration: none;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 0.8rem;
 
     &.ativo {
       color: #daff01;
@@ -138,6 +138,16 @@ export const IconeCarrinho = styled.button`
     width: 2rem;
     height: 2rem;
   }
+  @media (max-width: 768px) {
+    img {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+    span {
+      font-size: 0.45rem;
+      padding: 0.1rem 0.3rem;
+    }
+  }
 `;
 
 export const IconeFavoritos = styled.div`
@@ -160,6 +170,14 @@ export const IconeFavoritos = styled.div`
     font-weight: 700;
     padding: 0.2rem 0.4rem;
     border-radius: 50%;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.4rem;
+    span {
+      font-size: 0.45rem;
+      padding: 0.1rem 0.3rem;
+    }
   }
 `;
 
@@ -253,8 +271,13 @@ export const ContainerAuth = styled.div`
       background-color: #daff01;
       color: #000;
     }
+  
+   
   }
+
+ 
 `;
+
 
 export const ContainerLogado = styled.div`
   display: flex;
