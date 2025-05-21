@@ -107,6 +107,12 @@ export const ListaEstilizada = styled.ul`
       color: #daff01;
     }
   }
+
+   @media (max-width: 450px) {
+    top: 100px;
+  }
+
+
 `;
 
 export const ConteinerDireitoEstilizado = styled.section`
@@ -114,9 +120,11 @@ export const ConteinerDireitoEstilizado = styled.section`
   align-items: center;
   gap: 2rem;
 
-  @media (max-width: 768px) {
-    gap: 1rem;
+  @media (max-width: 450px) {
+    margin-top: 1rem;
+    gap: 3rem;
   }
+ 
 `;
 
 export const ContainerIcones = styled.div`
@@ -132,9 +140,7 @@ export const ContainerIcones = styled.div`
     width: auto;
     justify-content: flex-start;
   }
-  @media (max-width: 450px) {
-    gap: 0.75rem;
-  }
+  
 `;
 
 export const IconeCarrinho = styled.button`
@@ -305,6 +311,7 @@ export const ContainerAuth = styled.div`
   gap: 1rem;
   @media (max-width: 450px) {
     gap: 0.25rem;
+   
   }
 `;
 
