@@ -21,7 +21,7 @@ export const BotaoHamburguer = styled.button`
     position: relative;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
     display: flex;
   }
 
@@ -80,17 +80,19 @@ export const ListaEstilizada = styled.ul`
     gap: 1.5rem;
   }
 
-  @media (max-width: 768px) {
-    display: ${({ $menuAberto }) => ($menuAberto ? "flex" : "none")};
-    position: fixed;
-    top: 54px;
-    left: 0;
-    right: 0;
-    background-color: #000000;
+  @media (max-width: 1300px) {
     flex-direction: column;
-    padding: 1rem 1.5rem;
+    position: fixed;
+    top: 0;
+    right: ${({ $menuAberto }) => ($menuAberto ? "0" : "-300px")};
+    height: 100vh;
+    width: 300px;
+    background-color: #000000;
+    padding: 5rem 2rem 2rem 2rem;
     z-index: 9;
-    gap: 0.5rem;
+    transition: right 0.3s ease-in-out;
+    display: flex;
+    gap: 1rem;
   }
 
   li a {
@@ -108,11 +110,10 @@ export const ListaEstilizada = styled.ul`
     }
   }
 
-   @media (max-width: 450px) {
-    top: 100px;
+  @media (max-width: 450px) {
+    width: 60%;
+    margin-top: 2rem;
   }
-
-
 `;
 
 export const ConteinerDireitoEstilizado = styled.section`
@@ -124,7 +125,6 @@ export const ConteinerDireitoEstilizado = styled.section`
     margin-top: 1rem;
     gap: 3rem;
   }
- 
 `;
 
 export const ContainerIcones = styled.div`
@@ -140,7 +140,6 @@ export const ContainerIcones = styled.div`
     width: auto;
     justify-content: flex-start;
   }
-  
 `;
 
 export const IconeCarrinho = styled.button`
@@ -220,24 +219,10 @@ export const ImgEstilizada = styled.img`
 export const CampoFormSearch = styled.form`
   display: flex;
   width: 100%;
-  max-width: 400px;
-  margin: 1rem auto;
+
+  margin: 0 auto;
   gap: 0.5rem;
-
-  button {
-    background-color: #daff01;
-    border: none;
-    padding: 0 1rem;
-    cursor: pointer;
-    font-weight: 700;
-    border-radius: 4px;
-    color: #000;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: #c4d600;
-    }
-  }
+  object-fit: cover;
 `;
 
 export const Button = styled.button`
@@ -253,6 +238,15 @@ export const Button = styled.button`
   &:hover {
     background-color: #c4d600;
   }
+
+  @media (max-width: 768px) {
+    padding: 0 0.5rem;
+    font-size: 0.8rem;
+  }
+  @media (max-width: 450px) {
+    padding: 0 0.4rem;
+    font-size: 0.7rem;
+  }
 `;
 
 export const InputEstilizado = styled.input`
@@ -261,6 +255,15 @@ export const InputEstilizado = styled.input`
   border-radius: 4px;
   border: none;
   font-size: 1rem;
+
+  @media (max-width: 768px) {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  @media (max-width: 450px) {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
 `;
 
 export const ContainerBuscaMobile = styled.div`
@@ -311,7 +314,6 @@ export const ContainerAuth = styled.div`
   gap: 1rem;
   @media (max-width: 450px) {
     gap: 0.25rem;
-   
   }
 `;
 
