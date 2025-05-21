@@ -26,7 +26,7 @@ export const BotaoHamburguer = styled.button`
   }
 
   @media (max-width: 450px) {
-    width: 1.5rem;
+    width: 1.2rem;
     height: 1.2rem;
 
     div {
@@ -44,10 +44,20 @@ export const NavEstilizada = styled.nav`
 
   @media (max-width: 768px) {
     padding: 1rem 1.5rem;
+
+  }
+
+  
+  @media (max-width: 468px) {
+    gap: 0.5rem;
+  
+   
   }
 
   @media (max-width: 400px) {
     flex-direction: column;
+  
+   
   }
 `;
 
@@ -67,7 +77,6 @@ export const ConteinerEsquerdaEstilizado = styled.section`
 
   @media (max-width: 450px) {
     gap: 0.5rem;
-    flex: 1;
   }
 `;
 
@@ -122,8 +131,12 @@ export const ConteinerDireitoEstilizado = styled.section`
   gap: 2rem;
 
   @media (max-width: 450px) {
+   gap: 1rem;
+  }
+  
+  @media (max-width: 400px) {
     margin-top: 1rem;
-    gap: 3rem;
+   
   }
 `;
 
@@ -139,6 +152,7 @@ export const ContainerIcones = styled.div`
   @media (max-width: 768px) {
     width: auto;
     justify-content: flex-start;
+    gap: 1rem;
   }
 `;
 
@@ -208,12 +222,9 @@ export const IconeFavoritos = styled.div`
 `;
 
 export const ImgEstilizada = styled.img`
-  width: 120px;
+  width: 100%;
   height: auto;
-
-  @media (max-width: 768px) {
-    width: 90px;
-  }
+  min-width: 70px;
 `;
 
 export const CampoFormSearch = styled.form`
@@ -271,14 +282,14 @@ export const ContainerBuscaMobile = styled.div`
   background-color: #000;
   padding: 1rem 2rem;
 
-  @media (min-width: 769px) {
+  @media (min-width: 860px) {
     display: none;
   }
 `;
 export const CampoBuscaDesktop = styled.div`
   display: none;
 
-  @media (min-width: 769px) {
+  @media (min-width: 860px) {
     display: block;
   }
 `;
@@ -303,7 +314,7 @@ export const BotaoAuth = styled.button`
     font-size: 0.7rem;
   }
 
-  @media (max-width: 450px) {
+  @media (max-width: 430px) {
     padding: 0.25rem 0.5rem;
     font-size: 0.65rem;
   }
@@ -312,7 +323,7 @@ export const BotaoAuth = styled.button`
 export const ContainerAuth = styled.div`
   display: flex;
   gap: 1rem;
-  @media (max-width: 450px) {
+  @media (max-width: 430px) {
     gap: 0.25rem;
   }
 `;

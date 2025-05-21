@@ -98,7 +98,7 @@ const BarraDeNavegacao = () => {
               aria-label="Abrir carrinho de compras"
               title="Abrir carrinho de compras"
             >
-              <ImgEstilizada src={iconeCarrinho} alt="Carrinho" />
+              <img src={iconeCarrinho} alt="Carrinho" />
               <span>
                 {carrinho.reduce((acc, item) => acc + item.quantidade, 0)}
               </span>
