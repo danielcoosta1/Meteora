@@ -228,12 +228,12 @@ export const IconeCarrinho = styled.button`
   }
   @media (max-width: 768px) {
     img {
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 1.7rem;
+      height: 1.7rem;
     }
     span {
-      font-size: 0.45rem;
-      padding: 0.1rem 0.3rem;
+      font-size: 0.55rem;
+      padding: 0.15rem 0.35rem;
     }
   }
 `;
@@ -263,8 +263,8 @@ export const IconeFavoritos = styled.div`
   @media (max-width: 768px) {
     font-size: 1.4rem;
     span {
-      font-size: 0.45rem;
-      padding: 0.1rem 0.3rem;
+   font-size: 0.55rem;
+      padding: 0.15rem 0.35rem;
     }
   }
 `;
