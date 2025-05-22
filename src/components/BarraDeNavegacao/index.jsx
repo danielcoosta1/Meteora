@@ -30,12 +30,13 @@ import { NavLink, useLocation } from "react-router-dom";
 import { useProdutos } from "../../hooks/useProdutos";
 import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
-import { useEffect, useRef } from "react";
+
 import { useNavbar } from "../../hooks/useNavbar";
 
 const BarraDeNavegacao = () => {
-  const navRef = useRef(null);
-  const { altura, setAltura } = useNavbar();
+
+  const { navRef, altura } = useNavbar();
+  
   const { carrinho, abrirMenu } = useCarrinho();
 
   const { termoBusca, setTermoBusca } = useProdutos();
@@ -48,18 +49,6 @@ const BarraDeNavegacao = () => {
 
   const location = useLocation();
   const rotaAtual = location.pathname;
-
-  //Calculando a altura do nav
-  useEffect(() => {
-    const atualizarAltura = () => {
-      if (navRef.current) {
-        setAltura(navRef.current.offsetHeight);
-      }
-    };
-    atualizarAltura();
-    window.addEventListener("resize", atualizarAltura);
-    return () => window.removeEventListener("resize", atualizarAltura);
-  }, [setAltura]);
 
   const links = [
     { name: "Home", path: "/" },
