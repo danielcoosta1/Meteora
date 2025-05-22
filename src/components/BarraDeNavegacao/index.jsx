@@ -58,12 +58,42 @@ const BarraDeNavegacao = () => {
     <>
       <NavEstilizada ref={navRef}>
         <ConteinerEsquerdaEstilizado>
+          <BotaoHamburguer
+            onClick={() => setMenuAberto(!menuAberto)}
+            aria-label="Abrir menu"
+            aria-expanded={menuAberto}
+            $ativo={menuAberto}
+          >
+            <div />
+            <div />
+            <div />
+          </BotaoHamburguer>
           <NavLink to="/">
             <h1>
               <ImgEstilizada src={logoMeteora} alt="Logo do Meteora" />
             </h1>
           </NavLink>
+          <ContainerIcones>
+            <IconeCarrinho
+              onClick={abrirMenu}
+              aria-label="Abrir carrinho de compras"
+              title="Abrir carrinho de compras"
+            >
+              <img src={iconeCarrinho} alt="Carrinho" />
+              <span>
+                {carrinho.reduce((acc, item) => acc + item.quantidade, 0)}
+              </span>
+            </IconeCarrinho>
 
+            <NavLink to="/favoritos" aria-label="Favoritos" title="Favoritos">
+              {({ isActive }) => (
+                <IconeFavoritos className={isActive ? "ativo" : ""}>
+                  {isActive ? <FaHeart /> : <FaRegHeart />}
+                  <span>{favoritos.length}</span>
+                </IconeFavoritos>
+              )}
+            </NavLink>
+          </ContainerIcones>
           <ListaEstilizada $menuAberto={menuAberto} $alturaNav={altura}>
             {links.map((link, index) => (
               <li key={index}>
@@ -114,27 +144,6 @@ const BarraDeNavegacao = () => {
             </CampoBuscaDesktop>
           )}
 
-          <ContainerIcones>
-            <IconeCarrinho
-              onClick={abrirMenu}
-              aria-label="Abrir carrinho de compras"
-              title="Abrir carrinho de compras"
-            >
-              <img src={iconeCarrinho} alt="Carrinho" />
-              <span>
-                {carrinho.reduce((acc, item) => acc + item.quantidade, 0)}
-              </span>
-            </IconeCarrinho>
-
-            <NavLink to="/favoritos" aria-label="Favoritos" title="Favoritos">
-              {({ isActive }) => (
-                <IconeFavoritos className={isActive ? "ativo" : ""}>
-                  {isActive ? <FaHeart /> : <FaRegHeart />}
-                  <span>{favoritos.length}</span>
-                </IconeFavoritos>
-              )}
-            </NavLink>
-          </ContainerIcones>
           {usuario ? (
             <ContainerLogado className="versao-desktop">
               <UsuarioLogado>Olá, {usuario.nome}!</UsuarioLogado>
@@ -150,16 +159,6 @@ const BarraDeNavegacao = () => {
               </NavLink>
             </ContainerAuth>
           )}
-          <BotaoHamburguer
-            onClick={() => setMenuAberto(!menuAberto)}
-            aria-label="Abrir menu"
-            aria-expanded={menuAberto}
-            $ativo={menuAberto}
-          >
-            <div />
-            <div />
-            <div />
-          </BotaoHamburguer>
         </ConteinerDireitoEstilizado>
       </NavEstilizada>
 

@@ -50,14 +50,10 @@ export const BotaoHamburguer = styled.button`
   }
 
   @media (max-width: 450px) {
-    div {
-      margin-left: 4rem;
-    }
+  
   }
   @media (max-width: 400px) {
-    div {
-      margin-left: 3rem;
-    }
+  
   }
 `;
 
@@ -105,8 +101,8 @@ export const ListaEstilizada = styled.ul`
   @media (max-width: 1300px) {
     flex-direction: column;
     position: fixed;
-    top: 100px;
-    right: ${({ $menuAberto }) => ($menuAberto ? "0" : "-300px")};
+    top: ${({ $alturaNav }) => `${$alturaNav}px`};
+    left: ${({ $menuAberto }) => ($menuAberto ? "0" : "300px")};
     height: 100vh;
     width: 300px;
     background: rgba(0, 0, 0, 0.6);
@@ -198,8 +194,6 @@ export const ContainerIcones = styled.div`
     justify-content: flex-start;
     gap: 1rem;
   }
-
- 
 `;
 
 export const IconeCarrinho = styled.button`
@@ -383,7 +377,6 @@ export const ContainerAuth = styled.div`
     }
   }
 `;
-
 
 export const ContainerLogado = styled.div`
   display: flex;
