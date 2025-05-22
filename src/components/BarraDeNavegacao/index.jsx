@@ -31,10 +31,11 @@ import { useProdutos } from "../../hooks/useProdutos";
 import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
 import { useEffect, useRef } from "react";
+import { useNavbar } from "../../hooks/useNavbar";
 
-const BarraDeNavegacao = ({ setAlturaNav, alturaNav }) => {
+const BarraDeNavegacao = () => {
   const navRef = useRef(null);
-
+  const { altura, setAltura } = useNavbar();
   const { carrinho, abrirMenu } = useCarrinho();
 
   const { termoBusca, setTermoBusca } = useProdutos();
@@ -50,19 +51,15 @@ const BarraDeNavegacao = ({ setAlturaNav, alturaNav }) => {
 
   //Calculando a altura do nav
   useEffect(() => {
-    if (navRef.current) {
-      setAlturaNav(navRef.current.offsetHeight);
-    }
-
-    const handleResize = () => {
+    const atualizarAltura = () => {
       if (navRef.current) {
-        setAlturaNav(navRef.current.offsetHeight);
+        setAltura(navRef.current.offsetHeight);
       }
     };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [setAlturaNav]);
+    atualizarAltura();
+    window.addEventListener("resize", atualizarAltura);
+    return () => window.removeEventListener("resize", atualizarAltura);
+  }, [setAltura]);
 
   const links = [
     { name: "Home", path: "/" },
@@ -84,7 +81,7 @@ const BarraDeNavegacao = ({ setAlturaNav, alturaNav }) => {
             </h1>
           </NavLink>
 
-          <ListaEstilizada $menuAberto={menuAberto} $alturaNav={alturaNav}>
+          <ListaEstilizada $menuAberto={menuAberto} $alturaNav={altura}>
             {links.map((link, index) => (
               <li key={index}>
                 <NavLink
