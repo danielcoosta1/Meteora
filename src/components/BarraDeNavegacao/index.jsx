@@ -16,9 +16,9 @@ import {
   UsuarioLogado,
   ButtonLogout,
   BotaoHamburguer,
-  ContainerBuscaMobile,
-  CampoBuscaDesktop,
   BotaoAuth,
+  CampoBuscaDesktop,
+  ContainerBuscaMobile,
 } from "./styles";
 
 import { useCarrinho } from "../../hooks/useCarrinho";
@@ -54,7 +54,7 @@ const BarraDeNavegacao = () => {
 
   const exibirCampoBusca =
     rotaAtual === "/produtos" || rotaAtual === "/favoritos";
-  
+
   return (
     <>
       <NavEstilizada>
@@ -65,7 +65,10 @@ const BarraDeNavegacao = () => {
             </h1>
           </NavLink>
 
-          <ListaEstilizada $menuAberto={menuAberto} $exibirCampoBusca={exibirCampoBusca}>
+          <ListaEstilizada
+            $menuAberto={menuAberto}
+            $exibirCampoBusca={exibirCampoBusca}
+          >
             {links.map((link, index) => (
               <li key={index}>
                 <NavLink
@@ -146,7 +149,6 @@ const BarraDeNavegacao = () => {
           </BotaoHamburguer>
         </ConteinerDireitoEstilizado>
       </NavEstilizada>
-
       {exibirCampoBusca && (
         <ContainerBuscaMobile $mostrar={true}>
           <CampoFormSearch onSubmit={(e) => e.preventDefault()}>

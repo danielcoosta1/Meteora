@@ -2,7 +2,7 @@
 import { BsFillCartCheckFill } from "react-icons/bs";
 import { FaTrash } from "react-icons/fa";
 
-import BarraDeNavegacao from "../../components/BarraDeNavegacao";
+
 
 import imgBannerCarrinho from "/assets/images/banner-carrinho.png";
 
@@ -51,7 +51,7 @@ const Checkout = () => {
 
   return (
     <>
-      <BarraDeNavegacao />
+    
       <BannerCheckout>
         <img src={imgBannerCarrinho} />
       </BannerCheckout>

@@ -66,6 +66,11 @@ export const BotaoHamburguer = styled.button`
 `;
 
 export const NavEstilizada = styled.nav`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -156,16 +161,16 @@ export const ListaEstilizada = styled.ul`
   }
 
   @media (max-width: 780px) {
-   top: ${({ $exibirCampoBusca }) => ($exibirCampoBusca ? "130px" : "68px")};
+    top: ${({ $exibirCampoBusca }) => ($exibirCampoBusca ? "130px" : "68px")};
   }
   @media (max-width: 450px) {
     width: 40%;
-     top: ${({ $exibirCampoBusca }) => ($exibirCampoBusca ? "125px" : "68px")};
+    top: ${({ $exibirCampoBusca }) => ($exibirCampoBusca ? "125px" : "68px")};
   }
 
   @media (max-width: 400px) {
     width: 40%;
-     top: ${({ $exibirCampoBusca }) => ($exibirCampoBusca ? "176px" : "120px")};
+    top: ${({ $exibirCampoBusca }) => ($exibirCampoBusca ? "176px" : "120px")};
   }
 `;
 
@@ -321,14 +326,20 @@ export const InputEstilizado = styled.input`
 `;
 
 export const ContainerBuscaMobile = styled.div`
-  display: ${({ $mostrar }) => ($mostrar ? "block" : "none")};
-  background-color: #000;
-  padding: 1rem 2rem;
+  display: none;
 
-  @media (min-width: 860px) {
-    display: none;
+  @media (max-width: 768px) {
+    display: ${({ $mostrar }) => ($mostrar ? "flex" : "none")};
+    width: 100%;
+    position: absolute;
+    top: 100%; // imediatamente abaixo da barra
+    left: 0;
+    background-color: #000;
+    padding: 1rem 2rem;
+    z-index: 999;
   }
 `;
+
 export const CampoBuscaDesktop = styled.div`
   display: none;
 
@@ -336,6 +347,7 @@ export const CampoBuscaDesktop = styled.div`
     display: block;
   }
 `;
+
 export const BotaoAuth = styled.button`
   padding: 0.4rem 0.8rem;
   font-size: 0.8rem;
@@ -374,7 +386,7 @@ export const ContainerAuth = styled.div`
 export const ContainerLogado = styled.div`
   display: flex;
   align-items: center;
- gap: 1rem;
+  gap: 1rem;
   @media (max-width: 490px) {
     gap: 0.25rem;
   }
@@ -383,7 +395,7 @@ export const ContainerLogado = styled.div`
 export const UsuarioLogado = styled.span`
   color: #fff;
   font-weight: 600;
-  
+
   @media (max-width: 490px) {
     font-size: 0.8rem;
   }
@@ -407,10 +419,9 @@ export const ButtonLogout = styled.button`
     color: #000;
   }
 
-    @media (max-width: 490px) {
+  @media (max-width: 490px) {
     padding: 0.3rem 0.6rem;
     font-size: 0.8rem;
-
   }
 
   @media (max-width: 420px) {

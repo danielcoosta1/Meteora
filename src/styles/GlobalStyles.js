@@ -8,7 +8,9 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
-
+body {
+  padding-top: 100px; // ajuste conforme a altura real da barra
+}
   html, body {
     font-family: "Inter", sans-serif;
     overflow-x: hidden;

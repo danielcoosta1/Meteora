@@ -12,8 +12,6 @@ import { BiEraser } from "react-icons/bi";
 
 import Categorias from "../../components/Categoria";
 
-import BarraDeNavegacao from "../../components/BarraDeNavegacao";
-
 import ModoAmpliar from "../../components/ModoAmpliar";
 import TituloSecao from "../../components/TituloDefaultSecao";
 
@@ -69,7 +67,6 @@ const Produtos = () => {
 
   return (
     <>
-      <BarraDeNavegacao />
       <ContainerProdutos>
         <AsiderFiltros />
         <ContainerWrapper>
