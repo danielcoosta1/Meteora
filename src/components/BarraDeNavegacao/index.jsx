@@ -30,8 +30,11 @@ import { NavLink, useLocation } from "react-router-dom";
 import { useProdutos } from "../../hooks/useProdutos";
 import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
+import { useEffect, useRef } from "react";
 
-const BarraDeNavegacao = () => {
+const BarraDeNavegacao = ({ setAlturaNav, alturaNav }) => {
+  const navRef = useRef(null);
+
   const { carrinho, abrirMenu } = useCarrinho();
 
   const { termoBusca, setTermoBusca } = useProdutos();
@@ -45,6 +48,22 @@ const BarraDeNavegacao = () => {
   const location = useLocation();
   const rotaAtual = location.pathname;
 
+  //Calculando a altura do nav
+  useEffect(() => {
+    if (navRef.current) {
+      setAlturaNav(navRef.current.offsetHeight);
+    }
+
+    const handleResize = () => {
+      if (navRef.current) {
+        setAlturaNav(navRef.current.offsetHeight);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [setAlturaNav]);
+
   const links = [
     { name: "Home", path: "/" },
     { name: "Novidades", path: "/novidades" },
@@ -57,7 +76,7 @@ const BarraDeNavegacao = () => {
 
   return (
     <>
-      <NavEstilizada>
+      <NavEstilizada ref={navRef}>
         <ConteinerEsquerdaEstilizado>
           <NavLink to="/">
             <h1>
@@ -65,10 +84,7 @@ const BarraDeNavegacao = () => {
             </h1>
           </NavLink>
 
-          <ListaEstilizada
-            $menuAberto={menuAberto}
-            $exibirCampoBusca={exibirCampoBusca}
-          >
+          <ListaEstilizada $menuAberto={menuAberto} $alturaNav={alturaNav}>
             {links.map((link, index) => (
               <li key={index}>
                 <NavLink

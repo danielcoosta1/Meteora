@@ -15,9 +15,10 @@ import { useCarrinho } from "../../hooks/useCarrinho";
 import Cadastro from "../../pages/Cadastro";
 import RotaPrivada from "../RotaPrivada";
 import BarraDeNavegacao from "../BarraDeNavegacao";
+import { useState } from "react";
 const AppContent = () => {
   const { menuAberto } = useCarrinho();
-
+  const [alturaNav, setAlturaNav] = useState(0);
   return (
     <>
       <ToastContainer
@@ -29,15 +30,21 @@ const AppContent = () => {
         draggable
         theme="colored"
       />
-      <BarraDeNavegacao />
+      <BarraDeNavegacao setAlturaNav={setAlturaNav} alturaNav={alturaNav} />
       {menuAberto && <MenuLateralCarrinho />}
 
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/cadastro" element={<Cadastro />} />
-        <Route path="/produtos" element={<Produtos />} />
-        <Route path="/promocoes" element={<Promocoes />} />
-        <Route path="/novidades" element={<Novidades />} />
+        <Route path="/login" element={<Login alturaNav={alturaNav} />} />
+        <Route path="/cadastro" element={<Cadastro alturaNav={alturaNav} />} />
+        <Route path="/produtos" element={<Produtos alturaNav={alturaNav} />} />
+        <Route
+          path="/promocoes"
+          element={<Promocoes alturaNav={alturaNav} />}
+        />
+        <Route
+          path="/novidades"
+          element={<Novidades alturaNav={alturaNav} />}
+        />
         <Route path="/" element={<Home />} />
 
         {/* Rotas protegidas */}

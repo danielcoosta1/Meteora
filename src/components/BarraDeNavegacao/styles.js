@@ -161,16 +161,16 @@ export const ListaEstilizada = styled.ul`
   }
 
   @media (max-width: 780px) {
-    top: ${({ $exibirCampoBusca }) => ($exibirCampoBusca ? "130px" : "68px")};
+    top: ${({ $alturaNav }) => `${$alturaNav}px`};
   }
   @media (max-width: 450px) {
     width: 40%;
-    top: ${({ $exibirCampoBusca }) => ($exibirCampoBusca ? "125px" : "68px")};
+    top: ${({ $alturaNav }) => `${$alturaNav}px`};
   }
 
   @media (max-width: 400px) {
     width: 40%;
-    top: ${({ $exibirCampoBusca }) => ($exibirCampoBusca ? "176px" : "120px")};
+    top: ${({ $alturaNav }) => `${$alturaNav}px`};
   }
 `;
 
