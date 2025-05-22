@@ -71,6 +71,7 @@ export const NavEstilizada = styled.nav`
 
   @media (max-width: 768px) {
     padding: 1rem 1.5rem;
+    justify-content: center;
   }
 
   @media (max-width: 468px) {
