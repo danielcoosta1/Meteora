@@ -376,20 +376,27 @@ export const BotaoAuth = styled.button`
 export const ContainerAuth = styled.div`
   display: flex;
   gap: 1rem;
-  @media (max-width: 430px) {
-    gap: 0.25rem;
+
+  &.versao-desktop {
+    @media (max-width: 1300px) {
+      display: none;
+    }
   }
 `;
+
 
 export const ContainerLogado = styled.div`
   display: flex;
-  align-items: center;
-  gap: 1rem;
-  @media (max-width: 425px) {
-    gap: 0.5rem;
+  flex-direction: column;
+  align-items: end;
+  gap: 0.5rem;
+
+  &.versao-desktop {
+    @media (max-width: 1300px) {
+      display: none;
+    }
   }
 `;
-
 export const UsuarioLogado = styled.span`
   color: #fff;
   font-weight: 600;
@@ -425,5 +432,16 @@ export const ButtonLogout = styled.button`
   @media (max-width: 420px) {
     padding: 0.25rem 0.5rem;
     font-size: 0.7rem;
+  }
+`;
+
+export const ContainerMenuMobile = styled.div`
+  display: none;
+
+  @media (max-width: 1300px) {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
   }
 `;

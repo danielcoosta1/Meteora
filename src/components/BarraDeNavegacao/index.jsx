@@ -1,4 +1,3 @@
-// BarraDeNavegacao.jsx
 import {
   Button,
   CampoFormSearch,
@@ -19,6 +18,7 @@ import {
   BotaoAuth,
   CampoBuscaDesktop,
   ContainerBuscaMobile,
+  ContainerMenuMobile, // ✅ MODIFICADO
 } from "./styles";
 
 import { useCarrinho } from "../../hooks/useCarrinho";
@@ -35,15 +35,10 @@ import { useNavbar } from "../../hooks/useNavbar";
 
 const BarraDeNavegacao = () => {
   const { navRef, altura } = useNavbar();
-
   const { carrinho, abrirMenu } = useCarrinho();
-
   const { termoBusca, setTermoBusca } = useProdutos();
-
   const { favoritos } = useFavoritos();
-
   const { usuario, logout } = useAuth();
-
   const [menuAberto, setMenuAberto] = useState(false);
 
   const location = useLocation();
@@ -69,11 +64,7 @@ const BarraDeNavegacao = () => {
             </h1>
           </NavLink>
 
-          <ListaEstilizada
-      
-            $menuAberto={menuAberto}
-            $alturaNav={altura}
-          >
+          <ListaEstilizada $menuAberto={menuAberto} $alturaNav={altura}>
             {links.map((link, index) => (
               <li key={index}>
                 <NavLink
@@ -85,6 +76,25 @@ const BarraDeNavegacao = () => {
                 </NavLink>
               </li>
             ))}
+
+            {/* ✅ MODIFICADO: Colocado os botões de auth no final do menu mobile */}
+            <ContainerMenuMobile>
+              {usuario ? (
+                <ContainerLogado>
+                  <UsuarioLogado>Olá, {usuario.nome}!</UsuarioLogado>
+                  <ButtonLogout onClick={logout}>Sair</ButtonLogout>
+                </ContainerLogado>
+              ) : (
+                <ContainerAuth>
+                  <NavLink to="/login">
+                    <BotaoAuth>Login</BotaoAuth>
+                  </NavLink>
+                  <NavLink to="/cadastro">
+                    <BotaoAuth>Cadastro</BotaoAuth>
+                  </NavLink>
+                </ContainerAuth>
+              )}
+            </ContainerMenuMobile>
           </ListaEstilizada>
         </ConteinerEsquerdaEstilizado>
 
@@ -124,24 +134,22 @@ const BarraDeNavegacao = () => {
                 </IconeFavoritos>
               )}
             </NavLink>
-
-            {usuario ? (
-              <ContainerLogado>
-                <UsuarioLogado>Olá, {usuario.nome}!</UsuarioLogado>
-                <ButtonLogout onClick={logout}>Sair</ButtonLogout>
-              </ContainerLogado>
-            ) : (
-              <ContainerAuth>
-                <NavLink to="/login">
-                  <BotaoAuth>Login</BotaoAuth>
-                </NavLink>
-                <NavLink to="/cadastro">
-                  <BotaoAuth>Cadastro</BotaoAuth>
-                </NavLink>
-              </ContainerAuth>
-            )}
           </ContainerIcones>
-
+          {usuario ? (
+            <ContainerLogado className="versao-desktop">
+              <UsuarioLogado>Olá, {usuario.nome}!</UsuarioLogado>
+              <ButtonLogout onClick={logout}>Sair</ButtonLogout>
+            </ContainerLogado>
+          ) : (
+            <ContainerAuth className="versao-desktop">
+              <NavLink to="/login">
+                <BotaoAuth>Login</BotaoAuth>
+              </NavLink>
+              <NavLink to="/cadastro">
+                <BotaoAuth>Cadastro</BotaoAuth>
+              </NavLink>
+            </ContainerAuth>
+          )}
           <BotaoHamburguer
             onClick={() => setMenuAberto(!menuAberto)}
             aria-label="Abrir menu"
@@ -154,6 +162,7 @@ const BarraDeNavegacao = () => {
           </BotaoHamburguer>
         </ConteinerDireitoEstilizado>
       </NavEstilizada>
+
       {exibirCampoBusca && (
         <ContainerBuscaMobile $mostrar={true} $alturaNav={altura}>
           <CampoFormSearch onSubmit={(e) => e.preventDefault()}>
