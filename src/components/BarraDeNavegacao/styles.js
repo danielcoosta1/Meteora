@@ -50,17 +50,13 @@ export const BotaoHamburguer = styled.button`
   }
 
   @media (max-width: 450px) {
-    width: 1.2rem;
-    height: 1.2rem;
-
     div {
-      width: 1.3rem;
+      margin-left: 4rem;
     }
   }
-
   @media (max-width: 400px) {
     div {
-      margin-left: 2.25rem;
+      margin-left: 3rem;
     }
   }
 `;
@@ -85,7 +81,7 @@ export const NavEstilizada = styled.nav`
     gap: 0.5rem;
   }
 
-  @media (max-width: 400px) {
+  @media (max-width: 430px) {
     flex-direction: column;
   }
 `;
@@ -202,6 +198,8 @@ export const ContainerIcones = styled.div`
     justify-content: flex-start;
     gap: 1rem;
   }
+
+ 
 `;
 
 export const IconeCarrinho = styled.button`
@@ -263,7 +261,7 @@ export const IconeFavoritos = styled.div`
   @media (max-width: 768px) {
     font-size: 1.4rem;
     span {
-   font-size: 0.55rem;
+      font-size: 0.55rem;
       padding: 0.15rem 0.35rem;
     }
   }
@@ -387,8 +385,8 @@ export const ContainerLogado = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
-  @media (max-width: 490px) {
-    gap: 0.25rem;
+  @media (max-width: 425px) {
+    gap: 0.5rem;
   }
 `;
 

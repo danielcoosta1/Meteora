@@ -34,9 +34,8 @@ import { useState } from "react";
 import { useNavbar } from "../../hooks/useNavbar";
 
 const BarraDeNavegacao = () => {
-
   const { navRef, altura } = useNavbar();
-  
+
   const { carrinho, abrirMenu } = useCarrinho();
 
   const { termoBusca, setTermoBusca } = useProdutos();
@@ -70,7 +69,11 @@ const BarraDeNavegacao = () => {
             </h1>
           </NavLink>
 
-          <ListaEstilizada $menuAberto={menuAberto} $alturaNav={altura}>
+          <ListaEstilizada
+      
+            $menuAberto={menuAberto}
+            $alturaNav={altura}
+          >
             {links.map((link, index) => (
               <li key={index}>
                 <NavLink
