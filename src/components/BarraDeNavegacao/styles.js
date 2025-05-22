@@ -331,8 +331,8 @@ export const ContainerBuscaMobile = styled.div`
   @media (max-width: 768px) {
     display: ${({ $mostrar }) => ($mostrar ? "flex" : "none")};
     width: 100%;
-    position: absolute;
-    top: 100%; // imediatamente abaixo da barra
+    position: fixed;
+    top: ${({ $alturaNav }) => `${$alturaNav}px`};
     left: 0;
     background-color: #000;
     padding: 1rem 2rem;

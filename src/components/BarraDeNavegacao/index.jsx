@@ -152,7 +152,7 @@ const BarraDeNavegacao = () => {
         </ConteinerDireitoEstilizado>
       </NavEstilizada>
       {exibirCampoBusca && (
-        <ContainerBuscaMobile $mostrar={true}>
+        <ContainerBuscaMobile $mostrar={true} $alturaNav={altura}>
           <CampoFormSearch onSubmit={(e) => e.preventDefault()}>
             <InputEstilizado
               type="search"
