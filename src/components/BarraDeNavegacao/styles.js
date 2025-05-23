@@ -335,6 +335,11 @@ export const ContainerAuth = styled.div`
   display: flex;
   gap: 1rem;
 
+  @media (max-width: 1300px) {
+    border-top: 1px solid #fff;
+    padding-top: 2rem;
+    
+  }
   &.versao-desktop {
     @media (max-width: 1300px) {
       display: none;
@@ -349,6 +354,8 @@ export const ContainerLogado = styled.div`
   gap: 0.75em;
   @media (max-width: 1300px) {
     justify-content: flex-start;
+    padding-top: 2rem;
+    border-top: 1px solid #fff;
   }
 
   @media (max-width: 450px) {
@@ -392,6 +399,14 @@ export const ButtonLogout = styled.button`
       transform: scale(1.4);
     }
   }
+ 
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
+  @media (max-width: 450px) {
+    font-size: 0.7rem;
+  }
+
 `;
 
 export const IconLogout = styled(FiLogOut)`
