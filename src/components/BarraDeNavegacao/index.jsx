@@ -57,7 +57,7 @@ const BarraDeNavegacao = () => {
   return (
     <>
       <NavEstilizada ref={navRef}>
-        <ConteinerEsquerdaEstilizado>
+        <ConteinerEsquerdaEstilizado $campoBusca={exibirCampoBusca}>
           <BotaoHamburguer
             onClick={() => setMenuAberto(!menuAberto)}
             aria-label="Abrir menu"
@@ -164,7 +164,7 @@ const BarraDeNavegacao = () => {
 
       {exibirCampoBusca && (
         <ContainerBuscaMobile $mostrar={true} $alturaNav={altura}>
-          <CampoFormSearch onSubmit={(e) => e.preventDefault()}>
+          <CampoFormSearch onSubmit={(e) => e.preventDefault()} className="mobile">
             <InputEstilizado
               type="search"
               placeholder="Digite o produto"

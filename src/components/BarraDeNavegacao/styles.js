@@ -50,10 +50,8 @@ export const BotaoHamburguer = styled.button`
   }
 
   @media (max-width: 450px) {
-  
   }
   @media (max-width: 400px) {
-  
   }
 `;
 
@@ -72,14 +70,7 @@ export const NavEstilizada = styled.nav`
   @media (max-width: 768px) {
     padding: 1rem 1.5rem;
     justify-content: center;
-  }
-
-  @media (max-width: 468px) {
-    gap: 0.5rem;
-  }
-
-  @media (max-width: 430px) {
-    flex-direction: column;
+    padding: 0.75rem 0;
   }
 `;
 
@@ -88,6 +79,19 @@ export const ConteinerEsquerdaEstilizado = styled.section`
   align-items: center;
   justify-content: center;
   gap: 3rem;
+
+  @media (max-width: 1300px) {
+    width: 100%;
+    justify-content: ${({ $campoBusca }) =>
+      $campoBusca ? "space-around" : "space-between"};
+   
+  }
+
+  @media (max-width: 840px) {
+   
+    justify-content: space-between;
+    padding: 1rem 2rem;
+  }
 `;
 
 export const ListaEstilizada = styled.ul`
@@ -95,30 +99,27 @@ export const ListaEstilizada = styled.ul`
   list-style: none;
   gap: 2rem;
 
-  @media (max-width: 1200px) {
-    gap: 1.5rem;
-  }
-
   @media (max-width: 1300px) {
     flex-direction: column;
     position: fixed;
     top: ${({ $alturaNav }) => `${$alturaNav}px`};
-    left: ${({ $menuAberto }) => ($menuAberto ? "0" : "300px")};
+    left: 0;
     height: 100vh;
     width: 300px;
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(10px);
     box-shadow: -4px 0 12px rgba(0, 0, 0, 0.4);
     padding: 5rem 2rem 2rem 2rem;
-    z-index: 9;
-    transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out,
-      transform 0.3s ease-in-out;
-    opacity: ${({ $menuAberto }) => ($menuAberto ? 1 : 0)};
+    z-index: 9;rgba(220, 107, 107, 0.6)
+
     transform: ${({ $menuAberto }) =>
-      $menuAberto ? "translateX(0)" : "translateX(20px)"};
-    display: flex;
+      $menuAberto ? "translateX(0)" : "translateX(-100%)"};
+    opacity: ${({ $menuAberto }) => ($menuAberto ? 1 : 0)};
+    pointer-events: ${({ $menuAberto }) => ($menuAberto ? "auto" : "none")};
+
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
     gap: 1rem;
-    text-align: end;
   }
 
   li a {
@@ -130,40 +131,8 @@ export const ListaEstilizada = styled.ul`
     transition: color 0.2s ease-in-out;
 
     &.ativo {
-      color: #daff01;
+      color: #DAFF01;
     }
-
-    &:hover {
-      color: #daff01;
-    }
-
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      background-color: #daff01;
-      transition: width 0.3s ease;
-    }
-
-    &:hover::after {
-      width: 100%;
-    }
-  }
-
-  @media (max-width: 780px) {
-    top: ${({ $alturaNav }) => `${$alturaNav}px`};
-  }
-  @media (max-width: 450px) {
-    width: 40%;
-    top: ${({ $alturaNav }) => `${$alturaNav}px`};
-  }
-
-  @media (max-width: 400px) {
-    width: 40%;
-    top: ${({ $alturaNav }) => `${$alturaNav}px`};
   }
 `;
 
@@ -321,7 +290,7 @@ export const InputEstilizado = styled.input`
 export const ContainerBuscaMobile = styled.div`
   display: none;
 
-  @media (max-width: 768px) {
+  @media (max-width: 840px) {
     display: ${({ $mostrar }) => ($mostrar ? "flex" : "none")};
     width: 100%;
     position: fixed;
