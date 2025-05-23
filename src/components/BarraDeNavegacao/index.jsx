@@ -73,27 +73,7 @@ const BarraDeNavegacao = () => {
               <ImgEstilizada src={logoMeteora} alt="Logo do Meteora" />
             </h1>
           </NavLink>
-          <ContainerIcones>
-            <IconeCarrinho
-              onClick={abrirMenu}
-              aria-label="Abrir carrinho de compras"
-              title="Abrir carrinho de compras"
-            >
-              <img src={iconeCarrinho} alt="Carrinho" />
-              <span>
-                {carrinho.reduce((acc, item) => acc + item.quantidade, 0)}
-              </span>
-            </IconeCarrinho>
 
-            <NavLink to="/favoritos" aria-label="Favoritos" title="Favoritos">
-              {({ isActive }) => (
-                <IconeFavoritos className={isActive ? "ativo" : ""}>
-                  {isActive ? <FaHeart /> : <FaRegHeart />}
-                  <span>{favoritos.length}</span>
-                </IconeFavoritos>
-              )}
-            </NavLink>
-          </ContainerIcones>
           <ListaEstilizada $menuAberto={menuAberto} $alturaNav={altura}>
             {links.map((link, index) => (
               <li key={index}>
@@ -159,12 +139,36 @@ const BarraDeNavegacao = () => {
               </NavLink>
             </ContainerAuth>
           )}
+          <ContainerIcones>
+            <IconeCarrinho
+              onClick={abrirMenu}
+              aria-label="Abrir carrinho de compras"
+              title="Abrir carrinho de compras"
+            >
+              <img src={iconeCarrinho} alt="Carrinho" />
+              <span>
+                {carrinho.reduce((acc, item) => acc + item.quantidade, 0)}
+              </span>
+            </IconeCarrinho>
+
+            <NavLink to="/favoritos" aria-label="Favoritos" title="Favoritos">
+              {({ isActive }) => (
+                <IconeFavoritos className={isActive ? "ativo" : ""}>
+                  {isActive ? <FaHeart /> : <FaRegHeart />}
+                  <span>{favoritos.length}</span>
+                </IconeFavoritos>
+              )}
+            </NavLink>
+          </ContainerIcones>
         </ConteinerDireitoEstilizado>
       </NavEstilizada>
 
       {exibirCampoBusca && (
         <ContainerBuscaMobile $mostrar={true} $alturaNav={altura}>
-          <CampoFormSearch onSubmit={(e) => e.preventDefault()} className="mobile">
+          <CampoFormSearch
+            onSubmit={(e) => e.preventDefault()}
+            className="mobile"
+          >
             <InputEstilizado
               type="search"
               placeholder="Digite o produto"

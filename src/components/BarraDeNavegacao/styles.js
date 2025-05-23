@@ -68,9 +68,7 @@ export const NavEstilizada = styled.nav`
   background-color: #000000;
 
   @media (max-width: 768px) {
-    padding: 1rem 1.5rem;
-    justify-content: center;
-    padding: 0.75rem 0;
+    padding: 1rem 1.25rem;
   }
 `;
 
@@ -79,19 +77,6 @@ export const ConteinerEsquerdaEstilizado = styled.section`
   align-items: center;
   justify-content: center;
   gap: 3rem;
-
-  @media (max-width: 1300px) {
-    width: 100%;
-    justify-content: ${({ $campoBusca }) =>
-      $campoBusca ? "space-around" : "space-between"};
-   
-  }
-
-  @media (max-width: 840px) {
-   
-    justify-content: space-between;
-    padding: 1rem 2rem;
-  }
 `;
 
 export const ListaEstilizada = styled.ul`
@@ -140,14 +125,6 @@ export const ConteinerDireitoEstilizado = styled.section`
   display: flex;
   align-items: center;
   gap: 2rem;
-
-  @media (max-width: 450px) {
-    gap: 1rem;
-  }
-
-  @media (max-width: 400px) {
-    margin-top: 1rem;
-  }
 `;
 
 export const ContainerIcones = styled.div`
@@ -160,8 +137,6 @@ export const ContainerIcones = styled.div`
   }
 
   @media (max-width: 768px) {
-    width: auto;
-    justify-content: flex-start;
     gap: 1rem;
   }
 `;
