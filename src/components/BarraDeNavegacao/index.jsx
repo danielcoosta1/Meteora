@@ -18,7 +18,8 @@ import {
   BotaoAuth,
   CampoBuscaDesktop,
   ContainerBuscaMobile,
-  ContainerMenuMobile, // ✅ MODIFICADO
+  ContainerMenuMobile,
+  IconLogout, // ✅ MODIFICADO
 } from "./styles";
 
 import { useCarrinho } from "../../hooks/useCarrinho";
@@ -32,6 +33,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
 
 import { useNavbar } from "../../hooks/useNavbar";
+import { FiLogOut } from "react-icons/fi";
 
 const BarraDeNavegacao = () => {
   const { navRef, altura } = useNavbar();
@@ -92,7 +94,10 @@ const BarraDeNavegacao = () => {
               {usuario ? (
                 <ContainerLogado>
                   <UsuarioLogado>Olá, {usuario.nome}!</UsuarioLogado>
-                  <ButtonLogout onClick={logout}>Sair</ButtonLogout>
+                  <ButtonLogout onClick={logout}>
+                    <IconLogout className="logout-icon" />
+                    Sair
+                  </ButtonLogout>
                 </ContainerLogado>
               ) : (
                 <ContainerAuth>
@@ -127,7 +132,10 @@ const BarraDeNavegacao = () => {
           {usuario ? (
             <ContainerLogado className="versao-desktop">
               <UsuarioLogado>Olá, {usuario.nome}!</UsuarioLogado>
-              <ButtonLogout onClick={logout}>Sair</ButtonLogout>
+              <ButtonLogout onClick={logout}>
+                <IconLogout className="logout-icon" />
+                Sair
+              </ButtonLogout>
             </ContainerLogado>
           ) : (
             <ContainerAuth className="versao-desktop">
