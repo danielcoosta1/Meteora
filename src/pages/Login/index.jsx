@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-import BarraDeNavegacao from "../../components/BarraDeNavegacao";
 import {
   ContainerPagina,
   ConteudoCentralizado,
@@ -48,7 +47,6 @@ const Login = () => {
 
   return (
     <>
-      <BarraDeNavegacao />
       <ContainerPagina>
         <ConteudoCentralizado>
           <Titulo>Entrar na sua conta</Titulo>

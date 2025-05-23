@@ -1,11 +1,9 @@
-import BarraDeNavegacao from "../../components/BarraDeNavegacao";
 import VoltarHome from "../../components/VoltarHome";
 import { ContainerMain } from "./styles";
 
 const Novidades = () => {
   return (
     <>
-      <BarraDeNavegacao />
       <ContainerMain>
         <h2>Página de Novidades</h2>
         <p>Conteúdo em construção...</p>

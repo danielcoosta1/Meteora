@@ -1,4 +1,3 @@
-// BarraDeNavegacao.jsx
 import {
   Button,
   CampoFormSearch,
@@ -16,9 +15,10 @@ import {
   UsuarioLogado,
   ButtonLogout,
   BotaoHamburguer,
-  ContainerBuscaMobile,
-  CampoBuscaDesktop,
   BotaoAuth,
+  CampoBuscaDesktop,
+  ContainerBuscaMobile,
+  ContainerMenuMobile, // ✅ MODIFICADO
 } from "./styles";
 
 import { useCarrinho } from "../../hooks/useCarrinho";
@@ -31,15 +31,14 @@ import { useProdutos } from "../../hooks/useProdutos";
 import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
 
+import { useNavbar } from "../../hooks/useNavbar";
+
 const BarraDeNavegacao = () => {
+  const { navRef, altura } = useNavbar();
   const { carrinho, abrirMenu } = useCarrinho();
-
   const { termoBusca, setTermoBusca } = useProdutos();
-
   const { favoritos } = useFavoritos();
-
   const { usuario, logout } = useAuth();
-
   const [menuAberto, setMenuAberto] = useState(false);
 
   const location = useLocation();
@@ -54,18 +53,28 @@ const BarraDeNavegacao = () => {
 
   const exibirCampoBusca =
     rotaAtual === "/produtos" || rotaAtual === "/favoritos";
-  
+
   return (
     <>
-      <NavEstilizada>
-        <ConteinerEsquerdaEstilizado>
+      <NavEstilizada ref={navRef}>
+        <ConteinerEsquerdaEstilizado $campoBusca={exibirCampoBusca}>
+          <BotaoHamburguer
+            onClick={() => setMenuAberto(!menuAberto)}
+            aria-label="Abrir menu"
+            aria-expanded={menuAberto}
+            $ativo={menuAberto}
+          >
+            <div />
+            <div />
+            <div />
+          </BotaoHamburguer>
           <NavLink to="/">
             <h1>
               <ImgEstilizada src={logoMeteora} alt="Logo do Meteora" />
             </h1>
           </NavLink>
 
-          <ListaEstilizada $menuAberto={menuAberto} $exibirCampoBusca={exibirCampoBusca}>
+          <ListaEstilizada $menuAberto={menuAberto} $alturaNav={altura}>
             {links.map((link, index) => (
               <li key={index}>
                 <NavLink
@@ -77,6 +86,25 @@ const BarraDeNavegacao = () => {
                 </NavLink>
               </li>
             ))}
+
+            {/* ✅ MODIFICADO: Colocado os botões de auth no final do menu mobile */}
+            <ContainerMenuMobile>
+              {usuario ? (
+                <ContainerLogado>
+                  <UsuarioLogado>Olá, {usuario.nome}!</UsuarioLogado>
+                  <ButtonLogout onClick={logout}>Sair</ButtonLogout>
+                </ContainerLogado>
+              ) : (
+                <ContainerAuth>
+                  <NavLink to="/login">
+                    <BotaoAuth>Login</BotaoAuth>
+                  </NavLink>
+                  <NavLink to="/cadastro">
+                    <BotaoAuth>Cadastro</BotaoAuth>
+                  </NavLink>
+                </ContainerAuth>
+              )}
+            </ContainerMenuMobile>
           </ListaEstilizada>
         </ConteinerEsquerdaEstilizado>
 
@@ -96,6 +124,21 @@ const BarraDeNavegacao = () => {
             </CampoBuscaDesktop>
           )}
 
+          {usuario ? (
+            <ContainerLogado className="versao-desktop">
+              <UsuarioLogado>Olá, {usuario.nome}!</UsuarioLogado>
+              <ButtonLogout onClick={logout}>Sair</ButtonLogout>
+            </ContainerLogado>
+          ) : (
+            <ContainerAuth className="versao-desktop">
+              <NavLink to="/login">
+                <BotaoAuth>Login</BotaoAuth>
+              </NavLink>
+              <NavLink to="/cadastro">
+                <BotaoAuth>Cadastro</BotaoAuth>
+              </NavLink>
+            </ContainerAuth>
+          )}
           <ContainerIcones>
             <IconeCarrinho
               onClick={abrirMenu}
@@ -116,40 +159,16 @@ const BarraDeNavegacao = () => {
                 </IconeFavoritos>
               )}
             </NavLink>
-
-            {usuario ? (
-              <ContainerLogado>
-                <UsuarioLogado>Olá, {usuario.nome}!</UsuarioLogado>
-                <ButtonLogout onClick={logout}>Sair</ButtonLogout>
-              </ContainerLogado>
-            ) : (
-              <ContainerAuth>
-                <NavLink to="/login">
-                  <BotaoAuth>Login</BotaoAuth>
-                </NavLink>
-                <NavLink to="/cadastro">
-                  <BotaoAuth>Cadastro</BotaoAuth>
-                </NavLink>
-              </ContainerAuth>
-            )}
           </ContainerIcones>
-
-          <BotaoHamburguer
-            onClick={() => setMenuAberto(!menuAberto)}
-            aria-label="Abrir menu"
-            aria-expanded={menuAberto}
-            $ativo={menuAberto}
-          >
-            <div />
-            <div />
-            <div />
-          </BotaoHamburguer>
         </ConteinerDireitoEstilizado>
       </NavEstilizada>
 
       {exibirCampoBusca && (
-        <ContainerBuscaMobile $mostrar={true}>
-          <CampoFormSearch onSubmit={(e) => e.preventDefault()}>
+        <ContainerBuscaMobile $mostrar={true} $alturaNav={altura}>
+          <CampoFormSearch
+            onSubmit={(e) => e.preventDefault()}
+            className="mobile"
+          >
             <InputEstilizado
               type="search"
               placeholder="Digite o produto"

@@ -50,22 +50,17 @@ export const BotaoHamburguer = styled.button`
   }
 
   @media (max-width: 450px) {
-    width: 1.2rem;
-    height: 1.2rem;
-
-    div {
-      width: 1.3rem;
-    }
   }
-
   @media (max-width: 400px) {
-    div {
-      margin-left: 2.25rem;
-    }
   }
 `;
 
 export const NavEstilizada = styled.nav`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -73,15 +68,7 @@ export const NavEstilizada = styled.nav`
   background-color: #000000;
 
   @media (max-width: 768px) {
-    padding: 1rem 1.5rem;
-  }
-
-  @media (max-width: 468px) {
-    gap: 0.5rem;
-  }
-
-  @media (max-width: 400px) {
-    flex-direction: column;
+    padding: 1rem 1.25rem;
   }
 `;
 
@@ -97,30 +84,27 @@ export const ListaEstilizada = styled.ul`
   list-style: none;
   gap: 2rem;
 
-  @media (max-width: 1200px) {
-    gap: 1.5rem;
-  }
-
   @media (max-width: 1300px) {
     flex-direction: column;
     position: fixed;
-    top: 100px;
-    right: ${({ $menuAberto }) => ($menuAberto ? "0" : "-300px")};
+    top: ${({ $alturaNav }) => `${$alturaNav}px`};
+    left: 0;
     height: 100vh;
     width: 300px;
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(10px);
     box-shadow: -4px 0 12px rgba(0, 0, 0, 0.4);
     padding: 5rem 2rem 2rem 2rem;
-    z-index: 9;
-    transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out,
-      transform 0.3s ease-in-out;
-    opacity: ${({ $menuAberto }) => ($menuAberto ? 1 : 0)};
+    z-index: 9;rgba(220, 107, 107, 0.6)
+
     transform: ${({ $menuAberto }) =>
-      $menuAberto ? "translateX(0)" : "translateX(20px)"};
-    display: flex;
+      $menuAberto ? "translateX(0)" : "translateX(-100%)"};
+    opacity: ${({ $menuAberto }) => ($menuAberto ? 1 : 0)};
+    pointer-events: ${({ $menuAberto }) => ($menuAberto ? "auto" : "none")};
+
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
     gap: 1rem;
-    text-align: end;
   }
 
   li a {
@@ -132,40 +116,8 @@ export const ListaEstilizada = styled.ul`
     transition: color 0.2s ease-in-out;
 
     &.ativo {
-      color: #daff01;
+      color: #DAFF01;
     }
-
-    &:hover {
-      color: #daff01;
-    }
-
-    &::after {
-      content: "";
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0%;
-      height: 2px;
-      background-color: #daff01;
-      transition: width 0.3s ease;
-    }
-
-    &:hover::after {
-      width: 100%;
-    }
-  }
-
-  @media (max-width: 780px) {
-   top: ${({ $exibirCampoBusca }) => ($exibirCampoBusca ? "130px" : "68px")};
-  }
-  @media (max-width: 450px) {
-    width: 40%;
-     top: ${({ $exibirCampoBusca }) => ($exibirCampoBusca ? "125px" : "68px")};
-  }
-
-  @media (max-width: 400px) {
-    width: 40%;
-     top: ${({ $exibirCampoBusca }) => ($exibirCampoBusca ? "176px" : "120px")};
   }
 `;
 
@@ -173,14 +125,6 @@ export const ConteinerDireitoEstilizado = styled.section`
   display: flex;
   align-items: center;
   gap: 2rem;
-
-  @media (max-width: 450px) {
-    gap: 1rem;
-  }
-
-  @media (max-width: 400px) {
-    margin-top: 1rem;
-  }
 `;
 
 export const ContainerIcones = styled.div`
@@ -193,8 +137,6 @@ export const ContainerIcones = styled.div`
   }
 
   @media (max-width: 768px) {
-    width: auto;
-    justify-content: flex-start;
     gap: 1rem;
   }
 `;
@@ -223,12 +165,12 @@ export const IconeCarrinho = styled.button`
   }
   @media (max-width: 768px) {
     img {
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 1.7rem;
+      height: 1.7rem;
     }
     span {
-      font-size: 0.45rem;
-      padding: 0.1rem 0.3rem;
+      font-size: 0.55rem;
+      padding: 0.15rem 0.35rem;
     }
   }
 `;
@@ -258,8 +200,8 @@ export const IconeFavoritos = styled.div`
   @media (max-width: 768px) {
     font-size: 1.4rem;
     span {
-      font-size: 0.45rem;
-      padding: 0.1rem 0.3rem;
+      font-size: 0.55rem;
+      padding: 0.15rem 0.35rem;
     }
   }
 `;
@@ -321,14 +263,20 @@ export const InputEstilizado = styled.input`
 `;
 
 export const ContainerBuscaMobile = styled.div`
-  display: ${({ $mostrar }) => ($mostrar ? "block" : "none")};
-  background-color: #000;
-  padding: 1rem 2rem;
+  display: none;
 
-  @media (min-width: 860px) {
-    display: none;
+  @media (max-width: 840px) {
+    display: ${({ $mostrar }) => ($mostrar ? "flex" : "none")};
+    width: 100%;
+    position: fixed;
+    top: ${({ $alturaNav }) => `${$alturaNav}px`};
+    left: 0;
+    background-color: #000;
+    padding: 1rem 2rem;
+    z-index: 999;
   }
 `;
+
 export const CampoBuscaDesktop = styled.div`
   display: none;
 
@@ -336,6 +284,7 @@ export const CampoBuscaDesktop = styled.div`
     display: block;
   }
 `;
+
 export const BotaoAuth = styled.button`
   padding: 0.4rem 0.8rem;
   font-size: 0.8rem;
@@ -366,24 +315,30 @@ export const BotaoAuth = styled.button`
 export const ContainerAuth = styled.div`
   display: flex;
   gap: 1rem;
-  @media (max-width: 430px) {
-    gap: 0.25rem;
+
+  &.versao-desktop {
+    @media (max-width: 1300px) {
+      display: none;
+    }
   }
 `;
 
 export const ContainerLogado = styled.div`
   display: flex;
-  align-items: center;
- gap: 1rem;
-  @media (max-width: 490px) {
-    gap: 0.25rem;
+  flex-direction: column;
+  align-items: end;
+  gap: 0.5rem;
+
+  &.versao-desktop {
+    @media (max-width: 1300px) {
+      display: none;
+    }
   }
 `;
-
 export const UsuarioLogado = styled.span`
   color: #fff;
   font-weight: 600;
-  
+
   @media (max-width: 490px) {
     font-size: 0.8rem;
   }
@@ -407,14 +362,24 @@ export const ButtonLogout = styled.button`
     color: #000;
   }
 
-    @media (max-width: 490px) {
+  @media (max-width: 490px) {
     padding: 0.3rem 0.6rem;
     font-size: 0.8rem;
-
   }
 
   @media (max-width: 420px) {
     padding: 0.25rem 0.5rem;
     font-size: 0.7rem;
+  }
+`;
+
+export const ContainerMenuMobile = styled.div`
+  display: none;
+
+  @media (max-width: 1300px) {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
   }
 `;

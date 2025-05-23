@@ -1,6 +1,3 @@
-import { FaExpand, FaHeart, FaRegHeart } from "react-icons/fa";
-import BarraDeNavegacao from "../../components/BarraDeNavegacao";
-
 import { useFavoritos } from "../../hooks/useFavoritos";
 import { BiEraser } from "react-icons/bi";
 import { LuHandHeart } from "react-icons/lu";
@@ -35,7 +32,6 @@ const Favoritos = () => {
 
   return (
     <>
-      <BarraDeNavegacao />
       <BannerFavoritos>
         <img src={imgBannerFavoritos} />
       </BannerFavoritos>

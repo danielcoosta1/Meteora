@@ -6,6 +6,7 @@ import { ProdutoProvider } from "./context/produtos/ProdutosProvider";
 import { AuthProvider } from "./context/auth/AuthProvider";
 import AppContent from "./components/AppContent";
 import GlobalStyle from "./styles/GlobalStyles";
+import { NavbarProvider } from "./context/navbar/NavbarProvider";
 function App() {
   return (
     <Router>
@@ -13,8 +14,10 @@ function App() {
         <ProdutoProvider>
           <FavoritosProvider>
             <CarrinhoProvider>
-              <GlobalStyle />
-              <AppContent />
+              <NavbarProvider>
+                <GlobalStyle />
+                <AppContent />
+              </NavbarProvider>
             </CarrinhoProvider>
           </FavoritosProvider>
         </ProdutoProvider>

@@ -14,6 +14,7 @@ import Favoritos from "../../pages/Favoritos";
 import { useCarrinho } from "../../hooks/useCarrinho";
 import Cadastro from "../../pages/Cadastro";
 import RotaPrivada from "../RotaPrivada";
+import BarraDeNavegacao from "../BarraDeNavegacao";
 
 const AppContent = () => {
   const { menuAberto } = useCarrinho();
@@ -29,6 +30,7 @@ const AppContent = () => {
         draggable
         theme="colored"
       />
+      <BarraDeNavegacao />
       {menuAberto && <MenuLateralCarrinho />}
 
       <Routes>
