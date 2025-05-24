@@ -2,14 +2,13 @@
 import { BsFillCartCheckFill } from "react-icons/bs";
 import { FaTrash } from "react-icons/fa";
 
-
-
 import imgBannerCarrinho from "/assets/images/banner-carrinho.png";
 
 import {
   BannerCheckout,
   BotaoFinalizarCompra,
   BotaoQuantidade,
+  BotaoRemover,
   Botoes,
   ContainerPrincipal,
   ConteinerDescricaoProduto,
@@ -52,7 +51,6 @@ const Checkout = () => {
 
   return (
     <>
-    
       <BannerCheckout>
         <img src={imgBannerCarrinho} />
       </BannerCheckout>
@@ -63,12 +61,15 @@ const Checkout = () => {
             <DescricaoSemProduto>
               Seu carrinho está vazio 😕
             </DescricaoSemProduto>
-            <VoltarHome >Continuar compras</VoltarHome>
+            <VoltarHome>Continuar compras</VoltarHome>
           </ConteinerVazio>
         </ConteinerPrincipalVazio>
       ) : (
         <ContainerPrincipal>
-          <TituloSecao texto="Carrinho de Compras" Icone={BsFillCartCheckFill} />
+          <TituloSecao
+            texto="Carrinho de Compras"
+            Icone={BsFillCartCheckFill}
+          />
           <ConteinerPrincipalCompras>
             <DetalhesCompras>
               <h1>Detalhes Compras</h1>
@@ -99,6 +100,9 @@ const Checkout = () => {
                         </BotaoQuantidade>
                       </div>
                     </ConteinerQuantidade>
+                    <BotaoRemover onClick={() => removerItem(item.id)}>
+                        Remover Item<FaTrash /> 
+                    </BotaoRemover>
                     <IconeLixeira onClick={() => removerItem(item.id)}>
                       <FaTrash />
                     </IconeLixeira>

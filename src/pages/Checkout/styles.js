@@ -121,7 +121,7 @@ export const DetalhesCompras = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 1rem 2rem;
+  padding: 1.5rem 2rem;
   background-color: #000;
   color: #ffffff;
 
@@ -159,16 +159,6 @@ export const ListaItens = styled.ul`
   gap: 2rem;
   margin: 0;
   padding: 0;
-
-  @media (max-width: ${tablet}) {
-    gap: 1rem;
-  }
-  @media (max-width: 768px) {
-    gap: 0.5rem;
-  }
-  @media (max-width: 480px) {
-    gap: 0.25rem;
-  }
 `;
 
 export const ItemLista = styled.li`
@@ -178,22 +168,13 @@ export const ItemLista = styled.li`
   align-items: center;
   border-bottom: 1px solid #ccc;
   padding: 1rem 2rem;
-  flex-wrap: wrap;
+
   gap: 1rem;
 
   @media (max-width: ${tablet}) {
- 
-
-  }
-
-  @media (max-width: 768px) {
-    padding: 0.5rem 1rem;
-    gap: 0.5rem;
-
-  }
-  @media (max-width: 480px) {
-    padding: 0.25rem 0.5rem;
-    gap: 0.25rem;
+    padding: 1rem;
+    flex-direction: column; 
+    align-items: flex-start;
   }
 `;
 
@@ -211,18 +192,19 @@ export const ImgProduto = styled.img`
 
   @media (max-width: 768px) {
     width: 100%;
-    max-width: 240px;
+    max-width: 260px;
+    margin-bottom: 1rem;
   }
   @media (max-width: 480px) {
     width: 100%;
-    max-width: 180px;
+    max-width: 230px;
   }
 `;
 
 export const ConteinerDescricaoProduto = styled.div`
   display: flex;
   flex-direction: column;
-  width: 20%;
+  width: 30%;
 
   @media (max-width: ${tablet}) {
     width: 100%;
@@ -232,10 +214,6 @@ export const ConteinerDescricaoProduto = styled.div`
   @media (max-width: 768px) {
     width: 100%;
     max-width: 240px;
-  }
-  @media (max-width: 480px) {
-    width: 100%;
-    max-width: 180px;
   }
 `;
 
@@ -299,6 +277,7 @@ export const ConteinerQuantidade = styled.div`
 
   h1 {
     font-size: 1rem;
+    text-decoration: underline;
   }
 
   div {
@@ -311,12 +290,9 @@ export const ConteinerQuantidade = styled.div`
     width: 100%;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
+    border-bottom: 1px solid #ccc;
+    padding: 2rem 0;
 
-    h1 {
-      font-size: 1rem;
-    }
     div {
       gap: 1rem;
     }
@@ -324,6 +300,7 @@ export const ConteinerQuantidade = styled.div`
   @media (max-width: 768px) {
     h1 {
       font-size: 0.875rem;
+      padding: 0.5rem 0;
     }
     div {
       gap: 0.5rem;
@@ -332,9 +309,6 @@ export const ConteinerQuantidade = styled.div`
   @media (max-width: 480px) {
     h1 {
       font-size: 0.75rem;
-    }
-    div {
-      gap: 0.25rem;
     }
   }
 `;
@@ -409,10 +383,68 @@ export const QuantidadeProduto = styled.span`
   }
 `;
 
+export const BotaoRemover = styled.button`
+  width: 100%;
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #daff01;
+  background-color: transparent;
+  color: #daff01;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  
+
+  svg {
+    font-size: 1rem;
+  }
+
+  &:hover {
+    background-color: #daff01;
+    color: #000;
+  }
+
+  @media (max-width: ${tablet}) {
+    display: flex;
+    justify-content: center;
+  }
+`;
+
 export const IconeLixeira = styled.button`
   color: #ffffff;
   background-color: transparent;
   border: none;
+  font-size: 1.2rem;
+
+  cursor: pointer;
+  transition: color 0.3s ease;
+  &:hover {
+    color: #9353ff;
+  }
+
+  &:active {
+    color: #7a3ed6;
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #9353ff;
+  }
+  &:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+  }
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  @media (max-width: 1200px) {
+    display: none;
+  }
 `;
 
 export const DetalhesPagamento = styled.div`
