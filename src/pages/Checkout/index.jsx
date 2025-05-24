@@ -17,6 +17,7 @@ import {
   ConteinerPrincipalVazio,
   ConteinerQuantidade,
   ConteinerVazio,
+  DescricaoProduto,
   DescricaoSemProduto,
   DetalhesCompras,
   DetalhesPagamento,
@@ -62,7 +63,7 @@ const Checkout = () => {
             <DescricaoSemProduto>
               Seu carrinho está vazio 😕
             </DescricaoSemProduto>
-            <VoltarHome>Continuar compras</VoltarHome>
+            <VoltarHome >Continuar compras</VoltarHome>
           </ConteinerVazio>
         </ConteinerPrincipalVazio>
       ) : (
@@ -77,7 +78,7 @@ const Checkout = () => {
                     <ImgProduto src={item.src} />
                     <ConteinerDescricaoProduto>
                       <NomeProduto>{item.titulo}</NomeProduto>
-                      <span>{item.descricao}</span>
+                      <DescricaoProduto>{item.descricao}</DescricaoProduto>
                     </ConteinerDescricaoProduto>
                     <PrecoProduto>
                       R$ {(item.preco * item.quantidade).toFixed(2)}
