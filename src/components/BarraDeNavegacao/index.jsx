@@ -22,6 +22,8 @@ import {
   IconLogout, // ✅ MODIFICADO
 } from "./styles";
 
+import { useEffect, useRef } from "react";
+
 import { useCarrinho } from "../../hooks/useCarrinho";
 import logoMeteora from "/assets/images/logo-meteora.png";
 import { useFavoritos } from "../../hooks/useFavoritos";
@@ -36,15 +38,39 @@ import { useNavbar } from "../../hooks/useNavbar";
 import { FiLogOut } from "react-icons/fi";
 
 const BarraDeNavegacao = () => {
+  const menuRef = useRef(null);
+  const botaoHamburguerRef = useRef(null);
+
   const { navRef, altura } = useNavbar();
   const { carrinho, abrirMenu } = useCarrinho();
   const { termoBusca, setTermoBusca } = useProdutos();
   const { favoritos } = useFavoritos();
   const { usuario, logout } = useAuth();
+
   const [menuAberto, setMenuAberto] = useState(false);
 
   const location = useLocation();
   const rotaAtual = location.pathname;
+
+  useEffect(() => {
+    function handleClickFora(event) {
+      // Verifica se o menu está aberto E o clique foi fora do menu E do botão hamburguer
+      if (
+        menuAberto &&
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        botaoHamburguerRef.current &&
+        !botaoHamburguerRef.current.contains(event.target)
+      ) {
+        setMenuAberto(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickFora);
+    return () => {
+      document.removeEventListener("mousedown", handleClickFora);
+    };
+  }, [menuAberto]);
 
   const links = [
     { name: "Home", path: "/" },
@@ -61,6 +87,7 @@ const BarraDeNavegacao = () => {
       <NavEstilizada ref={navRef}>
         <ConteinerEsquerdaEstilizado $campoBusca={exibirCampoBusca}>
           <BotaoHamburguer
+            ref={botaoHamburguerRef}
             onClick={() => setMenuAberto(!menuAberto)}
             aria-label="Abrir menu"
             aria-expanded={menuAberto}
@@ -76,7 +103,11 @@ const BarraDeNavegacao = () => {
             </h1>
           </NavLink>
 
-          <ListaEstilizada $menuAberto={menuAberto} $alturaNav={altura}>
+          <ListaEstilizada
+            ref={menuRef}
+            $menuAberto={menuAberto}
+            $alturaNav={altura}
+          >
             {links.map((link, index) => (
               <li key={index}>
                 <NavLink
