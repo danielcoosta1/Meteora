@@ -44,6 +44,20 @@ const BotaoSeta = styled.button`
   &:hover {
     background: rgba(0, 0, 0, 0.8);
   }
+
+  @media (max-width: 1200px) {
+    font-size: 1.8rem;
+    padding: 0.8rem;
+  }
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.2rem;
+    padding: 0.3rem;
+  }
 `;
 
 const ImagemBanner = styled.img`
@@ -58,15 +72,56 @@ const ConteudoTexto = styled.div`
   left: 5%;
   color: white;
   text-align: left;
+
+  @media (max-width: 1200px) {
+
+  }
+  @media (max-width: 840px) {
+    left: 10%;
+    bottom: 2rem;
+  }
+
+  @media (max-width:400px) {
+    left: 15%;
+    bottom:3rem;
+  }
+ 
 `;
 
 const Titulo = styled.h2`
   font-size: 2.5rem;
   margin: 0;
+
+  @media (max-width: 1200px) {
+    font-size: 1.8rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+  @media (max-width: 480px) {
+    font-size: 1rem;
+
+  }
+
+  @media (max-width: 400px) {
+    font-size: 0.9rem;
+
+  }
 `;
 
 const Subtitulo = styled.p`
   font-size: 1.25rem;
+
+  @media (max-width: 1200px) {
+    font-size: 1rem;
+  }
+  @media (max-width: 768px) {
+    font-size: 0.9rem;
+  }
+  @media (max-width: 480px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const Indicadores = styled.div`
@@ -85,12 +140,25 @@ const Indicador = styled.button`
   background-color: ${(props) => (props.$ativo ? "#fff" : "transparent")};
   border: 1px solid #fff;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.6);
   }
-`;
 
+  @media (max-width: 1200px) {
+    width: 10px;
+    height: 10px;
+  }
+  @media (max-width: 768px) {
+    width: 8px;
+    height: 8px;
+  }
+  @media (max-width: 480px) {
+    width: 6px;
+    height: 6px;
+  }
+`;
 
 export {
   CarrosselConteiner,
@@ -102,5 +170,5 @@ export {
   Titulo,
   Subtitulo,
   Indicador,
-  Indicadores
+  Indicadores,
 };
