@@ -474,7 +474,7 @@ export const DetalhesPagamento = styled.div`
     }
   }
   @media (max-width: 480px) {
-    padding: 0.5rem;
+
     gap: 1rem;
     h1 {
       font-size: 1.25rem;
@@ -510,27 +510,22 @@ export const TotalPreco = styled.div`
   span {
     color: #daff01;
     font-weight: 700;
-    font-size: 1.25rem;
+    font-size: 1.4rem;
   }
 
   @media (max-width: ${tablet}) {
-    font-size: 1rem;
+    font-size: 1.25rem;
     span {
       font-size: 1.15rem;
     }
   }
   @media (max-width: 768px) {
-    font-size: 0.875rem;
+    font-size: 1rem;
     span {
       font-size: 1rem;
     }
   }
-  @media (max-width: 480px) {
-    font-size: 0.75rem;
-    span {
-      font-size: 0.85rem;
-    }
-  }
+
 `;
 
 export const Botoes = styled.div`
