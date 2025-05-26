@@ -39,6 +39,7 @@ export const GridProdutos = styled.div`
   gap: 2rem;
   padding: 0 1.5rem;
 
+  
   @media (max-width: 768px) {
     
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
