@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { BiX } from "react-icons/bi";
 
 export const ContainerProdutos = styled.main`
-  /* ou o limite que preferir */
+
   display: flex;
 `;
 
@@ -11,7 +11,7 @@ export const ContainerWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 1400px; /* ou o limite que preferir */
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 2rem;
 `;
