@@ -76,7 +76,7 @@ const ConteudoTexto = styled.div`
   @media (max-width: 1200px) {
 
   }
-  @media (max-width: 840px) {
+  @media (max-width: 890px) {
     left: 10%;
     bottom: 2rem;
   }
