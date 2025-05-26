@@ -2,19 +2,26 @@ import styled from "styled-components";
 
 export const BannerFavoritos = styled.div`
   width: 100%;
-  margin-bottom: 5rem;
+
   img {
     width: 100%;
-    height: auto;
-    object-fit: cover;
   }
 `;
 
 export const SecaoFavoritos = styled.section`
+  display: flex;
+  flex-direction: column;
+
   text-align: start;
   max-width: 1400px; /* ou o limite que preferir */
   margin: 0 auto;
-  padding: 0 2rem;
+  padding-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    margin: 0;
+  }
+
 `;
 
 export const HeaderFavoritos = styled.header`
@@ -22,13 +29,23 @@ export const HeaderFavoritos = styled.header`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
+  padding: 0 1.5rem;
 `;
 
 export const GridProdutos = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  
-  margin-bottom: 5rem;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+
+  gap: 2rem;
+  padding: 0 1.5rem;
+
+  @media (max-width: 768px) {
+    
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  }
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
 `;
 
 export const ConteinerVazio = styled.div`
