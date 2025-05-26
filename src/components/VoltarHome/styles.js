@@ -20,10 +20,7 @@ export const ButtonEstilizado = styled.button`
     padding: 0.5rem 0.75rem;
     font-size: 0.875rem;
   }
-  @media (max-width: 480px) {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.75rem;
-  }
+
   &:disabled {
     background-color: #ccc;
     color: #666;
