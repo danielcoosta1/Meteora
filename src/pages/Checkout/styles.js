@@ -140,14 +140,14 @@ export const DetalhesCompras = styled.div`
   }
   @media (max-width: 768px) {
     h1 {
-      font-size: 1.65rem;
+      font-size: 1.45rem;
 
       font-weight: 600;
     }
   }
   @media (max-width: 480px) {
     h1 {
-      font-size: 1.45rem;
+      font-size: 1.15rem;
     }
   }
 `;
@@ -296,6 +296,10 @@ export const ConteinerQuantidade = styled.div`
     border-bottom: 1px solid #ccc;
     padding: 2rem 0;
 
+    h1{
+      margin: 0;
+    }
+
     div {
       gap: 1rem;
     }
@@ -308,8 +312,7 @@ export const ConteinerQuantidade = styled.div`
       gap: 0.5rem;
     }
   }
-  @media (max-width: 480px) {
-  }
+
 `;
 
 export const BotaoQuantidade = styled.button`

@@ -17,18 +17,39 @@ export const ConteudoCentralizado = styled.section`
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 500px;
+
+  @media (max-width: 600px) {
+    padding: 1.5rem;
+  }
+  @media (max-width: 400px) {
+    padding: 1rem;
+  }
 `;
 
 export const Titulo = styled.h2`
   font-size: 1.5rem;
   margin-bottom: 1rem;
   text-align: center;
+
+  @media (max-width: 600px) {
+    font-size: 1.25rem;
+  }
+  @media (max-width: 400px) {
+    font-size: 1rem;
+  }
 `;
 
 export const Formulario = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+
+  @media (max-width: 600px) {
+    gap: 1rem;
+  }
+  @media (max-width: 400px) {
+    gap: 0.75rem;
+  }
 `;
 
 export const CampoInput = styled.input`
@@ -36,6 +57,15 @@ export const CampoInput = styled.input`
   font-size: 1rem;
   border: 1px solid #ddd;
   border-radius: 8px;
+  
+  @media (max-width: 600px) {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+  @media (max-width: 400px) {
+    font-size: 0.8rem;
+    padding: 0.4rem;
+  }
 `;
 
 export const BotaoSubmit = styled.button`
@@ -57,6 +87,15 @@ export const BotaoSubmit = styled.button`
     cursor: not-allowed;
     opacity: 0.7;
   }
+
+  @media (max-width: 600px) {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+  @media (max-width: 400px) {
+    padding: 0.4rem;
+    font-size: 0.8rem;
+  }
 `;
 
 export const LinkCadastro = styled.p`
@@ -71,5 +110,12 @@ export const LinkCadastro = styled.p`
     &:hover {
       text-decoration: underline;
     }
+  }
+
+  @media (max-width: 600px) {
+    font-size: 0.9rem;
+  }
+  @media (max-width: 400px) {
+    font-size: 0.8rem;
   }
 `;

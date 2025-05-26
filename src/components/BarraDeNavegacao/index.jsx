@@ -80,7 +80,7 @@ const BarraDeNavegacao = () => {
   ];
 
   const exibirCampoBusca =
-    rotaAtual === "/produtos" || rotaAtual === "/favoritos";
+    rotaAtual === "/produtos";
 
   return (
     <>
