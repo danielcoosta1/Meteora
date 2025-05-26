@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const CardProduto = styled.div`
   border: 1px solid #eee;
+  max-width: 500px;
   border-radius: 8px;
   padding: 1rem;
   transition: transform 0.3s ease;
@@ -13,6 +14,7 @@ const CardProduto = styled.div`
 
 const ImagemProduto = styled.img`
   width: 100%;
+  
   height: 350px;
   object-fit: cover;
   border-radius: 8px;
