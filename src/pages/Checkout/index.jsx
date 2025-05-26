@@ -2,14 +2,13 @@
 import { BsFillCartCheckFill } from "react-icons/bs";
 import { FaTrash } from "react-icons/fa";
 
-
-
 import imgBannerCarrinho from "/assets/images/banner-carrinho.png";
 
 import {
   BannerCheckout,
   BotaoFinalizarCompra,
   BotaoQuantidade,
+  BotaoRemover,
   Botoes,
   ContainerPrincipal,
   ConteinerDescricaoProduto,
@@ -17,6 +16,7 @@ import {
   ConteinerPrincipalVazio,
   ConteinerQuantidade,
   ConteinerVazio,
+  DescricaoProduto,
   DescricaoSemProduto,
   DetalhesCompras,
   DetalhesPagamento,
@@ -51,7 +51,6 @@ const Checkout = () => {
 
   return (
     <>
-    
       <BannerCheckout>
         <img src={imgBannerCarrinho} />
       </BannerCheckout>
@@ -67,7 +66,10 @@ const Checkout = () => {
         </ConteinerPrincipalVazio>
       ) : (
         <ContainerPrincipal>
-          <TituloSecao texto="Carrinho de Compras" Icone={BsFillCartCheckFill} />
+          <TituloSecao
+            texto="Carrinho de Compras"
+            Icone={BsFillCartCheckFill}
+          />
           <ConteinerPrincipalCompras>
             <DetalhesCompras>
               <h1>Detalhes Compras</h1>
@@ -77,7 +79,7 @@ const Checkout = () => {
                     <ImgProduto src={item.src} />
                     <ConteinerDescricaoProduto>
                       <NomeProduto>{item.titulo}</NomeProduto>
-                      <span>{item.descricao}</span>
+                      <DescricaoProduto>{item.descricao}</DescricaoProduto>
                     </ConteinerDescricaoProduto>
                     <PrecoProduto>
                       R$ {(item.preco * item.quantidade).toFixed(2)}
@@ -98,6 +100,9 @@ const Checkout = () => {
                         </BotaoQuantidade>
                       </div>
                     </ConteinerQuantidade>
+                    <BotaoRemover onClick={() => removerItem(item.id)}>
+                        Remover Item<FaTrash /> 
+                    </BotaoRemover>
                     <IconeLixeira onClick={() => removerItem(item.id)}>
                       <FaTrash />
                     </IconeLixeira>

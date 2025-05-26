@@ -44,6 +44,23 @@ export const TituloEstilizado = styled.h2`
     font-size: 2.5rem;
     color: #9353ff;
   }
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    gap: 0.5rem;
+
+    p {
+      font-size: 2rem;
+    }
+  }
+  @media (max-width: 480px) {
+    font-size: 1.25rem;
+    gap: 0.25rem;
+
+    p {
+      font-size: 1.5rem;
+    }
+  }
 `;
 
 export const LinhaDecorativa = styled.div`

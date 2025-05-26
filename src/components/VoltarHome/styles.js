@@ -15,4 +15,15 @@ export const ButtonEstilizado = styled.button`
     color:  #9353ff;
     border: 1px solid  #9353ff;
   }
+
+  @media (max-width: 768px) {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  &:disabled {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+  }
 `;

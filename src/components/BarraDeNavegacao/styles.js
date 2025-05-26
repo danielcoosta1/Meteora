@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { FiLogOut } from "react-icons/fi";
 
 export const BotaoHamburguer = styled.button`
   display: none;
@@ -94,8 +95,8 @@ export const ListaEstilizada = styled.ul`
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(10px);
     box-shadow: -4px 0 12px rgba(0, 0, 0, 0.4);
-    padding: 5rem 2rem 2rem 2rem;
-    z-index: 9;rgba(220, 107, 107, 0.6)
+    padding: 5rem 2rem 2rem;
+    z-index: 9;
 
     transform: ${({ $menuAberto }) =>
       $menuAberto ? "translateX(0)" : "translateX(-100%)"};
@@ -111,13 +112,31 @@ export const ListaEstilizada = styled.ul`
     color: #fff;
     text-decoration: none;
     font-weight: 700;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     position: relative;
     transition: color 0.2s ease-in-out;
 
     &.ativo {
-      color: #DAFF01;
+      color: #daff01;
     }
+
+    @media (max-width: 768px) {
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 450px) {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 260px;
+    padding: 4rem 1.5rem 2rem;
+  }
+
+  @media (max-width: 450px) {
+    width: 190px;
+    padding: 3rem 1.25rem 2rem;
   }
 `;
 
@@ -292,7 +311,7 @@ export const BotaoAuth = styled.button`
   color: #daff01; /* verde */
   background-color: transparent;
   border: 1px solid #daff01;
-  border-radius: 0.5rem;
+
   cursor: pointer;
   transition: all 0.3s ease;
 
@@ -316,6 +335,11 @@ export const ContainerAuth = styled.div`
   display: flex;
   gap: 1rem;
 
+  @media (max-width: 1300px) {
+    border-top: 1px solid #fff;
+    padding-top: 2rem;
+    
+  }
   &.versao-desktop {
     @media (max-width: 1300px) {
       display: none;
@@ -325,9 +349,17 @@ export const ContainerAuth = styled.div`
 
 export const ContainerLogado = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: end;
-  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75em;
+  @media (max-width: 1300px) {
+    justify-content: flex-start;
+    padding-top: 2rem;
+    border-top: 1px solid #fff;
+  }
+
+  @media (max-width: 450px) {
+  }
 
   &.versao-desktop {
     @media (max-width: 1300px) {
@@ -348,29 +380,37 @@ export const UsuarioLogado = styled.span`
 `;
 
 export const ButtonLogout = styled.button`
-  background-color: transparent;
-  border: 1px solid #daff01;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: none;
+  border: none;
+  padding: 0;
   color: #daff01;
-  padding: 0.4rem 0.8rem;
-  border-radius: 4px;
   font-weight: 600;
+  font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: opacity 0.3s;
 
   &:hover {
-    background-color: #daff01;
-    color: #000;
+    opacity: 0.9;
+    text-decoration: underline;
+    svg {
+      transform: scale(1.4);
+    }
   }
-
-  @media (max-width: 490px) {
-    padding: 0.3rem 0.6rem;
+ 
+  @media (max-width: 768px) {
     font-size: 0.8rem;
   }
-
-  @media (max-width: 420px) {
-    padding: 0.25rem 0.5rem;
+  @media (max-width: 450px) {
     font-size: 0.7rem;
   }
+
+`;
+
+export const IconLogout = styled(FiLogOut)`
+  transition: transform 0.3s ease;
 `;
 
 export const ContainerMenuMobile = styled.div`

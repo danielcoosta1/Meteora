@@ -117,6 +117,8 @@ export const FavoritosProvider = ({ children }) => {
     }
   }, [usuario]); // Executa quando o usuário faz login ou logout
 
+  const haItensFavoritados = state.favoritos.length > 0;
+
   return (
     <FavoritosContext.Provider
       value={{
@@ -124,6 +126,7 @@ export const FavoritosProvider = ({ children }) => {
         isFavoritado,
         favoritos: state.favoritos,
         limparFavoritos,
+        haItensFavoritados,
       }}
     >
       {children}

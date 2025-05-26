@@ -17,6 +17,16 @@ export const ConteudoCentralizado = styled.div`
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+    max-width: 90%;
+  }
+
+  @media (max-width: 450px) {
+    padding: 1rem;
+    max-width: 100%;
+  }
 `;
 
 export const Titulo = styled.h1`
@@ -24,6 +34,14 @@ export const Titulo = styled.h1`
   color: #5e2ca5;
   margin-bottom: 1.5rem;
   text-align: center;
+
+  @media (max-width: 768px) {
+    font-size: 22px;
+  }
+
+  @media (max-width: 450px) {
+    font-size: 20px;
+  }
 `;
 
 export const Formulario = styled.form`
@@ -31,7 +49,6 @@ export const Formulario = styled.form`
   flex-direction: column;
   gap: 1rem;
 `;
-
 export const CampoInput = styled.input`
   padding: 12px;
   font-size: 16px;
@@ -42,8 +59,12 @@ export const CampoInput = styled.input`
   &:focus {
     border-color: #9353ff;
   }
-`;
 
+  @media (max-width: 450px) {
+    padding: 10px;
+    font-size: 15px;
+  }
+`;
 export const BotaoSubmit = styled.button`
   padding: 12px;
   background-color: #9353ff;
@@ -57,6 +78,11 @@ export const BotaoSubmit = styled.button`
 
   &:hover {
     background-color: #5e2ca5;
+  }
+
+  @media (max-width: 450px) {
+    padding: 10px;
+    font-size: 15px;
   }
 `;
 
@@ -80,6 +106,10 @@ export const LinkCadastro = styled.div`
       text-decoration: underline;
     }
   }
+
+  @media (max-width: 450px) {
+    font-size: 14px;
+  }
 `;
 
 export const BotaoAlternativo = styled.button`
@@ -97,11 +127,19 @@ export const BotaoAlternativo = styled.button`
   &:hover {
     background-color: #ff8c00;
   }
-`;
 
+  @media (max-width: 450px) {
+    padding: 10px;
+    font-size: 15px;
+  }
+`;
 export const TextoSucesso = styled.p`
   color: #333;
   font-size: 18px;
   text-align: center;
   margin-bottom: 2rem;
+
+  @media (max-width: 450px) {
+    font-size: 16px;
+  }
 `;
