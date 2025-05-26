@@ -20,6 +20,7 @@ export const LateralContainer = styled.div`
 
   @media (max-width: 768px) {
     width: 100vw;
+    
   }
 `;
 
@@ -94,10 +95,7 @@ export const ItemCarrinho = styled.li`
   padding: 1rem 0;
   align-items: center;
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-    text-align: center;
-  }
+ 
 `;
 
 export const ImgProduto = styled.img`
@@ -186,7 +184,7 @@ export const IconeLixeira = styled.button`
 
   @media (max-width: 768px) {
     font-size: 1rem;
-    margin: 0;
+
   }
 `;
 
