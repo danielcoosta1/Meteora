@@ -78,12 +78,13 @@ export const ConteinerVazio = styled.div`
 `;
 
 export const ContainerPrincipal = styled.main`
-  max-width: 90rem;
+  max-width: 80rem;
   display: flex;
   flex-direction: column;
   margin: 2rem auto;
 
   @media (max-width: ${tablet}) {
+    max-width: 100%;
     padding: 0 1rem;
     justify-content: center;
     align-items: center;
@@ -93,7 +94,6 @@ export const ContainerPrincipal = styled.main`
 
 // Responsividade geral
 export const ConteinerPrincipalCompras = styled.main`
-  max-width: 90rem;
   display: flex;
   margin: 2rem auto;
   gap: 8rem;
@@ -121,15 +121,17 @@ export const DetalhesCompras = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 1.5rem 2rem;
+  padding: 2rem;
   background-color: #000;
   color: #ffffff;
 
   h1 {
-    font-weight: 400;
+    font-weight: 700;
+    margin-bottom: 1rem;
   }
 
   @media (max-width: ${tablet}) {
+    margin-bottom: 0;
     width: 100%;
     padding: 1rem;
     justify-content: center;
@@ -139,7 +141,7 @@ export const DetalhesCompras = styled.div`
   @media (max-width: 768px) {
     h1 {
       font-size: 1.65rem;
-      padding: 2rem 0;
+
       font-weight: 600;
     }
   }
@@ -167,13 +169,13 @@ export const ItemLista = styled.li`
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #ccc;
-  padding: 1rem 2rem;
+  padding: 1rem 0;
 
   gap: 1rem;
 
   @media (max-width: ${tablet}) {
     padding: 1rem;
-    flex-direction: column; 
+    flex-direction: column;
     align-items: flex-start;
   }
 `;
@@ -204,7 +206,7 @@ export const ImgProduto = styled.img`
 export const ConteinerDescricaoProduto = styled.div`
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 25%;
 
   @media (max-width: ${tablet}) {
     width: 100%;
@@ -222,7 +224,7 @@ export const PrecoProduto = styled.span`
   color: #daff01;
   display: flex;
 
-  font-size: 1.25rem;
+  font-size: 1rem;
 
   @media (max-width: ${tablet}) {
     font-size: 1rem;
@@ -253,7 +255,7 @@ export const NomeProduto = styled.span`
 `;
 
 export const DescricaoProduto = styled.span`
-  font-size: 1rem;
+  font-size: 0.75rem;
   color: #ccc;
   margin-bottom: 1em;
   font-weight: 400;
@@ -290,6 +292,7 @@ export const ConteinerQuantidade = styled.div`
     width: 100%;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     border-bottom: 1px solid #ccc;
     padding: 2rem 0;
 
@@ -299,17 +302,13 @@ export const ConteinerQuantidade = styled.div`
   }
   @media (max-width: 768px) {
     h1 {
-      font-size: 0.875rem;
-      padding: 0.5rem 0;
+      font-size: 0.9rem;
     }
     div {
       gap: 0.5rem;
     }
   }
   @media (max-width: 480px) {
-    h1 {
-      font-size: 0.75rem;
-    }
   }
 `;
 
@@ -327,8 +326,9 @@ export const BotaoQuantidade = styled.button`
   line-height: 1;
   font-weight: bold;
   text-align: center;
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 0.85rem;
   border-radius: 50%;
 
   @media (max-width: ${tablet}) {
@@ -371,7 +371,7 @@ export const BotaoQuantidade = styled.button`
 export const QuantidadeProduto = styled.span`
   border: 1px solid #ffffff;
   border-radius: 4px;
-  padding: 0.5em 1.5em;
+  padding: 0.5em 1.2em;
 
   @media (max-width: ${tablet}) {
     padding: 0.25em 1em;
@@ -396,8 +396,6 @@ export const BotaoRemover = styled.button`
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-
-  
 
   svg {
     font-size: 1rem;
@@ -586,10 +584,5 @@ export const BotaoFinalizarCompra = styled.button`
     padding: 0.5rem 0.75rem;
     font-size: 0.875rem;
     min-width: 10rem;
-  }
-  @media (max-width: 768px) {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.75rem;
-    min-width: 8rem;
   }
 `;
