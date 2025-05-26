@@ -18,7 +18,7 @@ export const LateralContainer = styled.div`
     width: min(90vw, 500px);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width:668px) {
     width: 100vw;
     
   }
@@ -230,6 +230,7 @@ export const ConteinerBotoes = styled.div`
     font-size: 0.9rem;
     padding: 0.7rem;
   }
+
 `;
 
 export const BotaoCheckout = styled.button`
@@ -251,6 +252,16 @@ export const BotaoCheckout = styled.button`
   @media (max-width: 768px) {
     font-size: 1rem;
     padding: 0.8rem;
+  }
+
+  @media (max-width: 668px) {
+  
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 500px) {
+    font-size: 0.8rem;
+    padding: 0.6rem;
   }
 `;
 
