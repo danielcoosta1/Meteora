@@ -140,14 +140,14 @@ export const DetalhesCompras = styled.div`
   }
   @media (max-width: 768px) {
     h1 {
-      font-size: 1.65rem;
+      font-size: 1.45rem;
 
       font-weight: 600;
     }
   }
   @media (max-width: 480px) {
     h1 {
-      font-size: 1.45rem;
+      font-size: 1.15rem;
     }
   }
 `;
