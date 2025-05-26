@@ -77,4 +77,12 @@ export const ConteinerVazio = styled.div`
   button {
     margin-top: 2rem;
   }
+
+  @media (max-width: 768px) {
+
+    padding: 1rem;
+    h1{
+      font-size: 1.2rem;
+    }
+  }
 `;
