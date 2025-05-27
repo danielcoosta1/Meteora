@@ -5,6 +5,8 @@ import {
   ListaDeFiltros,
   TituloAside,
   TituloFiltro,
+  ItemListaFiltro,
+  BotaoFiltro,
 } from "./styles";
 import { CiFilter } from "react-icons/ci";
 
@@ -29,24 +31,24 @@ const AsiderFiltros = () => {
               Preços
             </TituloFiltro>
             <ListaDeFiltros>
-              <li
+              <ItemListaFiltro
                 onClick={() => setFiltroPreco("ate100")}
                 className={filtroPreco === "ate100" ? "ativo" : ""}
               >
-                <button type="button">Até R$100</button>
-              </li>
-              <li
+                <BotaoFiltro type="button">Até R$100</BotaoFiltro>
+              </ItemListaFiltro>
+              <ItemListaFiltro
                 onClick={() => setFiltroPreco("100a200")}
                 className={filtroPreco === "100a200" ? "ativo" : ""}
               >
-                <button type="button">R$100 a R$200</button>
-              </li>
-              <li
+                <BotaoFiltro type="button">R$100 a R$200</BotaoFiltro>
+              </ItemListaFiltro>
+              <ItemListaFiltro
                 onClick={() => setFiltroPreco("acima200")}
                 className={filtroPreco === "acima200" ? "ativo" : ""}
               >
-                <button type="button">Acima de R$200</button>
-              </li>
+                <BotaoFiltro type="button">Acima de R$200</BotaoFiltro>
+              </ItemListaFiltro>
             </ListaDeFiltros>
           </ItemListaEstilizado>
           <ItemListaEstilizado>
@@ -55,24 +57,24 @@ const AsiderFiltros = () => {
             Gêneros
             </TituloFiltro>
             <ListaDeFiltros>
-              <li
+              <ItemListaFiltro
                 onClick={() => setGeneroSelecionado("masculino")}
                 className={generoSelecionado === "masculino" ? "ativo" : ""}
               >
-                <button type="button">Masculino</button>
-              </li>
-              <li
+                <BotaoFiltro type="button">Masculino</BotaoFiltro>
+              </ItemListaFiltro>
+              <ItemListaFiltro
                 onClick={() => setGeneroSelecionado("feminino")}
                 className={generoSelecionado === "feminino" ? "ativo" : ""}
               >
-                <button type="button">Feminino</button>
-              </li>
-              <li
+                <BotaoFiltro type="button">Feminino</BotaoFiltro>
+              </ItemListaFiltro>
+              <ItemListaFiltro
                 onClick={() => setGeneroSelecionado("unissex")}
                 className={generoSelecionado === "unissex" ? "ativo" : ""}
               >
-                <button type="button">Unissex</button>
-              </li>
+                <BotaoFiltro type="button">Unissex</BotaoFiltro>
+              </ItemListaFiltro>
             </ListaDeFiltros>
           </ItemListaEstilizado>
         </ListaEstilizada>
