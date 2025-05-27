@@ -3,8 +3,20 @@ import styled from "styled-components";
 import { BiX } from "react-icons/bi";
 
 export const ContainerProdutos = styled.main`
-
   display: flex;
+  
+  @media (max-width: 868px) {
+    padding: 2rem 0;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 1rem 0;
+    align-items: center;
+    justify-content: center;
+
+;
+  }
 `;
 
 export const ContainerWrapper = styled.div`
