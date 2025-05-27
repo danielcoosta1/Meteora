@@ -31,11 +31,12 @@ export const ModalContent = styled.div`
   width: 30vw; // Largura mínima aumentada
   // Altura mínima aumentada
   background: #ffffff;
-  padding: 2rem; // Aumentado de 2rem para 3rem
+  padding: 1rem 2rem; // Aumentado de 2rem para 3rem
   border-radius: 20px; // Borda mais arredondada
   display: flex;
   flex-direction: column;
   justify-content: center;
+  
 
   animation: scaleUp 0.3s ease;
 
@@ -54,28 +55,59 @@ export const ModalContent = styled.div`
     min-height: 500px; // Altura mínima da imagem
     object-fit: contain;
     border-radius: 15px;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
   }
 
-    @media (max-width: 1200px) {
-    width: 70vw; // Largura reduzida para telas menores
-    height:95vh; // Altura reduzida para telas menores
-    padding: 2rem; // Padding reduzido para telas menores
+  @media (max-width: 1200px) {
+    width: 40vw; // Largura reduzida para telas menores
+    height: 90vh; // Altura reduzida para telas menores
+    padding: .8rem 1.7rem;
+
+    img {
+      max-height: 70vh; // Altura máxima da imagem reduzida para telas menores
+      min-height: 400px; // Altura mínima da imagem reduzida para telas menores
+    }
   }
 
-  @media (max-width: 768px) {
-    width: 75vw; // Largura reduzida para telas menores
-    height: 95vh; // Altura reduzida para telas menores
+  @media (max-width: 868px) {
+    width: 50vw; // Largura reduzida para telas menores
+    height: 85vh; // Altura reduzida para telas menores
     padding: 1.5rem; // Reduzido o padding para telas menores
+    img {
+      max-height: 60vh; // Altura máxima da imagem reduzida para telas menores
+      min-height: 300px; // Altura mínima da imagem reduzida para telas menores
+    }
   }
-  @media (max-height: 600px) {
-    height: 90vh; // Ajuste para telas com altura menor
+  @media (max-width: 768px) {
+    width: 65vw; // Largura ainda mais reduzida para telas muito pequenas
+    height: 75vh; // Altura mantida para telas muito pequenas
+    padding: 0 1rem; // Padding ainda mais reduzido
+
+    img {
+      max-height: 50vh; // Altura máxima da imagem reduzida para telas muito pequenas
+      min-height: 250px; // Altura mínima da imagem reduzida para telas muito pequenas
+    }
   }
-  @media (max-width: 480px) {
-    width: 95vw; // Largura ainda mais reduzida para telas muito pequenas
-    height: 90vh; // Altura reduzida para telas muito pequenas
-    padding: 1rem; // Padding reduzido para telas muito pequenas
+
+  @media (max-width: 468px) {
+    width: 75vw; // Largura máxima para telas muito pequenas
+    height: 70vh; // Altura máxima para telas muito pequenas
+     // Padding mínimo para telas muito pequenas
+
+    img {
+      max-height: 40vh; // Altura máxima da imagem reduzida para telas muito pequenas
+      min-height: 200px; // Altura mínima da imagem reduzida para telas muito pequenas
+    }
+  }
+
+  @media (max-width: 420px) {
+    width: 80vw; // Largura máxima para telas muito pequenas
+    height: 65vh; // Altura máxima para telas muito pequenas
+     // Padding mínimo para telas muito pequenas
+
+    img {
+      max-height: 35vh; // Altura máxima da imagem reduzida para telas muito pequenas
+      min-height: 150px; // Altura mínima da imagem reduzida para telas muito pequenas
+    }
   }
 `;
 
@@ -105,17 +137,43 @@ export const ModalClose = styled.button`
 export const TituloProduto = styled.h3`
   margin: 1rem 0 0.5rem;
   font-size: 1.2rem;
+
+  @media (max-width: 480px) {
+    font-size: 1rem; // Tamanho da fonte reduzido para telas menores
+  }
+  @media (max-width: 420px) {
+    font-size: 0.9rem; // Tamanho da fonte ainda mais reduzido para telas muito pequenas
+  }
 `;
 
 export const DescricaoProduto = styled.p`
   font-size: 0.9rem;
   color: #555;
   margin-bottom: 1.5rem;
+  width: 100%;
+
+  @media (max-width: 480px) {
+    margin: 0.5rem 0; // Margem reduzida para telas menores
+    width: 90%; // Garante que a descrição ocupe toda a largura disponível em telas menores
+    font-size: 0.8rem; // Tamanho da fonte reduzido para telas menores
+  }
+  @media (max-width: 420px) {
+    font-size: 0.7rem; // Tamanho da fonte ainda mais reduzido para telas muito pequenas
+  }
 `;
 
 export const PrecoProduto = styled.p`
   font-weight: bold;
   margin: 0.5rem 0;
+
+  font-size: 1.2rem;
+
+  @media (max-width: 480px) {
+  font-size: 1rem; // Tamanho da fonte reduzido para telas menores
+  }
+  @media (max-width: 420px) {
+    font-size: 0.9rem; // Tamanho da fonte ainda mais reduzido para telas muito pequenas
+  }
 `;
 
 export const ConteinerBotoes = styled.div`
