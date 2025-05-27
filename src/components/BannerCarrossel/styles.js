@@ -4,7 +4,6 @@ const CarrosselConteiner = styled.section`
   position: relative;
   overflow: hidden;
   width: 100%;
-  max-width: 100vw;
 `;
 
 const Slide = styled.div`
@@ -62,8 +61,21 @@ const BotaoSeta = styled.button`
 
 const ImagemBanner = styled.img`
   width: 100%;
-  display: block;
+  height: 500px;
   object-fit: cover;
+
+  @media (max-width: 1200px) {
+    height: 400px;
+  }
+  @media (max-width: 768px) {
+    height: 300px;
+  }
+  @media (max-width: 480px) {
+    height: 250px;
+  }
+  @media (max-width: 400px) {
+    height: 200px;
+  }
 `;
 
 const ConteudoTexto = styled.div`
@@ -74,18 +86,16 @@ const ConteudoTexto = styled.div`
   text-align: left;
 
   @media (max-width: 1200px) {
-
   }
   @media (max-width: 890px) {
     left: 10%;
     bottom: 2rem;
   }
 
-  @media (max-width:400px) {
+  @media (max-width: 400px) {
     left: 15%;
-    bottom:3rem;
+    bottom: 3rem;
   }
- 
 `;
 
 const Titulo = styled.h2`
@@ -101,12 +111,10 @@ const Titulo = styled.h2`
   }
   @media (max-width: 480px) {
     font-size: 1rem;
-
   }
 
   @media (max-width: 400px) {
     font-size: 0.9rem;
-
   }
 `;
 
