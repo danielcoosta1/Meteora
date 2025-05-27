@@ -58,25 +58,18 @@ export const ModalContent = styled.div`
     margin-top: 2rem;
   }
 
-  @media (max-width: 1200px) {
-    width: 70vw; // Largura reduzida para telas menores
-    height: 95vh; // Altura reduzida para telas menores
-    padding: 2rem; // Padding reduzido para telas menores
+@media (max-width: 768px) {
+  width: 90vw; // Largura reduzida para telas menores
+  height: 95vh; // Altura reduzida para telas menores
+  padding: 1.5rem; // Reduzido o padding para telas menores
   }
+@media (max-width: 480px) {
+  width: 95vw; // Largura ainda mais reduzida para telas muito pequenas
+  height: 95vh; // Altura mantida para telas muito pequenas
+  padding: 1rem; // Padding ainda mais reduzido
+}
 
-  @media (max-width: 768px) {
-    width: 75vw; // Largura reduzida para telas menores
-    height: 95vh; // Altura reduzida para telas menores
-    padding: 1.5rem; // Reduzido o padding para telas menores
-  }
-  @media (max-height: 600px) {
-    height: 90vh; // Ajuste para telas com altura menor
-  }
-  @media (max-width: 480px) {
-    width: 95vw; // Largura ainda mais reduzida para telas muito pequenas
-    height: 90vh; // Altura reduzida para telas muito pequenas
-    padding: 1rem; // Padding reduzido para telas muito pequenas
-  }
+
 `;
 
 export const ModalClose = styled.button`
@@ -95,13 +88,7 @@ export const ModalClose = styled.button`
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  overflow-y: auto; /* ← Adicione esta linha */
 
-  /* Estiliza a rolagem para UX melhor em mobile (opcional) */
-  scrollbar-width: none; /* Firefox */
-  &::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
-  }
   &:hover {
     background: rgba(0, 0, 0, 0.9);
     transform: scale(1.1);
