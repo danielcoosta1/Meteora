@@ -57,6 +57,26 @@ export const ModalContent = styled.div`
     margin-bottom: 2rem;
     margin-top: 2rem;
   }
+
+    @media (max-width: 1200px) {
+    width: 70vw; // Largura reduzida para telas menores
+    height:95vh; // Altura reduzida para telas menores
+    padding: 2rem; // Padding reduzido para telas menores
+  }
+
+  @media (max-width: 768px) {
+    width: 75vw; // Largura reduzida para telas menores
+    height: 95vh; // Altura reduzida para telas menores
+    padding: 1.5rem; // Reduzido o padding para telas menores
+  }
+  @media (max-height: 600px) {
+    height: 90vh; // Ajuste para telas com altura menor
+  }
+  @media (max-width: 480px) {
+    width: 95vw; // Largura ainda mais reduzida para telas muito pequenas
+    height: 90vh; // Altura reduzida para telas muito pequenas
+    padding: 1rem; // Padding reduzido para telas muito pequenas
+  }
 `;
 
 export const ModalClose = styled.button`
