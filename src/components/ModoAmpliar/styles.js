@@ -58,9 +58,9 @@ export const ModalContent = styled.div`
     margin-top: 2rem;
   }
 
-    @media (max-width: 1200px) {
+  @media (max-width: 1200px) {
     width: 70vw; // Largura reduzida para telas menores
-    height:95vh; // Altura reduzida para telas menores
+    height: 95vh; // Altura reduzida para telas menores
     padding: 2rem; // Padding reduzido para telas menores
   }
 
@@ -95,7 +95,13 @@ export const ModalClose = styled.button`
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
+  overflow-y: auto; /* ← Adicione esta linha */
 
+  /* Estiliza a rolagem para UX melhor em mobile (opcional) */
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
   &:hover {
     background: rgba(0, 0, 0, 0.9);
     transform: scale(1.1);
