@@ -60,7 +60,7 @@ export const ModalContent = styled.div`
   @media (max-width: 1200px) {
     width: 40vw; // Largura reduzida para telas menores
     height: 90vh; // Altura reduzida para telas menores
-    padding: .8rem 1.7rem;
+    padding: 1rem 1.7rem;
 
     img {
       max-height: 70vh; // Altura máxima da imagem reduzida para telas menores
@@ -180,6 +180,8 @@ export const ConteinerBotoes = styled.div`
   display: flex;
   gap: 1rem;
   align-items: center;
+
+  justify-content: space-between;
 `;
 
 export const BotaoCarrinho = styled.button`
