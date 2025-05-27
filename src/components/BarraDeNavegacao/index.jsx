@@ -35,7 +35,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { useState } from "react";
 
 import { useNavbar } from "../../hooks/useNavbar";
-import { FiLogOut } from "react-icons/fi";
+
 
 const BarraDeNavegacao = () => {
   const menuRef = useRef(null);
