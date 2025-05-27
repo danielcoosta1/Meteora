@@ -3,11 +3,27 @@ import styled from "styled-components";
 export const SecaoCategorias = styled.section`
   padding: 4rem 0;
   text-align: center;
+
+  @media (max-width: 768px) {
+    padding: 2rem 0;
+  }
+  @media (max-width: 480px) {
+    padding: 1.75rem 0;
+  }
 `;
 
 export const Titulo = styled.h2`
   font-size: 1.8rem;
   margin-bottom: 2rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  @media (max-width: 480px) {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 export const GridCategorias = styled.div`
@@ -16,6 +32,16 @@ export const GridCategorias = styled.div`
   gap: 1.5rem;
   justify-items: center;
   padding: 0 1rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1rem;
+  }
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 0.75rem;
+  }
+  
 `;
 
 export const CardCategoria = styled.div`
