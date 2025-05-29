@@ -23,9 +23,9 @@ Meteora é uma aplicação de e-commerce de moda que permite visualizar produtos
   - Modal para ampliação de imagens dos produtos
  
  - **Sitema de Autenticação (AuthContext)**
-  - Criação de um contexto de autenticação global (AuthContext) para gerenciar login e logout
-  - Componente AuthProvider responsável por fornecer o estado e as funções de autenticação para toda a aplicação
-  - Hook personalizado useAuth() para facilitar o acesso ao contexto de autenticação
+    - Criação de um contexto de autenticação global (AuthContext) para gerenciar login e logout
+    - Componente AuthProvider responsável por fornecer o estado e as funções de autenticação para toda a aplicação
+    - Hook personalizado useAuth() para facilitar o acesso ao contexto de autenticação
 
 - **Interface e Usabilidade**
   - Componentes reutilizáveis (ex.: ProdutoCard) para uma UI consistente e escalável
